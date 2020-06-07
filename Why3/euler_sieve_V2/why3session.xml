@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="6">
+<file format="whyml">
+<path name=".."/><path name="euler_sieve_V2.mlw"/>
+<theory name="EulerSieve">
+ <goal name="mark&#39;vc" expl="VC for mark">
+ </goal>
+ <goal name="remove_products&#39;vc" expl="VC for remove_products">
+ </goal>
+ <goal name="euler_sieve&#39;vc" expl="VC for euler_sieve">
+ </goal>
+</theory>
+</file>
+</why3session>

@@ -1,0 +1,49 @@
+module EulerSieve
+
+use int.Int
+use array.Array
+
+let mark (marked: array bool) (n: int)
+ = marked[n] <- true
+
+let rec remove_products (nexts: array int) (marked: array bool) (max: int) (n: int) (p: int)
+ = let next = if p = -1 then n else nexts[p] in
+   if next <> -1 then
+      if n * next <= max then begin
+         mark marked (n * next);
+         if p <> -1 && marked[next] then begin
+            nexts[p] <- nexts[next];
+            remove_products nexts marked max n p
+         end else
+            remove_products nexts marked max n next
+      end
+
+let rec euler_sieve max
+ = let nexts = make (max + 1) (-1) in
+   let marked = make (max + 1) false in
+   for i = 0 to max - 1 do
+       nexts[i] <- i + 1
+   done;
+   marked[0] <- true;
+   marked[1] <- true;
+   let rec loop n =
+       if n <> -1 then begin
+          remove_products nexts marked max n (-1);
+          loop nexts[n]
+       end in
+   loop 2;
+   let ref cnt = 0 in
+   for i = 0 to max do
+       if not marked[i] then cnt <- cnt + 1
+   done;
+   let primes = make cnt 0 in
+   let ref p = 0 in
+   for i = 0 to max do
+       if not marked[i] then begin
+          primes[p] <- i;
+          p <- p + 1
+       end
+   done;
+   primes
+
+end
