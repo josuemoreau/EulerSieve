@@ -5,8 +5,6 @@
 <file format="whyml">
 <path name=".."/><path name="euler_sieve_V2.mlw"/>
 <theory name="EulerSieve">
- <goal name="mark&#39;vc" expl="VC for mark">
- </goal>
  <goal name="remove_products&#39;vc" expl="VC for remove_products">
  </goal>
  <goal name="euler_sieve&#39;vc" expl="VC for euler_sieve">

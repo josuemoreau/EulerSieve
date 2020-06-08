@@ -30,8 +30,6 @@ let euler_sieve max =
   let nexts = Array.init (max + 1)
       (fun i -> i + 1) in
   let marked = Array.make (max + 1) false in
-  marked.(0) <- true;
-  marked.(1) <- true;
   nexts.(max) <- -1;
   let rec aux n =
     if n = -1 then ()
@@ -39,21 +37,24 @@ let euler_sieve max =
       (remove_products nexts marked max n (-1);
        aux nexts.(n)) in
   aux 2;
-  (*let j = ref (-1) in
-  List.rev (Array.fold_left (fun acc x ->
-      incr j;
-      if x then acc else !j :: acc) [] marked)*)
-  let cnt = ref 0 in
-  for i = 0 to max do
-    if not marked.(i) then incr cnt
-  done;
-  let primes = Array.make !cnt 0 in
+  let rec count p cnt =
+    let next = nexts.(p) in
+    if next = -1 then cnt
+    else
+      if marked.(next) then begin
+        nexts.(p) <- nexts.(next);
+        count p cnt
+      end else
+        count next (cnt + 1) in
+  let primes = Array.make (count 1 0) 0 in
   let p = ref 0 in
-  for i = 0 to max do
-    if not marked.(i) then begin
-      primes.(!p) <- i;
+  let i = ref 2 in
+  while !i <> -1 do
+    if not marked.(!i) then begin
+      primes.(!p) <- !i;
       incr p
-    end
+    end;
+    i := nexts.(!i)
   done;
   primes
 
