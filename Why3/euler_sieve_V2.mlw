@@ -6,7 +6,7 @@ use array.Array
 let mark (marked: array bool) (n: int)
  = marked[n] <- true
 
-let rec remove_products (nexts: array int) (marked: array bool) (max: int) (n: int) (p: int)
+let rec remove_products (nexts: array int) (marked: array bool) (max: int) (n: int) (p: int) : unit
  = let next = if p = -1 then n else nexts[p] in
    if next <> -1 then
       if n * next <= max then begin
@@ -18,7 +18,7 @@ let rec remove_products (nexts: array int) (marked: array bool) (max: int) (n: i
             remove_products nexts marked max n next
       end
 
-let rec euler_sieve max
+let rec euler_sieve (max: int) : array int
  = let nexts = make (max + 1) (-1) in
    let marked = make (max + 1) false in
    for i = 0 to max - 1 do
