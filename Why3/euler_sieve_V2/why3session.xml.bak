@@ -2,10 +2,90 @@
 <!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
 "http://why3.lri.fr/why3session.dtd">
 <why3session shape_version="6">
+<prover id="0" name="Alt-Ergo" version="2.0.0" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="1" name="Z3" version="4.8.6" timelimit="1" steplimit="0" memlimit="1000"/>
+<prover id="2" name="CVC4" version="1.7" timelimit="1" steplimit="0" memlimit="1000"/>
 <file format="whyml">
 <path name=".."/><path name="euler_sieve_V2.mlw"/>
 <theory name="EulerSieve">
+ <goal name="a" proved="true">
+ <proof prover="0" obsolete="true"><result status="unknown" time="0.02"/></proof>
+ <proof prover="1"><result status="valid" time="0.03" steps="35099"/></proof>
+ <proof prover="2"><result status="timeout" time="1.00" steps="60254"/></proof>
+ </goal>
  <goal name="remove_products&#39;vc" expl="VC for remove_products">
+ <transf name="split_vc" >
+  <goal name="remove_products&#39;vc.0" expl="index in array bounds" proved="true">
+  <proof prover="2"><result status="valid" time="0.05" steps="7151"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.1" expl="index in array bounds" proved="true">
+  <proof prover="0"><result status="valid" time="0.01" steps="19"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1806467"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="90008"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.2" expl="index in array bounds" proved="true">
+  <proof prover="2"><result status="valid" time="0.03" steps="8464"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.3" expl="index in array bounds" proved="true">
+  <proof prover="2"><result status="valid" time="0.04" steps="7552"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.4" expl="index in array bounds" proved="true">
+  <proof prover="2"><result status="valid" time="0.03" steps="7612"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.5" expl="index in array bounds" proved="true">
+  <proof prover="2"><result status="valid" time="0.03" steps="7552"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.6" expl="variant decrease">
+  <transf name="split_vc" >
+   <goal name="remove_products&#39;vc.6.0" expl="variant decrease" proved="true">
+   <proof prover="1"><result status="valid" time="0.02" steps="54165"/></proof>
+   <proof prover="2"><result status="timeout" time="1.00" steps="93111"/></proof>
+   </goal>
+   <goal name="remove_products&#39;vc.6.1" expl="variant decrease">
+   <proof prover="0"><result status="timeout" time="1.00"/></proof>
+   <proof prover="1"><result status="timeout" time="1.00" steps="1560145"/></proof>
+   <proof prover="2"><result status="timeout" time="1.00" steps="96115"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="remove_products&#39;vc.7" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.02" steps="6348"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.8" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.06" steps="139"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.9" expl="precondition">
+  <proof prover="0"><result status="unknown" time="0.64"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1070970"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="69068"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.10" expl="variant decrease" proved="true">
+  <proof prover="1"><result status="valid" time="0.03" steps="50175"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="78210"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.11" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.02" steps="44539"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="54963"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.12" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.02" steps="6139"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.13" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.02" steps="6142"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.14" expl="index in array bounds" proved="true">
+  <proof prover="2"><result status="valid" time="0.26" steps="38462"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.15" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.04" steps="5958"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.16" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.05" steps="5962"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.17" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.02" steps="5965"/></proof>
+  </goal>
+ </transf>
  </goal>
  <goal name="euler_sieve&#39;vc" expl="VC for euler_sieve">
  </goal>

@@ -53,7 +53,7 @@ let rec remove_products (nexts: array int) (marked: array bool)
       if n * next <= max then begin
         marked[n * next] <- true;
         if (*p < max + 1 &&*) marked[next] then begin
-          nexts[p] <- nexts[nexts[p]];
+          nexts[p] <- nexts[next[p]];
           loop p
         end else
           loop next
