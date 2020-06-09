@@ -1,62 +1,114 @@
 module EulerSieve
 
 use int.Int
+use int.EuclideanDivision
 use array.Array
 use array.NumOf
-
+(*
 predicate nexts_croissance (a: array int) =
   forall i. 0 <= i < a.length - 1 -> a[i] < a[i + 1]
 
 predicate nexts_borne (a: array int) =
-  forall i. 0 <= i < a.length -> i < a[i] <= a.length
-  
-(*function nb_unmarked (a: array bool) : int =
-  numof (fun i x -> not x) a 0 a.length
+  forall i. 0 <= i < a.length -> i < a[i] <= a.length*)
+  (*
+function nb_multiples_unmarked (a: array bool) (n: int) (l: int) : int =
+  numof (fun i x -> not x /\ mod i n = 0) a 0 l*)
 
-predicate multiples_unmarked (marked: array bool) (n: int) (next: int) =
-  next >= n /\ forall i. n * next <= n * i < marked.length -> not marked[n * i] *)
-  
-predicate has_pred (nexts: array int) (n: int) =
-  exists i. 0 <= i < nexts.length /\ nexts[i] = n
-  
-predicate unique_preds (nexts: array int) =
-  forall i j. nexts[i] = nexts[j] -> i = j
+(* predicate multiples_unmarked (marked: array bool) (n: int) (next: int) = *)
+(*   next >= n /\ forall i. n * next <= n * i < marked.length -> not marked[n * i] *)
+(*
+lemma multiples_unmarked_croissance:
+  forall marked n l.
+    0 <= l < marked.length - 1 ->
+    0 <= n < marked.length ->
+    if mod l n = 0 then
+      if marked[l] then
+        nb_multiples_unmarked marked n (l + 1) = nb_multiples_unmarked marked n l
+      else
+        nb_multiples_unmarked marked n (l + 1) = 1 + nb_multiples_unmarked marked n l
+    else
+      nb_multiples_unmarked marked n (l + 1) = nb_multiples_unmarked marked n l
 
-function nb_preceded_numbers (nexts: array int) : int =
-  numof (fun i x -> has_pred nexts i) nexts 0 nexts.length
+lemma mutliples_unmarked_croissance_borne:
+  forall marked n l.
+    0 <= l < marked.length - 1 ->
+    0 <= n < marked.length ->
+    nb_multiples_unmarked marked n l <= nb_multiples_unmarked marked n (l + 1) <= 1 + nb_multiples_unmarked marked n l 
+*)
+  (*
+lemma divide_desc:
+  forall n l. 
+    0 <= n <= l ->
+    mod (l + 1) n = 0 -> exists k r. 0 <= k < l /\ 0 <= r < n /\ l = (k - 1) * n + r*)
+(*
+lemma div_croissance:
+  forall l n.
+    0 <= n < l ->
+    divides (l + 1) n -> div (l + 1) n = 1 + div l n*)
+
+(* lemma mutliples_unmarked_local_borne:
+  forall marked n l.
+    0 <= l < marked.length - 1 ->
+    0 <= n < marked.length ->
+    nb_multiples_unmarked marked n l <= div l n ->
+    nb_multiples_unmarked marked n (l + 1) <= div (l + 1) n
+
+let rec lemma multiples_unmarked_borne (marked: array bool) (n: int) (l: int)
+  requires { 0 <= n < marked.length }
+  requires { 0 <= l < marked.length }
+  ensures { 0 <= nb_multiples_unmarked marked n l <= marked.length }
+= variant { l }
+  if l = 0 then ()
+  else multiples_unmarked_borne marked n (l - 1) *)
   
-lemma a: 
-  forall a. nexts_borne a -> 
-            nexts_croissance a -> 
-            forall i. 0 <= i < a.length - 2 -> a[i] < a[a[i]]
+(* lemma a:
+  forall l n. 
+    l > 0 -> n > 1 -> mod l n = 0 <-> mod (l - 1) n = n - 1 *)
+    
+function nb_multiples_unmarked (marked: array bool) (n: int) (m: int) : int =
+  numof (fun i x -> not x /\ mod i n = 0) marked 0 marked.length
+
+predicate next_multiples_unmarked (a: array bool) (n: int) (m: int) =
+  2 <= n <= m < a.length ->
+  forall i. m <= i < a.length ->
+            i * n < a.length ->
+            a[i * n] = false
+    
+lemma a:
+  forall marked n m.
+    2 <= n <= m < marked.length -> marked[m] = false -> m * n < marked.length ->
+    next_multiples_unmarked marked n m -> marked[n * m] = false
+    
+lemma a2:
+  forall marked n m.
+    2 <= n <= m < marked.length -> marked[m] = true -> m * n < marked.length ->
+    next_multiples_unmarked marked n m -> marked[n * m] = false
+        
+lemma b:
+  forall marked n m.
+    not marked[n * m] -> nb_multiples_unmarked marked n m = nb_multiples_unmarked marked n (m + 1)
 
 let rec remove_products (nexts: array int) (marked: array bool)
                         (max: int) (n: int) (p: int) : unit
-  (* requires { max_calls >= nb_unmarked marked } *)
   requires { 2 <= p <= max + 1 /\ 2 <= n <= max }
   requires { nexts.length = max + 1 /\ marked.length = max + 1 }
-  requires { nexts_borne nexts }
-  requires { nexts_croissance nexts }
-  requires { unique_preds nexts }
-  (* requires { forall i. 0 <= i < nexts.length -> nexts[i] > i } *)
-  (* requires { forall i. 0 <= i < nexts.length -> 0 <= nexts[i] <= max } *)
-  (* requires { 0 <= nb_marked marked <= max } *)
-= (* variant { max - nb_marked marked } *)
-   (* C'EST QUAND MEME VRAIMENT ELEGANT !!! *)
-  let rec loop p =
-    requires { 2 <= p <= max }
-    requires { nexts_borne nexts }
-    requires { unique_preds nexts }
-    variant { max + 1 - p + nb_preceded_numbers nexts }
-    let next = (*if p = max + 1 then n else nexts[p]*) nexts[p] in
+  requires { next_multiples_unmarked marked n n }
+  = let rec loop p =
+    requires { 0 <= p <= max }
+    requires { 2 <= n < nexts[p] <= max }
+    requires { next_multiples_unmarked marked n nexts[p] }
+    variant { nb_multiples_unmarked marked n nexts[p] }
+    let next = nexts[p] in
     if 0 <= next < max + 1 then
       if n * next <= max then begin
         marked[n * next] <- true;
-        if (*p < max + 1 &&*) marked[next] then begin
-          nexts[p] <- nexts[nexts[p]];
+        if marked[next] then begin
+          nexts[p] <- nexts[next];
           loop p
-        end else
+        end else begin
+          assert { marked[n * next] = false };
           loop next
+        end
       end in
     if n * n <= max then begin
       marked[n * n] <- true;
