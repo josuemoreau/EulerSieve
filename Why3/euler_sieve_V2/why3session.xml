@@ -99,6 +99,12 @@
   <goal name="remove_products&#39;vc.20" expl="precondition" proved="true">
   <proof prover="2"><result status="valid" time="0.19" steps="35637"/></proof>
   </goal>
+  <goal name="remove_products&#39;vc.21" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.03" steps="6687"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.22" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.02" steps="6526"/></proof>
+  </goal>
  </transf>
  </goal>
  <goal name="euler_sieve&#39;vc" expl="VC for euler_sieve">
