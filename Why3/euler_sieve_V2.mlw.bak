@@ -14,6 +14,12 @@ predicate inv_remove_products (nexts: array int) (marked: array bool) =
 predicate inv_nexts (nexts: array int) (n: int) =
   forall i. 0 <= i < n ->
             i < nexts[i] <= n
+
+predicate inv_count (nexts: array int) (marked: array bool) (min: int) =
+  nexts.length = marked.length /\
+  forall i. min <= i < nexts.length ->
+            i < nexts[i] <= nexts.length
+
 (*
 function count_unmarked (nexts: array int) (marked: array bool) (n: int) (max: int) : int
 
@@ -125,9 +131,8 @@ let rec remove_products (nexts: array int) (marked: array bool)
 let euler_sieve (max: int) : array int
   requires { max >= 2 }
 = let nexts = make (max + 1) 0 in
-  let marked = make (max + 1) false in
-  (* finalement, on ne met pas nexts[max] = -1, mais nexts[max] = max + 1,
-     plus facile à prouver pour la terminaison *)
+  let marked = make (max +
+    1) false in
   for i = 0 to max do
      invariant { inv_nexts nexts i }
      nexts[i] <- i + 1
@@ -144,35 +149,28 @@ let euler_sieve (max: int) : array int
   loop 2;
   let rec count (p: int) (cnt: int) =
     requires { 2 <= p <= max }
-    requires { cnt >= 1 }
-    requires { inv_remove_products nexts marked }
-    (* requires { cnt = count_unmarked nexts marked 2 (p + 1) } *)
-    ensures { result >= 1 }
-    ensures { inv_remove_products nexts marked }
-    (* ensures { result = length_nexts nexts (max + 1) } *)
+    requires { 1 <= cnt <= p - 1 }
+    requires { inv_count nexts marked cnt }
+    ensures { 1 <= result <= max }
     variant { max + 1 - nexts[p] }
     let next = nexts[p] in
-    if next = max + 1 then cnt
+    if next = max + 1 then begin nexts[cnt] <- 0; cnt end
     else
       if marked[next] then begin
         nexts[p] <- nexts[next];
         count p cnt
-      end else
-        count next (cnt + 1) in
-  (* let cnt = count_unmarked nexts marked (max + 1) in *)
-  let primes = make (count 2 1) 0 in
-  let ref p = 0 in
-  let ref i = 2 in
-  while i <> max + 1 do
-    invariant { inv_remove_products nexts marked }
-    invariant { 0 <= i <= max + 1 }
-    (* invariant { p = count_unmarked nexts marked 2 i } *)
-    variant { max + 1 - i }
-    if not marked[i] then begin
-      primes[p] <- i;
-      p <- p + 1
-    end;
-    i <- nexts[i]
+      end else begin
+        (* Attention : bonne idée ! On réécrit le début du tableau nexts ! *)
+        (*  *)
+        nexts[cnt] <- next;
+        count next (cnt + 1)
+      end in
+  nexts[0] <- 2;
+  let cnt = count 2 1 in
+  let primes = make cnt 0 in
+  for i = 0 to cnt - 1 do
+    invariant { forall k. 0 <= k < i -> primes[k] = nexts[k] }
+    primes[i] <- nexts[i]
   done;
   primes
 
