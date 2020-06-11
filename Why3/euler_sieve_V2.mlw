@@ -40,21 +40,6 @@ let remove_products (nexts: array int) (marked: array bool)
           marked[n * next] <- true;
           if marked[next] then begin
             nexts[p] <- nexts[next];
-            (*
-              Bizarrement ! (enfin, non puisque c'est encore une histoire d'heuristiques ...)
-              En ajoutant les 'use number.Divisibility' et 'use number.Prime',
-              les démontrateurs ne savent plus prouver certaines conservations d'invariants
-              ou de préconditions ! Du coup pour les forcer à les redémontrer, il faut
-              que je mette les invariants en assert et que je les écrive explicitement
-              sans utiliser le prédicat, pour ensuire les split et les démontrer.
-              Ca fonctionne comme ça mais ce serait mieux si on pouvait lui indiquer de ne pas
-              chercher dans les axiomes de number ou encore si on pouvait split directement les
-              prédicats :)
-            *)
-            assert {  nexts.length = marked.length /\
-                      not marked[2] /\
-                      forall i. 0 <= i < nexts.length ->
-                        i < nexts[i] <= nexts.length };
             loop p
           end else
             loop next
@@ -94,9 +79,6 @@ let euler_sieve (max: int) : array int
     else
       if marked[next] then begin
         nexts[p] <- nexts[next];
-        assert {  nexts.length = marked.length /\
-                  forall i. cnt <= i < nexts.length ->
-                    i < nexts[i] <= nexts.length };
         count p cnt
       end else begin
         (* 
@@ -108,15 +90,9 @@ let euler_sieve (max: int) : array int
            de count par la suite 
         *)
         nexts[cnt] <- next; (* une opération en plus ... *)
-        assert {  nexts.length = marked.length /\
-                  forall i. cnt + 1 <= i < nexts.length ->
-                    i < nexts[i] <= nexts.length };
         count next (cnt + 1)
       end in
   nexts[0] <- 2;
-  assert {  nexts.length = marked.length /\
-            forall i. 1 <= i < nexts.length ->
-              i < nexts[i] <= nexts.length };
   sub nexts 0 (count 2 1)
 
 end

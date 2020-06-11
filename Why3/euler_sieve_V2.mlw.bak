@@ -40,10 +40,11 @@ let remove_products (nexts: array int) (marked: array bool)
           marked[n * next] <- true;
           if marked[next] then begin
             nexts[p] <- nexts[next];
-            assert { nexts.length = marked.length /\
-  not marked[2] /\
-  forall i. 0 <= i < nexts.length ->
-            i < nexts[i] <= nexts.length };
+            (* assert { inv_remove_products nexts marked };
+            assert {  nexts.length = marked.length /\
+                      not marked[2] /\
+                      forall i. 0 <= i < nexts.length ->
+                        i < nexts[i] <= nexts.length }; *)
             loop p
           end else
             loop next
@@ -58,8 +59,9 @@ let euler_sieve (max: int) : array int
 = let nexts = make (max + 1) 0 in
   let marked = make (max + 1) false in
   for i = 0 to max do
-     invariant { inv_nexts nexts i }
-     nexts[i] <- i + 1
+    invariant { inv_nexts nexts i }
+    nexts[i] <- i + 1;
+    assert { forall j. 0 <= j < i + 1 -> j < nexts[j] <= i + 1 }
   done;
   let rec loop n =
     requires { 2 <= n <= max + 1 } 
@@ -82,7 +84,6 @@ let euler_sieve (max: int) : array int
     else
       if marked[next] then begin
         nexts[p] <- nexts[next];
-
         count p cnt
       end else begin
         (* 
