@@ -1,4 +1,2 @@
 extract.ml
 extract
-*.o
-*.cm*

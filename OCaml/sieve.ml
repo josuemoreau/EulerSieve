@@ -13,7 +13,7 @@
 let euler_sieve limit =
   let next = Array.init ((limit + 1) / 2) (fun i -> 2*i+3) in
   let get i = next.(i / 2) in
-  let rmv i = let v = next.(i / 2) in if v > 0 then next.(i / 2) <- - v in
+  let rmv i = let v = next.(i / 2) in next.(i / 2) <- - v in
   let set i v = next.(i / 2) <- v in
   let rec loop p =
     let rec sieve prev n = (* n is an element of the list *)
@@ -31,14 +31,10 @@ let euler_sieve limit =
     if n <= limit then
       let n' = get n in
       if n' < 0 then begin set prev (-n'); count acc prev (-n') end
-      else count (acc+1) n n'
-    else acc in
-  let count = count 1 (-1) 3 in
-  let p = Array.make count 2 in
-  let rec fill i n =
-    if i = count then assert (n > limit)
-    else begin p.(i) <- n; fill (i + 1) (get n) end in
-  fill 1 3;
-  p
+      else begin next.(acc) <- n; count (acc+1) n n' end
+    else Array.sub next 0 acc in
+  next.(0) <- 2;
+  count 1 (-1) 3
 
 let a = euler_sieve 100
+let () = assert (Array.length a = 25)
