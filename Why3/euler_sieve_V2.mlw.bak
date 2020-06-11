@@ -22,6 +22,12 @@ predicate inv_count (nexts: array int) (marked: array bool) (min: int) =
 predicate same_elements (a1: array 'a) (a2: array 'a) (n: int) =
   forall k. 0 <= k < n -> a1[k] = a2[k]
 
+predicate all_differents (a: array 'a) (n: int) =
+  forall i j. 0 <= i < j < n -> a[i] <> a[j]
+  
+predicate all_inf_or_eq (a: array int) (n k: int) =
+  forall i. 0 <= i < n -> a[i] <= k
+
 let remove_products (nexts: array int) (marked: array bool)
                         (max: int) (n: int) : unit
   requires { 2 <= n <= max }
@@ -40,11 +46,6 @@ let remove_products (nexts: array int) (marked: array bool)
           marked[n * next] <- true;
           if marked[next] then begin
             nexts[p] <- nexts[next];
-            (* assert { inv_remove_products nexts marked };
-            assert {  nexts.length = marked.length /\
-                      not marked[2] /\
-                      forall i. 0 <= i < nexts.length ->
-                        i < nexts[i] <= nexts.length }; *)
             loop p
           end else
             loop next
@@ -56,12 +57,13 @@ let remove_products (nexts: array int) (marked: array bool)
 
 let euler_sieve (max: int) : array int
   requires { max >= 2 }
+  ensures { all_differents result result.length }
 = let nexts = make (max + 1) 0 in
   let marked = make (max + 1) false in
   for i = 0 to max do
     invariant { inv_nexts nexts i }
     nexts[i] <- i + 1;
-    assert { forall j. 0 <= j < i + 1 -> j < nexts[j] <= i + 1 }
+    (* assert { forall j. 0 <= j < i + 1 -> j < nexts[j] <= i + 1 } *)
   done;
   let rec loop n =
     requires { 2 <= n <= max + 1 } 
@@ -77,7 +79,10 @@ let euler_sieve (max: int) : array int
     requires { 2 <= p <= max }
     requires { 1 <= cnt <= p - 1 }
     requires { inv_count nexts marked cnt }
+    requires { all_differents nexts cnt }
+    requires { all_inf_or_eq nexts cnt p }
     ensures { 1 <= result <= max }
+    ensures { all_differents nexts result }
     variant { max + 1 - nexts[p] }
     let next = nexts[p] in
     if next = max + 1 then begin nexts[cnt] <- 0; cnt end
@@ -95,6 +100,8 @@ let euler_sieve (max: int) : array int
            de count par la suite 
         *)
         nexts[cnt] <- next; (* une opération en plus ... *)
+        (* assert { all_differents nexts cnt }; *)
+        assert { cnt + 1 <= p < p + 1 /\ all_inf_or_eq nexts cnt nexts[p] };
         count next (cnt + 1)
       end in
   nexts[0] <- 2;
