@@ -9,15 +9,35 @@ predicate inv_nexts (nexts: array int) (n: int) =
   forall i. 0 <= i < n ->
             i < nexts[i] <= n
 
-predicate inv_remove_products (nexts: array int) (marked: array bool) =
+predicate all_primes (marked: array bool) (n: int) =
+  forall i. 0 <= i < n -> not marked[i] <-> prime i
+  
+(*
+  Note intéressante :
+  -------------------
+  Je pense que ...
+  La seule implication à démontrer est que tous les nombres non marqués
+  sont premiers !
+  Car à chaque fois qu'on marque un nombre, par définition, c'est qu'il est
+  produit de deux entiers (nécessairement compris entre 2 et inférieurs au
+  nombre marqué). ET DONC, ça nous donne directement l'implication 
+  marked[i] -> not prime i, ce qui nous donne donc prime i -> not marked[i] !
+  Et donc tous les nombres premiers inférieures ou égaux à n seront 
+  nécessairement marqués !
+*)
+
+predicate inv_remove_products (nexts: array int) (marked: array bool) (n: int) =
   nexts.length = marked.length /\
   not marked[2] /\
+  all_primes marked n /\
+  prime n /\
   inv_nexts nexts nexts.length
 
 predicate inv_count (nexts: array int) (marked: array bool) (min: int) =
   nexts.length = marked.length /\
   forall i. min <= i < nexts.length ->
             i < nexts[i] <= nexts.length
+
 
 predicate same_elements (a1: array 'a) (a2: array 'a) (n: int) =
   forall k. 0 <= k < n -> a1[k] = a2[k]
@@ -32,13 +52,13 @@ let remove_products (nexts: array int) (marked: array bool)
                         (max: int) (n: int) : unit
   requires { 2 <= n <= max }
   requires { nexts.length = marked.length = max + 1 }
-  requires { inv_remove_products nexts marked }
-  ensures { inv_remove_products nexts marked }
+  requires { inv_remove_products nexts marked n }
+  ensures { inv_remove_products nexts marked n }
   = let rec loop p =
       requires { 1 <= p <= max }
       requires { 2 <= n <= max }
-      requires { inv_remove_products nexts marked }
-      ensures { inv_remove_products nexts marked }
+      requires { inv_remove_products nexts marked n }
+      ensures { inv_remove_products nexts marked n }
       variant { max - nexts[p] }
       let next = nexts[p] in
       if 0 <= next < max + 1 then
@@ -46,6 +66,7 @@ let remove_products (nexts: array int) (marked: array bool)
           marked[n * next] <- true;
           if marked[next] then begin
             nexts[p] <- nexts[next];
+            assert { next >= 2 };
             loop p
           end else
             loop next
@@ -67,8 +88,8 @@ let euler_sieve (max: int) : array int
   done;
   let rec loop n =
     requires { 2 <= n <= max + 1 } 
-    requires { inv_remove_products nexts marked }
-    ensures { inv_remove_products nexts marked }
+    requires { inv_remove_products nexts marked n }
+    ensures { inv_remove_products nexts marked nexts.length }
     variant { max + 1 - n }
     if n <> max + 1 then begin
       remove_products nexts marked max n;
