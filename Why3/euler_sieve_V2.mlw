@@ -20,38 +20,37 @@ predicate inv_count (nexts: array int) (marked: array bool) (min: int) =
 predicate same_elements (a1: array 'a) (a2: array 'a) (n: int) =
   forall k. 0 <= k < n -> a1[k] = a2[k]
 
-let rec remove_products (nexts: array int) (marked: array bool)
+let remove_products (nexts: array int) (marked: array bool)
                         (max: int) (n: int) : unit
   requires { 2 <= n <= max }
   requires { nexts.length = marked.length = max + 1 }
   requires { inv_remove_products nexts marked }
   ensures { inv_remove_products nexts marked }
   = let rec loop p =
-    requires { 1 <= p <= max }
-    requires { 2 <= n <= max }
-    requires { inv_remove_products nexts marked }
-    ensures { inv_remove_products nexts marked }
-    variant { max - nexts[p] }
-    let next = nexts[p] in
-    if 0 <= next < max + 1 then
-      if n * next <= max then begin
-        marked[n * next] <- true;
-        if marked[next] then begin
-          nexts[p] <- nexts[next];
-          loop p
-        end else
-          loop next
-      end in
-    if n * n <= max then begin
-      marked[n * n] <- true;
-      loop n
-    end  
+      requires { 1 <= p <= max }
+      requires { 2 <= n <= max }
+      requires { inv_remove_products nexts marked }
+      ensures { inv_remove_products nexts marked }
+      variant { max - nexts[p] }
+      let next = nexts[p] in
+      if 0 <= next < max + 1 then
+        if n * next <= max then begin
+          marked[n * next] <- true;
+          if marked[next] then begin
+            nexts[p] <- nexts[next];
+            loop p
+          end else
+            loop next
+        end in
+      if n * n <= max then begin
+        marked[n * n] <- true;
+        loop n
+      end  
 
 let euler_sieve (max: int) : array int
   requires { max >= 2 }
 = let nexts = make (max + 1) 0 in
-  let marked = make (max +
-    1) false in
+  let marked = make (max + 1) false in
   for i = 0 to max do
      invariant { inv_nexts nexts i }
      nexts[i] <- i + 1
@@ -77,6 +76,7 @@ let euler_sieve (max: int) : array int
     else
       if marked[next] then begin
         nexts[p] <- nexts[next];
+
         count p cnt
       end else begin
         (* 
@@ -91,12 +91,6 @@ let euler_sieve (max: int) : array int
         count next (cnt + 1)
       end in
   nexts[0] <- 2;
-  let cnt = count 2 1 in
-  let primes = make cnt 0 in
-  for i = 0 to cnt - 1 do
-    invariant { same_elements primes nexts i }
-    primes[i] <- nexts[i] (* mais 1 test et 2 opérations en moins ! ;) *)
-  done;
-  primes
+  sub nexts 0 (count 2 1)
 
 end

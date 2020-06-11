@@ -1,109 +1,28 @@
 module EulerSieve
 
 use int.Int
-use int.EuclideanDivision
 use array.Array
-use array.NumOf
-
-predicate inv_remove_products (nexts: array int) (marked: array bool) =
-  nexts.length = marked.length /\
-  not marked[2] /\
-  forall i. 0 <= i < nexts.length ->
-            i < nexts[i] <= nexts.length
 
 predicate inv_nexts (nexts: array int) (n: int) =
   forall i. 0 <= i < n ->
             i < nexts[i] <= n
+
+predicate inv_remove_products (nexts: array int) (marked: array bool) =
+  nexts.length = marked.length /\
+  not marked[2] /\
+  inv_nexts nexts nexts.length
 
 predicate inv_count (nexts: array int) (marked: array bool) (min: int) =
   nexts.length = marked.length /\
   forall i. min <= i < nexts.length ->
             i < nexts[i] <= nexts.length
 
-(*
-function count_unmarked (nexts: array int) (marked: array bool) (n: int) (max: int) : int
-
-axiom count_unmarked_zero:
-  forall nexts marked n max. nexts.length = marked.length ->
-                             0 <= n <= nexts.length ->
-                             0 <= max <= nexts.length ->
-                             inv_nexts nexts nexts.length ->
-                             ((n >= max \/ n = nexts.length) <-> count_unmarked nexts marked n max = 0)
-axiom count_unmarked_next1: 
-  forall nexts marked n max. nexts.length = marked.length ->
-                             0 <= n <= nexts.length ->
-                             0 <= max <= nexts.length ->
-                             inv_nexts nexts nexts.length ->
-                             (not marked[max] <-> 
-                               count_unmarked nexts marked n nexts[max] = 1 + count_unmarked nexts marked n max)
-
-axiom count_unmarked_next2: 
-  forall nexts marked n max. nexts.length = marked.length ->
-                             0 <= n <= nexts.length ->
-                             0 <= max <= nexts.length ->
-                             inv_nexts nexts nexts.length ->
-                             (marked[max] <-> 
-                               count_unmarked nexts marked n nexts[max] = count_unmarked nexts marked n max)
-axiom count_unmarked_next3: 
-  forall nexts marked n max. nexts.length = marked.length ->
-                             0 <= n <= nexts.length ->
-                             0 <= max <= nexts.length ->
-                             inv_nexts nexts nexts.length ->
-                             (not marked[n] <-> 
-                               count_unmarked nexts marked n max = 1 + count_unmarked nexts marked nexts[n] max)
-
-axiom count_unmarked_next4: 
-  forall nexts marked n max. nexts.length = marked.length ->
-                             0 <= n <= nexts.length ->
-                             0 <= max <= nexts.length ->
-                             inv_nexts nexts nexts.length ->
-                             (marked[n] <-> 
-                               count_unmarked nexts marked n max = count_unmarked nexts marked nexts[n] max) *)
-
-(*let rec count_unmarked (nexts: array int) (marked: array bool) (n: int) (max: int) (cnt: int) : int
-  requires { cnt >= 0 }
-  requires { nexts.length = marked.length }
-  requires { 0 <= n <= nexts.length }
-  requires { 0 <= max <= nexts.length }
-  requires { inv_nexts nexts nexts.length }
-  requires { cnt = count_unmarked nexts marked n max }
-  variant { nexts.length - n }
-  = if n = max || n = nexts.length then cnt
-    else if not marked[n] then count_unmarked nexts marked nexts[n] max (cnt + 1)
-         else count_unmarked nexts marked nexts[n] max cnt*)
-         
-
-(*lemma a:
-  forall nexts marked max n.   nexts.length = marked.length ->
-                             0 <= max <= nexts.length ->
-                             inv_nexts nexts nexts.length ->
-                             n < max <= nexts[n] ->
-                             marked[n] ->
-                               count_unmarked nexts marked 2 nexts[n] = count_unmarked nexts marked 2 max*)
-(*
-let count_unmarked (nexts: array int) (marked: array bool) (max: int) : int
-  requires { nexts.length = marked.length }
-  requires { 2 <= max <= nexts.length }
-  requires { inv_nexts nexts nexts.length }
-  ensures { result >= 0 }
-  ensures { result = count_unmarked nexts marked 2 max }
-  = let ref n = 2 in
-    let ref cnt = 0 in
-    while n < max do
-      invariant { 0 <= n <= nexts.length }
-      invariant { cnt = count_unmarked nexts marked 2 n }
-      invariant { cnt >= 0 }
-      variant { max - n } 
-      if not marked[n] then
-        cnt <- cnt + 1;
-      n <- nexts[n]
-    done;
-    cnt *)
-
+predicate same_elements (a1: array 'a) (a2: array 'a) (n: int) =
+  forall k. 0 <= k < n -> a1[k] = a2[k]
 
 let rec remove_products (nexts: array int) (marked: array bool)
                         (max: int) (n: int) : unit
-  requires { (* 2 <= p <= max + 1 /\*) 2 <= n <= max }
+  requires { 2 <= n <= max }
   requires { nexts.length = marked.length = max + 1 }
   requires { inv_remove_products nexts marked }
   ensures { inv_remove_products nexts marked }
@@ -160,17 +79,23 @@ let euler_sieve (max: int) : array int
         nexts[p] <- nexts[next];
         count p cnt
       end else begin
-        (* Attention : bonne idée ! On réécrit le début du tableau nexts ! *)
-        (*  *)
-        nexts[cnt] <- next;
+        (* 
+           Attention : des fois j'ai des bonnes idées ! ...
+           On réécrit le début du tableau nexts !
+           Parce que le nombre de nombres premiers <= n est strictement inférieur à n !
+           Du coup on peut réécrire le tableau nexts en recopiant consécutivement
+           les nombres premiers déja rencontrés et ceci ne modifiera pas les calculs 
+           de count par la suite 
+        *)
+        nexts[cnt] <- next; (* une opération en plus ... *)
         count next (cnt + 1)
       end in
   nexts[0] <- 2;
   let cnt = count 2 1 in
   let primes = make cnt 0 in
   for i = 0 to cnt - 1 do
-    invariant { forall k. 0 <= k < i -> primes[k] = nexts[k] }
-    primes[i] <- nexts[i]
+    invariant { same_elements primes nexts i }
+    primes[i] <- nexts[i] (* mais 1 test et 2 opérations en moins ! ;) *)
   done;
   primes
 
