@@ -101,7 +101,7 @@ let euler_sieve (max: int) : array int
         *)
         nexts[cnt] <- next; (* une opération en plus ... *)
         (* assert { all_differents nexts cnt }; *)
-        assert { cnt + 1 <= p < p + 1 /\ all_inf_or_eq nexts cnt nexts[p] };
+        (* assert { cnt + 1 <= p < p + 1 /\ all_inf_or_eq nexts cnt nexts[p] }; *)
         count next (cnt + 1)
       end in
   nexts[0] <- 2;
