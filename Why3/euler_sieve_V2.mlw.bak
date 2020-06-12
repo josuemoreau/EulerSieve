@@ -12,6 +12,45 @@ predicate inv_nexts (nexts: array int) (n: int) =
 predicate all_primes (marked: array bool) (n: int) =
   forall i. 0 <= i < n -> not marked[i] <-> prime i
 
+predicate prime_products_marked (marked: array bool) (n max: int) =
+  0 < max <= marked.length /\
+  forall i. 0 <= i < max ->
+            divides n i ->
+            marked[i]
+
+predicate prime_products_not_marked (marked_old: array bool) (marked: array bool) (n min: int) =
+  0 <= min <= marked.length /\
+  n >= 2 /\
+  forall i. min <= i < marked.length ->
+            not marked_old[i] ->
+            n * i < marked.length ->
+            not marked[n * i]
+            
+lemma a:
+  forall marked n min.
+    0 <= min < marked.length ->
+    prime_products_not_marked marked marked n min ->
+    n * min < n * (min + 1) -> 
+    prime_products_not_marked marked marked[(n * min) <- true] n (min + 1) 
+            
+(*
+  Note intéressante :
+  -------------------
+  Je pense que ...
+  La seule implication à démontrer est que tous les nombres non marqués
+  sont premiers !
+  Car à chaque fois qu'on marque un nombre, par définition, c'est qu'il est
+  produit de deux entiers (nécessairement compris entre 2 et inférieurs au
+  nombre marqué). ET DONC, ça nous donne directement l'implication 
+  marked[i] -> not prime i, ce qui nous donne donc prime i -> not marked[i] !
+  Et donc tous les nombres premiers inférieures ou égaux à n seront 
+  nécessairement marqués !
+  Il y a quand même une petite subtilité, il faut montrer qu'aucun des éléments
+  sautés dans la liste chainée des éléments n'est pas marquée. Ce qui est
+  facilement surmontable car à chaque fois on vérifie si le suivant est marqué
+  pour pouvoir sauter par dessus.
+*)
+
 predicate inv_remove_products (nexts: array int) (marked: array bool) (n: int) =
   nexts.length = marked.length /\
   not marked[2] /\
@@ -39,20 +78,29 @@ let remove_products (nexts: array int) (marked: array bool)
   requires { 2 <= n <= max }
   requires { nexts.length = marked.length = max + 1 }
   requires { inv_remove_products nexts marked n }
+  requires { prime_products_not_marked marked marked n n }
   ensures { inv_remove_products nexts marked n }
-  = let rec loop p =
+  = let ghost marked_copy = copy marked in
+    let rec loop p =
       requires { 1 <= p <= max }
       requires { 2 <= n <= max }
       requires { inv_remove_products nexts marked n }
+      requires { prime_products_not_marked marked_copy marked n nexts[p] }
       ensures { inv_remove_products nexts marked n }
       variant { max - nexts[p] }
       let next = nexts[p] in
       if 0 <= next < max + 1 then
         if n * next <= max then begin
-          marked[n * next] <- true;
+          assert { prime_products_not_marked marked_copy marked n nexts[p] };
+          assert { prime_products_not_marked marked_copy marked n (nexts[p] + 1) };
+          assert { next >= 2 };
+          marked[n * nexts[p]] <- true;
+          assert { n * nexts[p] < n * (nexts[p] + 1) };
+          assert { prime_products_not_marked marked_copy marked n (nexts[p] + 1) };
           if marked[next] then begin
             nexts[p] <- nexts[next];
             assert { next >= 2 };
+            assert { n > 0 -> next >= 2 -> n * next > n };
             loop p
           end else
             loop next
