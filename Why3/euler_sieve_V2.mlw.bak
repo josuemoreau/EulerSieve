@@ -5,6 +5,9 @@ use number.Divisibility
 use number.Prime
 use array.Array
 
+lemma b:
+  forall n k. n > 0 -> k >= 2 -> n * k >= n * 2
+
 predicate inv_nexts (nexts: array int) (n: int) =
   forall i. 0 <= i < n ->
             i < nexts[i] <= n
@@ -27,11 +30,11 @@ predicate prime_products_not_marked (marked_old: array bool) (marked: array bool
             not marked[n * i]
             
 lemma a:
-  forall marked n min.
+  forall marked marked_copy n min.
     0 <= min < marked.length ->
-    prime_products_not_marked marked marked n min ->
+    prime_products_not_marked marked_copy marked n min ->
     n * min < n * (min + 1) -> 
-    prime_products_not_marked marked marked[(n * min) <- true] n (min + 1) 
+    prime_products_not_marked marked_copy marked[(n * min) <- true] n (min + 1) 
             
 (*
   Note intéressante :
@@ -97,10 +100,10 @@ let remove_products (nexts: array int) (marked: array bool)
           marked[n * nexts[p]] <- true;
           assert { n * nexts[p] < n * (nexts[p] + 1) };
           assert { prime_products_not_marked marked_copy marked n (nexts[p] + 1) };
+          assert { next >= 2 };
+          assert { n > 0 -> next >= 2 -> n * next >= n * 2 };
           if marked[next] then begin
             nexts[p] <- nexts[next];
-            assert { next >= 2 };
-            assert { n > 0 -> next >= 2 -> n * next > n };
             loop p
           end else
             loop next
