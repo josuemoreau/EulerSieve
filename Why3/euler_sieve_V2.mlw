@@ -21,7 +21,8 @@ predicate prime_products_marked (marked: array bool) (n max: int) =
             divides n i ->
             marked[i]
 
-predicate prime_products_not_marked (marked_old: array bool) (marked: array bool) (n min: int) =
+predicate prime_products_not_marked (marked_old: array bool)
+                                    (marked: array bool) (n min: int) =
   0 <= min <= marked.length /\
   n >= 2 /\
   forall i. min <= i < marked.length ->
@@ -77,7 +78,7 @@ predicate all_inf_or_eq (a: array int) (n k: int) =
   forall i. 0 <= i < n -> a[i] <= k
 
 let remove_products (nexts: array int) (marked: array bool)
-                        (max: int) (n: int) : unit
+                    (max: int) (n: int) : unit
   requires { 2 <= n <= max }
   requires { nexts.length = marked.length = max + 1 }
   requires { inv_remove_products nexts marked n }
@@ -151,12 +152,12 @@ let euler_sieve (max: int) : array int
         count p cnt
       end else begin
         (* 
-           Attention : des fois j'ai des bonnes idées ! ...
-           On réécrit le début du tableau nexts !
-           Parce que le nombre de nombres premiers <= n est strictement inférieur à n !
-           Du coup on peut réécrire le tableau nexts en recopiant consécutivement
-           les nombres premiers déja rencontrés et ceci ne modifiera pas les calculs 
-           de count par la suite 
+          Attention : des fois j'ai des bonnes idées ! ...
+          On réécrit le début du tableau nexts !
+          Parce que le nombre de nombres premiers <= n est strictement inférieur à n !
+          Du coup on peut réécrire le tableau nexts en recopiant consécutivement
+          les nombres premiers déja rencontrés et ceci ne modifiera pas les calculs 
+          de count par la suite 
         *)
         nexts[cnt] <- next; (* une opération en plus ... *)
         (* assert { all_differents nexts cnt }; *)
