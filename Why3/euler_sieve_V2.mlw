@@ -72,7 +72,6 @@ predicate inv_marked_nexts (marked: array bool)
                            (nexts: array int) =
   marked.length = nexts.length /\
   forall i. 0 <= i < marked.length ->
-            not marked[i] ->
             (* i + 1 < nexts[i] -> *)
             forall j. i < j < nexts[i] ->
                       marked[j]
@@ -83,8 +82,10 @@ lemma conservation_inv_marked_nexts_on_marked_change:
                        forall i. 0 <= i < marked.length ->
                                   inv_marked_nexts marked[i <- true] nexts
 
-lemma transition_inv_marked_nexts:
-  forall marked nexts. marked.length = nexts.length ->
+(* lemma transition_inv_marked_nexts: *)
+(*   forall marked nexts. marked.length = nexts.length -> *)
+(*                        inv_nexts nexts nexts.length -> *)
+
 
 lemma conservation_inv_marked_nexts_on_nexts_change:
   forall marked nexts. marked.length = nexts.length ->
@@ -93,12 +94,11 @@ lemma conservation_inv_marked_nexts_on_nexts_change:
                        not marked[2] ->
                        forall i. 0 <= i < marked.length ->
                                  nexts[i] <> marked.length ->
-                                 not marked[i] ->
                                  marked[nexts[i]] ->
-                                 (* inv_marked_nexts marked nexts[i <- nexts[nexts[i]]] *)
-                                 ((forall j. i < j < nexts[i] -> marked[j]) /\
-                                  marked[nexts[i]] /\
-                                  (forall j. nexts[i] < j < nexts[nexts[j]] -> marked[j]))
+                                 inv_marked_nexts marked nexts[i <- nexts[nexts[i]]]
+                                 (* ((forall j. i < j < nexts[i] -> marked[j]) /\ *)
+                                 (*  marked[nexts[i]] /\ *)
+                                 (*  (forall j. nexts[i] < j < nexts[nexts[j]] -> marked[j])) *)
 
 (*
   Note intéressante :
@@ -156,10 +156,11 @@ let remove_products (nexts: array int) (marked: array bool)
       requires { inv_remove_products nexts marked n }
       requires { prime_products_not_marked marked_copy marked n nexts[p] }
       requires { previously_marked_products marked n }
-      (* requires { prime_products_marked marked_copy marked n nexts[p] } *)
-      requires { not marked[p] }
+      requires { prime_products_marked marked_copy marked n nexts[p] }
+      (* requires { not marked[p] } *)
       requires { inv_marked_nexts marked nexts }
       ensures { inv_remove_products nexts marked n }
+      ensures { inv_marked_nexts marked nexts }
       ensures { all_products_marked marked n }
       variant { max - nexts[p] }
       let next = nexts[p] in
@@ -177,11 +178,9 @@ let remove_products (nexts: array int) (marked: array bool)
             assert { inv_marked_nexts marked nexts };
             assert { 0 <= p < marked.length };
             assert { nexts[p] <> marked.length };
-            assert { not marked[p] };
             assert { marked[nexts[p]] };
             nexts[p] <- nexts[next];
             assert { 0 <= p < marked.length };
-            assert { not marked[p] };
             assert { marked[next] };
             loop p
           end else
