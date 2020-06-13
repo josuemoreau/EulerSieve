@@ -6,13 +6,24 @@ use number.Prime
 use array.Array
 use int.EuclideanDivision
 
+function min (a b: int) : int = if a <= b then a else b
+
+lemma min_inf:
+  forall a b. min a b <= a /\ min a b <= b
+  
+lemma min_ref:
+  forall a. min a a = a
+
+lemma min_sym:
+  forall a b. min a b = min b a
+
 lemma b:
   forall n k. n > 0 -> k >= 2 -> n * k >= n * 2
 
 lemma div_croissance_locale:
   forall i n. 0 <= i -> n > 0 -> div i n <= div (i + 1) n
   
-let lemma div_croissance (i j n: int)
+let rec lemma div_croissance (i j n: int)
   requires { 0 <= i <= j /\ n > 0 }
   ensures { div i n <= div j n }
   variant { j - i }
@@ -236,6 +247,10 @@ let remove_products (nexts: array int) (marked: array bool)
           assert { not marked_old[nexts[p]] by
                       2 <= p < next <= div max n by
                       n * next <= max };
+          assert { forall i. 2 <= i <= p - 1 < div max n ->
+                               nexts[i] <> marked_old.length ->
+                               not marked_old[i] ->
+                               not marked_old[nexts[i]] };
           if marked[next] then begin
             assert { inv_marked_nexts marked nexts };
             assert { 0 <= p < marked.length };
@@ -248,6 +263,11 @@ let remove_products (nexts: array int) (marked: array bool)
             (* assert { n <= next < marked.length }; *)
             assert { not marked_old[p] by not marked[p] };
             assert { not marked_old[next] };
+            assert { 2 <= p < next <= div max n by n * next <= max };
+            assert { forall i. 2 <= i <= p - 1 < div max n ->
+                               nexts[i] <> marked_old.length ->
+                               not marked_old[i] ->
+                               not marked_old[nexts[i]] };
             loop p
           end else
             loop next

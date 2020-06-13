@@ -6,7 +6,18 @@ use number.Prime
 use array.Array
 use int.EuclideanDivision
 
-lemma b:
+function min (a b: int) : int = if a <= b then a else b
+
+lemma min_inf:
+  forall a b. min a b <= a /\ min a b <= b
+  
+lemma min_ref:
+  forall a. min a a = a
+
+lemma min_sym:
+  forall a b. min a b = min b a
+
+lemma comp_mult_2:
   forall n k. n > 0 -> k >= 2 -> n * k >= n * 2
 
 lemma div_croissance_locale:
@@ -19,8 +30,11 @@ let rec lemma div_croissance (i j n: int)
   = if i < j then
       div_croissance i (j - 1) n
   
-lemma d:
-  forall n k max. n > 0 -> max >= n -> n * k <= max -> k = div (n * k) n <= div max n
+lemma div_mult_1:
+  forall n k max. n > 0 ->
+                  max >= n ->
+                  n * k <= max ->
+                  k = div (n * k) n <= div max n
 
 predicate inv_nexts (nexts: array int) (n: int) =
   forall i. 0 <= i < n ->
@@ -62,14 +76,14 @@ predicate prime_products_not_marked (marked_old: array bool)
             n * i < marked.length ->
             not marked[n * i]
 
-lemma a:
-  forall marked marked_copy n min.
+lemma conservation_products_not_marked_on_product_marked_change:
+  forall marked marked_old n min.
     0 <= min < marked.length ->
-    prime_products_not_marked marked_copy marked n min ->
+    prime_products_not_marked marked_old marked n min ->
     n * min < n * (min + 1) ->
-    prime_products_not_marked marked_copy marked[(n * min) <- true] n (min + 1)
+    prime_products_not_marked marked_old marked[(n * min) <- true] n (min + 1)
 
-lemma c:
+lemma conservation_previously_marked_products_on_marked_change:
   forall marked n.
     previously_marked_products marked n ->
     forall i. 0 <= i < marked.length ->
@@ -236,6 +250,10 @@ let remove_products (nexts: array int) (marked: array bool)
           assert { not marked_old[nexts[p]] by
                       2 <= p < next <= div max n by
                       n * next <= max };
+          assert { forall i. 2 <= i <= p - 1 < div max n ->
+                               nexts[i] <> marked_old.length ->
+                               not marked_old[i] ->
+                               not marked_old[nexts[i]] };
           if marked[next] then begin
             assert { inv_marked_nexts marked nexts };
             assert { 0 <= p < marked.length };
@@ -248,6 +266,11 @@ let remove_products (nexts: array int) (marked: array bool)
             (* assert { n <= next < marked.length }; *)
             assert { not marked_old[p] by not marked[p] };
             assert { not marked_old[next] };
+            assert { 2 <= p < next <= div max n by n * next <= max };
+            assert { forall i. 2 <= i <= p - 1 < div max n ->
+                               nexts[i] <> marked_old.length ->
+                               not marked_old[i] ->
+                               not marked_old[nexts[i]] };
             loop p
           end else
             loop next
@@ -305,7 +328,8 @@ let euler_sieve (max: int) : array int
         *)
         nexts[cnt] <- next; (* une opération en plus ... *)
         (* assert { all_differents nexts cnt }; *)
-        (* assert { cnt + 1 <= p < p + 1 /\ all_inf_or_eq nexts cnt nexts[p] }; *)
+        (* assert { cnt + 1 <= p < p + 1 /\ *)
+        (*          all_inf_or_eq nexts cnt nexts[p] }; *)
         count next (cnt + 1)
       end in
   nexts[0] <- 2;
