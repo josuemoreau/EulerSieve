@@ -88,17 +88,18 @@ lemma conservation_inv_marked_nexts_on_marked_change:
 
 
 lemma conservation_inv_marked_nexts_on_nexts_change:
-  forall marked nexts. marked.length = nexts.length ->
-                       inv_marked_nexts marked nexts ->
-                       inv_nexts nexts marked.length ->
-                       not marked[2] ->
-                       forall i. 0 <= i < marked.length ->
-                                 nexts[i] <> marked.length ->
-                                 marked[nexts[i]] ->
-                                 inv_marked_nexts marked nexts[i <- nexts[nexts[i]]]
-                                 (* ((forall j. i < j < nexts[i] -> marked[j]) /\ *)
-                                 (*  marked[nexts[i]] /\ *)
-                                 (*  (forall j. nexts[i] < j < nexts[nexts[j]] -> marked[j])) *)
+  forall marked nexts.
+    marked.length = nexts.length ->
+    inv_marked_nexts marked nexts ->
+    inv_nexts nexts marked.length ->
+    not marked[2] ->
+    forall i. 0 <= i < marked.length ->
+              nexts[i] <> marked.length ->
+              marked[nexts[i]] ->
+              inv_marked_nexts marked nexts[i <- nexts[nexts[i]]]
+              (* ((forall j. i < j < nexts[i] -> marked[j]) /\ *)
+              (*  marked[nexts[i]] /\ *)
+              (*  (forall j. nexts[i] < j < nexts[nexts[j]] -> marked[j])) *)
 
 (*
   Note intéressante :
@@ -118,7 +119,9 @@ lemma conservation_inv_marked_nexts_on_nexts_change:
   pour pouvoir sauter par dessus.
 *)
 
-predicate inv_remove_products (nexts: array int) (marked: array bool) (n: int) =
+predicate inv_remove_products (nexts: array int)
+                              (marked: array bool)
+                              (n: int) =
   nexts.length = marked.length /\
   not marked[2] /\
   all_primes marked n /\
@@ -167,11 +170,13 @@ let remove_products (nexts: array int) (marked: array bool)
       if 0 <= next < max + 1 then
         if n * next <= max then begin
           assert { prime_products_not_marked marked_copy marked n nexts[p] };
-          assert { prime_products_not_marked marked_copy marked n (nexts[p] + 1) };
+          assert { prime_products_not_marked marked_copy marked n
+                                             (nexts[p] + 1) };
           assert { next >= 2 };
           marked[n * nexts[p]] <- true;
           assert { n * nexts[p] < n * (nexts[p] + 1) };
-          assert { prime_products_not_marked marked_copy marked n (nexts[p] + 1) };
+          assert { prime_products_not_marked marked_copy marked n
+                                             (nexts[p] + 1) };
           assert { next >= 2 };
           assert { n > 0 -> next >= 2 -> n * next >= n * 2 };
           if marked[next] then begin
@@ -231,10 +236,11 @@ let euler_sieve (max: int) : array int
         (*
           Attention : des fois j'ai des bonnes idées ! ...
           On réécrit le début du tableau nexts !
-          Parce que le nombre de nombres premiers <= n est strictement inférieur à n !
-          Du coup on peut réécrire le tableau nexts en recopiant consécutivement
-          les nombres premiers déja rencontrés et ceci ne modifiera pas les calculs
-          de count par la suite
+          Parce que le nombre de nombres premiers <= n est strictement
+          inférieur à n !
+          Du coup on peut réécrire le tableau nexts en recopiant
+          consécutivement les nombres premiers déja rencontrés et ceci ne
+          modifiera pas les calculs de count par la suite
         *)
         nexts[cnt] <- next; (* une opération en plus ... *)
         (* assert { all_differents nexts cnt }; *)
