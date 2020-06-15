@@ -24,15 +24,24 @@ let rec lemma mult_croissance (n a b: int)
 lemma comp_mult_2:
   forall n k. n > 0 -> k >= 2 -> n * k >= n * 2
 
-lemma div_croissance_locale:
+lemma div_croissance_locale1:
   forall i n. 0 <= i -> n > 0 -> div i n <= div (i + 1) n
   
-let rec lemma div_croissance (i j n: int)
+let rec lemma div_croissance1 (i j n: int)
   requires { 0 <= i <= j /\ n > 0 }
   ensures { div i n <= div j n }
   variant { j - i }
   = if i < j then
-      div_croissance i (j - 1) n
+      div_croissance1 i (j - 1) n
+
+lemma div_croissance_locale2:
+  forall i m. 0 < i -> m >= 0 -> div m (i + 1) <= div m i
+
+let rec lemma div_croissance2 (m i j: int)
+  requires { 0 < i <= j /\ m >= 0 }
+  ensures { div m i >= div m j }
+  variant { j - i }
+  = if i < j then div_croissance2 m i (j - 1)
   
 lemma div_mult_1:
   forall n k max. n > 0 ->
@@ -276,10 +285,6 @@ let remove_products (nexts: array int) (marked: array bool)
           assert { not marked_old[nexts[p]] by
                       2 <= p < next <= div max n by
                       n * next <= max };
-          (* assert { forall i. 2 <= i <= p - 1 < div max n ->
-                               nexts[i] <> marked_old.length ->
-                               not marked_old[i] ->
-                               not marked_old[nexts[i]] }; *)
           assert { prime_products_marked marked_old marked n nexts[next] };
           assert { forall i. 0 <= i < p -> nexts[i] <= p by
                      not marked[p] /\ forall i. 0 <= i < p -> forall j. i < j < nexts[i] -> marked[j] by
@@ -302,25 +307,30 @@ let remove_products (nexts: array int) (marked: array bool)
             assert { not marked_old[p] by not marked[p] };
             assert { not marked_old[next] };
             assert { 2 <= p < next <= div max n by n * next <= max };
-            (* assert { forall i. 2 <= i <= p - 1 < div max n ->
-                               nexts[i] <> marked_old.length ->
-                               not marked_old[i] ->
-                               not marked_old[nexts[i]] }; *)
             assert { prime_products_marked marked_old marked n next };
             assert { nexts[p] > next };
             loop p next
           end else begin
-            assert { forall i. x < i < next[x] -> marked[i] };
+            assert { forall i. p < i < nexts[p] -> marked[i] by
+                       inv_marked_nexts marked nexts };
             loop next next
           end
-        end (* else
-          assert { nexts[p] > div max n /\ p > div max nexts[n] }
-          (* assert { inv_marked_old_nexts2 marked nexts nexts[n] by
-                    inv_marked_old_nexts2_partial marked nexts n p /\
-                    forall i. p < i < nexts[p] -> marked[i] /\
-                    not marked[nexts[p]] }  *)
+        end else
+          assert { inv_marked_old_nexts2 marked nexts nexts[n] by
+                     inv_marked_old_nexts2 marked nexts n /\ 
+                     nexts[n] > n > 0 /\ 
+                     div max nexts[n] <= div max n by
+                       nexts[p] > div max n /\ 
+                       forall i. p < i < nexts[p] -> marked[i] /\
+                       inv_marked_old_nexts2_partial marked nexts n p }
       else
-        assert { next >= max + 1 /\ p > div max nexts[n] } *)
+        assert { inv_marked_old_nexts2 marked nexts nexts[n] by
+                   inv_marked_old_nexts2 marked nexts n /\
+                   nexts[n] > n > 0 /\
+                   div max nexts[n] = 0 <= div max n by
+                   next >= max + 1 /\
+                   forall i. p < i < nexts[p] -> marked[i] /\
+                   inv_marked_old_nexts2_partial marked nexts n p }
       in
       (* if n * n <= max then begin *)
         assert { prime_products_not_marked marked_old marked n (n + 1) };
