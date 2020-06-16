@@ -51,6 +51,10 @@ let rec lemma div_croissance2 (m i j: int)
 let lemma div_mult_1 (n k max: int)
   requires { n > 0 /\ max >= n /\ n * k <= max }
   ensures { k = div (n * k) n <= div max n } = ()
+  
+let lemma mult_borne_sous_exp (n a b: int)
+  requires { a >= 1 /\ b >= 1 /\ n >= 1 /\ a * b < n }
+  ensures { a < n /\ b < n } = ()
 
 end
 
@@ -195,6 +199,10 @@ predicate previously_marked_products (marked: array bool) (n: int) =
   forall i. 2 <= i < n ->
             all_products_marked marked i marked.length
 
+predicate only_products_marked (marked: array bool) (n: int) =
+  forall k. 2 <= k < marked.length ->
+            marked[k] ->
+            exists i j. 2 <= i < n /\ 2 <= j < marked.length /\ i * j = k
 
 predicate prime_products_marked (marked_old: array bool)
                                 (marked: array bool)
@@ -206,17 +214,45 @@ predicate prime_products_marked (marked_old: array bool)
             n * i < marked_old.length ->
             marked[n * i]
             
+let lemma a (marked: array bool) (n: int)
+  requires { 2 <= n <= marked.length }
+  requires { previously_marked_products marked n }
+  ensures { forall k i. 2 <= k < n ->
+                        2 <= i < marked.length ->
+                        k * i < marked.length ->
+                        (marked[k * i] /\
+                         forall j. 1 <= j < marked.length ->
+                                   k * i * j < marked.length ->
+                                   (marked[k * i * j] by 
+                                      1 <= i * j < marked.length
+                                      by k >= 2 /\ i >= 2 /\ j >= 1 /\ k * (i * j) < marked.length)) } = ()
+
 let lemma prev_and_new_impl_all_products_marked (marked_old marked: array bool) (n max: int)
-  requires { 2 <= n /\ 2 <= max }
+  requires { 2 <= n < marked.length /\ 2 <= max < marked.length /\ marked_old.length = marked.length }
+  requires { inv_marked_marked_old marked marked_old }
   requires { previously_marked_products marked_old n }
   requires { previously_marked_products marked n }
-  requires { prime_products_marked marked_old marked n max }
+  requires { only_products_marked marked_old n }
+  requires { prime_products_marked marked_old marked n marked.length }
   ensures { all_products_marked marked n marked.length } =
-  assert { forall k. n < k <= max -> 
-                     not marked[k] ->
-                     forall i j. 2 <= i < n -> 
-                                 2 <= j < n ->
-                                 i * j <> k } 
+  assert { forall k. 2 <= k < marked_old.length ->
+                     marked_old[k] ->
+                     n * k < marked_old.length ->
+                     exists i j. 2 <= i < n /\ 2 <= j < marked_old.length /\ 
+                                 i * j = k /\ marked_old[i * j] };
+  a marked_old n;
+  a marked n;
+  assert { forall k. 2 <= k < marked_old.length ->
+                     marked_old[k] ->
+                     n * k < marked_old.length ->
+                     marked[k * n] by
+           forall k. 2 <= k < marked_old.length ->
+                     marked_old[k] ->
+                     n * k < marked_old.length ->
+                     marked_old[k * n] };
+  assert { prime_products_marked marked_old marked n marked.length };
+  assert { forall a b. ((a -> b) /\ (not a -> b)) -> b }
+
 
 predicate prime_products_not_marked (marked_old: array bool)
                                     (marked: array bool) (n min: int) =
@@ -227,12 +263,12 @@ predicate prime_products_not_marked (marked_old: array bool)
             n * i < marked.length ->
             not marked[n * i]
 
-lemma conservation_products_not_marked_on_product_marked_change:
+(* lemma conservation_products_not_marked_on_product_marked_change:
   forall marked marked_old n min.
     0 <= min < marked.length ->
     prime_products_not_marked marked_old marked n min ->
     n * min < n * (min + 1) ->
-    prime_products_not_marked marked_old marked[(n * min) <- true] n (min + 1)
+    prime_products_not_marked marked_old marked[(n * min) <- true] n (min + 1) *)
 
 lemma conservation_previously_marked_products_on_marked_change:
   forall marked n.
@@ -295,25 +331,28 @@ let remove_products (nexts: array int) (marked: array bool)
   requires { 2 <= n <= max /\ n * n <= max }
   requires { nexts.length = marked.length = max + 1 }
   requires { inv_remove_products nexts marked n } (**)
-  requires { prime_products_not_marked marked marked n n }
+  (* requires { prime_products_not_marked marked marked n n } *)
   requires { previously_marked_products marked n }
+  requires { only_products_marked marked n }
   requires { inv_marked_nexts marked nexts } (**)
   requires { inv_marked_old_nexts2 marked nexts n }
   ensures { inv_remove_products nexts marked n }
   ensures { inv_marked_nexts marked nexts }
   ensures { inv_marked_old_nexts2 marked nexts nexts[n] }
-  (* ensures { all_products_marked marked n } *)
+  ensures { all_products_marked marked n marked.length }
   = let ghost marked_old = copy marked in
     assert { inv_marked_old_nexts1 marked_old nexts 0 };
     assert { inv_marked_old_nexts2 marked_old nexts n };
     assert { inv_marked_old_nexts2_partial marked nexts n n by
                inv_marked_old_nexts2 marked nexts n /\ n <= div max n by
                n * n <= max };
+    assert { previously_marked_products marked_old n };
+    assert { only_products_marked marked_old n };
     let rec loop (p: int) (ghost x: int) =
       requires { 1 <= p <= max /\ 2 <= n <= max /\
                  p <= x < nexts[p] /\ nexts[x] = nexts[p] /\ marked[n * n] }
       requires { inv_remove_products nexts marked n }
-      requires { prime_products_not_marked marked_old marked n nexts[p] }
+      (* requires { prime_products_not_marked marked_old marked n nexts[p] } *)
       requires { previously_marked_products marked n }
       requires { not marked[p] }
       requires { inv_marked_nexts marked nexts }
@@ -325,17 +364,20 @@ let remove_products (nexts: array int) (marked: array bool)
       ensures { inv_remove_products nexts marked n }
       ensures { inv_marked_nexts marked nexts }
       ensures { inv_marked_old_nexts2 marked nexts nexts[n] }
+      ensures { inv_marked_marked_old marked marked_old }
+      ensures { previously_marked_products marked n }
+      ensures { prime_products_marked marked_old marked n marked.length }
       variant { max - nexts[p] }
       let next = nexts[p] in
       if 0 <= next < max + 1 then
         if n * next <= max then begin
-          assert { prime_products_not_marked marked_old marked n nexts[p] };
-          assert { prime_products_not_marked marked_old marked n
-                                             (nexts[p] + 1) };
+          (* assert { prime_products_not_marked marked_old marked n nexts[p] }; *)
+          (* assert { prime_products_not_marked marked_old marked n *)
+          (*                                    (nexts[p] + 1) }; *)
           marked[n * nexts[p]] <- true;
           assert { n * nexts[p] < n * (nexts[p] + 1) };
-          assert { prime_products_not_marked marked_old marked n
-                                             (nexts[p] + 1) };
+          (* assert { prime_products_not_marked marked_old marked n *)
+          (*                                    (nexts[p] + 1) }; *)
           assert { n > 0 -> next >= 2 -> n * next >= n * 2 };
           assert { not marked[p] by n * nexts[p] > p by
                      p < 2 * p < 2 * nexts[p] <= n * nexts[p] by
@@ -378,10 +420,10 @@ let remove_products (nexts: array int) (marked: array bool)
                        inv_marked_nexts marked nexts };
             loop next next
           end
-        end else 
+        end else
           conservation_inv_marked_old_nexts2 marked nexts max n p
       else conservation_inv_marked_old_nexts2 marked nexts max n p in
-      assert { prime_products_not_marked marked_old marked n (n + 1) };
+      (* assert { prime_products_not_marked marked_old marked n (n + 1) }; *)
       marked[n * n] <- true;
       assert { forall i. 0 <= i < n -> nexts[i] <> n * n by
                forall i. 0 <= i < n -> nexts[i] <= n < n * n by
@@ -389,7 +431,8 @@ let remove_products (nexts: array int) (marked: array bool)
                  forall i. 0 <= i < n ->
                            forall j. i < j < nexts[i] -> marked[j] by
                    inv_marked_nexts marked nexts };
-      loop n n
+      loop n n;
+      prev_and_new_impl_all_products_marked marked_old marked n max
 
 let euler_sieve (max: int) : array int
   requires { max >= 2 }
