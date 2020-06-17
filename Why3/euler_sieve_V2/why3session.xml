@@ -144,6 +144,17 @@
    <proof prover="4" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
    <proof prover="5" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
    <proof prover="6" timelimit="5" obsolete="true"><result status="timeout" time="5.00" steps="352680"/></proof>
+   <transf name="inline_all" >
+    <goal name="a&#39;vc.0.6.0" expl="VC for a">
+    <proof prover="0"><undone/></proof>
+    <proof prover="1" timelimit="10"><result status="timeout" time="10.00" steps="1209853496"/></proof>
+    <proof prover="2" timelimit="10"><result status="timeout" time="10.00" steps="1080263"/></proof>
+    <proof prover="3"><result status="timeout" time="10.00"/></proof>
+    <proof prover="4"><result status="timeout" time="10.00"/></proof>
+    <proof prover="5"><undone/></proof>
+    <proof prover="6"><result status="unknown" time="0.32" steps="55935"/></proof>
+    </goal>
+   </transf>
    </goal>
   </transf>
   </goal>
@@ -1343,18 +1354,16 @@
   </goal>
  </transf>
  </goal>
- <goal name="previously_marked_products_impl_prime&#39;vc" expl="VC for previously_marked_products_impl_prime">
- <transf name="split_vc" >
-  <goal name="previously_marked_products_impl_prime&#39;vc.0" expl="assertion">
-  <transf name="split_vc" >
-   <goal name="previously_marked_products_impl_prime&#39;vc.0.0" expl="assertion">
-   <proof prover="0" timelimit="10"><result status="timeout" time="10.00"/></proof>
-   <proof prover="1" timelimit="10"><result status="timeout" time="10.00" steps="10918000"/></proof>
-   <proof prover="2" timelimit="10"><result status="timeout" time="10.00" steps="518833"/></proof>
-   <proof prover="3"><result status="timeout" time="14.00"/></proof>
-   <proof prover="4"><result status="timeout" time="10.00"/></proof>
-   <proof prover="5"><result status="timeout" time="10.00"/></proof>
-   <proof prover="6"><result status="timeout" time="10.00" steps="361407"/></proof>
+ <goal name="previously_marked_products_impl_prime&#39;vc" expl="VC for previously_marked_products_impl_prime" proved="true">
+ <transf name="split_vc" proved="true" >
+  <goal name="previously_marked_products_impl_prime&#39;vc.0" expl="assertion" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="previously_marked_products_impl_prime&#39;vc.0.0" expl="assertion" proved="true">
+   <transf name="inline_all" proved="true" >
+    <goal name="previously_marked_products_impl_prime&#39;vc.0.0.0" expl="assertion" proved="true">
+    <proof prover="1"><result status="valid" time="0.06" steps="137073"/></proof>
+    </goal>
+   </transf>
    </goal>
    <goal name="previously_marked_products_impl_prime&#39;vc.0.1" expl="VC for previously_marked_products_impl_prime" proved="true">
    <proof prover="5"><result status="valid" time="0.65" steps="615"/></proof>
@@ -1363,12 +1372,6 @@
   </goal>
   <goal name="previously_marked_products_impl_prime&#39;vc.1" expl="postcondition" proved="true">
   <proof prover="0" timelimit="10"><result status="valid" time="0.00" steps="14"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1505748"/></proof>
-  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="75609"/></proof>
-  <proof prover="3" obsolete="true"><result status="timeout" time="10.00"/></proof>
-  <proof prover="4" obsolete="true"><result status="timeout" time="10.00"/></proof>
-  <proof prover="5" obsolete="true"><result status="timeout" time="10.00"/></proof>
-  <proof prover="6" obsolete="true"><result status="timeout" time="10.00" steps="363581"/></proof>
   </goal>
  </transf>
  </goal>
@@ -1592,54 +1595,50 @@
   <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="155206"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.33" expl="assertion">
-  <proof prover="0" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
-  <proof prover="1" timelimit="5" obsolete="true"><result status="timeout" time="5.00" steps="9475899"/></proof>
-  <proof prover="2" timelimit="5" obsolete="true"><result status="timeout" time="5.00" steps="291284"/></proof>
-  <proof prover="3" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
-  <proof prover="4" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
-  <proof prover="5" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
-  <proof prover="6" timelimit="5" obsolete="true"><result status="timeout" time="5.00" steps="199445"/></proof>
   <transf name="split_vc" >
-   <goal name="euler_sieve&#39;vc.33.0" expl="assertion">
-   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-   <proof prover="1" timelimit="10"><result status="timeout" time="10.00" steps="10147074"/></proof>
-   <proof prover="2"><result status="timeout" time="1.00" steps="126365"/></proof>
-   <proof prover="3"><result status="timeout" time="10.00"/></proof>
-   <proof prover="4" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-   <proof prover="5" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-   <proof prover="6" timelimit="1" obsolete="true"><result status="timeout" time="1.00" steps="85807"/></proof>
+   <goal name="euler_sieve&#39;vc.33.0" expl="assertion" proved="true">
+   <proof prover="2"><result status="valid" time="0.05" steps="19089"/></proof>
    </goal>
-   <goal name="euler_sieve&#39;vc.33.1" expl="VC for euler_sieve">
-   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-   <proof prover="1"><result status="timeout" time="1.00" steps="2288310"/></proof>
-   <proof prover="2"><result status="timeout" time="1.00" steps="143552"/></proof>
-   <proof prover="3" timelimit="1"><result status="timeout" time="1.00"/></proof>
-   <proof prover="4" timelimit="1"><result status="timeout" time="1.00"/></proof>
-   <proof prover="5" timelimit="1"><result status="timeout" time="1.00"/></proof>
-   <proof prover="6" timelimit="1"><result status="timeout" time="1.00" steps="80595"/></proof>
+   <goal name="euler_sieve&#39;vc.33.1" expl="VC for euler_sieve" proved="true">
+   <proof prover="3"><result status="valid" time="4.45"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.33.2" expl="VC for euler_sieve" proved="true">
+   <proof prover="0" timelimit="10"><result status="valid" time="0.41" steps="383"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.33.3" expl="VC for euler_sieve">
+   <proof prover="0" timelimit="5"><result status="timeout" time="5.00"/></proof>
+   <proof prover="1" timelimit="5"><result status="timeout" time="5.00" steps="12098688"/></proof>
+   <proof prover="2" timelimit="5"><result status="timeout" time="5.00" steps="448527"/></proof>
+   <proof prover="3" timelimit="5"><result status="timeout" time="5.00"/></proof>
+   <proof prover="4" timelimit="5"><result status="timeout" time="5.00"/></proof>
+   <proof prover="5" timelimit="5"><result status="timeout" time="5.00"/></proof>
+   <proof prover="6" timelimit="5"><result status="timeout" time="5.00" steps="325127"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.33.4" expl="VC for euler_sieve" proved="true">
+   <proof prover="0" timelimit="10"><result status="timeout" time="10.00"/></proof>
+   <proof prover="1" timelimit="10"><result status="valid" time="0.04" steps="147568"/></proof>
+   <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="249524"/></proof>
+   <proof prover="3" obsolete="true"><result status="timeout" time="10.00"/></proof>
+   <proof prover="4" obsolete="true"><result status="timeout" time="10.00"/></proof>
+   <proof prover="5" obsolete="true"><result status="timeout" time="10.00"/></proof>
+   <proof prover="6" obsolete="true"><result status="timeout" time="10.00" steps="412192"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.34" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.14" steps="21029"/></proof>
+  <proof prover="2"><result status="valid" time="0.14" steps="20888"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.35" expl="postcondition">
-  <transf name="split_vc" >
-   <goal name="euler_sieve&#39;vc.35.0" expl="postcondition">
-   <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
-   <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2185276"/></proof>
-   <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="144697"/></proof>
-   <proof prover="3" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-   <proof prover="4" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-   <proof prover="5" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-   <proof prover="6" timelimit="1" obsolete="true"><result status="timeout" time="1.00" steps="101171"/></proof>
+  <goal name="euler_sieve&#39;vc.35" expl="postcondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="euler_sieve&#39;vc.35.0" expl="postcondition" proved="true">
+   <proof prover="0" timelimit="10"><result status="valid" time="0.04" steps="102"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.35.1" expl="postcondition" proved="true">
    <proof prover="0" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
    <proof prover="1" timelimit="5" obsolete="true"><result status="timeout" time="5.00" steps="8489749"/></proof>
    <proof prover="2" timelimit="5" obsolete="true"><result status="timeout" time="5.00" steps="445692"/></proof>
    <proof prover="3" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
-   <proof prover="4" timelimit="5"><result status="valid" time="2.07"/></proof>
+   <proof prover="4"><result status="valid" time="2.24"/></proof>
    <proof prover="5" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
    <proof prover="6" timelimit="5" obsolete="true"><result status="timeout" time="5.00" steps="309151"/></proof>
    </goal>
@@ -1802,10 +1801,14 @@
   <proof prover="0"><result status="valid" time="0.03" steps="122"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.75" expl="out of loop bounds" proved="true">
-  <proof prover="2"><result status="valid" time="0.13" steps="24236"/></proof>
+  <proof prover="2"><result status="valid" time="0.13" steps="24090"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.16" expl="index in array bounds">
-  <proof prover="2"><result status="valid" time="0.07" steps="19390"/></proof>
+  <goal name="euler_sieve&#39;vc.33" expl="assertion">
+  <transf name="split_vc" >
+   <goal name="euler_sieve&#39;vc.33.0" expl="assertion">
+   <proof prover="1" timelimit="10"><result status="valid" time="0.06" steps="150154"/></proof>
+   </goal>
+  </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.32" expl="assertion">
   <transf name="split_vc" >

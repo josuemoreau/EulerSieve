@@ -84,7 +84,9 @@ let lemma divides_inf (n m: int)
 let lemma not_prime_divider_limits (n: int)
   requires { not prime n /\ 2 <= n }
   ensures { exists i. 2 <= i /\ i * i <= n /\ divides i n } = ()
-  
+
+use ArithmeticResults
+
 let lemma abc (n: int)
   requires { n >= 2 }
   ensures { forall i. 2 <= i < n * n -> 
@@ -530,16 +532,20 @@ let euler_sieve (max: int) : array int
         loop nexts[n]
       end else begin
         abc nexts[n];
-        assert { forall i. 2 <= i < marked.length ->
-                           not prime i ->
-                           exists k l. 2 <= k < nexts[n] /\ 2 <= l < marked.length /\ k * l = i };
         (* assert { forall i. 2 <= i < marked.length ->
+                           not prime i ->
+                           exists k. 2 <= k < nexts[n] /\ divides k i }; *)
+        assert { forall i. 2 <= i < marked.length ->
                            not marked[i] ->
                            prime i by
                  forall i. 2 <= i < marked.length ->
                            not marked[i] ->
+                           (not (exists k. 2 <= k < nexts[n] /\ divides k i) by
+                            not (exists k l. 2 <= k < nexts[n] /\ 2 <= l < marked.length /\ k * l = i)) by
+                 forall i. 2 <= i < marked.length ->
+                           not marked[i] ->
                            not (exists k l. 2 <= k < nexts[n] /\ 2 <= l < marked.length /\ k * l = i) by
-                 previously_marked_products marked nexts[n] } *)
+                 previously_marked_products marked nexts[n] }
       end
     (* end *) in
   loop 2;
