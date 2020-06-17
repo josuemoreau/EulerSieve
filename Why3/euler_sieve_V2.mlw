@@ -50,6 +50,18 @@ let lemma div_mult_1 (n k max: int)
 let lemma mult_borne_sous_exp (n a b: int)
   requires { a >= 1 /\ b >= 1 /\ n >= 1 /\ a * b < n }
   ensures { a < n /\ b < n } = ()
+  
+let lemma sq_ineq_local (a: int)
+  requires { a >= 0 }
+  ensures { a * a < (a + 1) * (a + 1) -> a < a + 1 } = ()
+  
+let rec lemma sq_ineq (a b: int)
+  requires { a >= 0 /\ b >= 0 }
+  requires { a * a < b * b }
+  ensures { a < b }
+  variant { b * b - a * a }
+  = if (b - 1) * (b - 1) > a * a then
+      sq_ineq a (b - 1)
 
 end
 
@@ -68,6 +80,18 @@ let lemma divides_inf (n m: int)
   requires { 2 <= n /\ 2 <= m /\ divides n m /\
              forall k. 2 <= k < n -> not divides k m }
   ensures { forall k. 2 <= k < n -> not divides k (div m n) } = ()
+  
+let lemma not_prime_divider_limits (n: int)
+  requires { not prime n /\ 2 <= n }
+  ensures { exists i. 2 <= i /\ i * i <= n /\ divides i n } = ()
+
+use ArithmeticResults
+
+let lemma abc (n: int)
+  requires { n >= 2 }
+  ensures { forall i. 2 <= i < n * n -> 
+                      not prime i -> 
+                      exists j. 2 <= j < i /\ ((j < n) by j * j < n * n /\ j >= 0) /\ divides j i } = ()
 
 end
 
@@ -489,19 +513,37 @@ let euler_sieve (max: int) : array int
   marked[0] <- true; marked[1] <- true;
   let rec loop (n: int) =
     requires { 2 <= n <= max + 1 }
+    requires { n <> max + 1 /\ n * n <= max }
     requires { previously_marked_products marked n }
     requires { only_products_marked marked n }
     requires { inv_marked_nexts marked nexts }
     requires { inv_marked_old_nexts2 marked nexts n }
     requires { inv_remove_products nexts marked n }
-    ensures { inv_remove_products nexts marked nexts.length }
+    (* ensures { inv_remove_products nexts marked nexts.length } *)
+    ensures { inv_nexts nexts nexts.length }
+    ensures { forall i. 0 <= i < marked.length -> not marked[i] <-> prime i }
     variant { max + 1 - n }
-    if n <> max + 1 && n * n <= max then begin
+    (* if n <> max + 1 && n * n <= max then begin *)
       remove_products nexts marked max n;
       (* previously_marked_products_impl_prime marked nexts[n]; *)
-      if nexts[n] <> max + 1 then
+      if (* nexts[n] <> max + 1 && *) nexts[n] * nexts[n] <= max then begin
+        assert { all_primes marked n /\ not marked[n] /\ nexts[n] <= div max nexts[n] };
+        previously_marked_products_impl_prime marked nexts[n];
         loop nexts[n]
-    end in
+      end else begin
+        abc nexts[n];
+        assert { forall i. 2 <= i < marked.length ->
+                           not prime i ->
+                           exists k l. 2 <= k < nexts[n] /\ 2 <= l < marked.length /\ k * l = i };
+        (* assert { forall i. 2 <= i < marked.length ->
+                           not marked[i] ->
+                           prime i by
+                 forall i. 2 <= i < marked.length ->
+                           not marked[i] ->
+                           not (exists k l. 2 <= k < nexts[n] /\ 2 <= l < marked.length /\ k * l = i) by
+                 previously_marked_products marked nexts[n] } *)
+      end
+    (* end *) in
   loop 2;
   let rec count (p: int) (cnt: int) =
     requires { 2 <= p <= max }
