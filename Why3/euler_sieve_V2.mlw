@@ -85,16 +85,6 @@ let lemma not_prime_divider_limits (n: int)
   requires { not prime n /\ 2 <= n }
   ensures { exists i. 2 <= i /\ i * i <= n /\ divides i n } = ()
 
-(* let lemma prod_impl_divider (n: int) (i: int) *)
-(*   requires { n >= 0 /\ 2 <= i < n * n } *)
-(*   requires { exists k. 2 <= k < n /\ k <> i /\ divides k i } *)
-(*   ensures { exists k l. 2 <= k < n /\ 2 <= l < n * n /\ k * l = i } = () *)
-
-(* let lemma y (n: int) (i: int) *)
-(*   requires { n >= 0 /\ 2 <= i < n * n } *)
-(*   requires { not (exists k l. 2 <= k < n /\ 2 <= l < n * n /\ k * l = i ) } *)
-(*   ensures { not (exists k. 2 <= k < n /\ k <> i /\ divides k i) } = () *)
-
 let lemma no_prod_impl_no_divider (n: int)
   requires { n >= 0 }
   ensures { forall i.
@@ -104,11 +94,13 @@ let lemma no_prod_impl_no_divider (n: int)
 
 use ArithmeticResults
 
-let lemma abc (n: int)
+let lemma not_prime_impl_divisor_under_sqrt (n: int)
   requires { n >= 2 }
-  ensures { forall i. 2 <= i < n * n ->
-                      not prime i ->
-                      exists j. 2 <= j < i /\ ((j < n) by j * j < n * n /\ j >= 0) /\ divides j i } = ()
+  ensures { forall i.
+              2 <= i < n * n ->
+              not prime i ->
+              exists j. 2 <= j < i /\ ((j < n) by j * j < n * n /\ j >= 0) /\
+                        divides j i } = ()
 
 end
 
@@ -153,7 +145,6 @@ predicate inv_marked_nexts (marked: array bool)
                            (nexts: array int) =
   marked.length = nexts.length /\
   forall i. 0 <= i < marked.length ->
-            (* i + 1 < nexts[i] -> *)
             forall j. i < j < nexts[i] ->
                       marked[j]
 
@@ -162,7 +153,6 @@ predicate inv_marked_old_nexts1 (marked_old: array bool)
                                 (min: int) =
   marked_old.length = nexts.length /\
   forall i. min <= i < marked_old.length ->
-            (* i + 1 < nexts[i] -> *)
             forall j. i < j < nexts[i] ->
                       marked_old[j]
 
@@ -250,7 +240,7 @@ predicate prime_products_marked (marked_old: array bool)
             n * i < marked_old.length ->
             marked[n * i]
 
-let lemma a (marked: array bool) (n: int)
+let lemma marked_impl_all_products_marked (marked: array bool) (n: int)
   requires { 2 <= n <= marked.length }
   requires { previously_marked_products marked n }
   ensures { forall k i.
@@ -280,8 +270,8 @@ let lemma prev_and_new_impl_all_products_marked (marked_old marked: array bool)
                      n * k < marked_old.length ->
                      exists i j. 2 <= i < n /\ 2 <= j < marked_old.length /\
                                  i * j = k /\ marked_old[i * j] };
-  a marked_old n;
-  a marked n;
+  marked_impl_all_products_marked marked_old n;
+  marked_impl_all_products_marked marked n;
   assert { forall k. 2 <= k < marked_old.length ->
                      marked_old[k] ->
                      n * k < marked_old.length ->
@@ -324,7 +314,7 @@ let lemma conservation_previously_marked_products (marked: array bool)
   assert { forall i. n < i < nexts[n] ->
             ((exists k l. 2 <= k <= n /\ 2 <= l < marked.length /\ k * l = i) by
              marked[i]) };
-  a marked (n + 1);
+  marked_impl_all_products_marked marked (n + 1);
   assert { forall i j.
             n < i < nexts[n] ->
             2 <= j < marked.length ->
@@ -361,7 +351,8 @@ predicate inv_remove_products (nexts: array int)
 predicate inv_count (nexts: array int) (marked: array bool) (min: int) =
   nexts.length = marked.length /\
   forall i. min <= i < nexts.length ->
-            i < nexts[i] <= nexts.length
+            (i < nexts[i] <= nexts.length /\
+             forall j. i < j < nexts[i] -> marked[j])
 
 let lemma conservation_inv_marked_old_nexts2 (marked: array bool)
                                              (nexts: array int)
@@ -521,11 +512,14 @@ let lemma only_products_marked_impl_not_marked (marked: array bool)
 let euler_sieve (max: int) : array int
   requires { max >= 2 }
   ensures { all_differents result result.length }
+  ensures { forall i. 0 <= i < result.length -> prime result[i] }
+  ensures { forall i. 2 <= i <= max -> prime i ->
+                      exists j. 0 <= j < result.length /\ result[j] = i }
 = let nexts = make (max + 1) 0 in
   let marked = make (max + 1) false in
   for i = 0 to max do
     invariant { inv_nexts nexts i }
-    invariant { forall j. 2 <= j < i -> nexts[j] = j + 1 }
+    invariant { forall j. 0 <= j < i -> nexts[j] = j + 1 }
     nexts[i] <- i + 1;
   done;
   marked[0] <- true; marked[1] <- true;
@@ -537,37 +531,44 @@ let euler_sieve (max: int) : array int
     requires { inv_marked_nexts marked nexts }
     requires { inv_marked_old_nexts2 marked nexts n }
     requires { inv_remove_products nexts marked n }
-    (* ensures { inv_remove_products nexts marked nexts.length } *)
     ensures { inv_nexts nexts nexts.length }
+    ensures { inv_marked_nexts marked nexts }
     ensures { forall i. 0 <= i < marked.length -> not marked[i] <-> prime i }
     variant { max + 1 - n }
     (* if n <> max + 1 && n * n <= max then begin *)
       remove_products nexts marked max n;
       (* previously_marked_products_impl_prime marked nexts[n]; *)
       if (* nexts[n] <> max + 1 && *) nexts[n] * nexts[n] <= max then begin
-        assert { all_primes marked n /\ not marked[n] /\ nexts[n] <= div max nexts[n] };
+        assert { all_primes marked n /\ not marked[n] /\
+                 nexts[n] <= div max nexts[n] };
         previously_marked_products_impl_prime marked nexts[n];
         loop nexts[n]
       end else begin
-        abc nexts[n];
+        not_prime_impl_divisor_under_sqrt nexts[n];
         (* assert { forall i. 2 <= i < marked.length ->
                            not prime i ->
                            exists k. 2 <= k < nexts[n] /\ divides k i }; *)
-        assert { forall i. 2 <= i < marked.length ->
-                           not marked[i] ->
-                           not (exists k l. 2 <= k < nexts[n] /\ 2 <= l < i /\ k * l = i) by
+        assert { forall i.
+                   2 <= i < marked.length ->
+                   not marked[i] ->
+                   not (exists k l. 2 <= k < nexts[n] /\ 2 <= l < i /\
+                                    k * l = i) by
                  previously_marked_products marked nexts[n] };
         no_prod_impl_no_divider nexts[n];
         assert { forall i. 2 <= i < marked.length ->
                            not marked[i] ->
                            prime i by
-                 forall i. 2 <= i < marked.length ->
-                           not marked[i] ->
-                           (not (exists k. 2 <= k < nexts[n] /\ k <> i /\ divides k i) by
-                            i < nexts[n] * nexts[n]) }
+                 forall i.
+                  2 <= i < marked.length ->
+                  not marked[i] ->
+                  (not (exists k. 2 <= k < nexts[n] /\ k <> i /\ divides k i) by
+                  i < nexts[n] * nexts[n]) }
       end
     (* end *) in
-  assert { forall j. 2 <= j < marked.length -> nexts[j] = j + 1 };
+  (* assert { forall i j.
+             0 <= i < marked.length ->
+             0 <= j < marked.length ->
+             (not i < j < nexts[i] by nexts[i] = i + 1) }; *)
   if max >= 4 then loop 2;
   let rec count (p: int) (cnt: int) =
     requires { 2 <= p <= max }
@@ -575,14 +576,39 @@ let euler_sieve (max: int) : array int
     requires { inv_count nexts marked cnt }
     requires { all_differents nexts cnt }
     requires { all_inf_or_eq nexts cnt p }
+    requires { forall i. 0 <= i < cnt -> prime nexts[i] }
+    requires { forall i. 2 <= i < nexts[p] -> prime i ->
+                         exists j. 0 <= j < cnt /\ nexts[j] = i }
     ensures { 1 <= result <= max }
     ensures { all_differents nexts result }
+    ensures { forall i. 0 <= i < result -> prime nexts[i] }
+    ensures { forall i. 2 <= i <= max -> prime i ->
+                        exists j. 0 <= j < result /\ nexts[j] = i }
     variant { max + 1 - nexts[p] }
     let next = nexts[p] in
-    if next = max + 1 then begin nexts[cnt] <- 0; cnt end
+    if next = max + 1 then begin cnt end
     else
+      let ghost copy = sub nexts 0 cnt in
       if marked[next] then begin
+        assert { forall j. next < j < nexts[next] -> not prime j by
+                           next > p > cnt };
+        assert { forall i. 2 <= i < next -> prime i ->
+                           exists j. 0 <= j < cnt /\ nexts[j] = i };
         nexts[p] <- nexts[next];
+        assert { forall i. 0 <= i < cnt -> nexts[i] = copy[i] };
+        (* assert { forall i. 2 <= i < nexts[p] -> prime i ->
+                 (exists j. 0 <= j < cnt /\ nexts[j] = i) by
+                 not prime next /\
+                 (forall i. 2 <= i < next ->
+                            prime i ->
+                            (exists j. 0 <= j < cnt /\ nexts[j] = i)) by
+                            p > cnt /\
+                            forall i. 2 <= i < p -> prime i ->
+                                 (exists j. 0 <= j < cnt /\ nexts[j] = i) }; *)
+        assert { forall i. cnt <= i < marked.length ->
+                           forall j. i < j < nexts[i] ->
+                                     marked[j] by
+                 forall j. p < j < nexts[p] -> marked[j] };
         count p cnt
       end else begin
         (*
@@ -595,8 +621,13 @@ let euler_sieve (max: int) : array int
           modifiera pas les calculs de count par la suite
         *)
         nexts[cnt] <- next; (* une opération en plus ... *)
+        assert { (forall i. 0 <= i < cnt -> nexts[i] = copy[i]) /\
+                 (forall i. next < i < nexts[next] -> not prime i) /\
+                 forall i. 2 <= i < next -> prime i ->
+                           exists j. 0 <= j < cnt /\ nexts[j] = i };
         count next (cnt + 1)
       end in
+  (* assert { inv_count nexts marked 0 }; *)
   nexts[0] <- 2;
   sub nexts 0 (count 2 1)
 
