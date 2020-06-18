@@ -50,11 +50,11 @@ let lemma div_mult_1 (n k max: int)
 let lemma mult_borne_sous_exp (n a b: int)
   requires { a >= 1 /\ b >= 1 /\ n >= 1 /\ a * b < n }
   ensures { a < n /\ b < n } = ()
-  
+
 let lemma sq_ineq_local (a: int)
   requires { a >= 0 }
   ensures { a * a < (a + 1) * (a + 1) -> a < a + 1 } = ()
-  
+
 let rec lemma sq_ineq (a b: int)
   requires { a >= 0 /\ b >= 0 }
   requires { a * a < b * b }
@@ -80,17 +80,34 @@ let lemma divides_inf (n m: int)
   requires { 2 <= n /\ 2 <= m /\ divides n m /\
              forall k. 2 <= k < n -> not divides k m }
   ensures { forall k. 2 <= k < n -> not divides k (div m n) } = ()
-  
+
 let lemma not_prime_divider_limits (n: int)
   requires { not prime n /\ 2 <= n }
   ensures { exists i. 2 <= i /\ i * i <= n /\ divides i n } = ()
+
+(* let lemma prod_impl_divider (n: int) (i: int) *)
+(*   requires { n >= 0 /\ 2 <= i < n * n } *)
+(*   requires { exists k. 2 <= k < n /\ k <> i /\ divides k i } *)
+(*   ensures { exists k l. 2 <= k < n /\ 2 <= l < n * n /\ k * l = i } = () *)
+
+(* let lemma y (n: int) (i: int) *)
+(*   requires { n >= 0 /\ 2 <= i < n * n } *)
+(*   requires { not (exists k l. 2 <= k < n /\ 2 <= l < n * n /\ k * l = i ) } *)
+(*   ensures { not (exists k. 2 <= k < n /\ k <> i /\ divides k i) } = () *)
+
+let lemma no_prod_impl_no_divider (n: int)
+  requires { n >= 0 }
+  ensures { forall i.
+              2 <= i < n * n ->
+              not (exists k l. 2 <= k < n /\ 2 <= l < i /\ k * l = i ) ->
+              not (exists k. 2 <= k < n /\ k <> i /\ divides k i) } = ()
 
 use ArithmeticResults
 
 let lemma abc (n: int)
   requires { n >= 2 }
-  ensures { forall i. 2 <= i < n * n -> 
-                      not prime i -> 
+  ensures { forall i. 2 <= i < n * n ->
+                      not prime i ->
                       exists j. 2 <= j < i /\ ((j < n) by j * j < n * n /\ j >= 0) /\ divides j i } = ()
 
 end
@@ -508,6 +525,7 @@ let euler_sieve (max: int) : array int
   let marked = make (max + 1) false in
   for i = 0 to max do
     invariant { inv_nexts nexts i }
+    invariant { forall j. 2 <= j < i -> nexts[j] = j + 1 }
     nexts[i] <- i + 1;
   done;
   marked[0] <- true; marked[1] <- true;
@@ -535,21 +553,22 @@ let euler_sieve (max: int) : array int
         (* assert { forall i. 2 <= i < marked.length ->
                            not prime i ->
                            exists k. 2 <= k < nexts[n] /\ divides k i }; *)
-        assert { forall 
+        assert { forall i. 2 <= i < marked.length ->
+                           not marked[i] ->
+                           not (exists k l. 2 <= k < nexts[n] /\ 2 <= l < i /\ k * l = i) by
+                 previously_marked_products marked nexts[n] };
+        no_prod_impl_no_divider nexts[n];
         assert { forall i. 2 <= i < marked.length ->
                            not marked[i] ->
                            prime i by
                  forall i. 2 <= i < marked.length ->
                            not marked[i] ->
-                           (not (exists k. 2 <= k < nexts[n] /\ divides k i) by
-                            not (exists k l. 2 <= k < nexts[n] /\ 2 <= l < marked.length /\ k * l = i)) by
-                 forall i. 2 <= i < marked.length ->
-                           not marked[i] ->
-                           not (exists k l. 2 <= k < nexts[n] /\ 2 <= l < marked.length /\ k * l = i) by
-                 previously_marked_products marked nexts[n] }
+                           (not (exists k. 2 <= k < nexts[n] /\ k <> i /\ divides k i) by
+                            i < nexts[n] * nexts[n]) }
       end
     (* end *) in
-  loop 2;
+  assert { forall j. 2 <= j < marked.length -> nexts[j] = j + 1 };
+  if max >= 4 then loop 2;
   let rec count (p: int) (cnt: int) =
     requires { 2 <= p <= max }
     requires { 1 <= cnt <= p - 1 }
