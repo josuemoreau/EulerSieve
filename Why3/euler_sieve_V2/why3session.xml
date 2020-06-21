@@ -1453,6 +1453,18 @@
   <goal name="create&#39;vc.10" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.20" steps="409"/></proof>
   </goal>
+  <goal name="create&#39;vc.11" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.06" steps="21325"/></proof>
+  </goal>
+  <goal name="create&#39;vc.12" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.04" steps="137"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2314482"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="160771"/></proof>
+  </goal>
+  <goal name="create&#39;vc.13" expl="postcondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.05" steps="165438"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="159196"/></proof>
+  </goal>
  </transf>
  </goal>
  <goal name="set_next&#39;vc" expl="VC for set_next" proved="true">
@@ -1681,905 +1693,1033 @@
  <goal name="euler_sieve&#39;vc" expl="VC for euler_sieve">
  <transf name="split_vc" >
   <goal name="euler_sieve&#39;vc.0" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.05" steps="22588"/></proof>
+  <proof prover="2"><result status="valid" time="0.05" steps="22811"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.1" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="2051006"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.25" steps="96579"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="82032"/></proof>
+  <goal name="euler_sieve&#39;vc.1" expl="precondition" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2051006"/></proof>
+  <proof prover="2"><result status="valid" time="0.08" steps="25275"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="82032"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.2" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1398333"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.27" steps="96840"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="79473"/></proof>
+  <goal name="euler_sieve&#39;vc.2" expl="precondition" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1398333"/></proof>
+  <proof prover="2"><result status="valid" time="0.10" steps="25923"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="79473"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.3" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.13" steps="24889"/></proof>
+  <proof prover="2"><result status="valid" time="0.13" steps="25501"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.10" steps="24901"/></proof>
+  <proof prover="2"><result status="valid" time="0.10" steps="25513"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.5" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.15" steps="24913"/></proof>
+  <proof prover="2"><result status="valid" time="0.15" steps="25525"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.6" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.10" steps="24928"/></proof>
+  <proof prover="2"><result status="valid" time="0.10" steps="25540"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.7" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.05" steps="154502"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.43" steps="138005"/></proof>
+  <proof prover="1"><result status="valid" time="0.06" steps="157482"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.29" steps="97468"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.8" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="155690"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.29" steps="97468"/></proof>
+  <proof prover="1"><result status="valid" time="0.06" steps="158704"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.45" steps="97904"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.9" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="205189"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.51" steps="118652"/></proof>
+  <proof prover="1"><result status="valid" time="0.06" steps="212197"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.51" steps="118652"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.10" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1488825"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.56" steps="122869"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="81621"/></proof>
+  <goal name="euler_sieve&#39;vc.10" expl="precondition" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="valid" time="0.07" steps="249110"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.56" steps="122887"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="81621"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.11" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.11" steps="31221"/></proof>
+  <proof prover="2"><result status="valid" time="0.11" steps="31815"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.12" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="160955"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.45" steps="97904"/></proof>
+  <goal name="euler_sieve&#39;vc.12" expl="assertion" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="euler_sieve&#39;vc.12.0" expl="assertion" proved="true">
+   <proof prover="1"><result status="valid" time="0.06" steps="206436"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.12.1" expl="assertion" proved="true">
+   <proof prover="2"><result status="valid" time="0.11" steps="31160"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.12.2" expl="VC for euler_sieve" proved="true">
+   <proof prover="1"><result status="valid" time="0.06" steps="181735"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.12.3" expl="VC for euler_sieve" proved="true">
+   <proof prover="2"><result status="valid" time="0.08" steps="28659"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.12.4" expl="VC for euler_sieve" proved="true">
+   <transf name="inline_all" proved="true" >
+    <goal name="euler_sieve&#39;vc.12.4.0" expl="VC for euler_sieve" proved="true">
+    <proof prover="2" timelimit="10"><result status="valid" time="0.38" steps="77406"/></proof>
+    </goal>
+   </transf>
+   </goal>
+   <goal name="euler_sieve&#39;vc.12.5" expl="VC for euler_sieve" proved="true">
+   <proof prover="3"><result status="valid" time="1.36"/></proof>
+   </goal>
+  </transf>
   </goal>
-  <goal name="euler_sieve&#39;vc.13" expl="variant decrease" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="197872"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.32" steps="110017"/></proof>
+  <goal name="euler_sieve&#39;vc.13" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.05" steps="164657"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.43" steps="138005"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.14" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="178716"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.33" steps="110005"/></proof>
+  <goal name="euler_sieve&#39;vc.14" expl="variant decrease" proved="true">
+  <proof prover="1"><result status="valid" time="0.07" steps="202119"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.32" steps="110017"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.15" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.05" steps="175199"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.48" steps="110376"/></proof>
+  <proof prover="1"><result status="valid" time="0.09" steps="181999"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.33" steps="110005"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.16" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.14" steps="31220"/></proof>
+  <proof prover="1"><result status="valid" time="0.05" steps="11115"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.48" steps="110376"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.17" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.15" steps="31237"/></proof>
+  <proof prover="2"><result status="valid" time="0.14" steps="31947"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.18" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.14" steps="31259"/></proof>
+  <proof prover="2"><result status="valid" time="0.15" steps="31964"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.19" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1450905"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.37" steps="119201"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="69637"/></proof>
+  <goal name="euler_sieve&#39;vc.19" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.14" steps="31986"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.20" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.10" steps="23627"/></proof>
+  <goal name="euler_sieve&#39;vc.20" expl="precondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="euler_sieve&#39;vc.20.0" expl="precondition" proved="true">
+   <transf name="inline_goal" proved="true" >
+    <goal name="euler_sieve&#39;vc.20.0.0" expl="precondition" proved="true">
+    <transf name="split_all_full" proved="true" >
+     <goal name="euler_sieve&#39;vc.20.0.0.0" expl="VC for euler_sieve" proved="true">
+     <proof prover="2"><result status="valid" time="0.14" steps="38898"/></proof>
+     </goal>
+     <goal name="euler_sieve&#39;vc.20.0.0.1" expl="VC for euler_sieve" proved="true">
+     <proof prover="2"><result status="valid" time="0.16" steps="33357"/></proof>
+     </goal>
+     <goal name="euler_sieve&#39;vc.20.0.0.2" expl="VC for euler_sieve" proved="true">
+     <transf name="inline_goal" proved="true" >
+      <goal name="euler_sieve&#39;vc.20.0.0.2.0" expl="VC for euler_sieve" proved="true">
+      <transf name="split_all_full" proved="true" >
+       <goal name="euler_sieve&#39;vc.20.0.0.2.0.0" expl="VC for euler_sieve" proved="true">
+       <proof prover="1"><result status="valid" time="0.09" steps="300811"/></proof>
+       </goal>
+       <goal name="euler_sieve&#39;vc.20.0.0.2.0.1" expl="VC for euler_sieve" proved="true">
+       <proof prover="0" timelimit="10" obsolete="true"><result status="timeout" time="10.00"/></proof>
+       <proof prover="1" timelimit="10" obsolete="true"><result status="timeout" time="10.00" steps="18407807"/></proof>
+       <proof prover="2" obsolete="true"><result status="highfailure" time="0.36" steps="124458"/></proof>
+       <proof prover="3" timelimit="10"><result status="valid" time="0.58"/></proof>
+       <proof prover="4" timelimit="10" obsolete="true"><result status="timeout" time="10.00"/></proof>
+       <proof prover="5" timelimit="10" obsolete="true"><result status="timeout" time="10.00"/></proof>
+       <proof prover="6" timelimit="10" obsolete="true"><result status="timeout" time="10.00" steps="501453"/></proof>
+       </goal>
+      </transf>
+      </goal>
+     </transf>
+     </goal>
+     <goal name="euler_sieve&#39;vc.20.0.0.3" expl="VC for euler_sieve" proved="true">
+     <proof prover="2"><result status="valid" time="0.10" steps="29811"/></proof>
+     </goal>
+     <goal name="euler_sieve&#39;vc.20.0.0.4" expl="VC for euler_sieve" proved="true">
+     <proof prover="0"><result status="valid" time="0.38" steps="300"/></proof>
+     </goal>
+     <goal name="euler_sieve&#39;vc.20.0.0.5" expl="VC for euler_sieve" proved="true">
+     <proof prover="2"><result status="valid" time="0.14" steps="34711"/></proof>
+     </goal>
+    </transf>
+    </goal>
+   </transf>
+   </goal>
+  </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.21" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.04" steps="99"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1316183"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.43" steps="107873"/></proof>
+  <proof prover="0"><result status="valid" time="0.04" steps="96"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1316183"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.43" steps="107873"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.22" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="181188"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.36" steps="109433"/></proof>
+  <proof prover="1"><result status="valid" time="0.08" steps="183930"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.36" steps="109433"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.23" expl="assertion">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1808712"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="208341"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="80196"/></proof>
+  <goal name="euler_sieve&#39;vc.23" expl="assertion" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="euler_sieve&#39;vc.23.0" expl="assertion" proved="true">
+   <proof prover="2"><result status="valid" time="0.10" steps="31251"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.23.1" expl="VC for euler_sieve" proved="true">
+   <transf name="inline_all" proved="true" >
+    <goal name="euler_sieve&#39;vc.23.1.0" expl="VC for euler_sieve" proved="true">
+    <proof prover="3" timelimit="10"><result status="valid" time="6.88"/></proof>
+    </goal>
+   </transf>
+   </goal>
+  </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.24" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.10" steps="26267"/></proof>
+  <proof prover="2"><result status="valid" time="0.10" steps="26709"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.25" expl="assertion">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1572903"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="241591"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="70108"/></proof>
+  <goal name="euler_sieve&#39;vc.25" expl="assertion" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="euler_sieve&#39;vc.25.0" expl="assertion" proved="true">
+   <proof prover="1"><result status="valid" time="0.05" steps="187451"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.25.1" expl="VC for euler_sieve" proved="true">
+   <proof prover="3" timelimit="10"><result status="valid" time="5.25"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.25.2" expl="VC for euler_sieve" proved="true">
+   <proof prover="1"><result status="valid" time="0.06" steps="197144"/></proof>
+   </goal>
+  </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.26" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="164090"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.29" steps="98747"/></proof>
+  <transf name="split_vc" proved="true" >
+   <goal name="euler_sieve&#39;vc.26.0" expl="postcondition" proved="true">
+   <proof prover="0" timelimit="10"><result status="valid" time="0.04" steps="119"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.26.1" expl="postcondition" proved="true">
+   <proof prover="3" timelimit="10"><result status="valid" time="18.35"/></proof>
+   </goal>
+  </transf>
   </goal>
-  <goal name="euler_sieve&#39;vc.27" expl="postcondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1948338"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.53" steps="108146"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="74011"/></proof>
+  <goal name="euler_sieve&#39;vc.27" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.09" steps="23181"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.28" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.09" steps="24368"/></proof>
+  <proof prover="2"><result status="valid" time="0.09" steps="23199"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.29" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.09" steps="24402"/></proof>
+  <proof prover="1"><result status="valid" time="0.07" steps="139799"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.44" steps="136688"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.30" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="137136"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.44" steps="136688"/></proof>
+  <proof prover="0" timelimit="10"><result status="valid" time="0.02" steps="37"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1986722"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.53" steps="136645"/></proof>
+  <proof prover="3" timelimit="10" obsolete="true"><result status="timeout" time="10.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" timelimit="10" obsolete="true"><result status="timeout" time="10.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="105812"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.31" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1363527"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.53" steps="136696"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="103326"/></proof>
+  <goal name="euler_sieve&#39;vc.31" expl="precondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.06" steps="80"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2249244"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.39" steps="136650"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.32" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="154530"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.57" steps="136701"/></proof>
+  <proof prover="0"><result status="valid" time="0.11" steps="130"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.33" expl="precondition">
+  <goal name="euler_sieve&#39;vc.33" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.07" steps="145522"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.51" steps="141317"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.34" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.06" steps="20"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1383690"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.48" steps="112811"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="77331"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.35" expl="loop invariant init" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1314271"/></proof>
+  <proof prover="2"><result status="valid" time="0.05" steps="23682"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="115137"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.36" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.05" steps="83"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2057639"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.59" steps="137795"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.37" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.20" steps="268"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2170124"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.56" steps="138438"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.38" expl="loop invariant init" proved="true">
+  <proof prover="1"><result status="valid" time="0.04" steps="148100"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.39" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.02" steps="37"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2223440"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.44" steps="140422"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="98339"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.40" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.02" steps="34"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2178998"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.40" steps="197428"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="115696"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.41" expl="loop invariant init" proved="true">
+  <proof prover="0" timelimit="10"><result status="valid" time="0.05" steps="128"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1539018"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.59" steps="142153"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.42" expl="index in array bounds" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1498531"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.63" steps="150932"/></proof>
+  <proof prover="6"><result status="valid" time="0.20" steps="31658"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.43" expl="index in array bounds" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="valid" time="0.04" steps="153017"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.42" steps="160406"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="127356"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.44" expl="precondition" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1496779"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.45" steps="142827"/></proof>
+  <proof prover="6"><result status="valid" time="0.15" steps="31743"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.45" expl="index in array bounds" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="valid" time="0.05" steps="155366"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.56" steps="161293"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="106589"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.46" expl="index in array bounds" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="valid" time="0.05" steps="155696"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.41" steps="161349"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="77633"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.47" expl="index in array bounds" proved="true">
+  <proof prover="0"><result status="valid" time="0.05" steps="40"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1444864"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.41" steps="110339"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="88155"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.48" expl="loop variant decrease">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1365049"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.48" steps="136762"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2199734"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.45" steps="186471"/></proof>
   <proof prover="3"><result status="timeout" time="1.00"/></proof>
   <proof prover="4"><result status="timeout" time="1.00"/></proof>
   <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="72477"/></proof>
+  <proof prover="6"><result status="timeout" time="1.00" steps="80328"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.34" expl="precondition">
+  <goal name="euler_sieve&#39;vc.49" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="valid" time="0.08" steps="14797"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.39" steps="143570"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.50" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.07" steps="34"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1258087"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.38" steps="99633"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="100758"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.51" expl="loop invariant preservation">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1337957"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.55" steps="138145"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="89509"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2068072"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.61" steps="189907"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.35" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.09" steps="25525"/></proof>
+  <goal name="euler_sieve&#39;vc.52" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.09" steps="35"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1396374"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.28" steps="99589"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.36" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="23772"/></proof>
+  <goal name="euler_sieve&#39;vc.53" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.03" steps="54"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2115888"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.53" steps="189971"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.37" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="158488"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="255850"/></proof>
+  <goal name="euler_sieve&#39;vc.54" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.03" steps="51"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2205029"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.70" steps="190008"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.38" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="163423"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.52" steps="195253"/></proof>
+  <goal name="euler_sieve&#39;vc.55" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.04" steps="51"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1734571"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.59" steps="186628"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.39" expl="precondition" proved="true">
+  <goal name="euler_sieve&#39;vc.56" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.03" steps="47"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1776006"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="156912"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.57" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.08" steps="154583"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.43" steps="100703"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.58" expl="loop variant decrease">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1500688"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.63" steps="142586"/></proof>
-  <proof prover="6"><result status="valid" time="0.36" steps="51867"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1748129"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.61" steps="162611"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="95753"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.40" expl="precondition" proved="true">
+  <goal name="euler_sieve&#39;vc.59" expl="loop invariant preservation">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1473530"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.41" steps="138661"/></proof>
-  <proof prover="6"><result status="valid" time="0.46" steps="60797"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1847806"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.63" steps="158808"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.41" expl="assertion" proved="true">
+  <goal name="euler_sieve&#39;vc.60" expl="loop invariant preservation">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1346931"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.44" steps="156526"/></proof>
-  <proof prover="6"><result status="valid" time="0.76" steps="78230"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2024110"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.46" steps="158904"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.42" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="166651"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.59" steps="142153"/></proof>
+  <goal name="euler_sieve&#39;vc.61" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.12" steps="79"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1465936"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.63" steps="162522"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.43" expl="precondition" proved="true">
+  <goal name="euler_sieve&#39;vc.62" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.11" steps="88"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2121163"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.52" steps="195334"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.63" expl="loop invariant preservation">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1372890"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.56" steps="139321"/></proof>
-  <proof prover="6"><result status="valid" time="0.52" steps="65714"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1912195"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.72" steps="190149"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.44" expl="precondition">
+  <goal name="euler_sieve&#39;vc.64" expl="loop invariant preservation">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1493254"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.44" steps="155961"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="99805"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1811325"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.61" steps="190165"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.45" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.13" steps="237"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1283568"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.41" steps="151017"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.46" expl="precondition" proved="true">
+  <goal name="euler_sieve&#39;vc.65" expl="loop invariant preservation">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1498531"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.63" steps="150932"/></proof>
-  <proof prover="6"><result status="valid" time="0.33" steps="66158"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1582080"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="255984"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.47" expl="assertion" proved="true">
+  <goal name="euler_sieve&#39;vc.66" expl="loop invariant preservation">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1438955"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.58" steps="159302"/></proof>
-  <proof prover="6"><result status="valid" time="0.50" steps="85903"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1620357"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.75" steps="190874"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.48" expl="assertion" proved="true">
+  <goal name="euler_sieve&#39;vc.67" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.04" steps="153138"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.27" steps="100219"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.68" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.04" steps="116"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2118831"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.61" steps="146694"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.69" expl="postcondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.08" steps="159511"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.60" steps="195243"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.70" expl="postcondition">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1413028"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.52" steps="152995"/></proof>
-  <proof prover="6"><result status="valid" time="0.25" steps="51658"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2298988"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.60" steps="220671"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.49" expl="variant decrease">
+  <goal name="euler_sieve&#39;vc.71" expl="index in array bounds" proved="true">
+  <proof prover="1"><result status="valid" time="0.07" steps="143038"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.26" steps="99107"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.72" expl="loop invariant init" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1438955"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.58" steps="159302"/></proof>
+  <proof prover="6"><result status="valid" time="0.11" steps="24750"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.73" expl="loop invariant init" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1413028"/></proof>
+  <proof prover="2"><result status="valid" time="0.07" steps="23436"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="2.00" steps="140999"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.74" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.10" steps="155"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1981879"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.42" steps="100687"/></proof>
+  <proof prover="6"><result status="timeout" time="2.00" steps="125621"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.75" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.04" steps="114"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2015925"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.31" steps="110553"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.76" expl="loop invariant init" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="valid" time="0.05" steps="145698"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.40" steps="112424"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="99130"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.77" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.06" steps="31"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1331310"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.32" steps="111419"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="83984"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.78" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.05" steps="28"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2046438"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.27" steps="99301"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="69636"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.79" expl="loop invariant init" proved="true">
+  <proof prover="0"><result status="valid" time="0.05" steps="98"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2160519"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.45" steps="132927"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.80" expl="index in array bounds">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2064733"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.55" steps="114245"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="127832"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.81" expl="index in array bounds" proved="true">
+  <proof prover="0"><result status="valid" time="0.03" steps="32"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2131794"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.44" steps="156054"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="99805"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.82" expl="precondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.07" steps="150443"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.30" steps="100343"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.83" expl="index in array bounds">
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.40" steps="115146"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.84" expl="index in array bounds">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1370200"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.38" steps="115221"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="114174"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.85" expl="index in array bounds">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2033072"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.41" steps="133841"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="88213"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.86" expl="loop variant decrease">
+  <proof prover="0" timelimit="10" obsolete="true"><result status="timeout" time="10.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1311860"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="240683"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.87" expl="loop invariant preservation" proved="true">
+  <proof prover="1"><result status="valid" time="0.09" steps="14606"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.58" steps="143582"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.88" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.04" steps="28"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2300704"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.40" steps="141521"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="81921"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.89" expl="loop invariant preservation">
+  <proof prover="1"><result status="timeout" time="1.00" steps="1980797"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="164061"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.90" expl="loop invariant preservation">
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.72" steps="161958"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.91" expl="loop invariant preservation">
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.51" steps="114973"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.92" expl="loop invariant preservation">
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1590875"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.24" steps="102398"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.93" expl="loop invariant preservation">
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.53" steps="160287"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.94" expl="loop invariant preservation">
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.64" steps="134603"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.95" expl="index in array bounds" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1397331"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.69" steps="143042"/></proof>
+  <proof prover="6"><result status="valid" time="0.14" steps="31507"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.96" expl="loop variant decrease">
+  <proof prover="0" obsolete="true"><result status="timeout" time="2.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1467010"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="201813"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.97" expl="loop invariant preservation">
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1874766"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.64" steps="197880"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.98" expl="loop invariant preservation">
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.39" steps="113267"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.99" expl="loop invariant preservation" proved="true">
+  <proof prover="0" timelimit="10"><result status="valid" time="0.08" steps="42"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1392382"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.64" steps="157055"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="101446"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.100" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.04" steps="74"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2055556"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="214682"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.101" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.10" steps="143"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1702692"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="218556"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.102" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.14" steps="145"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1654223"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="220064"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.103" expl="loop invariant preservation" proved="true">
+  <proof prover="0"><result status="valid" time="0.11" steps="119"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1803296"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="278114"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.104" expl="loop invariant preservation">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1392382"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.64" steps="157055"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="101446"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="1766517"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.68" steps="220834"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.50" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.11" steps="24582"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.51" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.09" steps="24593"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.52" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.18" steps="350"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1400344"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.57" steps="161246"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.53" expl="precondition" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1463194"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.60" steps="142950"/></proof>
-  <proof prover="6"><result status="valid" time="0.21" steps="47018"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.54" expl="precondition" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1350646"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.42" steps="142305"/></proof>
-  <proof prover="6"><result status="valid" time="0.22" steps="46290"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.55" expl="precondition" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1481596"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="197186"/></proof>
-  <proof prover="6"><result status="valid" time="0.52" steps="60780"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.56" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1449617"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.42" steps="143978"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="96324"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.57" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="25048"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.58" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.05" steps="25234"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.59" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="179680"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.64" steps="197880"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.60" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="188936"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.61" steps="144388"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.61" expl="index in array bounds" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1397331"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.69" steps="143042"/></proof>
-  <proof prover="6"><result status="valid" time="0.40" steps="57808"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.62" expl="assertion">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1452100"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.58" steps="161849"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="120026"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.63" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="162167"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.63" steps="140298"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.64" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="216049"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.55" steps="164413"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.65" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="187196"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="228975"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.66" expl="type invariant" proved="true">
-  <proof prover="2"><result status="valid" time="0.70" steps="182688"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.67" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.56" steps="548"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1366391"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="251370"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.68" expl="type invariant">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1440715"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="196234"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="75967"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.69" expl="type invariant" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1433611"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="211627"/></proof>
-  <proof prover="5"><result status="valid" time="0.37" steps="924"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="126785"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.70" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.08" steps="142"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1449469"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="228857"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.71" expl="variant decrease">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1434106"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.48" steps="156868"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="82329"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.72" expl="precondition" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1368042"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.40" steps="140537"/></proof>
-  <proof prover="6"><result status="valid" time="0.43" steps="70715"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.73" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1425194"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.59" steps="140898"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="81921"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.74" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.47" steps="379"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1376475"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.45" steps="160348"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.75" expl="precondition" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1400885"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.63" steps="160848"/></proof>
-  <proof prover="6"><result status="valid" time="0.48" steps="66793"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.76" expl="precondition" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1350665"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.60" steps="160430"/></proof>
-  <proof prover="6"><result status="valid" time="0.36" steps="64396"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.77" expl="precondition" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1354458"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="216243"/></proof>
-  <proof prover="6"><result status="valid" time="0.64" steps="66305"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.78" expl="precondition" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1379246"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.77" steps="163600"/></proof>
-  <proof prover="6"><result status="valid" time="0.46" steps="72556"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.79" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.08" steps="24974"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.80" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="25160"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.81" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="178108"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.63" steps="197947"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.82" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.10" steps="187305"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.70" steps="144445"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.83" expl="index in array bounds" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="143486"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.51" steps="141317"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.84" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="142054"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.40" steps="137551"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.85" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="192573"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.75" steps="160894"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.86" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="165958"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="230302"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.87" expl="type invariant" proved="true">
-  <proof prover="2"><result status="valid" time="0.08" steps="23274"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.88" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.14" steps="211"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1311860"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="240683"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.89" expl="type invariant">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1442687"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="205044"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="90927"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.90" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.06" steps="79"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="2067932"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="209233"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.91" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.05" steps="68"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1469100"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="201920"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.92" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.08" steps="23272"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.93" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.09" steps="23304"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.94" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.24" steps="248"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="2057639"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.59" steps="137795"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.95" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.04" steps="151807"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.43" steps="138294"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.96" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="170660"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.54" steps="137860"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.97" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.03" steps="40"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1381944"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.58" steps="194351"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.98" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.08" steps="133"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1935140"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.72" steps="182376"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.99" expl="precondition" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1496779"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.45" steps="142827"/></proof>
-  <proof prover="6"><result status="valid" time="0.34" steps="47046"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.100" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.04" steps="142"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="2118831"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.61" steps="146694"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.101" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="167495"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.60" steps="195243"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.102" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="179424"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.42" steps="143639"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.103" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1370200"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.44" steps="96971"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="114174"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.104" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.15" steps="25225"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.105" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.10" steps="23515"/></proof>
+  <goal name="euler_sieve&#39;vc.105" expl="precondition" proved="true">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1500688"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.63" steps="142586"/></proof>
+  <proof prover="6"><result status="valid" time="0.16" steps="30869"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.106" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.05" steps="154258"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.48" steps="140749"/></proof>
+  <proof prover="0"><result status="valid" time="0.08" steps="72"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1245505"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.36" steps="103281"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.107" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.03" steps="158433"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.45" steps="99616"/></proof>
+  <proof prover="1"><result status="valid" time="0.08" steps="155411"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.57" steps="140963"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.108" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.04" steps="153905"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.27" steps="100219"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.109" expl="precondition">
+  <goal name="euler_sieve&#39;vc.108" expl="postcondition">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="2064733"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.38" steps="97456"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="127832"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2127242"/></proof>
+  <proof prover="2"><result status="highfailure" time="0.42" steps="115340"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.110" expl="assertion">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1465104"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.32" steps="111397"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="83984"/></proof>
+  <goal name="euler_sieve&#39;vc.86" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.07" steps="146497"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.33" steps="96473"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.111" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="161438"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.45" steps="100335"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.112" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="2033072"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.34" steps="98145"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="88213"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.113" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1394431"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.41" steps="110230"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="88155"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.114" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.50" steps="423"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1382681"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.45" steps="150337"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.115" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1422034"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.42" steps="107391"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="123965"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.116" expl="assertion">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1465580"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.48" steps="112791"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="77331"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.117" expl="assertion" proved="true">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1314271"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.48" steps="109427"/></proof>
-  <proof prover="6"><result status="valid" time="0.20" steps="46223"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.118" expl="variant decrease">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1423235"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.34" steps="111268"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="75382"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.119" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.08" steps="24325"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.120" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.08" steps="24336"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.121" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.17" steps="290"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1428178"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.52" steps="115226"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.122" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.20" steps="359"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1412739"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.47" steps="101194"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.123" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.17" steps="343"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1392427"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.32" steps="100624"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.124" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.26" steps="300"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1412505"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.61" steps="142891"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.125" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1380849"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.27" steps="101992"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="91341"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.126" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.07" steps="24791"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.127" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.11" steps="24977"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.128" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="174043"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.39" steps="143570"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.129" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="182001"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.43" steps="102382"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.130" expl="index in array bounds" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="155381"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.43" steps="100703"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.131" expl="assertion">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1416524"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.68" steps="161319"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="76023"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.132" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="157833"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.43" steps="99045"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.133" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="211700"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.36" steps="118731"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.134" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="182647"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="167692"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.135" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="160012"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="164061"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.136" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.22" steps="371"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1467010"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="201813"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.137" expl="type invariant">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1481093"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="173944"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="79220"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.138" expl="type invariant">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="2096772"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="164532"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="91755"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.139" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.09" steps="115"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1437741"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="177304"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.140" expl="variant decrease">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1462999"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.50" steps="111109"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="82176"/></proof>
+  <goal name="euler_sieve&#39;vc.130" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.08" steps="159536"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.43" steps="99045"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.141" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1909849"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.27" steps="99279"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="69636"/></proof>
+  <proof prover="0"><result status="valid" time="0.08" steps="227"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1486519"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.49" steps="114624"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.136" expl="type invariant">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1979793"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="164071"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5"><result status="valid" time="0.08" steps="273"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="97397"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.93" expl="precondition">
+  <proof prover="1"><result status="valid" time="0.04" steps="152823"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.43" steps="138294"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.142" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.10" steps="119"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1372155"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.33" steps="115081"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.94" expl="precondition">
+  <proof prover="1"><result status="valid" time="0.09" steps="173132"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.54" steps="137860"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.61" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.08" steps="163174"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.63" steps="140298"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.88" expl="type invariant">
+  <proof prover="0"><result status="valid" time="0.06" steps="86"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2067932"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="209233"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.73" expl="precondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1400885"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.63" steps="160848"/></proof>
+  <proof prover="6"><result status="valid" time="0.79" steps="70721"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.165" expl="precondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2269423"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.37" steps="131175"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="139926"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.92" expl="type invariant">
   <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1376834"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.38" steps="99616"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="100758"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1494641"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="167301"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.143" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.33" steps="304"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1486519"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.49" steps="114624"/></proof>
+  <goal name="euler_sieve&#39;vc.87" expl="type invariant">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2261129"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="269300"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="92040"/></proof>
+  <transf name="split_vc" >
+   <goal name="euler_sieve&#39;vc.87.0" expl="type invariant">
+   <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+   <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2203457"/></proof>
+   <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="255386"/></proof>
+   <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+   <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+   <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+   <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="115261"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.87.1" expl="type invariant">
+   <proof prover="0"><result status="valid" time="0.02" steps="57"/></proof>
+   <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1886152"/></proof>
+   <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="332189"/></proof>
+   </goal>
+  </transf>
   </goal>
-  <goal name="euler_sieve&#39;vc.144" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.10" steps="129"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1372155"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.33" steps="115081"/></proof>
+  <goal name="euler_sieve&#39;vc.100" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.02" steps="144"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1382681"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.45" steps="150337"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.145" expl="precondition" proved="true">
+  <goal name="euler_sieve&#39;vc.163" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.03" steps="35"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1388620"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.27" steps="96718"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.49" expl="precondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1337957"/></proof>
+  <proof prover="2"><result status="valid" time="0.09" steps="26342"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="89509"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.145" expl="precondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1799572"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.46" steps="102016"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="78819"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.120" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.06" steps="175"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1412739"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.47" steps="101194"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.54" expl="precondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1379246"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.77" steps="163600"/></proof>
+  <proof prover="6"><result status="valid" time="0.51" steps="54229"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.119" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.17" steps="139"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1428178"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.52" steps="115226"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.41" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.08" steps="149067"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.40" steps="137551"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.50" expl="precondition">
+  <proof prover="2"><result status="valid" time="0.08" steps="26437"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.123" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.06" steps="118"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1389416"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.41" steps="117305"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.137" expl="type invariant">
+  <proof prover="0"><result status="valid" time="0.09" steps="116"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1437741"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="177304"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.135" expl="type invariant">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2224567"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="175748"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="112821"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.69" expl="variant decrease">
+  <proof prover="0"><result status="valid" time="0.10" steps="152"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2293682"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.48" steps="156865"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="82329"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.83" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.08" steps="194053"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.75" steps="160894"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.89" expl="type invariant">
+  <proof prover="0"><result status="valid" time="0.05" steps="69"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1469100"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="201920"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.91" expl="type invariant">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2243948"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="173049"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="100489"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.84" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.08" steps="166976"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="230302"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.74" expl="precondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1350665"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.60" steps="160430"/></proof>
+  <proof prover="6"><result status="valid" time="0.43" steps="67059"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.42" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.08" steps="200478"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.55" steps="164413"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.162" expl="precondition">
+  <proof prover="1"><result status="valid" time="0.07" steps="150206"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.25" steps="97135"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.47" expl="type invariant">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1449469"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="228857"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.143" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.09" steps="116"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1366465"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.50" steps="114702"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.45" expl="type invariant">
+  <proof prover="0"><result status="timeout" time="2.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1366391"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="251370"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.44" expl="type invariant">
+  <proof prover="1"><result status="timeout" time="1.00" steps="1398880"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="252176"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.75" expl="precondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1481596"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="197186"/></proof>
+  <proof prover="6"><result status="valid" time="0.52" steps="67813"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.43" expl="type invariant">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1"><result status="timeout" time="1.00" steps="2113946"/></proof>
+  <proof prover="2"><result status="timeout" time="1.00" steps="309798"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.53" expl="precondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1354458"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="216243"/></proof>
+  <proof prover="6"><result status="valid" time="0.40" steps="52299"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.89" expl="type invariant">
+  <proof prover="2"><result status="timeout" time="2.00" steps="200423"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.161" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.08" steps="148"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1400932"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.38" steps="96680"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.159" expl="precondition">
+  <proof prover="2"><result status="valid" time="0.08" steps="23267"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.93" expl="type invariant">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2169041"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="169138"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="100289"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.20" expl="postcondition">
+  <proof prover="2"><result status="valid" time="0.10" steps="23616"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.88" expl="type invariant">
+  <proof prover="2"><result status="timeout" time="2.00" steps="188074"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.90" expl="type invariant">
+  <proof prover="0"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1434365"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="177368"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.64" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.05" steps="165613"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="274414"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.46" expl="type invariant">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2399877"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="307386"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6"><result status="timeout" time="2.00" steps="134714"/></proof>
+  </goal>
+  <goal name="euler_sieve&#39;vc.138" expl="variant decrease">
   <proof prover="0"><result status="valid" time="0.09" steps="126"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1366465"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.50" steps="114702"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1376303"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.50" steps="111126"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="82176"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.146" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.12" steps="152"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1465936"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.63" steps="162522"/></proof>
+  <goal name="euler_sieve&#39;vc.51" expl="precondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1463194"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.60" steps="142950"/></proof>
+  <proof prover="6"><result status="valid" time="0.37" steps="50896"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.147" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.27" steps="284"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1389416"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.41" steps="117305"/></proof>
+  <goal name="euler_sieve&#39;vc.50" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.34" steps="379"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1400344"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.57" steps="161246"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.148" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.09" steps="24717"/></proof>
+  <goal name="euler_sieve&#39;vc.48" expl="type invariant">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1433611"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="211627"/></proof>
+  <proof prover="5"><result status="valid" time="1.59" steps="3443"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="126785"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.149" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.09" steps="24903"/></proof>
+  <goal name="euler_sieve&#39;vc.72" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.30" steps="368"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1376475"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.45" steps="160348"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.150" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="172638"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.58" steps="143582"/></proof>
+  <goal name="euler_sieve&#39;vc.26" expl="assertion">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2353133"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.29" steps="148381"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="1.00" steps="97538"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.151" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="180395"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.24" steps="102398"/></proof>
+  <goal name="euler_sieve&#39;vc.55" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.49" steps="338"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1283568"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.41" steps="151017"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.152" expl="index in array bounds" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="140180"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.26" steps="99107"/></proof>
+  <goal name="euler_sieve&#39;vc.131" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.09" steps="213233"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.36" steps="118731"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.153" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="139001"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.33" steps="96473"/></proof>
+  <goal name="euler_sieve&#39;vc.132" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.09" steps="184311"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="167692"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.154" expl="type invariant" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="189365"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.33" steps="115778"/></proof>
+  <goal name="euler_sieve&#39;vc.95" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.03" steps="38"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1381944"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.58" steps="194351"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.155" expl="type invariant" proved="true">
-  <proof prover="2"><result status="valid" time="0.69" steps="156678"/></proof>
+  <goal name="euler_sieve&#39;vc.96" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.08" steps="138"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1935140"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.72" steps="182376"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.156" expl="type invariant" proved="true">
-  <proof prover="2"><result status="valid" time="0.37" steps="116490"/></proof>
+  <goal name="euler_sieve&#39;vc.87" expl="type invariant">
+  <proof prover="1"><result status="valid" time="0.07" steps="197412"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.33" steps="115778"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.157" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.08" steps="94"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1434365"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="177368"/></proof>
+  <goal name="euler_sieve&#39;vc.76" expl="precondition">
+  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2170112"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.42" steps="143904"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="6"><result status="valid" time="0.75" steps="73736"/></proof>
   </goal>
-  <goal name="euler_sieve&#39;vc.158" expl="type invariant">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1455306"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="171787"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="85324"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.159" expl="type invariant">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1460415"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="146951"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="86202"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.160" expl="type invariant" proved="true">
-  <proof prover="0"><result status="valid" time="0.05" steps="52"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1494641"/></proof>
-  <proof prover="2"><result status="timeout" time="1.00" steps="167301"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.161" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.08" steps="23015"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.162" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.07" steps="23047"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.163" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.24" steps="219"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1400932"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.38" steps="96680"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.164" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="148563"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.25" steps="97135"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.165" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.03" steps="34"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1388620"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.27" steps="96718"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.166" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.02" steps="31"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1469552"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.45" steps="139962"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.167" expl="precondition">
-  <proof prover="0"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1439332"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.37" steps="131158"/></proof>
-  <proof prover="3"><result status="timeout" time="1.00"/></proof>
-  <proof prover="4"><result status="timeout" time="1.00"/></proof>
-  <proof prover="5"><result status="timeout" time="1.00"/></proof>
-  <proof prover="6"><result status="timeout" time="1.00" steps="74160"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.168" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="155307"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.30" steps="100343"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.169" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.08" steps="159"/></proof>
-  <proof prover="1"><result status="timeout" time="1.00" steps="1245505"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.36" steps="103281"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.170" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="162406"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.57" steps="140963"/></proof>
-  </goal>
-  <goal name="euler_sieve&#39;vc.171" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="171572"/></proof>
-  <proof prover="2"><result status="highfailure" time="0.28" steps="101055"/></proof>
+  <goal name="euler_sieve&#39;vc.121" expl="precondition">
+  <proof prover="0"><result status="valid" time="0.17" steps="145"/></proof>
+  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="1392427"/></proof>
+  <proof prover="2" obsolete="true"><result status="highfailure" time="0.32" steps="100624"/></proof>
   </goal>
  </transf>
  </goal>

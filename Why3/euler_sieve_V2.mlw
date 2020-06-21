@@ -433,6 +433,9 @@ module EulerSieve
 
   val create (max: int) : t
     requires { max >= 2 }
+    ensures  { result.max = max }
+    ensures  { forall i. 0 <= i <= max -> i >= 2 <-> not Seq.get result.marked i    }
+    ensures  { forall i. 0 <= i <= max -> Seq.get result.nexts i = i + 1            }
 
   val set_next (t: t) (i v: int) : unit
     requires { 0 <= i <= t.max /\ i < v <= t.max + 1 }
@@ -649,6 +652,9 @@ module EulerSieveImpl
 
   let create (max: int) : t
     requires { max >= 2 }
+    ensures  { result.max = max }
+    ensures  { forall i. 0 <= i <= max -> i >= 2 <-> not Seq.get result.marked i    }
+    ensures  { forall i. 0 <= i <= max -> Seq.get result.nexts i = i + 1            }
   = let len = max + 1 in
     { nexts = Seq.create len (fun i -> i + 1);
       marked = Seq.create len (fun i -> i = 0 || i = 1);
@@ -711,15 +717,15 @@ module EulerSieveImpl
                         exists j. 0 <= j < result.length /\ result[j] = i }
   = let t = create max in
     let rec loop (n: int) =
-      requires { 2 <= n <= max + 1 }
-      requires { n <> max + 1 /\ n * n <= max }
+      requires { 2 <= n <= max }
+      requires { n * n <= max }
       requires { previously_marked_products t.marked n }
       requires { only_products_marked t.marked n }
       (* requires { inv_marked_nexts t.marked t.nexts } *)
       requires { inv_marked_old_nexts2 t.marked t.nexts n }
       requires { inv_remove_products t.nexts t.marked n }
       (* ensures { inv_nexts t.nexts t.nexts.length } *)
-      ensures { inv_marked_nexts t.marked t.nexts }
+      (* ensures { inv_marked_nexts t.marked t.nexts } *)
       ensures { forall i. 0 <= i < Seq.length t.marked -> not Seq.get t.marked i <-> prime i }
       variant { max + 1 - n }
         set_n t n;
@@ -728,6 +734,15 @@ module EulerSieveImpl
           assert { all_primes t.marked n /\ not Seq.get t.marked n /\
                    Seq.get t.nexts n <= div max (Seq.get t.nexts n) };
           ghost (previously_marked_products_impl_prime t.marked (Seq.get t.nexts n));
+          assert { (forall i. n < i < Seq.get t.nexts n -> not prime i) by
+                      (forall i. n < i < Seq.get t.nexts n ->
+                                 (exists j k. 2 <= j < Seq.get t.nexts n /\ 
+                                              2 <= k < Seq.length t.marked /\ 
+                                              j * k = i) by 
+                                                Seq.get t.marked i /\ 
+                                                only_products_marked t.marked (Seq.get t.nexts n)) by
+                      (forall i. n < i < Seq.get t.nexts n -> Seq.get t.marked i) /\ 
+                      only_products_marked t.marked (Seq.get t.nexts n) };
           loop (get_next t n)
         end else begin
           ghost (not_prime_impl_divisor_under_sqrt (Seq.get t.nexts n));
@@ -748,56 +763,86 @@ module EulerSieveImpl
                     i < Seq.get t.nexts n * Seq.get t.nexts n) }
         end in
     if max >= 4 then loop 2;
-    let rec count (p: int) (cnt: int) =
-      requires { 2 <= p <= max }
-      requires { 1 <= cnt <= p - 1 }
-      requires { inv_count t.nexts t.marked cnt }
-      requires { all_differents t.arr cnt }
-      requires { all_inf_or_eq t.arr cnt p }
-      requires { forall i. 0 <= i < cnt -> prime t.arr[i] }
-      requires { forall i. 2 <= i < Seq.get t.nexts p -> prime i ->
-                           exists j. 0 <= j < cnt /\ t.arr[j] = i }
-      ensures { 1 <= result <= max }
-      ensures { all_differents t.arr result }
-      ensures { forall i. 0 <= i < result -> prime t.arr[i] }
-      ensures { forall i. 2 <= i <= max -> prime i ->
-                          exists j. 0 <= j < result /\ t.arr[j] = i }
-      variant { max + 1 - Seq.get t.nexts p }
-      let next = get_next t p in
-      if next = max + 1 then begin cnt end
-      else
-        let ghost copy = sub t.arr 0 cnt in
-        if get_mark t next then begin
-          assert { forall j. next < j < Seq.get t.nexts next -> not prime j by
-                             next > p > cnt };
-          assert { forall i. 2 <= i < next -> prime i ->
-                             exists j. 0 <= j < cnt /\ t.arr[j] = i };
-          set_next t p (get_next t next);
-          assert { forall i. 0 <= i < cnt -> Seq.get t.nexts i = copy[i] };
-          assert { forall i. cnt <= i < Seq.length t.marked ->
-                             forall j. i < j < Seq.get t.nexts i ->
-                                       Seq.get t.marked j by
-                   forall j. p < j < Seq.get t.nexts p -> Seq.get t.marked j };
-          count p cnt
-        end else begin
-          (*
-            Attention : des fois j'ai des bonnes idées ! ...
-            On réécrit le début du tableau nexts !
-            Parce que le nombre de nombres premiers <= n est strictement
-            inférieur à n !
-            Du coup on peut réécrire le tableau nexts en recopiant
-            consécutivement les nombres premiers déja rencontrés et ceci ne
-            modifiera pas les calculs de count par la suite
-          *)
-          t.arr[cnt] <- next; (* une opération en plus ... *)
-          assert { (forall i. 0 <= i < cnt -> t.arr[i] = copy[i]) /\
-                   (forall i. next < i < Seq.get t.nexts next -> not prime i) /\
-                   forall i. 2 <= i < next -> prime i ->
-                             exists j. 0 <= j < cnt /\ t.arr[j] = i };
-          count next (cnt + 1)
-        end in
+    (*
+      on utilise une boucle while finalement car le fait que count soit une
+      fonction implique qu'on doit préserver les invariants au début et à la
+      fin de chaque appel, ce qui est impossible puisqu'on détruit la structure
+    *)
+    let ref cnt = 1 in
+    let ref p = 2 in
     t.arr[0] <- 2;
-    sub t.arr 0 (count 2 1)
+    while t.arr[p] < max + 1 do
+      invariant { 2 <= p <= max }
+      invariant { 1 <= cnt <= p - 1 }
+      invariant { t.arr[p] >= 0 }
+      invariant { inv_count t.nexts t.marked cnt }
+      invariant { all_differents t.arr cnt }
+      invariant { all_inf_or_eq t.arr cnt p }
+      invariant { forall i. 0 <= i < cnt -> prime t.arr[i] }
+      invariant { forall i. 2 <= i < Seq.get t.nexts p -> prime i ->
+                           exists j. 0 <= j < cnt /\ t.arr[j] = i }
+      variant { max + 1 - t.arr[p] }
+      let next = t.arr[p] in
+      let ghost copy = sub t.arr 0 cnt in
+      if t.arr[next] < 0 then begin
+        t.arr[p] <- t.arr[next];
+      end else begin
+        t.arr[cnt] <- next;
+        cnt <- cnt + 1;
+        p <- next
+      end
+    done;
+    sub t.arr 0 cnt
+    (* let rec count (p: int) (cnt: int) = *)
+    (*   requires { 2 <= p <= max } *)
+    (*   requires { 1 <= cnt <= p - 1 } *)
+    (*   requires { inv_count t.nexts t.marked cnt } *)
+    (*   requires { all_differents t.arr cnt } *)
+    (*   requires { all_inf_or_eq t.arr cnt p } *)
+    (*   requires { forall i. 0 <= i < cnt -> prime t.arr[i] } *)
+    (*   requires { forall i. 2 <= i < Seq.get t.nexts p -> prime i -> *)
+    (*                        exists j. 0 <= j < cnt /\ t.arr[j] = i } *)
+    (*   ensures { 1 <= result <= max } *)
+    (*   ensures { all_differents t.arr result } *)
+    (*   ensures { forall i. 0 <= i < result -> prime t.arr[i] } *)
+    (*   ensures { forall i. 2 <= i <= max -> prime i -> *)
+    (*                       exists j. 0 <= j < result /\ t.arr[j] = i } *)
+    (*   variant { max + 1 - Seq.get t.nexts p } *)
+    (*   let next = get_next t p in *)
+    (*   if next = max + 1 then begin cnt end *)
+    (*   else *)
+    (*     let ghost copy = sub t.arr 0 cnt in *)
+    (*     if get_mark t next then begin *)
+    (*       assert { forall j. next < j < Seq.get t.nexts next -> not prime j by *)
+    (*                          next > p > cnt }; *)
+    (*       assert { forall i. 2 <= i < next -> prime i -> *)
+    (*                          exists j. 0 <= j < cnt /\ t.arr[j] = i }; *)
+    (*       set_next t p (get_next t next); *)
+    (*       assert { forall i. 0 <= i < cnt -> Seq.get t.nexts i = copy[i] }; *)
+    (*       assert { forall i. cnt <= i < Seq.length t.marked -> *)
+    (*                          forall j. i < j < Seq.get t.nexts i -> *)
+    (*                                    Seq.get t.marked j by *)
+    (*                forall j. p < j < Seq.get t.nexts p -> Seq.get t.marked j }; *)
+    (*       count p cnt *)
+    (*     end else begin *)
+    (*       (\* *)
+    (*         Attention : des fois j'ai des bonnes idées ! ... *)
+    (*         On réécrit le début du tableau nexts ! *)
+    (*         Parce que le nombre de nombres premiers <= n est strictement *)
+    (*         inférieur à n ! *)
+    (*         Du coup on peut réécrire le tableau nexts en recopiant *)
+    (*         consécutivement les nombres premiers déja rencontrés et ceci ne *)
+    (*         modifiera pas les calculs de count par la suite *)
+    (*       *\) *)
+    (*       t.arr[cnt] <- next; (\* une opération en plus ... *\) *)
+    (*       assert { (forall i. 0 <= i < cnt -> t.arr[i] = copy[i]) /\ *)
+    (*                (forall i. next < i < Seq.get t.nexts next -> not prime i) /\ *)
+    (*                forall i. 2 <= i < next -> prime i -> *)
+    (*                          exists j. 0 <= j < cnt /\ t.arr[j] = i }; *)
+    (*       count next (cnt + 1) *)
+    (*     end in *)
+    (* t.arr[0] <- 2; *)
+    (* sub t.arr 0 (count 2 1) *)
 
 
 end
