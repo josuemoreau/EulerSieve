@@ -6,6 +6,6 @@ all: extract
 extract: extract.ml test.ml
 	ocamlfind ocamlopt -package zarith -linkpkg $^ -o $@
 
-extract.ml: euler_sieve_V2.mlw
-	why3 extract -D ocaml64 $^ -o $@
+extract.ml: euler_sieve_V2
+	why3 extract -D ocaml64 -L . $^.EulerSieveImpl -o $@
 

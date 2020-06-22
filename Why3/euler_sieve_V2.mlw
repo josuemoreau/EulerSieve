@@ -378,15 +378,9 @@ module EulerSieve
 
 (*******************************************************************************)
 (*                                                                             *)
-(*                    INVARIANTS DE SIMPLES DE FONCTIONS                       *)
+(*                      INVARIANTS SIMPLES DE FONCTIONS                        *)
 (*                                                                             *)
 (*******************************************************************************)
-
-  predicate inv_count (nexts: seq int) (marked: seq bool) (min: int) =
-    nexts.length = marked.length /\
-    forall i. min <= i < nexts.length ->
-              (i < nexts[i] <= nexts.length /\
-               forall j. i < j < nexts[i] -> marked[j])
 
   let lemma conservation_inv_marked_old_nexts2 (marked: seq bool)
                                                (nexts: seq int)
@@ -704,10 +698,18 @@ module EulerSieveImpl
   = t.max
 
   clone EulerSieve with type t = t,
+    val create = create,
     val set_next = set_next, val get_next = get_next,
     val set_mark = set_mark, val get_mark = get_mark,
     val get_n = get_n, val set_n = set_n,
     val get_max = get_max
+    
+  use int.Abs
+  
+  predicate inv_count (arr: array int) (min: int) =
+    forall i. min <= i < arr.length ->
+              (i < abs arr[i] <= arr.length /\
+               forall j. i < j < abs arr[i] -> arr[j] < 0)
 
   let euler_sieve (max: int) : array int
     requires { max >= 2 }
@@ -736,12 +738,12 @@ module EulerSieveImpl
           ghost (previously_marked_products_impl_prime t.marked (Seq.get t.nexts n));
           assert { (forall i. n < i < Seq.get t.nexts n -> not prime i) by
                       (forall i. n < i < Seq.get t.nexts n ->
-                                 (exists j k. 2 <= j < Seq.get t.nexts n /\ 
-                                              2 <= k < Seq.length t.marked /\ 
-                                              j * k = i) by 
-                                                Seq.get t.marked i /\ 
+                                 (exists j k. 2 <= j < Seq.get t.nexts n /\
+                                              2 <= k < Seq.length t.marked /\
+                                              j * k = i) by
+                                                Seq.get t.marked i /\
                                                 only_products_marked t.marked (Seq.get t.nexts n)) by
-                      (forall i. n < i < Seq.get t.nexts n -> Seq.get t.marked i) /\ 
+                      (forall i. n < i < Seq.get t.nexts n -> Seq.get t.marked i) /\
                       only_products_marked t.marked (Seq.get t.nexts n) };
           loop (get_next t n)
         end else begin
@@ -775,21 +777,39 @@ module EulerSieveImpl
       invariant { 2 <= p <= max }
       invariant { 1 <= cnt <= p - 1 }
       invariant { t.arr[p] >= 0 }
-      invariant { inv_count t.nexts t.marked cnt }
+      invariant { prime p }
+      invariant { inv_count t.arr cnt }
       invariant { all_differents t.arr cnt }
       invariant { all_inf_or_eq t.arr cnt p }
+      invariant { forall i. cnt <= i <= max -> t.arr[i] >= 0 <-> prime i }
       invariant { forall i. 0 <= i < cnt -> prime t.arr[i] }
-      invariant { forall i. 2 <= i < Seq.get t.nexts p -> prime i ->
-                           exists j. 0 <= j < cnt /\ t.arr[j] = i }
+      invariant { forall i. 2 <= i < t.arr[p] -> prime i ->
+                            exists j. 0 <= j < cnt /\ t.arr[j] = i }
       variant { max + 1 - t.arr[p] }
       let next = t.arr[p] in
-      let ghost copy = sub t.arr 0 cnt in
       if t.arr[next] < 0 then begin
-        t.arr[p] <- t.arr[next];
+        (* assert { (forall i. 2 <= i < p -> prime i ->
+                           exists j. 0 <= j < cnt /\ t.arr[j] = i) /\
+                 (exists j. 0 <= j < cnt /\ t.arr[j] = p) }; *)
+        label BeforeAssign in
+        t.arr[p] <- - t.arr[next];
+        assert { forall i. 0 <= i < cnt -> t.arr[i] = (t.arr at BeforeAssign)[i] };
+        assert { (forall i. (0 <= i < p \/ p < i < length t.arr) -> t.arr[i] = (t.arr at BeforeAssign)[i]) /\ 
+                  forall i. p < i < t.arr[p] -> t.arr[i] < 0 }
+        (* assert { (forall i. 2 <= i < p -> prime i ->
+                           (exists j. 0 <= j < cnt /\ t.arr[j] = i) by cnt < p) /\
+                 (exists j. 0 <= j < cnt /\ t.arr[j] = p) };
+        assert { forall i. p < i < - t.arr[next] -> not prime i } *)
       end else begin
+        label BeforeAssign in
         t.arr[cnt] <- next;
+        assert { forall i. 0 <= i < cnt -> t.arr[i] = (t.arr at BeforeAssign)[i] };
+        assert { forall i. (cnt + 1 <= i < length t.arr) -> t.arr[i] = (t.arr at BeforeAssign)[i] };
+        assert { forall i. 0 <= i < cnt -> prime t.arr[i] };
+        assert { prime t.arr[cnt] };
         cnt <- cnt + 1;
-        p <- next
+        p <- next;
+        assert { (exists i. 0 <= i < cnt /\ t.arr[i] = p) /\ forall i. p < i < t.arr[p] -> not prime i }
       end
     done;
     sub t.arr 0 cnt
@@ -843,6 +863,5 @@ module EulerSieveImpl
     (*     end in *)
     (* t.arr[0] <- 2; *)
     (* sub t.arr 0 (count 2 1) *)
-
 
 end
