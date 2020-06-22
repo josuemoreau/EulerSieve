@@ -595,41 +595,81 @@ module EulerSieveImpl
     mutable ghost marked: seq bool;
     arr: array int;
     max: int;
+    max_arr: int;
     mutable n: int
   }
     invariant { 2 <= n <= max }
-    invariant { Seq.length nexts = Seq.length marked =
-                Array.length arr = max + 1 }
+    invariant { Seq.length nexts = Seq.length marked = max + 1 }
+    invariant { div (max - 1) 2 = max_arr }
+    invariant { Array.length arr = max_arr + 1 }
     invariant { inv_nexts nexts (Seq.length nexts) }
     invariant { inv_marked_nexts marked nexts }
     (* glueing invariant *)
-    invariant { forall i. 0 <= i <= max -> -(max + 1) <= arr[i] <= max + 1 }
-    invariant { forall i. 0 <= i <= max ->
-                          Seq.get marked i <-> arr[i] < 0 }
-    invariant { forall i. 0 <= i <= max ->
-                          not Seq.get marked i ->
-                          arr[i] = Seq.get nexts i }
-    invariant { forall i. 0 <= i <= max ->
-                          Seq.get marked i ->
-                          arr[i] = - Seq.get nexts i }
+    invariant { forall i. 0 <= i <= max_arr -> -(max + 1) <= arr[i] <= max + 1 }
+    invariant { forall i. 0 <= i <= max_arr ->
+                          Seq.get marked (2 * i + 1) <-> arr[i] < 0 }
+    invariant { forall i. 0 <= i <= max_arr ->
+                          not Seq.get marked (2 * i + 1) ->
+                          arr[i] = Seq.get nexts (2 * i + 1) }
+    invariant { forall i. 0 <= i <= max_arr ->
+                          Seq.get marked (2 * i + 1) ->
+                          arr[i] = - Seq.get nexts (2 * i + 1) }
     by { nexts = Seq.create 3 (fun i -> i + 1);
          marked = Seq.create 3 (fun i -> i <> 2);
-         arr = (Array.make 3 0)[0 <- -1][1 <- -2][2 <- 3];
-         max = 2; n = 2 }
+         arr = (Array.make 1 0)[0 <- -2];
+         max = 2; n = 2; max_arr = 0 }
 
   let create (max: int) : t
-    requires { max >= 2 }
+    requires { max >= 3 }
     ensures  { result.max = max }
-    ensures  { forall i. 0 <= i <= max ->
-                         i >= 2 <-> not Seq.get result.marked i }
-    ensures  { forall i. 0 <= i <= max ->
-                         Seq.get result.nexts i = i + 1         }
+    ensures  { forall i. 0 <= i <= 2 -> i <> 2 <-> Seq.get result.marked i }
+    ensures  { forall i. 0 <= i <= div (max - 1) 2 -> not Seq.get result.marked (2 * i + 1) }
+    ensures  { forall i. 1 <= i <= div (max - 1) 2 -> Seq.get result.marked (2 * i + 2) }
+    (* ensures  { forall i. 0 <= i <= max -> *)
+    (*                      Seq.get result.nexts i = i + 1         } *)
   = let len = max + 1 in
-    { nexts = Seq.create len (fun i -> i + 1);
-      marked = Seq.create len (fun i -> i = 0 || i = 1);
-      arr = Init.init len (fun i -> if i < 2 then -(i + 1) else i + 1);
-      n = 2;
-      max = max }
+    let len_arr = div (max - 1) 2 + 1 in
+    let ghost ref marked = Seq.create len (fun i -> i < 2) in
+    let ghost ref nexts = Seq.create len (fun i -> i + 1) in
+    let arr = Init.init len_arr (fun i -> i + 2) in
+    nexts <- Seq.set nexts 2 3;
+    (* assert { max < Seq.length marked = Seq.length nexts }; *)
+    (* assert { forall i. 0 <= i <= div (max - 5) 2 -> *)
+    (*                    2 * i + 3 <= max by 2 * (div (max - 5) 2) + 3 <= max }; *)
+    for i = 0 to (div (max - 1) 2) - 1 do
+      invariant { max + 1 = Seq.length nexts = Seq.length marked }
+      invariant { forall j. 1 < 2 * i + 1 <= j <= max ->
+                    not Seq.get marked j /\
+                    Seq.get nexts j = j + 1 }
+      invariant { forall j. 0 <= j < i ->
+                    not Seq.get marked (2 * j + 1) /\
+                    Seq.get nexts (2 * j + 1) = 2 * j + 3 = arr[j] /\
+                    arr[j] >= 0 }
+      invariant { forall j. 0 <= j < i ->
+                    Seq.get marked (2 * j + 2) /\
+                    Seq.get nexts (2 * j + 2) = 2 * j + 3 }
+      invariant { forall j. 0 <= j < 2 * i + 1 -> j < Seq.get nexts j <= max + 1 }
+      invariant { forall j k. 0 <= j < 2 * i + 1 -> j < k < Seq.get nexts j ->
+                              Seq.get marked k }
+      (* assert { 2 * i + 3 <= 2 * (div (max - 5) 2) + 3 <= max < Seq.length marked }; *)
+      marked <- Seq.set marked (2 * i + 2) true;
+      nexts <- Seq.set nexts (2 * i + 1) (2 * i + 3);
+      arr[i] <- 2 * i + 3
+    done;
+    if mod max 2 = 0 then
+      marked <- Seq.set marked (2 * (len_arr - 1) + 2) true;
+    nexts <- Seq.set nexts (2 * (len_arr - 1) + 1) (max + 1);
+    assert { forall j k. 0 <= j < 2 * (len_arr - 1) + 1 ->
+                         j < k < Seq.get nexts j ->
+                         Seq.get marked k };
+    arr[len_arr - 1] <- max + 1;
+    { nexts = nexts; marked = marked; arr = arr;
+      (* nexts = Seq.create len (fun i -> if i < max then if i < 3 || mod i 2 = 0 then i + 1 else i + 2 else max + 1); *)
+      (* marked = Seq.create len (fun i -> i = 0 || i = 1 || (i > 2 && mod i 2 = 0)); *)
+      (* arr = Init.init len_arr (fun i -> (if i < 2 || (i >= 4 && mod i 2 = 0) then -1 else 1) * (if i < len_arr - 1 then 2 * i + 5 else max + 1)); *)
+      n = 3;
+      max = max;
+      max_arr = div (max - 1) 2 }
 
   let set_next (t: t) (i v: int) : unit
     requires { 0 <= i <= t.max /\ i < v <= t.max + 1 }
