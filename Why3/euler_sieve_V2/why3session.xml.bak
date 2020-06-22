@@ -430,82 +430,82 @@
   <goal name="remove_products&#39;vc.3" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.3.0" expl="precondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.05" steps="23527"/></proof>
+   <proof prover="2"><result status="valid" time="0.05" steps="23515"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.3.1" expl="precondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.04" steps="23567"/></proof>
+   <proof prover="2"><result status="valid" time="0.04" steps="23555"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="5" timelimit="1"><result status="valid" time="0.06" steps="201"/></proof>
+  <proof prover="5" timelimit="1"><result status="valid" time="0.06" steps="197"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.5" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.06" steps="41"/></proof>
+  <proof prover="0"><result status="valid" time="0.06" steps="40"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.6" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.6.0" expl="precondition" proved="true">
-   <proof prover="1"><result status="valid" time="0.04" steps="154450"/></proof>
+   <proof prover="1"><result status="valid" time="0.04" steps="154029"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.6.1" expl="precondition" proved="true">
-   <proof prover="1"><result status="valid" time="0.05" steps="8953"/></proof>
+   <proof prover="1"><result status="valid" time="0.05" steps="8948"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.7" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="26733"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="26721"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.8" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.03" steps="157798"/></proof>
+  <proof prover="1"><result status="valid" time="0.03" steps="157155"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.9" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.9.0" expl="assertion" proved="true">
-   <proof prover="2"><result status="valid" time="0.05" steps="26953"/></proof>
+   <proof prover="2"><result status="valid" time="0.17" steps="26941"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.9.1" expl="assertion" proved="true">
-   <proof prover="2"><result status="valid" time="0.02" steps="22186"/></proof>
+   <proof prover="2"><result status="valid" time="0.02" steps="22175"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.9.2" expl="VC for remove_products" proved="true">
-   <proof prover="2"><result status="valid" time="0.04" steps="22224"/></proof>
+   <proof prover="2"><result status="valid" time="0.04" steps="22213"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.9.3" expl="VC for remove_products" proved="true">
-   <proof prover="2"><result status="valid" time="0.14" steps="26996"/></proof>
+   <proof prover="2"><result status="valid" time="0.14" steps="26984"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.9.4" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.04" steps="178361"/></proof>
+   <proof prover="1"><result status="valid" time="0.04" steps="177740"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.9.5" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.04" steps="144151"/></proof>
+   <proof prover="1"><result status="valid" time="0.04" steps="144060"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.9.6" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.05" steps="189190"/></proof>
+   <proof prover="1"><result status="valid" time="0.05" steps="188377"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.9.7" expl="VC for remove_products" proved="true">
-   <proof prover="6"><result status="valid" time="0.14" steps="34919"/></proof>
+   <proof prover="6"><result status="valid" time="0.14" steps="34858"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.10" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.04" steps="192047"/></proof>
+  <proof prover="1"><result status="valid" time="0.04" steps="191472"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.11" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.11.0" expl="assertion" proved="true">
-   <proof prover="2"><result status="valid" time="0.15" steps="24318"/></proof>
+   <proof prover="2"><result status="valid" time="0.15" steps="24306"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.11.1" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.03" steps="185144"/></proof>
+   <proof prover="1"><result status="valid" time="0.03" steps="184375"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.11.2" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.04" steps="144126"/></proof>
+   <proof prover="1"><result status="valid" time="0.04" steps="144035"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.11.3" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.04" steps="163242"/></proof>
+   <proof prover="1"><result status="valid" time="0.04" steps="162599"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.11.4" expl="VC for remove_products" proved="true">
-   <proof prover="5" timelimit="5"><result status="valid" time="1.77" steps="305"/></proof>
+   <proof prover="5" timelimit="5"><result status="valid" time="1.24" steps="299"/></proof>
    </goal>
   </transf>
   </goal>
@@ -516,39 +516,39 @@
     <goal name="remove_products&#39;vc.12.0.0" expl="assertion" proved="true">
     <transf name="split_vc" proved="true" >
      <goal name="remove_products&#39;vc.12.0.0.0" expl="assertion" proved="true">
-     <proof prover="1"><result status="valid" time="0.06" steps="198313"/></proof>
+     <proof prover="1"><result status="valid" time="0.06" steps="197873"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.12.0.0.1" expl="assertion" proved="true">
-     <proof prover="1"><result status="valid" time="0.05" steps="177188"/></proof>
+     <proof prover="1"><result status="valid" time="0.05" steps="176567"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.12.0.0.2" expl="assertion" proved="true">
-     <proof prover="1"><result status="valid" time="0.06" steps="212200"/></proof>
+     <proof prover="1"><result status="valid" time="0.06" steps="211450"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.12.0.0.3" expl="assertion" proved="true">
-     <proof prover="6" timelimit="5"><result status="valid" time="0.22" steps="43853"/></proof>
+     <proof prover="6" timelimit="5"><result status="valid" time="0.36" steps="43814"/></proof>
      </goal>
     </transf>
     </goal>
    </transf>
    </goal>
    <goal name="remove_products&#39;vc.12.1" expl="VC for remove_products" proved="true">
-   <proof prover="0"><result status="valid" time="0.43" steps="350"/></proof>
+   <proof prover="0"><result status="valid" time="0.43" steps="354"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.13" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.13.0" expl="assertion" proved="true">
-   <proof prover="2"><result status="valid" time="0.04" steps="24783"/></proof>
+   <proof prover="2"><result status="valid" time="0.04" steps="24772"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.13.1" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.04" steps="164637"/></proof>
+   <proof prover="1"><result status="valid" time="0.04" steps="163988"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.13.2" expl="VC for remove_products" proved="true">
-   <proof prover="6" timelimit="10"><result status="valid" time="0.49" steps="55375"/></proof>
+   <proof prover="6" timelimit="10"><result status="valid" time="0.49" steps="43538"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.13.3" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.04" steps="197348"/></proof>
+   <proof prover="1"><result status="valid" time="0.04" steps="196765"/></proof>
    </goal>
   </transf>
   </goal>
@@ -557,39 +557,39 @@
    <goal name="remove_products&#39;vc.14.0" expl="assertion" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="remove_products&#39;vc.14.0.0" expl="assertion" proved="true">
-    <proof prover="2"><result status="valid" time="0.05" steps="22415"/></proof>
+    <proof prover="2"><result status="valid" time="0.05" steps="22404"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.14.0.1" expl="assertion" proved="true">
-    <proof prover="2"><result status="valid" time="0.06" steps="27219"/></proof>
+    <proof prover="2"><result status="valid" time="0.06" steps="27207"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.14.0.2" expl="assertion" proved="true">
-    <proof prover="2"><result status="valid" time="0.04" steps="22415"/></proof>
+    <proof prover="2"><result status="valid" time="0.04" steps="22404"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.14.0.3" expl="VC for remove_products" proved="true">
-    <proof prover="1"><result status="valid" time="0.03" steps="160582"/></proof>
+    <proof prover="1"><result status="valid" time="0.03" steps="159939"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.14.0.4" expl="VC for remove_products" proved="true">
-    <proof prover="1"><result status="valid" time="0.04" steps="160936"/></proof>
+    <proof prover="1"><result status="valid" time="0.04" steps="160293"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.14.0.5" expl="VC for remove_products" proved="true">
-    <proof prover="2"><result status="valid" time="0.05" steps="22457"/></proof>
+    <proof prover="2"><result status="valid" time="0.05" steps="22446"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.14.0.6" expl="VC for remove_products" proved="true">
-    <proof prover="1"><result status="valid" time="0.10" steps="228369"/></proof>
+    <proof prover="1"><result status="valid" time="0.10" steps="227847"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.14.0.7" expl="VC for remove_products" proved="true">
-    <proof prover="1"><result status="valid" time="0.05" steps="189069"/></proof>
+    <proof prover="1"><result status="valid" time="0.05" steps="188258"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.14.0.8" expl="VC for remove_products" proved="true">
-    <proof prover="2"><result status="valid" time="0.05" steps="22492"/></proof>
+    <proof prover="2"><result status="valid" time="0.05" steps="22481"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.14.0.9" expl="VC for remove_products" proved="true">
-    <proof prover="1"><result status="valid" time="0.05" steps="216426"/></proof>
+    <proof prover="1"><result status="valid" time="0.05" steps="215723"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.14.0.10" expl="VC for remove_products" proved="true">
     <transf name="inline_all" proved="true" >
      <goal name="remove_products&#39;vc.14.0.10.0" expl="VC for remove_products" proved="true">
-     <proof prover="1" timelimit="10"><result status="valid" time="1.30" steps="2045159"/></proof>
+     <proof prover="1" timelimit="10"><result status="valid" time="1.94" steps="2076416"/></proof>
      </goal>
     </transf>
     </goal>
@@ -600,93 +600,93 @@
   <goal name="remove_products&#39;vc.15" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.15.0" expl="precondition" proved="true">
-   <proof prover="6" timelimit="10"><result status="valid" time="0.11" steps="23718"/></proof>
+   <proof prover="6" timelimit="10"><result status="valid" time="0.11" steps="23707"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.15.1" expl="precondition" proved="true">
-   <proof prover="0"><result status="valid" time="0.02" steps="48"/></proof>
+   <proof prover="2"><result status="valid" time="0.04" steps="24522"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.16" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.04" steps="160408"/></proof>
+  <proof prover="1"><result status="valid" time="0.04" steps="159759"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.17" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.17.0" expl="assertion" proved="true">
-   <proof prover="2"><result status="valid" time="0.04" steps="24525"/></proof>
+   <proof prover="2"><result status="valid" time="0.04" steps="24513"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.18" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.05" steps="188953"/></proof>
+  <proof prover="1"><result status="valid" time="0.05" steps="188143"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.19" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.19.0" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.04" steps="215258"/></proof>
+   <proof prover="1"><result status="valid" time="0.04" steps="214497"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.20" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.16" steps="30024"/></proof>
+  <proof prover="2"><result status="valid" time="0.16" steps="30012"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.21" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.21.0" expl="assertion" proved="true">
-   <proof prover="2"><result status="valid" time="0.15" steps="24631"/></proof>
+   <proof prover="2"><result status="valid" time="0.15" steps="24619"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.21.1" expl="VC for remove_products" proved="true">
-   <proof prover="0"><result status="valid" time="0.08" steps="127"/></proof>
+   <proof prover="0"><result status="valid" time="0.08" steps="126"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.22" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.22.0" expl="precondition" proved="true">
-   <proof prover="6" timelimit="10"><result status="valid" time="0.11" steps="23845"/></proof>
+   <proof prover="6" timelimit="10"><result status="valid" time="0.11" steps="23834"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.22.1" expl="precondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.04" steps="24754"/></proof>
+   <proof prover="0"><result status="valid" time="0.02" steps="55"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.23" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.23.0" expl="precondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.04" steps="22588"/></proof>
+   <proof prover="2"><result status="valid" time="0.04" steps="22577"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.23.1" expl="precondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.08" steps="24798"/></proof>
+   <proof prover="2"><result status="valid" time="0.08" steps="24786"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.23.2" expl="precondition" proved="true">
-   <proof prover="1"><result status="valid" time="0.09" steps="217543"/></proof>
+   <proof prover="1"><result status="valid" time="0.09" steps="217112"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.23.3" expl="precondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.11" steps="25069"/></proof>
+   <proof prover="2"><result status="valid" time="0.11" steps="25058"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.24" expl="precondition" proved="true">
-  <proof prover="6"><result status="valid" time="0.30" steps="43964"/></proof>
+  <proof prover="6"><result status="valid" time="0.30" steps="43721"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.25" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.05" steps="25179"/></proof>
+  <proof prover="2"><result status="valid" time="0.05" steps="25168"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.26" expl="assertion" proved="true">
   <transf name="inline_goal" proved="true" >
    <goal name="remove_products&#39;vc.26.0" expl="assertion" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="remove_products&#39;vc.26.0.0" expl="assertion" proved="true">
-    <proof prover="2"><result status="valid" time="0.06" steps="24948"/></proof>
+    <proof prover="2"><result status="valid" time="0.06" steps="24936"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.26.0.1" expl="assertion" proved="true">
-    <proof prover="2"><result status="valid" time="0.05" steps="24814"/></proof>
+    <proof prover="2"><result status="valid" time="0.05" steps="24802"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.26.0.2" expl="VC for remove_products" proved="true">
-    <proof prover="1"><result status="valid" time="0.12" steps="236675"/></proof>
+    <proof prover="1"><result status="valid" time="0.12" steps="236137"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.26.0.3" expl="VC for remove_products" proved="true">
-    <proof prover="6" timelimit="5"><result status="valid" time="0.44" steps="47590"/></proof>
+    <proof prover="6" timelimit="5"><result status="valid" time="0.44" steps="47646"/></proof>
     </goal>
    </transf>
    </goal>
@@ -699,71 +699,71 @@
     <goal name="remove_products&#39;vc.27.0.0" expl="assertion" proved="true">
     <transf name="split_all_full" proved="true" >
      <goal name="remove_products&#39;vc.27.0.0.0" expl="assertion" proved="true">
-     <proof prover="2"><result status="valid" time="0.17" steps="27695"/></proof>
+     <proof prover="2"><result status="valid" time="0.17" steps="27683"/></proof>
      </goal>
     </transf>
     </goal>
    </transf>
    </goal>
    <goal name="remove_products&#39;vc.27.1" expl="VC for remove_products" proved="true">
-   <proof prover="6"><result status="valid" time="0.26" steps="44495"/></proof>
+   <proof prover="6"><result status="valid" time="0.26" steps="43226"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.28" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.04" steps="93436"/></proof>
+  <proof prover="1"><result status="valid" time="0.04" steps="93380"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.29" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.15" steps="27628"/></proof>
+  <proof prover="2"><result status="valid" time="0.15" steps="27616"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.30" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.30.0" expl="assertion" proved="true">
-   <proof prover="2"><result status="valid" time="0.16" steps="27628"/></proof>
+   <proof prover="2"><result status="valid" time="0.16" steps="27616"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.30.1" expl="VC for remove_products" proved="true">
-   <proof prover="2"><result status="valid" time="0.04" steps="25191"/></proof>
+   <proof prover="2"><result status="valid" time="0.04" steps="25180"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.31" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.17" steps="27650"/></proof>
+  <proof prover="2"><result status="valid" time="0.17" steps="27638"/></proof>
   <transf name="inline_all" proved="true" >
    <goal name="remove_products&#39;vc.31.0" expl="assertion" proved="true">
-   <proof prover="2"><result status="valid" time="0.29" steps="52448"/></proof>
+   <proof prover="2"><result status="valid" time="0.29" steps="52221"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.32" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.32.0" expl="assertion" proved="true">
-   <proof prover="2"><result status="valid" time="0.17" steps="25112"/></proof>
+   <proof prover="2"><result status="valid" time="0.17" steps="25100"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.32.1" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.03" steps="205993"/></proof>
+   <proof prover="1"><result status="valid" time="0.03" steps="205073"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.32.2" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.03" steps="148315"/></proof>
+   <proof prover="1"><result status="valid" time="0.03" steps="148224"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.32.3" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.04" steps="175700"/></proof>
+   <proof prover="1"><result status="valid" time="0.04" steps="175055"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.33" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.05" steps="22858"/></proof>
+  <proof prover="2"><result status="valid" time="0.05" steps="22847"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.34" expl="assertion" proved="true">
-  <proof prover="6"><result status="valid" time="0.31" steps="46189"/></proof>
+  <proof prover="6"><result status="valid" time="0.31" steps="45993"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.35" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="215315"/></proof>
+  <proof prover="1"><result status="valid" time="0.06" steps="214671"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.36" expl="variant decrease" proved="true">
-  <proof prover="1"><result status="valid" time="0.04" steps="169798"/></proof>
+  <proof prover="1"><result status="valid" time="0.04" steps="169707"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.37" expl="precondition" proved="true">
-  <proof prover="6"><result status="valid" time="0.31" steps="43463"/></proof>
+  <proof prover="6"><result status="valid" time="0.31" steps="43383"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.38" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
@@ -772,26 +772,26 @@
     <goal name="remove_products&#39;vc.38.0.0" expl="precondition" proved="true">
     <transf name="split_all_full" proved="true" >
      <goal name="remove_products&#39;vc.38.0.0.0" expl="VC for remove_products" proved="true">
-     <proof prover="2"><result status="valid" time="0.21" steps="37177"/></proof>
+     <proof prover="2"><result status="valid" time="0.21" steps="37165"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.38.0.0.1" expl="VC for remove_products" proved="true">
-     <proof prover="0"><result status="valid" time="0.02" steps="141"/></proof>
+     <proof prover="0"><result status="valid" time="0.02" steps="140"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.38.0.0.2" expl="VC for remove_products" proved="true">
      <transf name="inline_goal" proved="true" >
       <goal name="remove_products&#39;vc.38.0.0.2.0" expl="VC for remove_products" proved="true">
-      <proof prover="6" timelimit="5"><result status="valid" time="0.47" steps="52750"/></proof>
+      <proof prover="6" timelimit="5"><result status="valid" time="0.47" steps="53884"/></proof>
       </goal>
      </transf>
      </goal>
      <goal name="remove_products&#39;vc.38.0.0.3" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.04" steps="235249"/></proof>
+     <proof prover="1"><result status="valid" time="0.04" steps="234608"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.38.0.0.4" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.15" steps="460624"/></proof>
+     <proof prover="1"><result status="valid" time="0.15" steps="445439"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.38.0.0.5" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.04" steps="261299"/></proof>
+     <proof prover="1"><result status="valid" time="0.04" steps="260666"/></proof>
      </goal>
     </transf>
     </goal>
@@ -800,37 +800,62 @@
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.39" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="219237"/></proof>
+  <proof prover="1"><result status="valid" time="0.06" steps="218638"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.40" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.16" steps="28421"/></proof>
+  <proof prover="2"><result status="valid" time="0.16" steps="28409"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.41" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="190177"/></proof>
+  <proof prover="6"><result status="valid" time="0.27" steps="38746"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.42" expl="precondition" proved="true">
-  <proof prover="6"><result status="valid" time="0.27" steps="38805"/></proof>
+  <proof prover="0"><result status="valid" time="0.03" steps="79"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.43" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.03" steps="81"/></proof>
+  <transf name="inline_goal" proved="true" >
+   <goal name="remove_products&#39;vc.43.0" expl="precondition" proved="true">
+   <transf name="split_vc" proved="true" >
+    <goal name="remove_products&#39;vc.43.0.0" expl="precondition" proved="true">
+    <proof prover="1"><result status="valid" time="0.12" steps="266455"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.43.0.1" expl="precondition" proved="true">
+    <proof prover="1"><result status="valid" time="0.04" steps="213237"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.43.0.2" expl="precondition" proved="true">
+    <proof prover="2"><result status="valid" time="0.06" steps="23074"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.43.0.3" expl="precondition" proved="true">
+    <transf name="inline_all" proved="true" >
+     <goal name="remove_products&#39;vc.43.0.3.0" expl="precondition" proved="true">
+     <proof prover="6" timelimit="10"><result status="valid" time="4.64" steps="290385"/></proof>
+     </goal>
+    </transf>
+    </goal>
+   </transf>
+   </goal>
+  </transf>
   </goal>
   <goal name="remove_products&#39;vc.44" expl="precondition" proved="true">
-  <transf name="inline_goal" proved="true" >
+  <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.44.0" expl="precondition" proved="true">
-   <transf name="split_vc" proved="true" >
+   <transf name="inline_goal" proved="true" >
     <goal name="remove_products&#39;vc.44.0.0" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.12" steps="267038"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.44.0.1" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.04" steps="214660"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.44.0.2" expl="precondition" proved="true">
-    <proof prover="2"><result status="valid" time="0.06" steps="23096"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.44.0.3" expl="precondition" proved="true">
-    <transf name="inline_all" proved="true" >
-     <goal name="remove_products&#39;vc.44.0.3.0" expl="precondition" proved="true">
-     <proof prover="6" timelimit="10"><result status="valid" time="3.79" steps="286426"/></proof>
+    <transf name="split_all_full" proved="true" >
+     <goal name="remove_products&#39;vc.44.0.0.0" expl="VC for remove_products" proved="true">
+     <proof prover="1"><result status="valid" time="0.10" steps="316025"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.44.0.0.1" expl="VC for remove_products" proved="true">
+     <proof prover="0"><result status="valid" time="0.03" steps="81"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.44.0.0.2" expl="VC for remove_products" proved="true">
+     <proof prover="1"><result status="valid" time="0.19" steps="445592"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.44.0.0.3" expl="VC for remove_products" proved="true">
+     <transf name="split_vc" proved="true" >
+      <goal name="remove_products&#39;vc.44.0.0.3.0" expl="VC for remove_products" proved="true">
+      <proof prover="6" timelimit="5"><result status="valid" time="0.21" steps="44113"/></proof>
+      </goal>
+     </transf>
      </goal>
     </transf>
     </goal>
@@ -839,26 +864,25 @@
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.45" expl="precondition" proved="true">
-  <transf name="split_vc" proved="true" >
+  <transf name="inline_goal" proved="true" >
    <goal name="remove_products&#39;vc.45.0" expl="precondition" proved="true">
-   <transf name="inline_goal" proved="true" >
+   <transf name="split_vc" proved="true" >
     <goal name="remove_products&#39;vc.45.0.0" expl="precondition" proved="true">
-    <transf name="split_all_full" proved="true" >
-     <goal name="remove_products&#39;vc.45.0.0.0" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.10" steps="316596"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.45.0.0.1" expl="VC for remove_products" proved="true">
-     <proof prover="0"><result status="valid" time="0.03" steps="83"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.45.0.0.2" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.19" steps="453122"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.45.0.0.3" expl="VC for remove_products" proved="true">
-     <transf name="split_vc" proved="true" >
-      <goal name="remove_products&#39;vc.45.0.0.3.0" expl="VC for remove_products" proved="true">
-      <proof prover="6" timelimit="5"><result status="valid" time="0.21" steps="44206"/></proof>
-      </goal>
-     </transf>
+    <proof prover="2"><result status="valid" time="0.19" steps="33623"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.45.0.1" expl="precondition" proved="true">
+    <proof prover="1"><result status="valid" time="0.05" steps="175361"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.45.0.2" expl="precondition" proved="true">
+    <proof prover="2"><result status="valid" time="0.04" steps="23105"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.45.0.3" expl="precondition" proved="true">
+    <proof prover="1"><result status="valid" time="0.03" steps="262686"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.45.0.4" expl="precondition" proved="true">
+    <transf name="inline_all" proved="true" >
+     <goal name="remove_products&#39;vc.45.0.4.0" expl="precondition" proved="true">
+     <proof prover="6" timelimit="10"><result status="valid" time="1.44" steps="156002"/></proof>
      </goal>
     </transf>
     </goal>
@@ -867,353 +891,311 @@
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.46" expl="precondition" proved="true">
-  <transf name="inline_goal" proved="true" >
-   <goal name="remove_products&#39;vc.46.0" expl="precondition" proved="true">
-   <transf name="split_vc" proved="true" >
-    <goal name="remove_products&#39;vc.46.0.0" expl="precondition" proved="true">
-    <proof prover="2"><result status="valid" time="0.19" steps="33647"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.46.0.1" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.05" steps="175543"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.46.0.2" expl="precondition" proved="true">
-    <proof prover="2"><result status="valid" time="0.04" steps="23127"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.46.0.3" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.03" steps="263444"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.46.0.4" expl="precondition" proved="true">
-    <transf name="inline_all" proved="true" >
-     <goal name="remove_products&#39;vc.46.0.4.0" expl="precondition" proved="true">
-     <proof prover="6" timelimit="10"><result status="valid" time="1.44" steps="161894"/></proof>
+  <proof prover="0"><result status="valid" time="0.03" steps="82"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.47" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.07" steps="23073"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.48" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.06" steps="27966"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.49" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.06" steps="23079"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.50" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.06" steps="23082"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.51" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.06" steps="26317"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.52" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.08" steps="23088"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.53" expl="assertion" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="remove_products&#39;vc.53.0" expl="assertion" proved="true">
+   <proof prover="1"><result status="valid" time="0.03" steps="161489"/></proof>
+   </goal>
+   <goal name="remove_products&#39;vc.53.1" expl="VC for remove_products" proved="true">
+   <proof prover="6" timelimit="10"><result status="valid" time="0.31" steps="42166"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="remove_products&#39;vc.54" expl="variant decrease" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="remove_products&#39;vc.54.0" expl="variant decrease" proved="true">
+   <proof prover="2"><result status="valid" time="0.16" steps="27397"/></proof>
+   </goal>
+   <goal name="remove_products&#39;vc.54.1" expl="variant decrease" proved="true">
+   <proof prover="1"><result status="valid" time="0.05" steps="205032"/></proof>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="remove_products&#39;vc.55" expl="precondition" proved="true">
+  <proof prover="6"><result status="valid" time="0.32" steps="47878"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.56" expl="precondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="remove_products&#39;vc.56.0" expl="precondition" proved="true">
+   <transf name="inline_goal" proved="true" >
+    <goal name="remove_products&#39;vc.56.0.0" expl="precondition" proved="true">
+    <transf name="split_all_full" proved="true" >
+     <goal name="remove_products&#39;vc.56.0.0.0" expl="VC for remove_products" proved="true">
+     <proof prover="2"><result status="valid" time="0.19" steps="36203"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.56.0.0.1" expl="VC for remove_products" proved="true">
+     <proof prover="0"><result status="valid" time="0.02" steps="110"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.56.0.0.2" expl="VC for remove_products" proved="true">
+     <proof prover="6" timelimit="5"><result status="valid" time="0.28" steps="44946"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.56.0.0.3" expl="VC for remove_products" proved="true">
+     <proof prover="2"><result status="valid" time="0.14" steps="28028"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.56.0.0.4" expl="VC for remove_products" proved="true">
+     <proof prover="1"><result status="valid" time="0.15" steps="305636"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.56.0.0.5" expl="VC for remove_products" proved="true">
+     <proof prover="2"><result status="valid" time="0.18" steps="32112"/></proof>
      </goal>
     </transf>
     </goal>
    </transf>
-   </goal>
-  </transf>
-  </goal>
-  <goal name="remove_products&#39;vc.47" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.03" steps="84"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.48" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.07" steps="23095"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.49" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="23098"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.50" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="27991"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.51" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="23104"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.52" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="23107"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.53" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="26342"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.54" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.08" steps="23113"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.55" expl="assertion" proved="true">
-  <transf name="split_vc" proved="true" >
-   <goal name="remove_products&#39;vc.55.0" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.03" steps="162138"/></proof>
-   </goal>
-   <goal name="remove_products&#39;vc.55.1" expl="VC for remove_products" proved="true">
-   <proof prover="6" timelimit="10"><result status="valid" time="0.31" steps="42483"/></proof>
-   </goal>
-  </transf>
-  </goal>
-  <goal name="remove_products&#39;vc.56" expl="variant decrease" proved="true">
-  <transf name="split_vc" proved="true" >
-   <goal name="remove_products&#39;vc.56.0" expl="variant decrease" proved="true">
-   <proof prover="2"><result status="valid" time="0.16" steps="27409"/></proof>
-   </goal>
-   <goal name="remove_products&#39;vc.56.1" expl="variant decrease" proved="true">
-   <proof prover="1"><result status="valid" time="0.05" steps="205384"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.57" expl="precondition" proved="true">
-  <proof prover="6"><result status="valid" time="0.32" steps="48054"/></proof>
+  <proof prover="5"><result status="valid" time="0.28" steps="323"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.58" expl="precondition" proved="true">
-  <transf name="split_vc" proved="true" >
-   <goal name="remove_products&#39;vc.58.0" expl="precondition" proved="true">
-   <transf name="inline_goal" proved="true" >
-    <goal name="remove_products&#39;vc.58.0.0" expl="precondition" proved="true">
-    <transf name="split_all_full" proved="true" >
-     <goal name="remove_products&#39;vc.58.0.0.0" expl="VC for remove_products" proved="true">
-     <proof prover="2"><result status="valid" time="0.19" steps="36215"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.58.0.0.1" expl="VC for remove_products" proved="true">
-     <proof prover="0"><result status="valid" time="0.02" steps="111"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.58.0.0.2" expl="VC for remove_products" proved="true">
-     <proof prover="6" timelimit="5"><result status="valid" time="0.28" steps="45037"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.58.0.0.3" expl="VC for remove_products" proved="true">
-     <proof prover="2"><result status="valid" time="0.14" steps="28040"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.58.0.0.4" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.15" steps="306010"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.58.0.0.5" expl="VC for remove_products" proved="true">
-     <proof prover="2"><result status="valid" time="0.18" steps="32124"/></proof>
-     </goal>
-    </transf>
-    </goal>
-   </transf>
-   </goal>
-  </transf>
+  <proof prover="2"><result status="valid" time="0.03" steps="25097"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.59" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.28" steps="329"/></proof>
+  <proof prover="6"><result status="valid" time="0.26" steps="36294"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.60" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.03" steps="25108"/></proof>
+  <proof prover="0"><result status="valid" time="0.28" steps="201"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.61" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.04" steps="164037"/></proof>
+  <proof prover="2"><result status="valid" time="0.04" steps="24890"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.62" expl="precondition" proved="true">
-  <proof prover="6"><result status="valid" time="0.26" steps="36470"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="27618"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.63" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.46" steps="204"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.64" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.04" steps="24914"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.65" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="27640"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.66" expl="precondition" proved="true">
   <transf name="inline_goal" proved="true" >
-   <goal name="remove_products&#39;vc.66.0" expl="precondition" proved="true">
+   <goal name="remove_products&#39;vc.63.0" expl="precondition" proved="true">
    <transf name="split_vc" proved="true" >
-    <goal name="remove_products&#39;vc.66.0.0" expl="precondition" proved="true">
-    <proof prover="2"><result status="valid" time="0.19" steps="32665"/></proof>
+    <goal name="remove_products&#39;vc.63.0.0" expl="precondition" proved="true">
+    <proof prover="2"><result status="valid" time="0.19" steps="32641"/></proof>
     </goal>
-    <goal name="remove_products&#39;vc.66.0.1" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.05" steps="192849"/></proof>
+    <goal name="remove_products&#39;vc.63.0.1" expl="precondition" proved="true">
+    <proof prover="1"><result status="valid" time="0.05" steps="191292"/></proof>
     </goal>
-    <goal name="remove_products&#39;vc.66.0.2" expl="precondition" proved="true">
-    <proof prover="2"><result status="valid" time="0.06" steps="22728"/></proof>
+    <goal name="remove_products&#39;vc.63.0.2" expl="precondition" proved="true">
+    <proof prover="2"><result status="valid" time="0.06" steps="22706"/></proof>
     </goal>
-    <goal name="remove_products&#39;vc.66.0.3" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.05" steps="216665"/></proof>
+    <goal name="remove_products&#39;vc.63.0.3" expl="precondition" proved="true">
+    <proof prover="1"><result status="valid" time="0.05" steps="215939"/></proof>
     </goal>
-    <goal name="remove_products&#39;vc.66.0.4" expl="precondition" proved="true">
-    <proof prover="0" timelimit="5"><result status="valid" time="1.02" steps="664"/></proof>
+    <goal name="remove_products&#39;vc.63.0.4" expl="precondition" proved="true">
+    <proof prover="0" timelimit="5"><result status="valid" time="1.02" steps="672"/></proof>
     </goal>
    </transf>
    </goal>
   </transf>
   </goal>
-  <goal name="remove_products&#39;vc.67" expl="precondition" proved="true">
-  <proof prover="0" timelimit="10"><result status="valid" time="0.02" steps="61"/></proof>
+  <goal name="remove_products&#39;vc.64" expl="precondition" proved="true">
+  <proof prover="0" timelimit="10"><result status="valid" time="0.02" steps="59"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.65" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.09" steps="22698"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.66" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.12" steps="27602"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.67" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.10" steps="22704"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.68" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.09" steps="22720"/></proof>
+  <proof prover="2"><result status="valid" time="0.10" steps="22707"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.69" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.10" steps="22723"/></proof>
+  <proof prover="2"><result status="valid" time="0.09" steps="25951"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.70" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.12" steps="27627"/></proof>
+  <proof prover="2"><result status="valid" time="0.10" steps="22713"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.71" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.10" steps="22729"/></proof>
+  <goal name="remove_products&#39;vc.71" expl="precondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="remove_products&#39;vc.71.0" expl="precondition" proved="true">
+   <proof prover="1"><result status="valid" time="0.06" steps="183484"/></proof>
+   </goal>
+   <goal name="remove_products&#39;vc.71.1" expl="precondition" proved="true">
+   <proof prover="2"><result status="valid" time="0.06" steps="21954"/></proof>
+   </goal>
+   <goal name="remove_products&#39;vc.71.2" expl="VC for remove_products" proved="true">
+   <proof prover="0"><result status="valid" time="0.96" steps="329"/></proof>
+   </goal>
+   <goal name="remove_products&#39;vc.71.3" expl="VC for remove_products" proved="true">
+   <proof prover="1"><result status="valid" time="0.05" steps="177443"/></proof>
+   </goal>
+   <goal name="remove_products&#39;vc.71.4" expl="VC for remove_products" proved="true">
+   <proof prover="2"><result status="valid" time="0.09" steps="23875"/></proof>
+   </goal>
+   <goal name="remove_products&#39;vc.71.5" expl="VC for remove_products" proved="true">
+   <proof prover="1"><result status="valid" time="0.05" steps="204690"/></proof>
+   </goal>
+  </transf>
   </goal>
   <goal name="remove_products&#39;vc.72" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.10" steps="22732"/></proof>
+  <proof prover="2"><result status="valid" time="0.03" steps="21955"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.73" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.09" steps="25976"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="26925"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.74" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.10" steps="22738"/></proof>
+  <proof prover="0"><result status="valid" time="0.02" steps="37"/></proof>
+  <proof prover="2"><result status="valid" time="0.05" steps="21961"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.75" expl="precondition" proved="true">
-  <transf name="split_vc" proved="true" >
-   <goal name="remove_products&#39;vc.75.0" expl="precondition" proved="true">
-   <proof prover="1"><result status="valid" time="0.05" steps="183744"/></proof>
-   </goal>
-   <goal name="remove_products&#39;vc.75.1" expl="precondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.06" steps="21965"/></proof>
-   </goal>
-   <goal name="remove_products&#39;vc.75.2" expl="VC for remove_products" proved="true">
-   <proof prover="0"><result status="valid" time="1.04" steps="328"/></proof>
-   </goal>
-   <goal name="remove_products&#39;vc.75.3" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.06" steps="177789"/></proof>
-   </goal>
-   <goal name="remove_products&#39;vc.75.4" expl="VC for remove_products" proved="true">
-   <proof prover="2"><result status="valid" time="0.09" steps="23887"/></proof>
-   </goal>
-   <goal name="remove_products&#39;vc.75.5" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.06" steps="205177"/></proof>
-   </goal>
-  </transf>
+  <goal name="remove_products&#39;vc.75" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.04" steps="21964"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.76" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.05" steps="21966"/></proof>
+  <proof prover="0"><result status="valid" time="0.17" steps="131"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.77" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.05" steps="21969"/></proof>
+  <proof prover="0" timelimit="10"><result status="valid" time="0.01" steps="38"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="21991"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.78" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.07" steps="26939"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.79" expl="postcondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.03" steps="8970"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.80" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="21978"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.81" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.25" steps="131"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.82" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.08" steps="22005"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.83" expl="precondition" proved="true">
+  <goal name="remove_products&#39;vc.78" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
-   <goal name="remove_products&#39;vc.83.0" expl="precondition" proved="true">
-   <proof prover="0"><result status="valid" time="0.31" steps="237"/></proof>
+   <goal name="remove_products&#39;vc.78.0" expl="precondition" proved="true">
+   <proof prover="6"><result status="valid" time="0.17" steps="38472"/></proof>
    </goal>
-   <goal name="remove_products&#39;vc.83.1" expl="precondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.06" steps="21948"/></proof>
+   <goal name="remove_products&#39;vc.78.1" expl="precondition" proved="true">
+   <proof prover="2"><result status="valid" time="0.06" steps="21937"/></proof>
    </goal>
-   <goal name="remove_products&#39;vc.83.2" expl="VC for remove_products" proved="true">
-   <proof prover="0"><result status="valid" time="0.74" steps="238"/></proof>
+   <goal name="remove_products&#39;vc.78.2" expl="VC for remove_products" proved="true">
+   <proof prover="0"><result status="valid" time="0.55" steps="199"/></proof>
    </goal>
-   <goal name="remove_products&#39;vc.83.3" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.05" steps="166442"/></proof>
+   <goal name="remove_products&#39;vc.78.3" expl="VC for remove_products" proved="true">
+   <proof prover="1"><result status="valid" time="0.06" steps="166224"/></proof>
    </goal>
-   <goal name="remove_products&#39;vc.83.4" expl="VC for remove_products" proved="true">
-   <proof prover="2"><result status="valid" time="0.09" steps="23847"/></proof>
+   <goal name="remove_products&#39;vc.78.4" expl="VC for remove_products" proved="true">
+   <proof prover="2"><result status="valid" time="0.09" steps="23835"/></proof>
    </goal>
-   <goal name="remove_products&#39;vc.83.5" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.05" steps="192212"/></proof>
+   <goal name="remove_products&#39;vc.78.5" expl="VC for remove_products" proved="true">
+   <proof prover="1"><result status="valid" time="0.06" steps="191808"/></proof>
    </goal>
   </transf>
   </goal>
+  <goal name="remove_products&#39;vc.79" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.05" steps="21938"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.80" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.07" steps="26908"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.81" expl="postcondition" proved="true">
+  <proof prover="1"><result status="valid" time="0.03" steps="8943"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.82" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.06" steps="21947"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.83" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.04" steps="89"/></proof>
+  </goal>
   <goal name="remove_products&#39;vc.84" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.03" steps="21949"/></proof>
+  <proof prover="2"><result status="valid" time="0.08" steps="21974"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.85" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.02" steps="21952"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.86" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="26922"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.87" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.02" steps="36"/></proof>
-  <proof prover="2"><result status="valid" time="0.05" steps="21958"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.88" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.04" steps="21961"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.89" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.05" steps="90"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.90" expl="postcondition" proved="true">
-  <proof prover="0" timelimit="10"><result status="valid" time="0.01" steps="37"/></proof>
-  <proof prover="2"><result status="valid" time="0.06" steps="21988"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.91" expl="precondition" proved="true">
+  <goal name="remove_products&#39;vc.85" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.14" steps="65"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.92" expl="precondition" proved="true">
+  <goal name="remove_products&#39;vc.86" expl="precondition" proved="true">
   <proof prover="2"><result status="valid" time="0.06" steps="21568"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.93" expl="precondition" proved="true">
+  <goal name="remove_products&#39;vc.87" expl="precondition" proved="true">
   <proof prover="1"><result status="valid" time="0.03" steps="120308"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.94" expl="assertion" proved="true">
+  <goal name="remove_products&#39;vc.88" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
-   <goal name="remove_products&#39;vc.94.0" expl="assertion" proved="true">
+   <goal name="remove_products&#39;vc.88.0" expl="assertion" proved="true">
    <proof prover="1"><result status="valid" time="0.09" steps="206532"/></proof>
    </goal>
-   <goal name="remove_products&#39;vc.94.1" expl="assertion" proved="true">
+   <goal name="remove_products&#39;vc.88.1" expl="assertion" proved="true">
    <proof prover="1"><result status="valid" time="0.06" steps="129059"/></proof>
    </goal>
-   <goal name="remove_products&#39;vc.94.2" expl="VC for remove_products" proved="true">
+   <goal name="remove_products&#39;vc.88.2" expl="VC for remove_products" proved="true">
    <proof prover="0"><result status="valid" time="0.46" steps="414"/></proof>
    </goal>
-   <goal name="remove_products&#39;vc.94.3" expl="VC for remove_products" proved="true">
+   <goal name="remove_products&#39;vc.88.3" expl="VC for remove_products" proved="true">
    <proof prover="1"><result status="valid" time="0.08" steps="148379"/></proof>
    </goal>
-   <goal name="remove_products&#39;vc.94.4" expl="VC for remove_products" proved="true">
+   <goal name="remove_products&#39;vc.88.4" expl="VC for remove_products" proved="true">
    <proof prover="0"><result status="valid" time="0.17" steps="95"/></proof>
    </goal>
-   <goal name="remove_products&#39;vc.94.5" expl="VC for remove_products" proved="true">
+   <goal name="remove_products&#39;vc.88.5" expl="VC for remove_products" proved="true">
    <proof prover="1"><result status="valid" time="0.08" steps="143894"/></proof>
    </goal>
   </transf>
   </goal>
-  <goal name="remove_products&#39;vc.95" expl="precondition" proved="true">
+  <goal name="remove_products&#39;vc.89" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.06" steps="151"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.96" expl="precondition" proved="true">
+  <goal name="remove_products&#39;vc.90" expl="precondition" proved="true">
   <transf name="inline_goal" proved="true" >
-   <goal name="remove_products&#39;vc.96.0" expl="precondition" proved="true">
+   <goal name="remove_products&#39;vc.90.0" expl="precondition" proved="true">
    <transf name="split_vc" proved="true" >
-    <goal name="remove_products&#39;vc.96.0.0" expl="precondition" proved="true">
+    <goal name="remove_products&#39;vc.90.0.0" expl="precondition" proved="true">
     <proof prover="1"><result status="valid" time="0.08" steps="173001"/></proof>
     </goal>
-    <goal name="remove_products&#39;vc.96.0.1" expl="precondition" proved="true">
+    <goal name="remove_products&#39;vc.90.0.1" expl="precondition" proved="true">
     <proof prover="0"><result status="valid" time="0.04" steps="63"/></proof>
     </goal>
-    <goal name="remove_products&#39;vc.96.0.2" expl="precondition" proved="true">
+    <goal name="remove_products&#39;vc.90.0.2" expl="precondition" proved="true">
     <transf name="inline_all" proved="true" >
-     <goal name="remove_products&#39;vc.96.0.2.0" expl="precondition" proved="true">
+     <goal name="remove_products&#39;vc.90.0.2.0" expl="precondition" proved="true">
      <transf name="split_vc" proved="true" >
-      <goal name="remove_products&#39;vc.96.0.2.0.0" expl="precondition" proved="true">
+      <goal name="remove_products&#39;vc.90.0.2.0.0" expl="precondition" proved="true">
       <proof prover="1"><result status="valid" time="0.96" steps="1321535"/></proof>
       </goal>
-      <goal name="remove_products&#39;vc.96.0.2.0.1" expl="precondition" proved="true">
+      <goal name="remove_products&#39;vc.90.0.2.0.1" expl="precondition" proved="true">
       <proof prover="2"><result status="valid" time="0.17" steps="40719"/></proof>
       </goal>
-      <goal name="remove_products&#39;vc.96.0.2.0.2" expl="precondition" proved="true">
+      <goal name="remove_products&#39;vc.90.0.2.0.2" expl="precondition" proved="true">
       <proof prover="6" timelimit="10"><result status="valid" time="0.84" steps="103663"/></proof>
       </goal>
-      <goal name="remove_products&#39;vc.96.0.2.0.3" expl="precondition" proved="true">
+      <goal name="remove_products&#39;vc.90.0.2.0.3" expl="precondition" proved="true">
       <proof prover="1"><result status="valid" time="0.57" steps="983315"/></proof>
       </goal>
      </transf>
      </goal>
     </transf>
     </goal>
-    <goal name="remove_products&#39;vc.96.0.3" expl="precondition" proved="true">
+    <goal name="remove_products&#39;vc.90.0.3" expl="precondition" proved="true">
     <proof prover="2"><result status="valid" time="0.09" steps="24132"/></proof>
     </goal>
-    <goal name="remove_products&#39;vc.96.0.4" expl="precondition" proved="true">
+    <goal name="remove_products&#39;vc.90.0.4" expl="precondition" proved="true">
     <transf name="inline_all" proved="true" >
-     <goal name="remove_products&#39;vc.96.0.4.0" expl="precondition" proved="true">
+     <goal name="remove_products&#39;vc.90.0.4.0" expl="precondition" proved="true">
      <proof prover="1" timelimit="10"><result status="valid" time="0.55" steps="938780"/></proof>
      </goal>
     </transf>
     </goal>
-    <goal name="remove_products&#39;vc.96.0.5" expl="precondition" proved="true">
+    <goal name="remove_products&#39;vc.90.0.5" expl="precondition" proved="true">
     <transf name="inline_goal" proved="true" >
-     <goal name="remove_products&#39;vc.96.0.5.0" expl="precondition" proved="true">
+     <goal name="remove_products&#39;vc.90.0.5.0" expl="precondition" proved="true">
      <transf name="split_vc" proved="true" >
-      <goal name="remove_products&#39;vc.96.0.5.0.0" expl="precondition" proved="true">
+      <goal name="remove_products&#39;vc.90.0.5.0.0" expl="precondition" proved="true">
       <transf name="inline_all" proved="true" >
-       <goal name="remove_products&#39;vc.96.0.5.0.0.0" expl="precondition" proved="true">
+       <goal name="remove_products&#39;vc.90.0.5.0.0.0" expl="precondition" proved="true">
        <proof prover="6" timelimit="10"><result status="valid" time="0.24" steps="56111"/></proof>
        </goal>
       </transf>
       </goal>
-      <goal name="remove_products&#39;vc.96.0.5.0.1" expl="precondition" proved="true">
+      <goal name="remove_products&#39;vc.90.0.5.0.1" expl="precondition" proved="true">
       <transf name="inline_all" proved="true" >
-       <goal name="remove_products&#39;vc.96.0.5.0.1.0" expl="precondition" proved="true">
+       <goal name="remove_products&#39;vc.90.0.5.0.1.0" expl="precondition" proved="true">
        <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="241621"/></proof>
        </goal>
       </transf>
@@ -1226,125 +1208,122 @@
    </goal>
   </transf>
   </goal>
-  <goal name="remove_products&#39;vc.97" expl="precondition" proved="true">
+  <goal name="remove_products&#39;vc.91" expl="precondition" proved="true">
   <proof prover="1"><result status="valid" time="0.08" steps="140280"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.98" expl="precondition" proved="true">
+  <goal name="remove_products&#39;vc.92" expl="precondition" proved="true">
   <proof prover="2"><result status="valid" time="0.14" steps="26805"/></proof>
   </goal>
+  <goal name="remove_products&#39;vc.93" expl="precondition" proved="true">
+  <proof prover="6"><result status="valid" time="0.22" steps="31870"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.94" expl="precondition" proved="true">
+  <proof prover="6"><result status="valid" time="0.17" steps="34923"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.95" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.07" steps="23656"/></proof>
+  </goal>
+  <goal name="remove_products&#39;vc.96" expl="precondition" proved="true">
+  <transf name="split_vc" proved="true" >
+   <goal name="remove_products&#39;vc.96.0" expl="precondition" proved="true">
+   <transf name="inline_goal" proved="true" >
+    <goal name="remove_products&#39;vc.96.0.0" expl="precondition" proved="true">
+    <transf name="split_all_full" proved="true" >
+     <goal name="remove_products&#39;vc.96.0.0.0" expl="VC for remove_products" proved="true">
+     <proof prover="1"><result status="valid" time="0.08" steps="163958"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.96.0.0.1" expl="VC for remove_products" proved="true">
+     <proof prover="1"><result status="valid" time="0.05" steps="144247"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.96.0.0.2" expl="VC for remove_products" proved="true">
+     <proof prover="1"><result status="valid" time="0.05" steps="198485"/></proof>
+     </goal>
+     <goal name="remove_products&#39;vc.96.0.0.3" expl="VC for remove_products" proved="true">
+     <proof prover="6"><result status="valid" time="0.29" steps="43908"/></proof>
+     </goal>
+    </transf>
+    </goal>
+   </transf>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="remove_products&#39;vc.97" expl="precondition" proved="true">
+  <transf name="inline_goal" proved="true" >
+   <goal name="remove_products&#39;vc.97.0" expl="precondition" proved="true">
+   <transf name="split_vc" proved="true" >
+    <goal name="remove_products&#39;vc.97.0.0" expl="precondition" proved="true">
+    <proof prover="2"><result status="valid" time="0.18" steps="31459"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.97.0.1" expl="precondition" proved="true">
+    <proof prover="1"><result status="valid" time="0.08" steps="149768"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.97.0.2" expl="precondition" proved="true">
+    <proof prover="2"><result status="valid" time="0.05" steps="21897"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.97.0.3" expl="precondition" proved="true">
+    <proof prover="1"><result status="valid" time="0.06" steps="159356"/></proof>
+    </goal>
+    <goal name="remove_products&#39;vc.97.0.4" expl="precondition" proved="true">
+    <transf name="inline_all" proved="true" >
+     <goal name="remove_products&#39;vc.97.0.4.0" expl="precondition" proved="true">
+     <proof prover="6" timelimit="10"><result status="valid" time="0.37" steps="72571"/></proof>
+     </goal>
+    </transf>
+    </goal>
+   </transf>
+   </goal>
+  </transf>
+  </goal>
+  <goal name="remove_products&#39;vc.98" expl="precondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.14" steps="23712"/></proof>
+  </goal>
   <goal name="remove_products&#39;vc.99" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="127715"/></proof>
+  <proof prover="1"><result status="valid" time="0.06" steps="151255"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.100" expl="precondition" proved="true">
-  <proof prover="6"><result status="valid" time="0.22" steps="31962"/></proof>
+  <proof prover="2"><result status="valid" time="0.05" steps="21910"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.101" expl="precondition" proved="true">
-  <proof prover="6"><result status="valid" time="0.17" steps="35158"/></proof>
+  <proof prover="2"><result status="valid" time="0.05" steps="21913"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.102" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.07" steps="23668"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="21916"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.103" expl="precondition" proved="true">
-  <transf name="split_vc" proved="true" >
-   <goal name="remove_products&#39;vc.103.0" expl="precondition" proved="true">
-   <transf name="inline_goal" proved="true" >
-    <goal name="remove_products&#39;vc.103.0.0" expl="precondition" proved="true">
-    <transf name="split_all_full" proved="true" >
-     <goal name="remove_products&#39;vc.103.0.0.0" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.08" steps="164020"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.103.0.0.1" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.05" steps="144324"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.103.0.0.2" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.05" steps="198588"/></proof>
-     </goal>
-     <goal name="remove_products&#39;vc.103.0.0.3" expl="VC for remove_products" proved="true">
-     <proof prover="6"><result status="valid" time="0.29" steps="44065"/></proof>
-     </goal>
-    </transf>
-    </goal>
-   </transf>
-   </goal>
-  </transf>
+  <proof prover="2"><result status="valid" time="0.06" steps="21919"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.104" expl="precondition" proved="true">
-  <transf name="inline_goal" proved="true" >
-   <goal name="remove_products&#39;vc.104.0" expl="precondition" proved="true">
-   <transf name="split_vc" proved="true" >
-    <goal name="remove_products&#39;vc.104.0.0" expl="precondition" proved="true">
-    <proof prover="2"><result status="valid" time="0.18" steps="31471"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.104.0.1" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.08" steps="150468"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.104.0.2" expl="precondition" proved="true">
-    <proof prover="2"><result status="valid" time="0.05" steps="21908"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.104.0.3" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.06" steps="159431"/></proof>
-    </goal>
-    <goal name="remove_products&#39;vc.104.0.4" expl="precondition" proved="true">
-    <transf name="inline_all" proved="true" >
-     <goal name="remove_products&#39;vc.104.0.4.0" expl="precondition" proved="true">
-     <proof prover="6" timelimit="10"><result status="valid" time="0.37" steps="74137"/></proof>
-     </goal>
-    </transf>
-    </goal>
-   </transf>
-   </goal>
-  </transf>
+  <proof prover="2"><result status="valid" time="0.06" steps="25160"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.105" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.14" steps="23724"/></proof>
+  <proof prover="1"><result status="valid" time="0.05" steps="181597"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.106" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="151900"/></proof>
+  <proof prover="2"><result status="valid" time="0.05" steps="21925"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.107" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.05" steps="21921"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="21928"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.108" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.05" steps="21924"/></proof>
+  <proof prover="1"><result status="valid" time="0.04" steps="131250"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.109" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.05" steps="21927"/></proof>
+  <proof prover="2"><result status="valid" time="0.08" steps="26934"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.110" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="21930"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="25186"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.111" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="25171"/></proof>
+  <goal name="remove_products&#39;vc.111" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.08" steps="23607"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.112" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.05" steps="181715"/></proof>
+  <goal name="remove_products&#39;vc.112" expl="postcondition" proved="true">
+  <proof prover="2"><result status="valid" time="0.11" steps="29083"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.113" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="21936"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.114" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="21939"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.115" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.07" steps="21942"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.116" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.08" steps="26937"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.117" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="25189"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.118" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.08" steps="23619"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.119" expl="postcondition" proved="true">
+  <goal name="remove_products&#39;vc.113" expl="postcondition" proved="true">
   <proof prover="2"><result status="valid" time="0.11" steps="29095"/></proof>
   </goal>
-  <goal name="remove_products&#39;vc.120" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.11" steps="29107"/></proof>
-  </goal>
-  <goal name="remove_products&#39;vc.121" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.33" steps="197"/></proof>
+  <goal name="remove_products&#39;vc.114" expl="postcondition" proved="true">
+  <proof prover="0"><result status="valid" time="0.33" steps="199"/></proof>
   </goal>
  </transf>
  </goal>
