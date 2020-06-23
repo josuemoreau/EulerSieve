@@ -622,36 +622,47 @@ module EulerSieveImpl
   let create (max: int) : t
     requires { max >= 3 }
     ensures  { result.max = max }
-    ensures  { forall i. 0 <= i <= 2 -> i <> 2 <-> Seq.get result.marked i }
-    ensures  { forall i. 0 <= i <= div (max - 1) 2 -> not Seq.get result.marked (2 * i + 1) }
-    ensures  { forall i. 1 <= i <= div (max - 1) 2 -> Seq.get result.marked (2 * i + 2) }
+    ensures  { Seq.get result.marked 0 = Seq.get result.marked 1 = true /\ not Seq.get result.marked 2 }
+    ensures  { forall i. 1 <= i <= div (max - 1) 2 -> not Seq.get result.marked (2 * i + 1) }
+    ensures  { forall i. 1 <= i <= div (max - 1) 2 -> 2 * i + 2 <= max -> Seq.get result.marked (2 * i + 2) }
     (* ensures  { forall i. 0 <= i <= max -> *)
     (*                      Seq.get result.nexts i = i + 1         } *)
   = let len = max + 1 in
     let len_arr = div (max - 1) 2 + 1 in
     let ghost ref marked = Seq.create len (fun i -> i < 2) in
     let ghost ref nexts = Seq.create len (fun i -> i + 1) in
-    let arr = Init.init len_arr (fun i -> i + 2) in
-    nexts <- Seq.set nexts 2 3;
+    let arr = Init.init len_arr (fun i -> 2 * i + 3) in
+    assert { forall j. 0 <= j < div (max - 1) 2 -> -(max + 1) <= arr[j] <= max + 1};
+    arr[div (max - 1) 2] <- max + 1;
+    arr[0] <- -2;
     (* assert { max < Seq.length marked = Seq.length nexts }; *)
     (* assert { forall i. 0 <= i <= div (max - 5) 2 -> *)
     (*                    2 * i + 3 <= max by 2 * (div (max - 5) 2) + 3 <= max }; *)
-    for i = 0 to (div (max - 1) 2) - 1 do
+    for i = 1 to (div (max - 1) 2) - 1 do
       invariant { max + 1 = Seq.length nexts = Seq.length marked }
-      invariant { forall j. 1 < 2 * i + 1 <= j <= max ->
+      invariant { forall j. 2 * i + 1 <= j <= max ->
                     not Seq.get marked j /\
                     Seq.get nexts j = j + 1 }
-      invariant { forall j. 0 <= j < i ->
+      invariant { forall j. 1 <= j < i ->
                     not Seq.get marked (2 * j + 1) /\
                     Seq.get nexts (2 * j + 1) = 2 * j + 3 = arr[j] /\
                     arr[j] >= 0 }
-      invariant { forall j. 0 <= j < i ->
+      invariant { forall j. 1 <= j < i ->
                     Seq.get marked (2 * j + 2) /\
                     Seq.get nexts (2 * j + 2) = 2 * j + 3 }
       invariant { forall j. 0 <= j < 2 * i + 1 -> j < Seq.get nexts j <= max + 1 }
       invariant { forall j k. 0 <= j < 2 * i + 1 -> j < k < Seq.get nexts j ->
                               Seq.get marked k }
+      invariant { forall j. 0 <= j <= div (max - 1) 2 -> -(max + 1) <= arr[j] <= max + 1 }
+      invariant { Seq.get marked 0 = Seq.get marked 1 = true /\ not Seq.get marked 2 }
+      invariant { forall j. 1 <= j < i -> not Seq.get marked (2 * j + 1) }
+      invariant { forall j. 1 <= j < i -> 2 * j + 2 <= max -> Seq.get marked (2 * j + 2) }
       (* assert { 2 * i + 3 <= 2 * (div (max - 5) 2) + 3 <= max < Seq.length marked }; *)
+      assert { forall j. 2 * (i + 1) + 1 <= j <= max ->
+                 not Seq.get marked j /\
+                 Seq.get nexts j = j + 1 by 2 * i + 1 < 2 * (i + 1) + 1 /\ 2 * i + 1 <= j <= max /\ forall j. 1 < 2 * i + 1 <= j <= max ->
+                      not Seq.get marked j /\
+                      Seq.get nexts j = j + 1};
       marked <- Seq.set marked (2 * i + 2) true;
       nexts <- Seq.set nexts (2 * i + 1) (2 * i + 3);
       arr[i] <- 2 * i + 3
@@ -662,11 +673,12 @@ module EulerSieveImpl
     assert { forall j k. 0 <= j < 2 * (len_arr - 1) + 1 ->
                          j < k < Seq.get nexts j ->
                          Seq.get marked k };
-    arr[len_arr - 1] <- max + 1;
     { nexts = nexts; marked = marked; arr = arr;
       (* nexts = Seq.create len (fun i -> if i < max then if i < 3 || mod i 2 = 0 then i + 1 else i + 2 else max + 1); *)
       (* marked = Seq.create len (fun i -> i = 0 || i = 1 || (i > 2 && mod i 2 = 0)); *)
-      (* arr = Init.init len_arr (fun i -> (if i < 2 || (i >= 4 && mod i 2 = 0) then -1 else 1) * (if i < len_arr - 1 then 2 * i + 5 else max + 1)); *)
+      (* arr = Init.init len_arr (fun i -> if i = 0 then -2 *)
+      (*                                   else if i = len_arr - 1 then max + 1 *)
+      (*                                   else 2 * i + 3); *)
       n = 3;
       max = max;
       max_arr = div (max - 1) 2 }
