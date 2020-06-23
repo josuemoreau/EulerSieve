@@ -407,15 +407,22 @@ module EulerSieve
          max = 2; n = 2 }
 
   val create (max: int) : t
-    requires { max >= 2 }
+    requires { max >= 3 }
     ensures  { result.max = max }
-    ensures  { forall i. 0 <= i <= max ->
-                         i >= 2 <-> not Seq.get result.marked i }
-    ensures  { forall i. 0 <= i <= max ->
-                         Seq.get result.nexts i = i + 1         }
+    ensures  { Seq.get result.marked 0 = Seq.get result.marked 1 = true /\
+               not Seq.get result.marked 2 }
+    ensures  { forall i. 3 <= i <= max ->
+                         mod i 2 = 0 <-> Seq.get result.marked i }
+    ensures  { forall i. 3 <= i < max - 1 ->
+                         mod i 2 = 0 -> Seq.get result.nexts i = i + 1 }
+    ensures  { forall i. 3 <= i < max - 1 ->
+                         mod i 2 = 1 -> Seq.get result.nexts i = i + 2 }
+    ensures  { Seq.get result.nexts max = max + 1 /\
+               (mod (max - 1) 2 = 0 -> Seq.get result.nexts (max - 1) = max) /\
+               (mod (max - 1) 2 = 1 -> Seq.get result.nexts (max - 1) = max + 1) }
 
   val set_next (t: t) (i v: int) : unit
-    requires { 0 <= i <= t.max /\ i < v <= t.max + 1 }
+    requires { 0 <= i <= t.max /\ i < v <= t.max + 2 }
     requires { forall j. i < j < v -> Seq.get t.marked j }
     requires { not Seq.get t.marked i }
     writes   { t.nexts }
@@ -622,24 +629,42 @@ module EulerSieveImpl
   let create (max: int) : t
     requires { max >= 3 }
     ensures  { result.max = max }
-    ensures  { Seq.get result.marked 0 = Seq.get result.marked 1 = true /\ not Seq.get result.marked 2 }
-    ensures  { forall i. 1 <= i <= div (max - 1) 2 -> not Seq.get result.marked (2 * i + 1) }
-    ensures  { forall i. 1 <= i <= div (max - 1) 2 -> 2 * i + 2 <= max -> Seq.get result.marked (2 * i + 2) }
+    ensures  { Seq.get result.marked 0 = Seq.get result.marked 1 = true /\
+               not Seq.get result.marked 2 }
+    ensures  { forall i. 1 <= i <= div (max - 1) 2 ->
+                         not Seq.get result.marked (2 * i + 1) }
+    ensures  { forall i. 2 <= i <= div (max + 1) 2 ->
+                         2 * i <= max ->
+                         Seq.get result.marked (2 * i) }
+    ensures  { forall i. 1 <= i <= div (max - 1) 2 ->
+                         2 * i + 1 < max - 1 ->
+                         Seq.get result.nexts (2 * i + 1) = 2 * i + 3 }
+    ensures  { forall i. 2 <= i <= div (max - 1) 2 ->
+                         2 * i < max - 1 ->
+                         Seq.get result.nexts (2 * i) = 2 * i + 1 }
+    ensures  { Seq.get result.nexts max = max + 1 /\
+               (mod (max - 1) 2 = 0 -> Seq.get result.nexts (max - 1) = max) /\
+               (mod (max - 1) 2 = 1 -> Seq.get result.nexts (max - 1) = max + 1) }
   = let len = max + 1 in
     let len_arr = div (max - 1) 2 + 1 in
-    let nexts = Seq.create len (fun i -> if i < max then if i < 3 || mod i 2 = 0 then i + 1 else i + 2 else max + 1) in
+    let nexts = Seq.create len (fun i ->
+          if i = max then max + 1
+          else if i = max - 1 then if mod i 2 = 0 then max else max + 1
+          else if i < 3 || mod i 2 = 0 then i + 1
+          else i + 2) in
     let marked = Seq.create len (fun i -> i = 0 || i = 1 || (i > 2 && mod i 2 = 0)) in
     { nexts = nexts;
       marked = marked;
-      arr = Init.init len_arr (fun i -> if i = 0 then -2
-                                        else if i = len_arr - 1 then max + 1
-                                        else 2 * i + 3);
+      arr = Init.init len_arr (fun i ->
+          if i = len_arr - 1 then max + 1
+          else if i = 0 then -2
+          else 2 * i + 3);
       n = 3;
       max = max;
       max_arr = div (max - 1) 2 }
 
   let set_next (t: t) (i v: int) : unit
-    requires { 0 <= i <= t.max /\ i < v <= t.max + 1 }
+    requires { 0 <= i <= t.max /\ i < v <= t.max + 2 }
     requires { forall j. i < j < v -> Seq.get t.marked j }
     requires { not Seq.get t.marked i }
     writes   { t.nexts, t.arr }
@@ -752,7 +777,7 @@ module EulerSieveImpl
     let ref cnt = 1 in
     let ref p = 2 in
     t.arr[0] <- 2;
-    while t.arr[p] < max + 1 do
+    while t.arr[p] <= max do
       invariant { 2 <= p <= max }
       invariant { 1 <= cnt <= p - 1 }
       invariant { t.arr[p] >= 0 }
