@@ -213,6 +213,35 @@ module EulerSieveSpec
     not marked[n] /\
     inv_nexts nexts nexts.length
 
+
+(*******************************************************************************)
+(*                                                                             *)
+(*             QUELQUES LEMMES DE CONSERVATION DES STRUCTURES                  *)
+(*                                                                             *)
+(*******************************************************************************)
+
+
+  let lemma conservation_inv_marked_nexts_on_marked_change (marked: seq bool)
+                                                           (nexts: seq int)
+                                                           (i: int)
+    requires { marked.length = nexts.length }
+    requires { inv_nexts nexts nexts.length }
+    requires { inv_marked_nexts marked nexts }
+    requires { 0 <= i < marked.length }
+    ensures  { inv_marked_nexts marked[i <- true] nexts } = ()
+
+  let lemma conservation_inv_marked_nexts_on_nexts_change (marked: seq bool)
+                                                          (nexts: seq int)
+                                                          (i v: int)
+    requires { marked.length = nexts.length }
+    requires { inv_marked_nexts marked nexts }
+    requires { inv_nexts nexts marked.length }
+    (* requires { not marked[2] } *)
+    requires { 0 <= i < marked.length }
+    requires { i < v <= marked.length }
+    requires { forall j. i < j < v -> marked[j] }
+    ensures  { inv_marked_nexts marked nexts[i <- v] } = ()
+
 (*******************************************************************************)
 (*                                                                             *)
 (*                         QUELQUES PREDICATS UTILES                           *)
@@ -242,29 +271,17 @@ module EulerSieve
 
   use EulerSieveSpec
 
-(*******************************************************************************)
-(*                                                                             *)
-(*         INVARIANTS SUR LES RELATIONS ENTRE STRUCTURES DE DONNEES            *)
-(*                                                                             *)
-(*******************************************************************************)
 
-  lemma conservation_inv_marked_nexts_on_marked_change:
-    forall marked nexts. marked.length = nexts.length ->
-                         inv_nexts nexts nexts.length ->
-                         inv_marked_nexts marked nexts ->
-                         forall i. 0 <= i < marked.length ->
-                                   inv_marked_nexts marked[i <- true] nexts
-
-  lemma conservation_inv_marked_nexts_on_nexts_change:
-    forall marked nexts.
-      marked.length = nexts.length ->
-      inv_marked_nexts marked nexts ->
-      inv_nexts nexts marked.length ->
-      not marked[2] ->
-      forall i. 0 <= i < marked.length ->
-                nexts[i] <> marked.length ->
-                marked[nexts[i]] ->
-                inv_marked_nexts marked nexts[i <- nexts[nexts[i]]]
+  (* lemma conservation_inv_marked_nexts_on_nexts_change: *)
+  (*   forall marked nexts. *)
+  (*     marked.length = nexts.length -> *)
+  (*     inv_marked_nexts marked nexts -> *)
+  (*     inv_nexts nexts marked.length -> *)
+  (*     not marked[2] -> *)
+  (*     forall i. 0 <= i < marked.length -> *)
+  (*               nexts[i] <> marked.length -> *)
+  (*               marked[nexts[i]] -> *)
+  (*               inv_marked_nexts marked nexts[i <- nexts[nexts[i]]] *)
 
 
 (*******************************************************************************)
@@ -403,10 +420,15 @@ module EulerSieve
     (* mutable n: int *)
   }
     (* invariant { 2 <= n <= max /\ mod n 2 = 1 } *)
+    invariant { max >= 3 }
     invariant { nexts.length = marked.length = max + 1 }
     invariant { inv_nexts nexts nexts.length }
     invariant { inv_marked_nexts marked nexts }
     invariant { forall i. 3 <= i <= max -> mod i 2 = 0 -> marked[i] }
+    invariant { forall i. 3 <= i < max - 1 -> mod i 2 = 1 -> mod (Seq.get nexts i) 2 = 1 \/ Seq.get nexts i = max + 1 }
+    invariant { Seq.get nexts max = max + 1 /\
+                (mod (max - 1) 2 = 0 -> Seq.get nexts (max - 1) = max) /\
+                (mod (max - 1) 2 = 1 -> Seq.get nexts (max - 1) = max + 1) }
 
     by { nexts = Seq.create 4 (fun i -> i + 1);
          marked = Seq.create 4 (fun i -> i < 2);
@@ -432,16 +454,16 @@ module EulerSieve
     requires { mod i 2 = 1 }
     requires { forall j. i < j < v -> Seq.get t.marked j }
     requires { not Seq.get t.marked i }
-    requires { mod v 2 = 1 }
+    requires { mod v 2 = 1 \/ v = t.max + 1 }
     writes   { t.nexts }
     ensures  { t.nexts = (old t.nexts)[i <- v] }
 
   val get_next (t: t) (i: int) : int
-    requires { 0 <= i <= t.max }
+    requires { 3 <= i <= t.max }
     requires { mod i 2 = 1 }
-    ensures  { 0 <= result <= t.max + 1 }
+    ensures  { 3 <= result <= t.max + 1 }
     ensures  { result = t.nexts[i] }
-    ensures  { mod result 2 = 1 }
+    ensures  { mod result 2 = 1 \/ result = t.max + 1 }
 
   val set_mark (t: t) (i: int) : unit
     requires { 0 <= i <= t.max }
@@ -556,6 +578,7 @@ let remove_products (t: t) (n: int) : unit
             assert { prime_products_marked marked_old t.marked n next };
             assert { t.nexts[p] > next };
             assert { div (length marked_old - 1) n <= max };
+            (* assert { forall i. 0 <= i <= div (length marked_old) n -> i <> p -> nexts_copy[i] = t.nexts[i] }; *)
             loop p next
           end else begin
             assert { forall i. p < i < t.nexts[p] -> t.marked[i] by
@@ -625,15 +648,20 @@ module EulerSieveImpl
     mutable ghost marked: seq bool;
     arr: array int;
     max: int;
-    max_arr: int;
-    mutable n: int
+    max_arr: int
   }
-    invariant { 2 <= n <= max }
+    (* invariant { 2 <= n <= max } *)
+    invariant { max >= 3 }
     invariant { Seq.length nexts = Seq.length marked = max + 1 }
     invariant { div (max - 1) 2 = max_arr }
     invariant { Array.length arr = max_arr + 1 }
     invariant { inv_nexts nexts (Seq.length nexts) }
     invariant { inv_marked_nexts marked nexts }
+    invariant { forall i. 3 <= i <= max -> mod i 2 = 0 -> Seq.get marked i }
+    invariant { forall i. 3 <= i < max - 1 -> mod i 2 = 1 -> mod (Seq.get nexts i) 2 = 1 \/ Seq.get nexts i = max + 1 }
+    invariant { Seq.get nexts max = max + 1 /\
+                (mod (max - 1) 2 = 0 -> Seq.get nexts (max - 1) = max) /\
+                (mod (max - 1) 2 = 1 -> Seq.get nexts (max - 1) = max + 1) }
     (* glueing invariant *)
     invariant { forall i. 0 <= i <= max_arr -> -(max + 1) <= arr[i] <= max + 1 }
     invariant { forall i. 0 <= i <= max_arr ->
@@ -644,10 +672,10 @@ module EulerSieveImpl
     invariant { forall i. 0 <= i <= max_arr ->
                           Seq.get marked (2 * i + 1) ->
                           arr[i] = - Seq.get nexts (2 * i + 1) }
-    by { nexts = Seq.create 3 (fun i -> i + 1);
-         marked = Seq.create 3 (fun i -> i <> 2);
-         arr = (Array.make 1 0)[0 <- -2];
-         max = 2; n = 2; max_arr = 0 }
+    by { nexts = Seq.create 4 (fun i -> i + 1);
+         marked = Seq.create 4 (fun i -> i < 2);
+         arr = (Array.make 2 0)[0 <- -2][1 <- 4];
+         max = 3; max_arr = 1 }
 
   let create (max: int) : t
     requires { max >= 3 }
@@ -682,7 +710,7 @@ module EulerSieveImpl
           if i = len_arr - 1 then max + 1
           else if i = 0 then -2
           else 2 * i + 3);
-      n = 3;
+      (* n = 3; *)
       max = max;
       max_arr = div (max - 1) 2 }
 
@@ -691,38 +719,47 @@ module EulerSieveImpl
     requires { mod i 2 = 1 }
     requires { forall j. i < j < v -> Seq.get t.marked j }
     requires { not Seq.get t.marked i }
+    requires { mod v 2 = 1 \/ v = t.max + 1 }
     writes   { t.nexts, t.arr }
     ensures  { t.nexts = Seq.set (old t.nexts) i v }
-  = t.arr[div i 2] <- v;
+  = ghost ( conservation_inv_marked_nexts_on_nexts_change t.marked t.nexts i v );
+    t.arr[div i 2] <- v;
     ghost (t.nexts <- Seq.set t.nexts i v)
 
   let get_next (t: t) (i: int) : int
-    requires { 0 <= i <= t.max }
-    ensures  { 0 <= result <= t.max + 1 }
+    requires { 3 <= i <= t.max }
+    requires { mod i 2 = 1 }
+    ensures  { 3 <= result <= t.max + 1 }
     ensures  { result = Seq.get t.nexts i }
-  = if t.arr[i] < 0 then - t.arr[i] else t.arr[i]
+    ensures  { mod result 2 = 1 \/ result = t.max + 1 }
+  = let x = div i 2 in
+    if t.arr[x] < 0 then - t.arr[x] else t.arr[x]
 
   let set_mark (t: t) (i: int) : unit
     requires { 0 <= i <= t.max }
+    requires { mod i 2 = 1 }
     writes   { t.marked, t.arr }
     ensures  { t.marked = Seq.set (old t.marked) i true }
-  = if t.arr[i] >= 0 then t.arr[i] <- - t.arr[i];
+  = let x = div i 2 in
+    ghost ( conservation_inv_marked_nexts_on_marked_change t.marked t.nexts i);
+    if t.arr[x] >= 0 then t.arr[x] <- - t.arr[x];
     ghost (t.marked <- Seq.set t.marked i true)
 
   let get_mark (t: t) (i: int) : bool
     requires { 0 <= i <= t.max }
+    requires { mod i 2 = 1 }
     ensures  { result = Seq.get t.marked i }
-  = t.arr[i] < 0
+  = t.arr[div i 2] < 0
 
-  let get_n (t: t) : int
-    ensures { result = t.n /\ 2 <= result <= t.max }
-  = t.n
+  (* let get_n (t: t) : int *)
+  (*   ensures { result = t.n /\ 2 <= result <= t.max } *)
+  (* = t.n *)
 
-  let set_n (t: t) (i: int) : unit
-    requires { 2 <= i <= t.max }
-    writes   { t.n }
-    ensures  { t.n = i }
-  = t.n <- i
+  (* let set_n (t: t) (i: int) : unit *)
+  (*   requires { 2 <= i <= t.max } *)
+  (*   writes   { t.n } *)
+  (*   ensures  { t.n = i } *)
+  (* = t.n <- i *)
 
   let get_max (t: t) : int
     ensures { result = t.max /\ result >= 2 }
@@ -759,7 +796,7 @@ module EulerSieveImpl
       ensures { forall i. 0 <= i < Seq.length t.marked ->
                           not Seq.get t.marked i <-> prime i }
       variant { max + 1 - n }
-        set_n t n;
+        (* set_n t n; *)
         remove_products t n;
         if get_next t n * get_next t n <= max then begin
           assert { all_primes t.marked n /\ not Seq.get t.marked n /\
