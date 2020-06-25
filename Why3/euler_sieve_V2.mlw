@@ -445,9 +445,7 @@ module EulerSieve
                          mod i 2 = 0 -> Seq.get result.nexts i = i + 1 }
     ensures  { forall i. 3 <= i < max - 1 ->
                          mod i 2 = 1 -> Seq.get result.nexts i = i + 2 }
-    ensures  { Seq.get result.nexts max = max + 1 /\
-               (mod (max - 1) 2 = 0 -> Seq.get result.nexts (max - 1) = max) /\
-               (mod (max - 1) 2 = 1 -> Seq.get result.nexts (max - 1) = max + 1) }
+    ensures  { forall i. 0 <= i <= max -> Seq.get result.marked i -> i < 2 \/ divides 2 i }
 
   val set_next (t: t) (i v: int) : unit
     requires { 0 <= i <= t.max /\ i < v <= t.max + 1 }
@@ -476,14 +474,6 @@ module EulerSieve
     requires { mod i 2 = 1 }
     ensures { result = t.marked[i] }
 
-  (* val get_n (t: t) : int *)
-  (*   ensures { result = t.n } *)
-
-  (* val set_n (t: t) (i: int) : unit *)
-  (*   requires { 2 <= i <= t.max } *)
-  (*   writes { t.n } *)
-  (*   requires { t.n = i } *)
-
   val get_max (t: t) : int
     ensures { result = t.max /\ result >= 2 }
 
@@ -497,8 +487,7 @@ let remove_products (t: t) (n: int) : unit
   ensures { inv_marked_old_nexts2 t.marked t.nexts t.nexts[n] }
   ensures { previously_marked_products t.marked t.nexts[n] }
   ensures { only_products_marked t.marked t.nexts[n] }
-  = (* = let ghost n = n in *)
-    let ghost max = t.max in
+  = let ghost max = t.max in
     let ghost marked_old = t.marked in
     assert { inv_marked_old_nexts2 marked_old t.nexts n by
                inv_marked_old_nexts2 t.marked t.nexts n };
@@ -578,7 +567,6 @@ let remove_products (t: t) (n: int) : unit
             assert { prime_products_marked marked_old t.marked n next };
             assert { t.nexts[p] > next };
             assert { div (length marked_old - 1) n <= max };
-            (* assert { forall i. 0 <= i <= div (length marked_old) n -> i <> p -> nexts_copy[i] = t.nexts[i] }; *)
             loop p next
           end else begin
             assert { forall i. p < i < t.nexts[p] -> t.marked[i] by
@@ -693,9 +681,7 @@ module EulerSieveImpl
     ensures  { forall i. 2 <= i <= div (max - 1) 2 ->
                          2 * i < max - 1 ->
                          Seq.get result.nexts (2 * i) = 2 * i + 1 }
-    ensures  { Seq.get result.nexts max = max + 1 /\
-               (mod (max - 1) 2 = 0 -> Seq.get result.nexts (max - 1) = max) /\
-               (mod (max - 1) 2 = 1 -> Seq.get result.nexts (max - 1) = max + 1) }
+    ensures  { forall i. 0 <= i <= max -> Seq.get result.marked i -> i < 2 \/ divides 2 i }
   = let len = max + 1 in
     let len_arr = div (max - 1) 2 + 1 in
     let nexts = Seq.create len (fun i ->
@@ -751,16 +737,6 @@ module EulerSieveImpl
     ensures  { result = Seq.get t.marked i }
   = t.arr[div i 2] < 0
 
-  (* let get_n (t: t) : int *)
-  (*   ensures { result = t.n /\ 2 <= result <= t.max } *)
-  (* = t.n *)
-
-  (* let set_n (t: t) (i: int) : unit *)
-  (*   requires { 2 <= i <= t.max } *)
-  (*   writes   { t.n } *)
-  (*   ensures  { t.n = i } *)
-  (* = t.n <- i *)
-
   let get_max (t: t) : int
     ensures { result = t.max /\ result >= 2 }
   = t.max
@@ -769,7 +745,6 @@ module EulerSieveImpl
     val create = create,
     val set_next = set_next, val get_next = get_next,
     val set_mark = set_mark, val get_mark = get_mark,
-    (* val get_n = get_n, val set_n = set_n, *)
     val get_max = get_max
 
   use int.Abs
@@ -780,14 +755,14 @@ module EulerSieveImpl
                forall j. i < j < abs arr[i] -> arr[j] < 0)
 
   let euler_sieve (max: int) : array int
-    requires { max >= 2 }
+    requires { max >= 3 }
     ensures { all_differents result result.length }
     ensures { forall i. 0 <= i < result.length -> prime result[i] }
     ensures { forall i. 2 <= i <= max -> prime i ->
                         exists j. 0 <= j < result.length /\ result[j] = i }
   = let t = create max in
     let rec loop (n: int) =
-      requires { 2 <= n <= max }
+      requires { 3 <= n <= max }
       requires { n * n <= max }
       requires { previously_marked_products t.marked n }
       requires { only_products_marked t.marked n }
@@ -796,7 +771,6 @@ module EulerSieveImpl
       ensures { forall i. 0 <= i < Seq.length t.marked ->
                           not Seq.get t.marked i <-> prime i }
       variant { max + 1 - n }
-        (* set_n t n; *)
         remove_products t n;
         if get_next t n * get_next t n <= max then begin
           assert { all_primes t.marked n /\ not Seq.get t.marked n /\
@@ -834,7 +808,7 @@ module EulerSieveImpl
                                     divides k i) by
                     i < Seq.get t.nexts n * Seq.get t.nexts n) }
         end in
-    if max >= 4 then loop 2;
+    if max >= 9 then loop 3;
     let ref cnt = 1 in
     let ref p = 2 in
     t.arr[0] <- 2;
