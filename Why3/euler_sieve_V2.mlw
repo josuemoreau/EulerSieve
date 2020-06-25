@@ -624,12 +624,22 @@ module EulerSieveImpl
   use array.Array
   use array.Init
 
+  use int.Abs
   use int.EuclideanDivision
   use number.Divisibility
   use number.Prime
 
   use DivisibilityResults
   use EulerSieveSpec
+
+  let lemma conservation_inv_arr (arr: array int) (i: int)
+    requires { forall j k. 0 <= j < length arr -> j < k < div (abs arr[j]) 2 -> arr[k] < 0 }
+    requires { forall i. 0 <= i < length arr -> i < div (abs arr[i]) 2 <= length arr }
+    requires { 0 <= i < length arr }
+    requires { arr[i] >= 0 }
+    ensures  { forall j k. 0 <= j < length arr -> j < k < div (abs arr[i <- - arr[i]][j]) 2 -> arr[i <- - arr[i]][k] < 0 } =
+    assert { forall j. 0 <= j < length arr -> arr[j] < i -> arr[j] = arr[i <- - arr[i]][j] };
+    assert { forall j. 0 <= j < length arr -> arr[i] < j -> arr[j] = arr[i <- - arr[i]][j] }
 
   type t = {
     mutable ghost nexts: seq int;
@@ -660,6 +670,8 @@ module EulerSieveImpl
     invariant { forall i. 0 <= i <= max_arr ->
                           Seq.get marked (2 * i + 1) ->
                           arr[i] = - Seq.get nexts (2 * i + 1) }
+    invariant { forall i. 0 <= i <= max_arr -> i < div (abs arr[i]) 2 <= max_arr + 1 }
+    invariant { forall i j. 0 <= i <= max_arr -> i < j < div (abs arr[i]) 2 -> arr[j] < 0 }
     by { nexts = Seq.create 4 (fun i -> i + 1);
          marked = Seq.create 4 (fun i -> i < 2);
          arr = (Array.make 2 0)[0 <- -2][1 <- 4];
@@ -728,7 +740,10 @@ module EulerSieveImpl
     ensures  { t.marked = Seq.set (old t.marked) i true }
   = let x = div i 2 in
     ghost ( conservation_inv_marked_nexts_on_marked_change t.marked t.nexts i);
-    if t.arr[x] >= 0 then t.arr[x] <- - t.arr[x];
+    if t.arr[x] >= 0 then begin
+      ghost ( conservation_inv_arr t.arr x );
+      t.arr[x] <- - t.arr[x]
+    end;
     ghost (t.marked <- Seq.set t.marked i true)
 
   let get_mark (t: t) (i: int) : bool
@@ -747,12 +762,10 @@ module EulerSieveImpl
     val set_mark = set_mark, val get_mark = get_mark,
     val get_max = get_max
 
-  use int.Abs
-
   predicate inv_count (arr: array int) (min: int) =
     forall i. min <= i < arr.length ->
-              (i < abs arr[i] <= arr.length /\
-               forall j. i < j < abs arr[i] -> arr[j] < 0)
+              (i < div (abs arr[i]) 2 <= arr.length /\
+               forall j. i < j < div (abs arr[i]) 2 -> arr[j] < 0)
 
   let euler_sieve (max: int) : array int
     requires { max >= 3 }
@@ -810,43 +823,43 @@ module EulerSieveImpl
         end in
     if max >= 9 then loop 3;
     let ref cnt = 1 in
-    let ref p = 2 in
+    let ref p = 1 in
     t.arr[0] <- 2;
     while t.arr[p] <= max do
-      invariant { 2 <= p <= max }
-      invariant { 1 <= cnt <= p - 1 }
+      invariant { 1 <= p <= t.max_arr }
+      invariant { 1 <= cnt <= p }
       invariant { t.arr[p] >= 0 }
-      invariant { prime p }
+      invariant { prime (2 * p + 1) }
       invariant { inv_count t.arr cnt }
       invariant { all_differents t.arr cnt }
-      invariant { all_inf_or_eq t.arr cnt p }
-      invariant { forall i. cnt <= i <= max -> t.arr[i] >= 0 <-> prime i }
+      invariant { all_inf_or_eq t.arr (cnt - 1) p }
+      invariant { forall i. cnt <= i <= t.max_arr -> t.arr[i] >= 0 <-> prime (2 * i + 1) }
       invariant { forall i. 0 <= i < cnt -> prime t.arr[i] }
       invariant { forall i. 2 <= i < t.arr[p] -> prime i ->
                             exists j. 0 <= j < cnt /\ t.arr[j] = i }
       variant { max + 1 - t.arr[p] }
-      let next = t.arr[p] in
+      let next = div t.arr[p] 2 in
       if t.arr[next] < 0 then begin
         label BeforeAssign in
         t.arr[p] <- - t.arr[next];
         assert { forall i. 0 <= i < cnt ->
                            t.arr[i] = (t.arr at BeforeAssign)[i] };
-        assert { (forall i. (0 <= i < p \/ p < i < length t.arr) ->
+        assert { (forall i. (0 <= i < p \/ p < i <= t.max_arr) ->
                             t.arr[i] = (t.arr at BeforeAssign)[i]) /\
-                  forall i. p < i < t.arr[p] -> t.arr[i] < 0 }
+                  forall i. p < i < div t.arr[p] 2 -> t.arr[i] < 0 }
       end else begin
         label BeforeAssign in
-        t.arr[cnt] <- next;
+        t.arr[cnt] <- 2 * next + 1;
         assert { forall i. 0 <= i < cnt ->
                            t.arr[i] = (t.arr at BeforeAssign)[i] };
-        assert { forall i. (cnt + 1 <= i < length t.arr) ->
+        assert { forall i. (cnt + 1 <= i <= t.max_arr) ->
                            t.arr[i] = (t.arr at BeforeAssign)[i] };
         assert { forall i. 0 <= i < cnt -> prime t.arr[i] };
         assert { prime t.arr[cnt] };
         cnt <- cnt + 1;
         p <- next;
-        assert { (exists i. 0 <= i < cnt /\ t.arr[i] = p) /\
-                 forall i. p < i < t.arr[p] -> not prime i }
+        assert { (exists i. 0 <= i < cnt /\ t.arr[i] = 2 * p + 1) /\
+                 forall i. 2 * p + 1 < i < t.arr[p] -> not prime i }
       end
     done;
     sub t.arr 0 cnt
