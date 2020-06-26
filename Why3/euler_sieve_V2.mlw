@@ -632,7 +632,7 @@ module EulerSieveImpl
   use DivisibilityResults
   use EulerSieveSpec
 
-  let lemma conservation_inv_arr (arr: array int) (i: int)
+  let lemma conservation_inv_arr_on_mark (arr: array int) (i: int)
     requires { forall j k. 0 <= j < length arr -> j < k < div (abs arr[j]) 2 -> arr[k] < 0 }
     requires { forall i. 0 <= i < length arr -> i < div (abs arr[i]) 2 <= length arr }
     requires { 0 <= i < length arr }
@@ -640,6 +640,21 @@ module EulerSieveImpl
     ensures  { forall j k. 0 <= j < length arr -> j < k < div (abs arr[i <- - arr[i]][j]) 2 -> arr[i <- - arr[i]][k] < 0 } =
     assert { forall j. 0 <= j < length arr -> arr[j] < i -> arr[j] = arr[i <- - arr[i]][j] };
     assert { forall j. 0 <= j < length arr -> arr[i] < j -> arr[j] = arr[i <- - arr[i]][j] }
+
+  let lemma conservation_inv_arr_on_jump (arr: array int) (min i: int)
+    requires { min >= 0 }
+    requires { forall j k. min <= j < length arr -> j < k < div (abs arr[j]) 2 -> arr[k] < 0 }
+    requires { forall i. min <= i < length arr -> i < div (abs arr[i]) 2 <= length arr }
+    requires { min <= i < length arr }
+    requires { 0 <= div arr[i] 2 < length arr }
+    requires { arr[div arr[i] 2] < 0 }
+    (* requires { forall k. i < k < - arr[div arr[i] 2] -> arr[i <- - arr[div arr[i] 2]][k] < 0 } *)
+    ensures  { forall j k. min <= j < length arr -> j < k < div (abs arr[i <- - arr[div arr[i] 2]][j]) 2 -> arr[i <- - arr[div arr[i] 2]][k] < 0 } =
+    let ghost next = div arr[i] 2 in
+    let ghost arr1 = arr[i <- - arr[next]] in
+    assert { forall j. min <= j < i -> arr[j] = arr1[j] };
+    assert { forall j. i < j < length arr -> arr[j] = arr1[j] }
+    (* assert { forall j k. 0 <= j < length arr -> arr[j] < i -> j < k < arr1[j] -> arr1[k] < 0 } *)
 
   type t = {
     mutable ghost nexts: seq int;
@@ -696,12 +711,12 @@ module EulerSieveImpl
     ensures  { forall i. 0 <= i <= max -> Seq.get result.marked i -> i < 2 \/ divides 2 i }
   = let len = max + 1 in
     let len_arr = div (max - 1) 2 + 1 in
-    let nexts = Seq.create len (fun i ->
+    let ghost nexts = Seq.create len (fun i ->
           if i = max then max + 1
           else if i = max - 1 then if mod i 2 = 0 then max else max + 1
           else if i < 3 || mod i 2 = 0 then i + 1
           else i + 2) in
-    let marked = Seq.create len (fun i -> i = 0 || i = 1 || (i > 2 && mod i 2 = 0)) in
+    let ghost marked = Seq.create len (fun i -> i = 0 || i = 1 || (i > 2 && mod i 2 = 0)) in
     { nexts = nexts;
       marked = marked;
       arr = Init.init len_arr (fun i ->
@@ -741,7 +756,7 @@ module EulerSieveImpl
   = let x = div i 2 in
     ghost ( conservation_inv_marked_nexts_on_marked_change t.marked t.nexts i);
     if t.arr[x] >= 0 then begin
-      ghost ( conservation_inv_arr t.arr x );
+      ghost ( conservation_inv_arr_on_mark t.arr x );
       t.arr[x] <- - t.arr[x]
     end;
     ghost (t.marked <- Seq.set t.marked i true)
@@ -822,10 +837,11 @@ module EulerSieveImpl
                     i < Seq.get t.nexts n * Seq.get t.nexts n) }
         end in
     if max >= 9 then loop 3;
+    assert { forall i. 1 <= i <= t.max_arr -> t.arr[i] >= 0 <-> prime (2 * i + 1) };
     let ref cnt = 1 in
     let ref p = 1 in
     t.arr[0] <- 2;
-    while t.arr[p] <= max do
+    while (* t.arr[p] *) 2 * p + 1 <= max do
       invariant { 1 <= p <= t.max_arr }
       invariant { 1 <= cnt <= p }
       invariant { t.arr[p] >= 0 }
@@ -835,31 +851,43 @@ module EulerSieveImpl
       invariant { all_inf_or_eq t.arr (cnt - 1) p }
       invariant { forall i. cnt <= i <= t.max_arr -> t.arr[i] >= 0 <-> prime (2 * i + 1) }
       invariant { forall i. 0 <= i < cnt -> prime t.arr[i] }
-      invariant { forall i. 2 <= i < t.arr[p] -> prime i ->
+      invariant { forall i. 2 <= i < 2 * p + 1 (* t.arr[p] *) -> prime i ->
                             exists j. 0 <= j < cnt /\ t.arr[j] = i }
       variant { max + 1 - t.arr[p] }
       let next = div t.arr[p] 2 in
-      if t.arr[next] < 0 then begin
-        label BeforeAssign in
-        t.arr[p] <- - t.arr[next];
-        assert { forall i. 0 <= i < cnt ->
-                           t.arr[i] = (t.arr at BeforeAssign)[i] };
-        assert { (forall i. (0 <= i < p \/ p < i <= t.max_arr) ->
-                            t.arr[i] = (t.arr at BeforeAssign)[i]) /\
-                  forall i. p < i < div t.arr[p] 2 -> t.arr[i] < 0 }
-      end else begin
-        label BeforeAssign in
-        t.arr[cnt] <- 2 * next + 1;
-        assert { forall i. 0 <= i < cnt ->
-                           t.arr[i] = (t.arr at BeforeAssign)[i] };
-        assert { forall i. (cnt + 1 <= i <= t.max_arr) ->
-                           t.arr[i] = (t.arr at BeforeAssign)[i] };
-        assert { forall i. 0 <= i < cnt -> prime t.arr[i] };
-        assert { prime t.arr[cnt] };
+      if next <= t.max_arr then
+         if t.arr[next] < 0 then begin
+           label BeforeAssign in
+           t.arr[p] <- - t.arr[next];
+           assert { forall i. 0 <= i < cnt ->
+                              t.arr[i] = (t.arr at BeforeAssign)[i] };
+           assert { forall k. 0 <= k < length t.arr -> k <> p -> t.arr[k] = (t.arr at BeforeAssign)[k] };
+           assert { (forall i. 0 <= i <= length t.arr -> i <> p ->
+                               t.arr[i] = (t.arr at BeforeAssign)[i]) /\
+                     forall i. p < i < div t.arr[p] 2 -> t.arr[i] < 0 by
+                     ((forall j. p < j < div (t.arr at BeforeAssign)[p] 2 -> (t.arr at BeforeAssign)[j] < 0) /\
+                      (forall j. next < j < div (abs (t.arr at BeforeAssign)[next]) 2 -> (t.arr at BeforeAssign)[j] < 0 by cnt < next < length t.arr) /\
+                      div t.arr[p] 2 = div (abs (t.arr at BeforeAssign)[next]) 2) };
+           assert { t.arr[p] = abs (t.arr at BeforeAssign)[next] > (t.arr at BeforeAssign)[p] };
+           conservation_inv_arr_on_jump pure { t.arr at BeforeAssign } cnt p
+         end else begin
+           label BeforeAssign in
+           t.arr[cnt] <- 2 * p + 1 (* 2 * next + 1 *);
+           assert { forall i. 0 <= i < cnt ->
+                              t.arr[i] = (t.arr at BeforeAssign)[i] };
+           assert { forall i. (cnt + 1 <= i <= t.max_arr) ->
+                              t.arr[i] = (t.arr at BeforeAssign)[i] };
+           assert { forall i. 0 <= i < cnt -> prime t.arr[i] };
+           assert { prime t.arr[cnt] };
+           assert { (exists i. 0 <= i <= cnt /\ t.arr[i] = 2 * p + 1) /\
+                    forall i. 2 * p + 1 < i < t.arr[p] -> not prime i };
+           cnt <- cnt + 1;
+           p <- next
+         end
+      else begin
+        t.arr[cnt] <- 2 * p + 1;
         cnt <- cnt + 1;
-        p <- next;
-        assert { (exists i. 0 <= i < cnt /\ t.arr[i] = 2 * p + 1) /\
-                 forall i. 2 * p + 1 < i < t.arr[p] -> not prime i }
+        p <- max + 1
       end
     done;
     sub t.arr 0 cnt
