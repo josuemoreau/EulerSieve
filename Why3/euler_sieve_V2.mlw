@@ -800,41 +800,42 @@ module EulerSieveImpl
                           not Seq.get t.marked i <-> prime i }
       variant { max + 1 - n }
         remove_products t n;
-        if get_next t n * get_next t n <= max then begin
+        let nn = get_next t n in
+        if nn * nn <= max then begin
           assert { all_primes t.marked n /\ not Seq.get t.marked n /\
-                   Seq.get t.nexts n <= div max (Seq.get t.nexts n) };
+                   nn <= div max (nn) };
           ghost (previously_marked_products_impl_prime t.marked
-                                                       (Seq.get t.nexts n));
-          assert { (forall i. n < i < Seq.get t.nexts n -> not prime i) by
+                                                       (nn));
+          assert { (forall i. n < i < nn -> not prime i) by
                    (forall i.
-                      n < i < Seq.get t.nexts n ->
+                      n < i < nn ->
                       (exists j k.
-                         2 <= j < Seq.get t.nexts n /\
+                         2 <= j < nn /\
                          2 <= k < Seq.length t.marked /\
                          j * k = i) by
                            Seq.get t.marked i /\
-                           only_products_marked t.marked (Seq.get t.nexts n)) by
-                   (forall i. n < i < Seq.get t.nexts n -> Seq.get t.marked i) /\
-                   only_products_marked t.marked (Seq.get t.nexts n) };
-          loop (get_next t n)
+                           only_products_marked t.marked (nn)) by
+                   (forall i. n < i < nn -> Seq.get t.marked i) /\
+                   only_products_marked t.marked (nn) };
+          loop (nn)
         end else begin
-          ghost (not_prime_impl_divisor_under_sqrt (Seq.get t.nexts n));
+          ghost (not_prime_impl_divisor_under_sqrt (nn));
           assert { forall i.
                      2 <= i < Seq.length t.marked ->
                      not Seq.get t.marked i ->
-                     not (exists k l. 2 <= k < Seq.get t.nexts n /\ 2 <= l < i /\
+                     not (exists k l. 2 <= k < nn /\ 2 <= l < i /\
                                       k * l = i) by
-                   previously_marked_products t.marked (Seq.get t.nexts n) };
-          ghost (no_prod_impl_no_divider (Seq.get t.nexts n));
+                   previously_marked_products t.marked (nn) };
+          ghost (no_prod_impl_no_divider (nn));
           assert { forall i. 2 <= i < Seq.length t.marked ->
                              not Seq.get t.marked i ->
                              prime i by
                    forall i.
                     2 <= i < Seq.length t.marked ->
                     not Seq.get t.marked i ->
-                    (not (exists k. 2 <= k < Seq.get t.nexts n /\ k <> i /\
+                    (not (exists k. 2 <= k < nn /\ k <> i /\
                                     divides k i) by
-                    i < Seq.get t.nexts n * Seq.get t.nexts n) }
+                    i < nn * nn /\ forall k. 2 <= k -> k <> i -> (divides k i <-> exists l. 2 <= l < i /\ k * l = i) by divides k i -> 2 <= div i k < i) }
         end in
     if max >= 9 then loop 3;
     assert { forall i. 1 <= i <= t.max_arr -> t.arr[i] >= 0 <-> prime (2 * i + 1) };
