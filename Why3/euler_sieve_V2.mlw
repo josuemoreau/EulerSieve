@@ -685,7 +685,7 @@ module EulerSieveImpl
     invariant { forall i. 0 <= i <= max_arr ->
                           Seq.get marked (2 * i + 1) ->
                           arr[i] = - Seq.get nexts (2 * i + 1) }
-    invariant { forall i. 0 <= i <= max_arr -> i < div (abs arr[i]) 2 <= max_arr + 1 }
+    invariant { forall i. 0 <= i <= max_arr -> i < div (abs arr[i]) 2 <= max_arr + 1 /\ abs arr[i] <= max + 1 }
     invariant { forall i j. 0 <= i <= max_arr -> i < j < div (abs arr[i]) 2 -> arr[j] < 0 }
     by { nexts = Seq.create 4 (fun i -> i + 1);
          marked = Seq.create 4 (fun i -> i < 2);
@@ -780,7 +780,8 @@ module EulerSieveImpl
   predicate inv_count (arr: array int) (min: int) =
     forall i. min <= i < arr.length ->
               (i < div (abs arr[i]) 2 <= arr.length /\
-               forall j. i < j < div (abs arr[i]) 2 -> arr[j] < 0)
+               forall j. i < j < div (abs arr[i]) 2 -> arr[j] < 0 /\
+               forall p i. 1 <= p < arr.length -> 2 * p + 1 < i < arr[p] -> not prime i)
 
   let euler_sieve (max: int) : array int
     requires { max >= 3 }
@@ -839,6 +840,8 @@ module EulerSieveImpl
         end in
     if max >= 9 then loop 3;
     assert { forall i. 1 <= i <= t.max_arr -> t.arr[i] >= 0 <-> prime (2 * i + 1) };
+    assert { forall p i. 1 <= p <= t.max_arr -> 2 * p + 1 < i < t.arr[p] -> not prime i by
+             mod i 2 = 0 -> (Seq.get t.marked i by Seq.get t.nexts (2 * i + 1) = t.arr[i]) };
     let ref cnt = 1 in
     let ref p = 1 in
     t.arr[0] <- 2;
