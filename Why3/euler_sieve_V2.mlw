@@ -780,8 +780,9 @@ module EulerSieveImpl
   predicate inv_count (arr: array int) (min: int) =
     forall i. min <= i < arr.length ->
               (i < div (abs arr[i]) 2 <= arr.length /\
-               forall j. i < j < div (abs arr[i]) 2 -> arr[j] < 0 /\
-               forall p i. 1 <= p < arr.length -> 2 * p + 1 < i < arr[p] -> not prime i)
+               (forall j. i < j < div (abs arr[i]) 2 -> arr[j] < 0) /\
+               (forall j. 2 * i + 1 < j < abs arr[i] -> not prime j) (*/\
+               (forall j. min <= j < arr.length -> arr[j] >= 0 <-> prime (2 * j + 1))*) )
 
   let euler_sieve (max: int) : array int
     requires { max >= 3 }
@@ -840,8 +841,10 @@ module EulerSieveImpl
         end in
     if max >= 9 then loop 3;
     assert { forall i. 1 <= i <= t.max_arr -> t.arr[i] >= 0 <-> prime (2 * i + 1) };
-    assert { forall p i. 1 <= p <= t.max_arr -> 2 * p + 1 < i < t.arr[p] -> not prime i by
+    assert { forall p i. 1 <= p <= t.max_arr -> 2 * p + 1 < i < abs t.arr[p] -> not prime i by
              mod i 2 = 0 -> (Seq.get t.marked i by Seq.get t.nexts (2 * i + 1) = t.arr[i]) };
+    assert { forall i. 1 <= i <= t.max_arr -> t.arr[i] >= 0 <-> prime (2 * i + 1) };
+    assert { forall j. 1 <= j <= t.max_arr -> t.arr[0 <- 2][j] = t.arr[j] };
     let ref cnt = 1 in
     let ref p = 1 in
     t.arr[0] <- 2;
@@ -852,7 +855,7 @@ module EulerSieveImpl
       invariant { prime (2 * p + 1) }
       invariant { inv_count t.arr cnt }
       invariant { all_differents t.arr cnt }
-      invariant { all_inf_or_eq t.arr (cnt - 1) p }
+      invariant { all_inf_or_eq t.arr cnt (2 * p) }
       invariant { forall i. cnt <= i <= t.max_arr -> t.arr[i] >= 0 <-> prime (2 * i + 1) }
       invariant { forall i. 0 <= i < cnt -> prime t.arr[i] }
       invariant { forall i. 2 <= i < 2 * p + 1 (* t.arr[p] *) -> prime i ->
@@ -872,21 +875,29 @@ module EulerSieveImpl
                      ((forall j. p < j < div (t.arr at BeforeAssign)[p] 2 -> (t.arr at BeforeAssign)[j] < 0) /\
                       (forall j. next < j < div (abs (t.arr at BeforeAssign)[next]) 2 -> (t.arr at BeforeAssign)[j] < 0 by cnt < next < length t.arr) /\
                       div t.arr[p] 2 = div (abs (t.arr at BeforeAssign)[next]) 2) };
-           assert { t.arr[p] = abs (t.arr at BeforeAssign)[next] > (t.arr at BeforeAssign)[p] };
-           conservation_inv_arr_on_jump pure { t.arr at BeforeAssign } cnt p
+           assert { t.arr[p] = abs (t.arr at BeforeAssign)[next] > (t.arr at BeforeAssign)[p] > p };
+           conservation_inv_arr_on_jump pure { t.arr at BeforeAssign } cnt p;
+           assert { cnt <= next < length t.arr };
+           assert { (forall j. 2 * p + 1 < j < (t.arr at BeforeAssign)[p] -> not prime j) /\
+                    (forall j. 2 * next + 1 < j < abs (t.arr at BeforeAssign)[next] -> not prime j (*by 1 <= next <= t.max_arr*)) }
          end else begin
            label BeforeAssign in
            t.arr[cnt] <- 2 * p + 1 (* 2 * next + 1 *);
-           assert { forall i. 0 <= i < cnt ->
+           assert { forall i. 0 <= i < length t.arr -> i <> cnt ->
                               t.arr[i] = (t.arr at BeforeAssign)[i] };
-           assert { forall i. (cnt + 1 <= i <= t.max_arr) ->
-                              t.arr[i] = (t.arr at BeforeAssign)[i] };
+           (* assert { forall i. (cnt + 1 <= i <= t.max_arr) -> *)
+           (*                    t.arr[i] = (t.arr at BeforeAssign)[i] }; *)
            assert { forall i. 0 <= i < cnt -> prime t.arr[i] };
            assert { prime t.arr[cnt] };
-           assert { (exists i. 0 <= i <= cnt /\ t.arr[i] = 2 * p + 1) /\
-                    forall i. 2 * p + 1 < i < t.arr[p] -> not prime i };
            cnt <- cnt + 1;
-           p <- next
+           assert { exists i. 0 <= i <= cnt /\ t.arr[i] = 2 * p + 1 };
+           p <- next;
+           assert { forall j. 2 * p + 1 < j < (t.arr at BeforeAssign)[p] -> not prime j by (cnt at BeforeAssign) <= p < length t.arr };
+           assert { (p at BeforeAssign) < div (abs (t.arr at BeforeAssign)[p at BeforeAssign]) 2 <= length t.arr};
+           assert { next < div (abs (t.arr at BeforeAssign)[next]) 2 by cnt <= next < length t.arr (* by (p at BeforeAssign) < div (abs (t.arr at BeforeAssign)[p at BeforeAssign]) 2 <= length t.arr *) };
+           assert { forall i. 2 * (p at BeforeAssign) + 1 < i < (t.arr at BeforeAssign)[p at BeforeAssign] -> not prime i };
+                    (* forall j. 2 * p + 1 < j < (t.arr at BeforeAssign)[p] -> not prime j } *)
+           assert { forall k. cnt <= k < length (t.arr at BeforeAssign) -> t.arr[k] = (t.arr at BeforeAssign)[k] }
          end
       else begin
         t.arr[cnt] <- 2 * p + 1;
