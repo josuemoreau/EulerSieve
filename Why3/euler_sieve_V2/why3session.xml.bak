@@ -2901,37 +2901,45 @@
   <transf name="split_vc" >
    <goal name="euler_sieve&#39;vc.96.0" expl="loop variant decrease">
    <proof prover="0" timelimit="5"><result status="timeout" time="5.00"/></proof>
-   <proof prover="1" timelimit="5"><result status="timeout" time="5.00" steps="9666602"/></proof>
-   <proof prover="2" timelimit="5"><result status="highfailure" time="1.08" steps="401343"/></proof>
+   <proof prover="1" timelimit="5"><result status="timeout" time="5.00" steps="9426540"/></proof>
+   <proof prover="2" timelimit="5"><result status="highfailure" time="1.35" steps="401342"/></proof>
+   <proof prover="3"><result status="timeout" time="5.00"/></proof>
+   <proof prover="4"><result status="timeout" time="5.00"/></proof>
    <proof prover="5" timelimit="5"><result status="timeout" time="5.00"/></proof>
-   <proof prover="6"><result status="failure" time="0.00"/></proof>
+   <proof prover="6"><result status="timeout" time="5.00" steps="242323"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.96.1" expl="loop variant decrease">
-   <proof prover="5" timelimit="10"><result status="timeout" time="10.00"/></proof>
+   <proof prover="0" timelimit="5"><result status="timeout" time="5.00"/></proof>
+   <proof prover="1" timelimit="5"><result status="timeout" time="5.00" steps="9119659"/></proof>
+   <proof prover="2" timelimit="5"><result status="highfailure" time="0.82" steps="318645"/></proof>
+   <proof prover="3"><result status="timeout" time="5.00"/></proof>
+   <proof prover="4"><result status="timeout" time="5.00"/></proof>
+   <proof prover="5" timelimit="5"><result status="timeout" time="5.00"/></proof>
+   <proof prover="6"><result status="timeout" time="5.00" steps="218849"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.97" expl="loop invariant preservation">
-  <proof prover="0" timelimit="5"><result status="timeout" time="10.00"/></proof>
+  <proof prover="0" timelimit="5" obsolete="true"><result status="timeout" time="10.00"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.98" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="193679"/></proof>
+  <proof prover="1"><result status="valid" time="0.08" steps="45648"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.99" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.14" steps="84"/></proof>
+  <proof prover="5"><result status="valid" time="0.02" steps="77"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.100" expl="loop invariant preservation" proved="true">
-  <proof prover="5" timelimit="5"><result status="valid" time="0.09" steps="86"/></proof>
+  <proof prover="5" timelimit="5"><result status="valid" time="0.09" steps="77"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.101" expl="loop invariant preservation" proved="true">
   <transf name="inline_goal" proved="true" >
    <goal name="euler_sieve&#39;vc.101.0" expl="loop invariant preservation" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="euler_sieve&#39;vc.101.0.0" expl="loop invariant preservation" proved="true">
-    <proof prover="5" timelimit="5"><result status="valid" time="0.17" steps="76"/></proof>
+    <proof prover="5" timelimit="5"><result status="valid" time="0.03" steps="61"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.101.0.1" expl="loop invariant preservation" proved="true">
-    <proof prover="5" timelimit="5"><result status="valid" time="0.16" steps="76"/></proof>
+    <proof prover="5" timelimit="5"><result status="valid" time="0.04" steps="61"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.101.0.2" expl="loop invariant preservation" proved="true">
     <transf name="unfold" proved="true" arg1="inv_count" arg2="in" arg3="LoopInvariant7">
@@ -2940,10 +2948,10 @@
       <goal name="euler_sieve&#39;vc.101.0.2.0.0" expl="loop invariant preservation" proved="true">
       <transf name="assert" proved="true" arg1="(t_arr[cnt1 &lt;- ((2 * p1) + 1)][i] = t_arr[i])">
        <goal name="euler_sieve&#39;vc.101.0.2.0.0.0" expl="asserted formula" proved="true">
-       <proof prover="5" timelimit="5"><result status="valid" time="0.18" steps="78"/></proof>
+       <proof prover="5" timelimit="5"><result status="valid" time="0.03" steps="59"/></proof>
        </goal>
        <goal name="euler_sieve&#39;vc.101.0.2.0.0.1" expl="loop invariant preservation" proved="true">
-       <proof prover="5" timelimit="5"><result status="valid" time="0.18" steps="80"/></proof>
+       <proof prover="5" timelimit="5"><result status="valid" time="0.05" steps="59"/></proof>
        </goal>
       </transf>
       </goal>
@@ -2952,7 +2960,7 @@
     </transf>
     </goal>
     <goal name="euler_sieve&#39;vc.101.0.3" expl="loop invariant preservation" proved="true">
-    <proof prover="1" timelimit="10"><result status="valid" time="0.12" steps="210845"/></proof>
+    <proof prover="1" timelimit="10"><result status="valid" time="0.12" steps="45725"/></proof>
     </goal>
    </transf>
    </goal>
@@ -2986,10 +2994,10 @@
   <proof prover="6" obsolete="true"><result status="timeout" time="5.00" steps="193329"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.105" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.20" steps="98"/></proof>
+  <proof prover="5"><result status="valid" time="0.04" steps="77"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.106" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.09" steps="98"/></proof>
+  <proof prover="5"><result status="valid" time="0.09" steps="77"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.107" expl="precondition" proved="true">
   <proof prover="5"><result status="valid" time="0.04" steps="68"/></proof>
@@ -3151,20 +3159,8 @@
    </goal>
   </transf>
   </goal>
-  <goal name="euler_sieve&#39;vc.143" expl="loop variant decrease">
-  <transf name="split_vc" >
-   <goal name="euler_sieve&#39;vc.143.0" expl="loop variant decrease">
-   <transf name="inline_all" >
-    <goal name="euler_sieve&#39;vc.143.0.0" expl="loop variant decrease">
-    <proof prover="3" timelimit="10" obsolete="true"><result status="timeout" time="10.00"/></proof>
-    <proof prover="5" obsolete="true"><result status="failure" time="0.00"/></proof>
-    </goal>
-   </transf>
-   </goal>
-   <goal name="euler_sieve&#39;vc.143.1" expl="loop variant decrease" proved="true">
-   <proof prover="5"><result status="valid" time="0.03" steps="62"/></proof>
-   </goal>
-  </transf>
+  <goal name="euler_sieve&#39;vc.143" expl="loop variant decrease" proved="true">
+  <proof prover="5" timelimit="5"><result status="valid" time="0.09" steps="74"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.144" expl="loop invariant preservation" proved="true">
   <proof prover="5"><result status="valid" time="0.02" steps="72"/></proof>
@@ -3276,11 +3272,11 @@
   </goal>
   <goal name="euler_sieve&#39;vc.163" expl="assertion">
   </goal>
-  <goal name="euler_sieve&#39;vc.164" expl="loop variant decrease">
+  <goal name="euler_sieve&#39;vc.164" expl="loop variant decrease" proved="true">
   <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
   <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2410920"/></proof>
   <proof prover="2" obsolete="true"><result status="highfailure" time="0.54" steps="173356"/></proof>
-  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" timelimit="5"><result status="valid" time="0.47" steps="226"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.165" expl="loop invariant preservation">
   <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
@@ -3334,10 +3330,27 @@
   <proof prover="5"><result status="valid" time="0.06" steps="58"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.176" expl="loop variant decrease">
-  <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
-  <proof prover="1" obsolete="true"><result status="timeout" time="1.00" steps="2701511"/></proof>
-  <proof prover="2" obsolete="true"><result status="highfailure" time="0.33" steps="124221"/></proof>
-  <proof prover="5" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="0" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
+  <proof prover="1" timelimit="5" obsolete="true"><result status="timeout" time="5.00" steps="10958174"/></proof>
+  <proof prover="2" timelimit="5" obsolete="true"><result status="highfailure" time="1.51" steps="518662"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="5.00"/></proof>
+  <proof prover="4" obsolete="true"><result status="timeout" time="5.00"/></proof>
+  <proof prover="5" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
+  <proof prover="6" obsolete="true"><result status="timeout" time="5.00" steps="261325"/></proof>
+  <transf name="split_vc" >
+   <goal name="euler_sieve&#39;vc.176.0" expl="loop variant decrease">
+   <proof prover="0" timelimit="5"><result status="timeout" time="5.00"/></proof>
+   </goal>
+   <goal name="euler_sieve&#39;vc.176.1" expl="loop variant decrease">
+   <proof prover="0" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="1" timelimit="5" obsolete="true"><result status="timeout" time="5.00" steps="9355808"/></proof>
+   <proof prover="2" timelimit="5" obsolete="true"><result status="highfailure" time="0.94" steps="318758"/></proof>
+   <proof prover="3" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="4" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="5" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
+   <proof prover="6" obsolete="true"><result status="timeout" time="5.00" steps="215564"/></proof>
+   </goal>
+  </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.177" expl="loop invariant preservation">
   <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
@@ -3352,10 +3365,10 @@
   <proof prover="6" timelimit="1" obsolete="true"><result status="failure" time="0.00"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.179" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.09" steps="71"/></proof>
+  <proof prover="5"><result status="valid" time="0.09" steps="65"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.180" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.07" steps="73"/></proof>
+  <proof prover="5"><result status="valid" time="0.07" steps="65"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.181" expl="loop invariant preservation">
   <proof prover="0" obsolete="true"><result status="timeout" time="1.00"/></proof>
@@ -3376,13 +3389,13 @@
   <proof prover="5" timelimit="5" obsolete="true"><result status="timeout" time="5.00"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.184" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.08" steps="85"/></proof>
+  <proof prover="5"><result status="valid" time="0.08" steps="65"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.185" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.11" steps="85"/></proof>
+  <proof prover="5"><result status="valid" time="0.11" steps="65"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.186" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.06" steps="85"/></proof>
+  <proof prover="5"><result status="valid" time="0.06" steps="65"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.187" expl="precondition" proved="true">
   <proof prover="5"><result status="valid" time="0.05" steps="56"/></proof>
