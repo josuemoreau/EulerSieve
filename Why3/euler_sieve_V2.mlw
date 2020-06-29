@@ -848,8 +848,8 @@ module EulerSieveImpl
     let ref cnt = 1 in
     let ref p = 1 in
     t.arr[0] <- 2;
-    while (* t.arr[p] *) 2 * p + 1 <= max || p <= t.max_arr do
-      invariant { 1 <= p <= t.max_arr }
+    while (* t.arr[p] *) 2 * p + 1 <= max (* || p <= t.max_arr *) do
+      invariant { 1 <= p <= t.max_arr + 1 }
       invariant { 1 <= cnt <= p }
       invariant { t.arr[p] >= 0 }
       invariant { prime (2 * p + 1) }
@@ -860,9 +860,10 @@ module EulerSieveImpl
       invariant { forall i. 0 <= i < cnt -> prime t.arr[i] }
       invariant { forall i. 2 <= i < 2 * p + 1 (* t.arr[p] *) -> prime i ->
                             exists j. 0 <= j < cnt /\ t.arr[j] = i }
-      variant { max + 1 - t.arr[p] (* + t.max_arr + 1 - p *) }
+      variant { t.max_arr + 1 - p , max + 1 - t.arr[p] }
       let next = div t.arr[p] 2 in
-      if next <= t.max_arr then
+      if next <= t.max_arr then begin
+         assert { 1 <= p <= t.max_arr };
          if t.arr[next] < 0 then begin
            label BeforeAssign in
            t.arr[p] <- - t.arr[next];
@@ -899,12 +900,21 @@ module EulerSieveImpl
                     (* forall j. 2 * p + 1 < j < (t.arr at BeforeAssign)[p] -> not prime j } *)
            assert { forall k. cnt <= k < length (t.arr at BeforeAssign) -> t.arr[k] = (t.arr at BeforeAssign)[k] }
          end
-      else begin
+      end else begin
+        label BeforeAssign in
         t.arr[cnt] <- 2 * p + 1;
+        assert { forall i. 0 <= i < length t.arr -> i <> cnt ->
+                           t.arr[i] = (t.arr at BeforeAssign)[i] };
+        (* assert { forall i. (cnt + 1 <= i <= t.max_arr) -> *)
+        (*                    t.arr[i] = (t.arr at BeforeAssign)[i] }; *)
+        assert { forall i. 0 <= i < cnt -> prime t.arr[i] };
+        assert { prime t.arr[cnt] };
         cnt <- cnt + 1;
         p <- t.max_arr + 1
       end
     done;
+    (* t.arr[cnt] <- 2 * p + 1; *)
+    (* cnt <- cnt + 1; *)
     sub t.arr 0 cnt
 
 end
