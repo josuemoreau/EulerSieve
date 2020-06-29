@@ -910,7 +910,14 @@ module EulerSieveImpl
         assert { forall i. 0 <= i < cnt -> prime t.arr[i] };
         assert { prime t.arr[cnt] };
         cnt <- cnt + 1;
-        p <- t.max_arr + 1
+        assert { exists i. 0 <= i <= cnt /\ t.arr[i] = 2 * p + 1 };
+        p <- t.max_arr + 1;
+        (* assert { forall j. 2 * p + 1 < j < (t.arr at BeforeAssign)[p] -> not prime j by (cnt at BeforeAssign) <= p < length t.arr }; *)
+        (* assert { (p at BeforeAssign) < div (abs (t.arr at BeforeAssign)[p at BeforeAssign]) 2 <= length t.arr}; *)
+        (* assert { next < div (abs (t.arr at BeforeAssign)[next]) 2 by cnt <= next < length t.arr (\* by (p at BeforeAssign) < div (abs (t.arr at BeforeAssign)[p at BeforeAssign]) 2 <= length t.arr *\) }; *)
+        assert { forall i. 2 * (p at BeforeAssign) + 1 < i < (t.arr at BeforeAssign)[p at BeforeAssign] -> not prime i };
+                 (* forall j. 2 * p + 1 < j < (t.arr at BeforeAssign)[p] -> not prime j } *)
+        assert { forall k. cnt <= k < length (t.arr at BeforeAssign) -> t.arr[k] = (t.arr at BeforeAssign)[k] }
       end
     done;
     (* t.arr[cnt] <- 2 * p + 1; *)
