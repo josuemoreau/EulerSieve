@@ -262,7 +262,6 @@ module EulerSieve
   use number.Prime
   use seq.Seq
   use int.EuclideanDivision
-  use mach.int.Int63
 
   use ArithmeticResults
   use DivisibilityResults
@@ -300,11 +299,10 @@ module EulerSieve
     requires { only_products_marked marked_old n }
     requires { prime_products_marked marked_old marked n marked.length }
     ensures  { all_products_marked marked n marked.length } =
-    assert { (forall i. 2 <= i < n /\ 2 <= i < marked.length ->
-                        not marked_old[i] ->
-                        i * n < marked.length ->
-                        marked[i * n])
-              by previously_marked_products marked n };
+    assert { forall i. 2 <= i < n /\ 2 <= i < marked.length ->
+                       not marked_old[i] ->
+                       i * n < marked.length ->
+                       marked[i * n] };
     assert { forall k. 2 <= k < marked_old.length ->
                        marked_old[k] ->
                        n * k < marked_old.length ->
@@ -395,6 +393,8 @@ module EulerSieve
     requires { 0 <= i < length s1 /\ length s1 = length s2 }
     requires { s1 = s2[i <- v] }
     ensures  { forall j. 0 <= j < length s1 -> i <> j -> s1[j] = s2[j] } = ()
+
+  use mach.int.Int63
 
   type t = private {
     mutable ghost nexts: seq int;
