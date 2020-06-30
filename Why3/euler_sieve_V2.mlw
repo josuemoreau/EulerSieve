@@ -471,7 +471,8 @@ module EulerSieve
     ensures  { inv_marked_old_nexts2 t.marked t.nexts t.nexts[n] }
     ensures  { previously_marked_products t.marked t.nexts[n] }
     ensures  { only_products_marked t.marked t.nexts[n] }
-    = let ghost max = t.max in
+    = let d = get_max t / n in
+      let ghost max = t.max in
       let ghost marked_old = t.marked in
       let rec loop (p: int63) (ghost x: int) =
         requires { n <= p <= max /\ 3 <= n <= max /\ mod p 2 = 1 /\
@@ -494,14 +495,15 @@ module EulerSieve
         ensures  { only_products_marked t.marked (n + 1) }
         variant  { max - t.nexts[p] }
         let next = get_next t p in
-        if 0 <= next < get_max t + 1 then
-          if n * next <= get_max t then begin
+        if 0 <= next <= get_max t then (* 0 <= next < get_max t + 1 -> 0 <= next <= get_max t *)
+          if next <= d then begin
+            assert { n * next <= max by n * next <= n * d by next <= d };
             ghost (conservation_only_products_marked t.marked (to_int n + 1) (to_int n)
                                                      t.nexts[to_int p]);
             let ghost marked_copy = t.marked in
             set_mark t (n * next);
             unchanged_other_elements_seq t.marked marked_copy (to_int n * to_int next) true;
-            assert { p < 2 * p < 2 * t.nexts[p] <= n * t.nexts[p] };
+            assert { p < 2 * p < 2 * t.nexts[p] <= n * t.nexts[p] = n * next };
             assert { not t.marked[p] by n * next > p /\ p <= length t.marked };
             assert { not marked_old[t.nexts[p]] by 2 <= p < next <= div max n };
             assert { prime_products_marked marked_old t.marked n t.nexts[next]
@@ -524,6 +526,7 @@ module EulerSieve
               loop next (to_int next)
             end
           end else begin
+            assert { n * next > max by n * (div max n + 1) > max >= n * div max n /\ n * next >= n * (d + 1) by next >= d + 1 };
             ghost (conservation_inv_marked_old_nexts2 t.marked t.nexts (to_int max) (to_int n) (to_int p))
         end else ghost (conservation_inv_marked_old_nexts2 t.marked t.nexts (to_int max) (to_int n) (to_int p)) in
         ghost (conservation_only_products_marked t.marked (to_int n + 1) (to_int n) (to_int n));
