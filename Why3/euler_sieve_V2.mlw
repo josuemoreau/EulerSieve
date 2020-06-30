@@ -95,8 +95,8 @@ module DivisibilityResults
     ensures  { forall i.
                  2 <= i < n * n ->
                  not prime i ->
-                 exists j. 2 <= j < i /\ ((j < n) by j * j < n * n /\ j >= 0) /\
-                           divides j i } = ()
+                 exists j. 2 <= j < i /\ ((j < n)
+                           by j * j < n * n /\ j >= 0) /\ divides j i } = ()
 
 end
 
@@ -286,9 +286,9 @@ module EulerSieve
                 forall j.
                   1 <= j < marked.length ->
                   k * i * j < marked.length ->
-                  (marked[k * i * j] by
-                    1 <= i * j < marked.length by
-                    k >= 2 /\ i >= 2 /\ j >= 1 /\ k * (i * j) < marked.length) }
+                  (marked[k * i * j]
+                   by 1 <= i * j < marked.length
+                   by k >= 2 /\ i >= 2 /\ j >= 1 /\ k * (i * j) < marked.length) }
     = ()
 
   let lemma prev_and_new_impl_all_products_marked (marked_old marked: seq bool)
@@ -304,8 +304,8 @@ module EulerSieve
     assert { (forall i. 2 <= i < n /\ 2 <= i < marked.length ->
                         not marked_old[i] ->
                         i * n < marked.length ->
-                        marked[i * n]) by
-             previously_marked_products marked n };
+                        marked[i * n])
+              by previously_marked_products marked n };
     assert { forall k. 2 <= k < marked_old.length ->
                        marked_old[k] ->
                        n * k < marked_old.length ->
@@ -317,8 +317,8 @@ module EulerSieve
     assert { forall k. 2 <= k < marked_old.length ->
                        marked_old[k] ->
                        n * k < marked_old.length ->
-                       marked[k * n] by
-             forall k. 2 <= k < marked_old.length ->
+                       marked[k * n]
+             by forall k. 2 <= k < marked_old.length ->
                        marked_old[k] ->
                        n * k < marked_old.length ->
                        marked_old[k * n] };
@@ -363,9 +363,8 @@ module EulerSieve
               n < i < nexts[n] ->
               2 <= j < marked.length ->
               i * j < marked.length ->
-              (marked[i * j] by
-              (exists k l. 2 <= k <= n /\ 2 <= l < marked.length /\
-                           k * l = i)) };
+              (marked[i * j]
+               by (exists k l. 2 <= k <= n /\ 2 <= l < marked.length /\ k * l = i)) };
     assert { forall i.
               n < i < nexts[n] ->
               all_products_marked marked i marked.length }
@@ -388,9 +387,9 @@ module EulerSieve
                                                (max n p: int)
     requires { inv_marked_old_nexts2 marked nexts n /\
                  nexts[n] > n > 0 /\
-                 div max nexts[n] <= div max n by
-                 forall i. p < i < nexts[p] -> marked[i] /\
-                 inv_marked_old_nexts2_partial marked nexts n p }
+                 div max nexts[n] <= div max n
+                 by forall i. p < i < nexts[p] -> marked[i] /\
+                    inv_marked_old_nexts2_partial marked nexts n p }
     ensures  { inv_marked_old_nexts2 marked nexts nexts[n] } = ()
 
   let lemma unchanged_other_elements_seq (s1: seq 'a) (s2: seq 'a) (i: int) (v: 'a)
@@ -546,10 +545,10 @@ module EulerSieve
     requires { previously_marked_products marked n }
     ensures  { prime n } =
     assert { forall k.
-               2 <= k < n -> not divides k n by
-             forall k.
-               2 <= k < n ->
-               not (exists i. 2 <= i < marked.length /\ n = k * i) }
+               2 <= k < n -> not divides k n
+             by forall k.
+                  2 <= k < n ->
+                  not (exists i. 2 <= i < marked.length /\ n = k * i) }
 
   let lemma only_products_marked_impl_not_marked (marked: seq bool)
                                                  (nexts: seq int)
@@ -578,22 +577,30 @@ module EulerSieveImpl
   use EulerSieveSpec
 
   let lemma conservation_inv_arr_on_mark (arr: array int) (i: int)
-    requires { forall j k. 0 <= j < length arr -> j < k < div (abs arr[j]) 2 -> arr[k] < 0 }
+    requires { forall j k. 0 <= j < length arr ->
+                           j < k < div (abs arr[j]) 2 -> arr[k] < 0 }
     requires { forall i. 0 <= i < length arr -> i < div (abs arr[i]) 2 <= length arr }
     requires { 0 <= i < length arr }
     requires { arr[i] >= 0 }
-    ensures  { forall j k. 0 <= j < length arr -> j < k < div (abs arr[i <- - arr[i]][j]) 2 -> arr[i <- - arr[i]][k] < 0 } =
-    assert { forall j. 0 <= j < length arr -> arr[j] < i -> arr[j] = arr[i <- - arr[i]][j] };
-    assert { forall j. 0 <= j < length arr -> arr[i] < j -> arr[j] = arr[i <- - arr[i]][j] }
+    ensures  { forall j k. 0 <= j < length arr ->
+                           j < k < div (abs arr[i <- - arr[i]][j]) 2 ->
+                           arr[i <- - arr[i]][k] < 0 } =
+    assert { forall j. 0 <= j < length arr ->
+                       arr[j] < i -> arr[j] = arr[i <- - arr[i]][j] };
+    assert { forall j. 0 <= j < length arr ->
+                       arr[i] < j -> arr[j] = arr[i <- - arr[i]][j] }
 
   let lemma conservation_inv_arr_on_jump (arr: array int) (min i: int)
     requires { min >= 0 }
-    requires { forall j k. min <= j < length arr -> j < k < div (abs arr[j]) 2 -> arr[k] < 0 }
+    requires { forall j k. min <= j < length arr ->
+                           j < k < div (abs arr[j]) 2 -> arr[k] < 0 }
     requires { forall i. min <= i < length arr -> i < div (abs arr[i]) 2 <= length arr }
     requires { min <= i < length arr }
     requires { 0 <= div arr[i] 2 < length arr }
     requires { arr[div arr[i] 2] < 0 }
-    ensures  { forall j k. min <= j < length arr -> j < k < div (abs arr[i <- - arr[div arr[i] 2]][j]) 2 -> arr[i <- - arr[div arr[i] 2]][k] < 0 } =
+    ensures  { forall j k. min <= j < length arr ->
+                           j < k < div (abs arr[i <- - arr[div arr[i] 2]][j]) 2 ->
+                           arr[i <- - arr[div arr[i] 2]][k] < 0 } =
     let ghost next = div arr[i] 2 in
     let ghost arr1 = arr[i <- - arr[next]] in
     assert { forall j. min <= j < i -> arr[j] = arr1[j] };
@@ -613,7 +620,9 @@ module EulerSieveImpl
     invariant { inv_nexts nexts (Seq.length nexts) }
     invariant { inv_marked_nexts marked nexts }
     invariant { forall i. 3 <= i <= max -> mod i 2 = 0 -> Seq.get marked i }
-    invariant { forall i. 3 <= i < max - 1 -> mod i 2 = 1 -> mod (Seq.get nexts i) 2 = 1 \/ Seq.get nexts i = max + 1 }
+    invariant { forall i. 3 <= i < max - 1 ->
+                          mod i 2 = 1 ->
+                          mod (Seq.get nexts i) 2 = 1 \/ Seq.get nexts i = max + 1 }
     invariant { Seq.get nexts max = max + 1 /\
                 (mod (max - 1) 2 = 0 -> Seq.get nexts (max - 1) = max) /\
                 (mod (max - 1) 2 = 1 -> Seq.get nexts (max - 1) = max + 1) }
@@ -627,7 +636,8 @@ module EulerSieveImpl
     invariant { forall i. 0 <= i <= max_arr ->
                           Seq.get marked (2 * i + 1) ->
                           arr[i] = - Seq.get nexts (2 * i + 1) }
-    invariant { forall i. 0 <= i <= max_arr -> i < div (abs arr[i]) 2 <= max_arr + 1 /\ abs arr[i] <= max + 1 }
+    invariant { forall i. 0 <= i <= max_arr ->
+                          i < div (abs arr[i]) 2 <= max_arr + 1 /\ abs arr[i] <= max + 1 }
     invariant { forall i j. 0 <= i <= max_arr -> i < j < div (abs arr[i]) 2 -> arr[j] < 0 }
     by { nexts = Seq.create 4 (fun i -> i + 1);
          marked = Seq.create 4 (fun i -> i < 2);
@@ -650,7 +660,8 @@ module EulerSieveImpl
     ensures  { forall i. 2 <= i <= div (max - 1) 2 ->
                          2 * i < max - 1 ->
                          Seq.get result.nexts (2 * i) = 2 * i + 1 }
-    ensures  { forall i. 0 <= i <= max -> Seq.get result.marked i -> i < 2 \/ divides 2 i }
+    ensures  { forall i. 0 <= i <= max ->
+                         Seq.get result.marked i -> i < 2 \/ divides 2 i }
   = let ghost len = max + 1 in
     let len_arr = div (max - 1) 2 + 1 in
     let ghost nexts = Seq.create len (fun i ->
@@ -658,7 +669,8 @@ module EulerSieveImpl
           else if i = max - 1 then if mod i 2 = 0 then max else max + 1
           else if i < 3 || mod i 2 = 0 then i + 1
           else i + 2) in
-    let ghost marked = Seq.create len (fun i -> i = 0 || i = 1 || (i > 2 && mod i 2 = 0)) in
+    let ghost marked = Seq.create len (fun i ->
+          i = 0 || i = 1 || (i > 2 && mod i 2 = 0)) in
     { nexts = nexts;
       marked = marked;
       arr = Init.init len_arr (fun i ->
@@ -751,14 +763,14 @@ module EulerSieveImpl
         if nn * nn <= max then begin
           assert { nn <= div max (nn) };
           ghost (previously_marked_products_impl_prime t.marked nn);
-          assert { (forall i. n < i < nn -> not prime i) by
-                   (forall i.
+          assert { (forall i. n < i < nn -> not prime i)
+                   by (forall i.
                       n < i < nn ->
                       (exists j k.
                          2 <= j < nn /\
                          2 <= k < Seq.length t.marked /\
-                         j * k = i) by
-                           Seq.get t.marked i) };
+                         j * k = i)
+                         by Seq.get t.marked i) };
           loop (nn)
         end else begin
           ghost (not_prime_impl_divisor_under_sqrt (nn));
@@ -770,18 +782,24 @@ module EulerSieveImpl
           ghost (no_prod_impl_no_divider (nn));
           assert { forall i. 2 <= i < Seq.length t.marked ->
                              not Seq.get t.marked i ->
-                             prime i by
-                   forall i.
-                    2 <= i < Seq.length t.marked ->
-                    not Seq.get t.marked i ->
-                    (not (exists k. 2 <= k < nn /\ k <> i /\
-                                    divides k i) by
-                    i < nn * nn /\ forall k. 2 <= k -> k <> i -> (divides k i <-> exists l. 2 <= l < i /\ k * l = i) by divides k i -> 2 <= div i k < i) }
+                             prime i
+                   by forall i.
+                        2 <= i < Seq.length t.marked ->
+                        not Seq.get t.marked i ->
+                        (not (exists k. 2 <= k < nn /\ k <> i /\
+                                        divides k i)
+                         by i < nn * nn /\
+                            forall k.
+                              2 <= k ->
+                              k <> i ->
+                              (divides k i <-> exists l. 2 <= l < i /\ k * l = i)
+                              by divides k i -> 2 <= div i k < i) }
         end in
     if max >= 9 then loop 3;
     assert { forall i. 1 <= i <= t.max_arr -> t.arr[i] >= 0 <-> prime (2 * i + 1) };
-    assert { forall p i. 1 <= p <= t.max_arr -> 2 * p + 1 < i < abs t.arr[p] -> not prime i by
-             mod i 2 = 0 -> (Seq.get t.marked i by Seq.get t.nexts (2 * i + 1) = t.arr[i]) };
+    assert { forall p i. 1 <= p <= t.max_arr -> 2 * p + 1 < i < abs t.arr[p] -> not prime i
+             by mod i 2 = 0 -> (Seq.get t.marked i
+             by Seq.get t.nexts (2 * i + 1) = t.arr[i]) };
     assert { forall j. 1 <= j <= t.max_arr -> t.arr[0 <- 2][j] = t.arr[j] };
     let ref cnt = 1 in
     let ref p = 1 in
@@ -810,15 +828,18 @@ module EulerSieveImpl
           assert { t.arr[p] = abs (t.arr at BeforeAssign)[next] > (t.arr at BeforeAssign)[p] > p };
           conservation_inv_arr_on_jump pure { t.arr at BeforeAssign } cnt p;
           assert { cnt <= next < length t.arr };
-          assert { (forall j. 2 * p + 1 < j < (t.arr at BeforeAssign)[p] -> not prime j) /\
-                   (forall j. 2 * next + 1 < j < abs (t.arr at BeforeAssign)[next] -> not prime j) }
+          assert { (forall j. 2 * p + 1 < j < (t.arr at BeforeAssign)[p] ->
+                              not prime j) /\
+                   (forall j. 2 * next + 1 < j < abs (t.arr at BeforeAssign)[next] ->
+                              not prime j) }
         end else begin
           label BeforeAssign in
           t.arr[cnt] <- 2 * p + 1;
           unchanged_other_elements_arr t.arr (pure { t.arr at BeforeAssign }) cnt (2 * p + 1);
           cnt <- cnt + 1;
           p <- next;
-          assert { forall k. cnt <= k < length (t.arr at BeforeAssign) -> t.arr[k] = (t.arr at BeforeAssign)[k] }
+          assert { forall k. cnt <= k < length (t.arr at BeforeAssign) ->
+                             t.arr[k] = (t.arr at BeforeAssign)[k] }
         end
       end else begin
         label BeforeAssign in
@@ -826,7 +847,8 @@ module EulerSieveImpl
         unchanged_other_elements_arr t.arr (pure { t.arr at BeforeAssign }) cnt (2 * p + 1);
         cnt <- cnt + 1;
         p <- t.max_arr + 1;
-        assert { forall k. cnt <= k < length (t.arr at BeforeAssign) -> t.arr[k] = (t.arr at BeforeAssign)[k] }
+        assert { forall k. cnt <= k < length (t.arr at BeforeAssign) ->
+                           t.arr[k] = (t.arr at BeforeAssign)[k] }
       end
     done;
     sub t.arr 0 cnt
