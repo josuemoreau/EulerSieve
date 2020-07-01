@@ -401,7 +401,7 @@ module EulerSieve
     mutable ghost marked: seq bool;
     max: int63;
   }
-    invariant { max >= 3 }
+    invariant { max_int > max >= 3 }
     invariant { nexts.length = marked.length = max + 1 }
     invariant { inv_nexts nexts nexts.length }
     invariant { inv_marked_nexts marked nexts }
@@ -418,7 +418,7 @@ module EulerSieve
          max = 3 }
 
   val create (max: int63) : t
-    requires { max >= 3 }
+    requires { max_int > max >= 3 }
     ensures  { result.max = max }
     ensures  { Seq.get result.marked 0 = Seq.get result.marked 1 = true /\
                not Seq.get result.marked 2 }
@@ -616,7 +616,7 @@ module EulerSieveImpl
     max: int63;
     max_arr: int63
   }
-    invariant { max >= 3 }
+    invariant { max_int > max >= 3 }
     invariant { Seq.length nexts = Seq.length marked = max + 1 }
     invariant { div (max - 1) 2 = max_arr }
     invariant { length arr = max_arr + 1 }
@@ -648,7 +648,7 @@ module EulerSieveImpl
          max = 3; max_arr = 1 }
 
   let create (max: int63) : t
-    requires { max >= 3 }
+    requires { max_int > max >= 3 }
     ensures  { result.max = max }
     ensures  { Seq.get result.marked 0 = Seq.get result.marked 1 = true /\
                not Seq.get result.marked 2 }
