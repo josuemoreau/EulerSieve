@@ -389,7 +389,7 @@ module EulerSieve
                     inv_marked_old_nexts2_partial marked nexts n p }
     ensures  { inv_marked_old_nexts2 marked nexts nexts[n] } = ()
 
-  let lemma unchanged_other_elements_seq (s1: seq 'a) (s2: seq 'a) (i: int) (v: 'a)
+  let lemma unchanged_other_elements (s1: seq 'a) (s2: seq 'a) (i: int) (v: 'a)
     requires { 0 <= i < length s1 /\ length s1 = length s2 }
     requires { s1 = s2[i <- v] }
     ensures  { forall j. 0 <= j < length s1 -> i <> j -> s1[j] = s2[j] } = ()
@@ -502,7 +502,7 @@ module EulerSieve
                                                      t.nexts[to_int p]);
             let ghost marked_copy = t.marked in
             set_mark t (n * next);
-            unchanged_other_elements_seq t.marked marked_copy (to_int n * to_int next) true;
+            unchanged_other_elements t.marked marked_copy (to_int n * to_int next) true;
             assert { p < 2 * p < 2 * t.nexts[p] <= n * t.nexts[p] = n * next };
             assert { not t.marked[p] by n * next > p /\ p <= length t.marked };
             assert { not marked_old[t.nexts[p]] by 2 <= p < next <= div max n };
@@ -515,7 +515,7 @@ module EulerSieve
               assert { t.nexts[p] <> t.marked.length };
               let ghost nexts_copy = t.nexts in
               set_next t p (get_next t next);
-              unchanged_other_elements_seq t.nexts nexts_copy (to_int p) nexts_copy[to_int next];
+              unchanged_other_elements t.nexts nexts_copy (to_int p) nexts_copy[to_int next];
               assert { inv_marked_old_nexts1 marked_old t.nexts next
                        by p <= x < next /\
                           forall j. next <= j < length t.nexts ->
@@ -532,7 +532,7 @@ module EulerSieve
         ghost (conservation_only_products_marked t.marked (to_int n + 1) (to_int n) (to_int n));
         let ghost marked_copy = t.marked in
         set_mark t (n * n);
-        unchanged_other_elements_seq t.marked marked_copy (to_int n * to_int n) true;
+        unchanged_other_elements t.marked marked_copy (to_int n * to_int n) true;
         assert { forall i. 0 <= i < n -> t.nexts[i] <> n * n
                  by forall i. 0 <= i < n -> t.nexts[i] <= n < n * n
                  by not t.marked[n] /\
@@ -739,10 +739,10 @@ module EulerSieveImpl
                (forall j. i < j < div (abs arr[i]) 2 -> arr[j] < 0) /\
                (forall j. 2 * i + 1 < j < abs arr[i] -> not prime j))
 
-  let lemma unchanged_other_elements_arr (s1: seq 'a) (s2: seq 'a) (i: int) (v: 'a)
-    requires { 0 <= i < length s1 /\ length s1 = length s2 }
-    requires { s1 = s2[i <- v] }
-    ensures  { forall j. 0 <= j < length s1 -> i <> j -> s1[j] = s2[j] } = ()
+  (* let lemma unchanged_other_elements_arr (s1: seq 'a) (s2: seq 'a) (i: int) (v: 'a) *)
+  (*   requires { 0 <= i < length s1 /\ length s1 = length s2 } *)
+  (*   requires { s1 = s2[i <- v] } *)
+  (*   ensures  { forall j. 0 <= j < length s1 -> i <> j -> s1[j] = s2[j] } = () *)
 
   let euler_sieve (max: int63) : array63
     requires { max >= 3 }
@@ -826,7 +826,7 @@ module EulerSieveImpl
         if t.arr[next] < 0 then begin
           label BeforeAssign in
           t.arr[p] <- - t.arr[next];
-          unchanged_other_elements_arr t.arr.elts (pure { t.arr.elts at BeforeAssign }) (to_int p)
+          unchanged_other_elements t.arr.elts (pure { t.arr.elts at BeforeAssign }) (to_int p)
             (- to_int t.arr[next]);
           assert { forall i. p < i < div t.arr[p] 2 -> t.arr[i] < 0 };
           assert { t.arr[p] = abs (t.arr at BeforeAssign)[next] > (t.arr at BeforeAssign)[p] > p };
@@ -839,7 +839,7 @@ module EulerSieveImpl
         end else begin
           label BeforeAssign in
           t.arr[cnt] <- 2 * p + 1;
-          unchanged_other_elements_arr t.arr.elts (pure { t.arr.elts at BeforeAssign }) (to_int cnt) (2 * to_int p + 1);
+          unchanged_other_elements t.arr.elts (pure { t.arr.elts at BeforeAssign }) (to_int cnt) (2 * to_int p + 1);
           cnt <- cnt + 1;
           p <- next;
           assert { forall k. cnt <= k < length (t.arr at BeforeAssign) ->
@@ -848,7 +848,7 @@ module EulerSieveImpl
       end else begin
         label BeforeAssign in
         t.arr[cnt] <- 2 * p + 1;
-        unchanged_other_elements_arr t.arr.elts (pure { t.arr.elts at BeforeAssign }) (to_int cnt) (2 * to_int p + 1);
+        unchanged_other_elements t.arr.elts (pure { t.arr.elts at BeforeAssign }) (to_int cnt) (2 * to_int p + 1);
         cnt <- cnt + 1;
         p <- t.max_arr + 1;
         assert { forall k. cnt <= k < length (t.arr at BeforeAssign) ->
