@@ -644,7 +644,7 @@ module EulerSieveImpl
     invariant { forall i j. 0 <= i <= max_arr -> i < j < div (abs arr[i]) 2 -> arr[j] < 0 }
     by { nexts = Seq.create 4 (fun i -> i + 1);
          marked = Seq.create 4 (fun i -> i < 2);
-         arr = ArrayInt63.init 2 (fun (i:int63) -> if to_int i = 0 then -2 else 4);
+         arr = ArrayInt63.set (ArrayInt63.make 2 (-2)) 1 4;
          max = 3; max_arr = 1 }
 
   let create (max: int63) : t
@@ -674,12 +674,17 @@ module EulerSieveImpl
           else i + 2}) in
     let ghost marked = Seq.create len (fun i ->
           i = 0 || i = 1 || (i > 2 && mod i 2 = 0)) in
+    let ghost f = pure { fun i -> if i = len_arr - 1 then max + 1
+          else if i = 0 then -2
+          else 2 * i + 3 } in
+    let arr = ArrayInt63.make len_arr (-2) in
+    for i = 1 to len_arr - 1 do
+      invariant { forall j. 0 <= j < i -> arr[j] = f j }
+      arr[i] <- if i = len_arr - 1 then max + 1 else 2 * i + 3
+    done;
     { nexts = nexts;
       marked = marked;
-      arr = ArrayInt63.init len_arr (fun i ->
-          if i = len_arr - 1 then max + 1
-          else if i = 0 then -2
-          else 2 * i + 3);
+      arr = arr;
       max = max;
       max_arr = (max - 1) / 2 }
 
