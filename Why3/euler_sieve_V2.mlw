@@ -736,6 +736,7 @@ module EulerSieveImpl
   predicate inv_count (arr: seq int) (min: int) =
     forall i. min <= i < arr.length ->
               (i < div (abs arr[i]) 2 <= arr.length /\
+               - max_int <= arr[i] <= max_int /\
                (forall j. i < j < div (abs arr[i]) 2 -> arr[j] < 0) /\
                (forall j. 2 * i + 1 < j < abs arr[i] -> not prime j))
 
@@ -745,7 +746,7 @@ module EulerSieveImpl
   (*   ensures  { forall j. 0 <= j < length s1 -> i <> j -> s1[j] = s2[j] } = () *)
 
   let euler_sieve (max: int63) : array63
-    requires { max >= 3 }
+    requires { max_int > max >= 3 }
     ensures { all_differents result result.length }
     ensures { forall i. 0 <= i < result.length -> prime result[i] }
     ensures { forall i. 2 <= i <= max -> prime i ->
@@ -763,8 +764,8 @@ module EulerSieveImpl
       variant { max + 1 - n }
         remove_products t n;
         let nn = get_next t n in
-        if nn * nn <= max then begin
-          assert { nn <= div max (nn) };
+        if nn <= max / nn then begin
+          assert { nn * nn <= max };
           ghost (previously_marked_products_impl_prime t.marked (to_int nn));
           assert { (forall i. n < i < nn -> not prime i)
                    by (forall i.
@@ -791,7 +792,11 @@ module EulerSieveImpl
                         not Seq.get t.marked i ->
                         (not (exists k. 2 <= k < nn /\ k <> i /\
                                         divides k i)
-                         by i < nn * nn /\
+                         by (i < nn * nn
+                                by nn * nn > max
+                                by nn * (div max nn + 1) > max >= nn * div max nn
+                                   /\ nn * nn >= nn * (div max nn + 1)
+                                by nn >= div max nn + 1) /\
                             forall k.
                               2 <= k ->
                               k <> i ->
