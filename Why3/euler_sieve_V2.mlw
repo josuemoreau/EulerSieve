@@ -789,6 +789,11 @@ module EulerSieveImpl
                      not (exists k l. 2 <= k < nn /\ 2 <= l < i /\
                                       k * l = i) };
           ghost (no_prod_impl_no_divider (to_int nn));
+          assert { Seq.length t.marked <= nn * nn
+                   by nn * nn > max
+                   by nn * (div max nn + 1) > max >= nn * div max nn
+                      /\ nn * nn >= nn * (div max nn + 1)
+                   by nn >= div max nn + 1 };
           assert { forall i. 2 <= i < Seq.length t.marked ->
                              not Seq.get t.marked i ->
                              prime i
@@ -797,12 +802,7 @@ module EulerSieveImpl
                         not Seq.get t.marked i ->
                         (not (exists k. 2 <= k < nn /\ k <> i /\
                                         divides k i)
-                         by (i < nn * nn
-                                by nn * nn > max
-                                by nn * (div max nn + 1) > max >= nn * div max nn
-                                   /\ nn * nn >= nn * (div max nn + 1)
-                                by nn >= div max nn + 1) /\
-                            forall k.
+                         by forall k.
                               2 <= k ->
                               k <> i ->
                               (divides k i <-> exists l. 2 <= l < i /\ k * l = i)
