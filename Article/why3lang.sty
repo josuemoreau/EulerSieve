@@ -1,0 +1,71 @@
+
+\RequirePackage{listings}
+\RequirePackage{amssymb}
+
+\lstdefinelanguage{why3}
+{
+basicstyle=\ttfamily,%
+morekeywords=[1]{abstract,absurd,alias,any,assert,assume,at,axiom,break,by,%
+check,clone,coinductive,constant,continue,diverges,do,done,downto,%
+else,end,ensures,exception,exists,export,false,for,forall,fun,%
+function,ghost,goal,if,import,in,inductive,invariant,label,lemma,%
+let,loop,match,meta,module,mutable,not,old,%
+predicate,private,pure,raise,raises,reads,rec,ref,requires,result,return,%
+returns,scope,so,then,theory,to,true,try,type,use,val,variant,while,%
+with,writes},%
+string=[b]",%
+keywordstyle=[1]{\color{blue}},%
+morekeywords=[2]{true,false},%
+%keywordstyle=[2]{\color{blue}},%
+%otherkeywords={},%
+commentstyle=\itshape,%
+columns=[l]fullflexible,%
+sensitive=true,%
+morecomment=[s]{(*}{*)},%
+%breaks hevea
+%escapeinside={*?}{?*},%
+keepspaces=true,%
+%literate=%
+% {'a}{$\alpha$}{1}%
+% {'b}{$\beta$}{1}%
+% {<}{$<$}{1}%
+% {>}{$>$}{1}%
+% {<=}{$\le$}{1}%
+% {>=}{$\ge$}{1}%
+% {<>}{$\ne$}{1}%
+% {/\\}{$\land$}{1}%
+% {\\/}{ $\lor$ }{3}%
+% {\ or(}{ $\lor$(}{3}%
+% {not\ }{$\lnot$ }{2}%
+% {not(}{$\lnot$(}{2}%
+% {+->}{\texttt{+->}}{3}%
+% {+->}{$\mapsto$}{2}%
+% {-->}{\texttt{-\relax->}}{3}%
+% {-->}{$\longrightarrow$}{2}%
+% {->}{$\rightarrow$}{2}%
+% {<-}{$\leftarrow$}{2}%
+% {<->}{$\leftrightarrow$}{2}%
+}
+
+\lstnewenvironment{why3}{\lstset{language=why3}}{}
+\newcommand{\whyf}[1]{\lstinline[language=why3]{#1}}
+
+\lstdefinelanguage{ocaml}
+{
+basicstyle=\ttfamily\small,
+morekeywords=[1]{%
+% OCaml
+type,val,sig,end,functor,let},%
+keywordstyle=[1]{\color{blue}},%
+%keywordstyle=\bfseries,%
+otherkeywords={},%
+commentstyle=\itshape{\color{blue}},%
+columns=[l]fullflexible,%
+sensitive=true,%
+morecomment=[s]{(*}{*)},%
+escapeinside={*?}{?*},%
+keepspaces=true,
+}
+
+\lstnewenvironment{ocaml}{\lstset{language=ocaml}}{}
+\newcommand{\ocamlf}[1]{\lstinline[language=ocaml]{#1}}

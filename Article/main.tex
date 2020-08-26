@@ -1,0 +1,61 @@
+\documentclass[a4paper]{easychair}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{todonotes}
+\usepackage{./why3lang}
+
+% \pagestyle{empty} % pour la version finale EasyChair
+
+\begin{document}
+
+\title{...}
+\titlerunning{...}
+\author{...}
+\authorrunning{...}
+\institute{Université Paris-Saclay}
+\maketitle
+
+\begin{abstract}
+  Dans cet article, ...
+\end{abstract}
+
+\section{Introduction}
+
+\cite{taocp}
+
+\section{La preuve}
+
+let variable \whyf{x} est affichée correctement
+
+le mot-clé \whyf{requires} aussi
+
+\begin{why3}
+  let f (x: int) : int
+    requires { x > 0 }
+  =
+    x + 1
+\end{why3}
+
+\begin{ocaml}
+  let f x = x + 1
+\end{ocaml}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\paragraph{Remerciements.} ...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{plain}
+\bibliography{./biblio}
+
+\end{document}
+
+
+% Local Variables:
+% compile-command: "make"
+% ispell-local-dictionary: "francais"
+% End:
