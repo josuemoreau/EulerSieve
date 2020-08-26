@@ -22,13 +22,71 @@
 
 \section{Introduction}
 
-\cite{taocp}
+contexte : ce qu'est Why3 ; ce qu'est le crible d'Euler~\cite{crible-euler} ; pourquoi
+est-il intéressant d'en faire une preuve formelle
 
-\section{La preuve}
+L'intégralité de la preuve Why3 est disponible en ligne~\cite{mapreuve}.
 
-let variable \whyf{x} est affichée correctement
+Cet article est organisé de la façon suivante.
+La section~\ref{...} décrit ceci...
+La section~\ref{...} décrit cela...
 
-le mot-clé \whyf{requires} aussi
+\section{Le crible d'Euler}
+
+décrire le crible d'Euler
+
+montrer l'implémentation choisie, en OCaml
+dans la figure~\ref{fig:codeOCaml}
+
+\begin{figure}[tp]
+\begin{ocaml}
+let rec remove_products nexts marked max n p =
+  let next = if p = -1 then n else nexts.(p) in
+  if next = -1 then () (* Si la case p n'a pas de suivante *)
+  else if n * next > max then ()
+  else begin
+    marked.(n * next) <- true;
+    if p <> -1 && marked.(next) then begin
+      nexts.(p) <- nexts.(next);
+      remove_products nexts marked max n p
+    end else
+      remove_products nexts marked max n next
+  end
+
+let euler_sieve max =
+  let nexts = Array.init (max + 1) (fun i -> i + 1) in
+  let marked = Array.make (max + 1) false in
+  nexts.(max) <- -1;
+  let rec aux n =
+    if n <> -1 then begin
+      remove_products nexts marked max n (-1);
+      aux nexts.(n) end in
+  aux 2;
+  let rec count p cnt =
+    let next = nexts.(p) in
+    if next = -1 then cnt
+    else if marked.(next) then begin
+      nexts.(p) <- nexts.(next);
+      count p cnt
+    end else
+      count next (cnt + 1) in
+  let primes = Array.make (count 1 0) 0 in
+  let p = ref 0 in
+  let i = ref 2 in
+  while !i <> -1 do
+    if not marked.(!i) then begin primes.(!p) <- !i; incr p end;
+    i := nexts.(!i)
+  done;
+  primes
+  \end{ocaml}
+  \caption{Un code OCaml du crible d'Euler.}
+  \label{fig:codeOCaml}
+\end{figure}
+
+\section{Une vérification formelle avec Why3}
+
+décrire la preuve ici, montrer les morceaux intéressants
+(dont la spec de la fonction principale)
 
 \begin{why3}
   let f (x: int) : int
@@ -37,12 +95,37 @@ le mot-clé \whyf{requires} aussi
     x + 1
 \end{why3}
 
-\begin{ocaml}
-  let f x = x + 1
-\end{ocaml}
+quelques éléments quantitatifs ici
+- combien de lignes écrites pour les besoins de la preuve
+- degré d'automatisation de la preuve
+- quel temps de travail (approximativement)
+- etc.
+
+\section{Le code OCaml extrait de la preuve}
+
+à quoi ressemble-t-il ?
+est-il efficace ?
+
+\begin{center}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $N$ & temps de calcul & mémoire utilisée \\
+    \hline\hline
+    $10^6$ & 10 s & 1 Go \\\hline
+    $10^7$ & \\\hline
+    $10^8$ & \\\hline
+    $10^9$ & \\\hline
+  \end{tabular}
+\end{center}
 
 \section{Conclusion}
 \label{sec:conclusion}
+
+une brève conclusion = résumé de ce qui a été présenté
+
+perspectives
+- prouver que la complexité est linéaire
+- prouver un crible segmenté~\cite{crible-segmente}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
