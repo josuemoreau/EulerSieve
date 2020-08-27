@@ -33,54 +33,61 @@ La section~\ref{...} décrit cela...
 
 \section{Le crible d'Euler}
 
-décrire le crible d'Euler
+Le crible d'Euler~\cite{crible-euler}
 
 montrer l'implémentation choisie, en OCaml
 dans la figure~\ref{fig:codeOCaml}
 
 \begin{figure}[tp]
 \begin{ocaml}
-let rec remove_products nexts marked max n p =
-  let next = if p = -1 then n else nexts.(p) in
-  if next = -1 then () (* Si la case p n'a pas de suivante *)
-  else if n * next > max then ()
-  else begin
-    marked.(n * next) <- true;
-    if p <> -1 && marked.(next) then begin
-      nexts.(p) <- nexts.(next);
-      remove_products nexts marked max n p
-    end else
-      remove_products nexts marked max n next
-  end
+type t = { arr: int array; max: int; max_arr: int }
+
+let create max =
+  let len_arr = (max - 1) / 2 + 1 in
+  let arr = Array.make len_arr (-2) in
+  for i = 1 to len_arr - 1 do
+    arr.(i) <- if i = len_arr - 1 then max + 1 else 2 * i + 3
+  done;
+  { arr = arr; max = max; max_arr = (max - 1) / 2 }
+
+let set_next t i v = t.arr.(i / 2) <- v
+let get_next t i = if t.arr.(i / 2) < 0 then - t.arr.(i / 2) else t.arr.(i / 2)
+let set_mark t i = if t.arr.(i / 2) >= 0 then (t.arr).(i / 2) <- - t.arr.(i / 2)
+let get_mark t i = t.arr.(i / 2) < 0
+let get_max t = t.max
+
+let remove_products t n =
+  let d = get_max t / n in
+  let rec loop p =
+    let next = get_next t p in
+    if 0 <= next && next <= get_max t then begin
+      if next <= d then begin
+        set_mark t (n * next);
+        if get_mark t next then begin set_next t p (get_next t next); loop p end
+        else loop next
+      end end in
+  set_mark t (n * n); loop n
 
 let euler_sieve max =
-  let nexts = Array.init (max + 1) (fun i -> i + 1) in
-  let marked = Array.make (max + 1) false in
-  nexts.(max) <- -1;
-  let rec aux n =
-    if n <> -1 then begin
-      remove_products nexts marked max n (-1);
-      aux nexts.(n) end in
-  aux 2;
-  let rec count p cnt =
-    let next = nexts.(p) in
-    if next = -1 then cnt
-    else if marked.(next) then begin
-      nexts.(p) <- nexts.(next);
-      count p cnt
-    end else
-      count next (cnt + 1) in
-  let primes = Array.make (count 1 0) 0 in
-  let p = ref 0 in
-  let i = ref 2 in
-  while !i <> -1 do
-    if not marked.(!i) then begin primes.(!p) <- !i; incr p end;
-    i := nexts.(!i)
+  let t = create max in
+  let rec loop (n: int) : unit =
+    remove_products t n;
+    let nn = get_next t n in
+    if nn <= max / nn then loop nn in
+  if max >= 9 then loop 3;
+  let cnt = ref 1 in
+  let p = ref 1 in (t.arr).(0) <- 2;
+  while 2 * !p + 1 <= max do
+    let next = (t.arr).(!p) / 2 in
+    if next <= t.max_arr then
+      if (t.arr).(next) < 0 then (t.arr).(!p) <- - (t.arr).(next)
+      else begin (t.arr).(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := next end
+    else begin (t.arr).(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := t.max_arr + 1 end
   done;
-  primes
-  \end{ocaml}
-  \caption{Un code OCaml du crible d'Euler.}
-  \label{fig:codeOCaml}
+  Array.sub t.arr 0 !cnt
+\end{ocaml}
+\caption{Un code OCaml du crible d'Euler.}
+\label{fig:codeOCaml}
 \end{figure}
 
 \section{Une vérification formelle avec Why3}
