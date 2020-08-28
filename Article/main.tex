@@ -22,8 +22,22 @@
 
 \section{Introduction}
 
-contexte : ce qu'est Why3 ; ce qu'est le crible d'Euler~\cite{crible-euler} ; pourquoi
-est-il intéressant d'en faire une preuve formelle
+% contexte : ce qu'est Why3 ; ce qu'est le crible d'Euler~\cite{crible-euler} ; pourquoi
+% est-il intéressant d'en faire une preuve formelle
+
+Le crible d'Euler, tout comme le crible d'\'{E}ratosthène, permet d'énumérer
+l'ensemble des nombres premiers compris entre 2 et une limite donnée $N$.
+Celui-ci a une complexité temporelle en $O(N)$ pour énumérer tous les
+nombres premiers dans l'ensemble $\{2,...,N\}$~\cite{crible-euler} alors que celui
+d'\'{E}ratosthène est quand à lui de complexité $O(\log\log N)$.
+
+Cette amélioration de complexité engendre quelques subtilités dans l'implémentation
+du crible d'Euler, ce sont ces subtilités qui rendent la tache de vérification
+formelle plus compliquée que pour le crible d'{E}ratosthène et qui rend donc la
+preuve intéressante.
+
+
+
 
 L'intégralité de la preuve Why3 est disponible en ligne~\cite{mapreuve}.
 
@@ -33,36 +47,32 @@ La section~\ref{...} décrit cela...
 
 \section{Le crible d'Euler}
 
-Le crible d'Euler, tout comme le crible d'\'{E}ratosthène, permet d'énumérer
-l'ensemble des nombres premiers compris entre 2 et une limite donnée $N$.
-Le crible d'Euler a une complexité temporelle en $O(N)$ pour énumérer tous les
-nombres premiers dans l'ensemble $\{2,...,N\}$~\cite{crible-euler} alors que celui
-d'\'{E}ratosthène est quand à lui de complexité $O(\log\log N)$.
+présentation de l'algorithme du crible d'Euler
 
 montrer l'implémentation choisie, en OCaml
 dans la figure~\ref{fig:codeOCaml}
 
 \begin{figure}[tp]
 \begin{ocaml}
-type t = { arr: int array; max: int; max_arr: int }
+type t = { arr: (int array); max: int; max_arr: int }
 
 let create max =
   let len_arr = (max - 1) / 2 + 1 in
   let arr = Array.make len_arr (-2) in
   for i = 1 to len_arr - 1 do
-    arr.(i) <- if i = len_arr - 1 then max + 1 else 2 * i + 3
+    arr.(i) <- (if i = len_arr - 1 then max + 1 else 2 * i + 3)
   done;
   { arr = arr; max = max; max_arr = (max - 1) / 2 }
 
 let set_next t i v = t.arr.(i / 2) <- v
 let get_next t i = if t.arr.(i / 2) < 0 then - t.arr.(i / 2) else t.arr.(i / 2)
-let set_mark t i = if t.arr.(i / 2) >= 0 then (t.arr).(i / 2) <- - t.arr.(i / 2)
+let set_mark t i = if t.arr.(i / 2) >= 0 then t.arr.(i / 2) <- - t.arr.(i / 2)
 let get_mark t i = t.arr.(i / 2) < 0
 let get_max t = t.max
 
 let remove_products t n =
   let d = get_max t / n in
-  let rec loop p =
+  let rec loop (p: int) : unit =
     let next = get_next t p in
     if 0 <= next && next <= get_max t then begin
       if next <= d then begin
@@ -74,19 +84,19 @@ let remove_products t n =
 
 let euler_sieve max =
   let t = create max in
-  let rec loop (n: int) : unit =
+  let rec loop n =
     remove_products t n;
     let nn = get_next t n in
     if nn <= max / nn then loop nn in
   if max >= 9 then loop 3;
   let cnt = ref 1 in
-  let p = ref 1 in (t.arr).(0) <- 2;
+  let p = ref 1 in t.arr.(0) <- 2;
   while 2 * !p + 1 <= max do
-    let next = (t.arr).(!p) / 2 in
+    let next = t.arr.(!p) / 2 in
     if next <= t.max_arr then
-      if (t.arr).(next) < 0 then (t.arr).(!p) <- - (t.arr).(next)
-      else begin (t.arr).(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := next end
-    else begin (t.arr).(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := t.max_arr + 1 end
+      if t.arr.(next) < 0 then t.arr.(!p) <- - t.arr.(next)
+      else begin t.arr.(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := next end
+    else begin t.arr.(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := t.max_arr + 1 end
   done;
   Array.sub t.arr 0 !cnt
 \end{ocaml}
