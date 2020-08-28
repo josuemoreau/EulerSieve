@@ -11,8 +11,8 @@
 
 \title{...}
 \titlerunning{...}
-\author{...}
-\authorrunning{...}
+\author{Josué Moreau}
+\authorrunning{Josué Moreau}
 \institute{Université Paris-Saclay}
 \maketitle
 
@@ -22,8 +22,8 @@
 
 \section{Introduction}
 
-% contexte : ce qu'est Why3 ; ce qu'est le crible d'Euler~\cite{crible-euler} ; pourquoi
-% est-il intéressant d'en faire une preuve formelle
+% contexte : ce qu'est Why3 ; ce qu'est le crible d'Euler~\cite{crible-euler} ;
+% pourquoi est-il intéressant d'en faire une preuve formelle
 
 Le crible d'Euler, tout comme le crible d'\'{E}ratosthène, permet d'énumérer
 l'ensemble des nombres premiers compris entre 2 et une limite donnée $N$.
@@ -42,25 +42,62 @@ preuve intéressante.
 L'intégralité de la preuve Why3 est disponible en ligne~\cite{mapreuve}.
 
 Cet article est organisé de la façon suivante.
-La section~\ref{...} décrit ceci...
-La section~\ref{...} décrit cela...
+% La section~\ref{...} décrit ceci...
+% La section~\ref{...} décrit cela...
 
 \section{Le crible d'Euler}
 
-présentation de l'algorithme du crible d'Euler
+% présentation de l'algorithme du crible d'Euler
 
-montrer l'implémentation choisie, en OCaml
-dans la figure~\ref{fig:codeOCaml}
+L'algorithme du crible d'Euler comme unique entrée la limite $N \geq 2$ et va
+renvoyer tous les nombres premiers compris entre $2$ et $N$ et il se divise en
+deux parties. La première partie prend un nombre $n$ non marqué
+tel que $2 \leq n \leq N$ et va marquer tous les nombres $n * p$ tels que
+$2 \leq n * p \leq N$ et $p \geq n$ n'est pas marqué, elle correspond à la fonction
+\ocamlf{remove_products} de la figure~\ref{fig:codeOCaml}.
+La deuxième partie de l'algorithme boucle sur un entier $n$ et appelle à chaque
+tour de boucle la fonction \ocamlf{remove_products} puis affecte $n$ au plus
+petit entier inférieur à la limite, non marqué et strictement supérieur à $n$
+et recommence tant que $2 \leq n \leq N$.
+
+A la fin de chaque étape de la boucle principale tous les produits de $n$ sont
+marqués. En effet, en supposant que pour tout $2 \leq k < n$, les multiples de $k$
+sont déjà marqués, l'appel de \ocamlf{remove_products} marque tous les produits
+$n * p$ tels que $p \geq n$ n'est pas marqué. Si un $p \geq n$ était déjà marqué,
+alors, par définition du marquage, il existe un $i$ non marqué et $j$ tel que
+$2 <= i < n$, $2 <= j < p$ et $i * j = p$. Or, comme tous les multiples de $i$
+étaient déjà marqués avant l'appel de \ocamlf{remove_products}, $i * j * n = p * n$
+a déjà été marqué, au plus tard, lors de l'appel de \ocamlf{remove_products} sur
+l'entier $i$.
+
+Ainsi, l'algorithme ne marquant que les produits de nombres non marqués, il ne
+marque qu'une seule fois chaque entier non premier.
+
+L'implémentation de l'algorithme que nous allons prouver se trouve dans la
+figure~\ref{fig:codeOCaml}. Dans celle-ci, nous utilisons une liste chaînée
+dans un tableau d'entiers pour représenter l'ensemble des entiers sur lesquels
+le crible sera appliqué.
+Afin de diviser l'espace utilisé par deux, le tableau ne représente que les nombres
+impairs, ainsi la case d'index $i$ du tableau représente l'entier $2 * i + 1$.
+Pour chaque index $i$, la case $i$ contient un entier positif si et
+seulement si l'entier $2 * i + 1$ n'est pas marqué.
+De plus, si l'entier qu'elle contient est positif, il s'agit de l'index du plus
+petit entier non marqué $k$ tel que $k > 2 * i + 1$.
+
+% sans doute très mal exprimé ...
+Enfin, à chaque fois qu'un entier $k$ est marqué, le contenu de sa case est passé
+en négatif et la case qui pointait vers cet entier $k$ est modifié pour pointer
+vers l'entier pointé par la case $k$.
 
 \begin{figure}[tp]
 \begin{ocaml}
-type t = { arr: (int array); max: int; max_arr: int }
+type t = { arr: int array; max: int; max_arr: int }
 
 let create max =
   let len_arr = (max - 1) / 2 + 1 in
   let arr = Array.make len_arr (-2) in
   for i = 1 to len_arr - 1 do
-    arr.(i) <- (if i = len_arr - 1 then max + 1 else 2 * i + 3)
+    arr.(i) <- if i = len_arr - 1 then max + 1 else 2 * i + 3
   done;
   { arr = arr; max = max; max_arr = (max - 1) / 2 }
 
@@ -109,12 +146,16 @@ let euler_sieve max =
 décrire la preuve ici, montrer les morceaux intéressants
 (dont la spec de la fonction principale)
 
+le lemme intéressant qui permet d'affirmer à un certain stade que tous les
+multiples d'un nombre sont bien marqués
+
+\begin{figure}
 \begin{why3}
-  let f (x: int) : int
-    requires { x > 0 }
-  =
-    x + 1
+let f (x: int) : int
+  requires { x > 0 }
+= x + 1
 \end{why3}
+\end{figure}
 
 quelques éléments quantitatifs ici
 - combien de lignes écrites pour les besoins de la preuve
