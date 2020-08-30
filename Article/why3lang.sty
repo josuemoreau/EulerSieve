@@ -2,6 +2,9 @@
 \RequirePackage{listings}
 \RequirePackage{amssymb}
 
+\definecolor{keywords-color}{HTML}{303F9F}
+\definecolor{symbols-color}{HTML}{49599A}
+
 \lstdefinelanguage{why3}
 {
 basicstyle=\ttfamily,%
@@ -14,7 +17,7 @@ predicate,private,pure,raise,raises,reads,rec,ref,requires,result,return,%
 returns,scope,so,then,theory,to,true,try,type,use,val,variant,while,%
 with,writes},%
 string=[b]",%
-keywordstyle=[1]{\color{blue}},%
+keywordstyle=[1]{\color{keywords-color}},%
 morekeywords=[2]{true,false},%
 %keywordstyle=[2]{\color{blue}},%
 %otherkeywords={},%
@@ -25,26 +28,28 @@ morecomment=[s]{(*}{*)},%
 %breaks hevea
 %escapeinside={*?}{?*},%
 keepspaces=true,%
-%literate=%
-% {'a}{$\alpha$}{1}%
-% {'b}{$\beta$}{1}%
-% {<}{$<$}{1}%
-% {>}{$>$}{1}%
-% {<=}{$\le$}{1}%
-% {>=}{$\ge$}{1}%
-% {<>}{$\ne$}{1}%
-% {/\\}{$\land$}{1}%
-% {\\/}{ $\lor$ }{3}%
-% {\ or(}{ $\lor$(}{3}%
-% {not\ }{$\lnot$ }{2}%
-% {not(}{$\lnot$(}{2}%
-% {+->}{\texttt{+->}}{3}%
-% {+->}{$\mapsto$}{2}%
-% {-->}{\texttt{-\relax->}}{3}%
-% {-->}{$\longrightarrow$}{2}%
-% {->}{$\rightarrow$}{2}%
-% {<-}{$\leftarrow$}{2}%
-% {<->}{$\leftrightarrow$}{2}%
+literate=%
+{'a}{$\alpha$}{1}%
+{'b}{$\beta$}{1}%
+{<}{$<$}{1}%
+{>}{$>$}{1}%
+{<=}{$\le$}{1}%
+{>=}{$\ge$}{1}%
+{<>}{$\ne$}{1}%
+{/\\}{$\land$}{1}%
+{\\/}{ $\lor$ }{3}%
+{\ or(}{ $\lor$(}{3}%
+{not\ }{$\lnot$ }{2}%
+{not(}{$\lnot$(}{2}%
+{+->}{\texttt{+->}}{3}%
+{+->}{$\mapsto$}{2}%
+{-->}{\texttt{-\relax->}}{3}%
+{-->}{$\longrightarrow$}{2}%
+{->}{$\rightarrow$}{2}%
+{<-}{$\leftarrow$}{2}%
+{<->}{$\leftrightarrow$}{2}%
+{forall}{$\forall$}{2}%
+{exists}{$\exists$}{2}%
 }
 
 \lstnewenvironment{why3}{\lstset{language=why3}}{}
@@ -52,9 +57,6 @@ keepspaces=true,%
 
 %\definecolor{keywords-color}{HTML}{B71C1C}
 %\definecolor{symbols-color}{HTML}{E57373}
-
-\definecolor{keywords-color}{HTML}{303F9F}
-\definecolor{symbols-color}{HTML}{49599A}
 
 \lstdefinelanguage{ocaml}
 {
