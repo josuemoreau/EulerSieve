@@ -39,6 +39,8 @@ preuve intéressante.
 
 
 
+
+
 L'intégralité de la preuve Why3 est disponible en ligne~\cite{mapreuve}.
 
 Cet article est organisé de la façon suivante.
@@ -81,7 +83,7 @@ Afin de diviser l'espace utilisé par deux, le tableau ne représente que les no
 impairs, ainsi la case d'index $i$ du tableau représente l'entier $2 * i + 1$.
 Pour chaque index $i$, la case $i$ contient un entier positif si et
 seulement si l'entier $2 * i + 1$ n'est pas marqué.
-De plus, si l'entier qu'elle contient est positif, il s'agit de l'index du plus
+De plus, si l'entier qu'elle contient est positif, il s'agit du plus
 petit entier non marqué $k$ tel que $k > 2 * i + 1$.
 
 % sans doute très mal exprimé ...
@@ -143,19 +145,47 @@ let euler_sieve max =
 
 \section{Une vérification formelle avec Why3}
 
-décrire la preuve ici, montrer les morceaux intéressants
-(dont la spec de la fonction principale)
+% décrire la preuve ici, montrer les morceaux intéressants
+% (dont la spec de la fonction principale)
 
-le lemme intéressant qui permet d'affirmer à un certain stade que tous les
-multiples d'un nombre sont bien marqués
+% le lemme intéressant qui permet d'affirmer à un certain stade que tous les
+% multiples d'un nombre sont bien marqués
 
-\begin{figure}
+La preuve que décrite ici a été intégralement réalisée avec l'outil
+Why3~\cite{why3} et les démonstrateurs automatiques Alt-Ergo, CVC4, Z3, Eprover
+et Vampire. % il faut les citer eux aussi ? et leurs version ?
+
+La première partie de la preuve a consisté à démontrer l'algorithme sans prendre
+en compte les éventuels débordements arithmétiques et avec des structures
+de données simples et peu efficaces en terme de complexité spatiale.
+L'étape suivante a consisté en un raffinement de la preuve établie précédemment
+en cachant les structures de données naïves à l'aide de code
+fantôme~\cite{ghost-code} et en liant ces structures de données à des structures
+plus efficaces grâce à des invariants de liaison. Ces structures de données plus
+efficaces n'étant, par la suite, accessibles qu'en utilisant des fonctions
+\ocamlf{get/set}. Grâce à ces fonctions, il n'a donc pas été
+nécessaire de reprouver l'intégralité de la preuve, simplement de montrer la
+conservation des invariants de liaison par ces fonctions \ocamlf{get/set}.
+Enfin, la dernière partie de la preuve a consisté en l'utilisation d'entiers
+machine 63 bits signés tels que ceux d'OCaml, pour prouver l'absence de
+débordements arithmétiques.
+
+Premièrement, la spécification de la fonction principale du crible,
+\ocamlf{euler_sieve}, est la suivante :
+
 \begin{why3}
-let f (x: int) : int
-  requires { x > 0 }
-= x + 1
+let euler_sieve (max: int63) : array63
+  requires { max_int > max >= 3                                    }
+  ensures  { all_differents result result.length                   }
+  ensures  { forall i. 0 <= i < result.length -> prime result[i]        }
+  ensures  { forall i. 2 <= i <= max -> prime i ->
+                       exists j. 0 <= j < result.length /\ result[j] = i }
+=
 \end{why3}
-\end{figure}
+
+La preuve a nécessité l'écriture de 865 lignes dans le langage WhyML,
+représentant 834 buts à prouver.
+...
 
 quelques éléments quantitatifs ici
 - combien de lignes écrites pour les besoins de la preuve
@@ -164,6 +194,11 @@ quelques éléments quantitatifs ici
 - etc.
 
 \section{Le code OCaml extrait de la preuve}
+
+Le code extrait de la preuve à l'aide de la commande \texttt{extract} de Why3
+est en réalité celui présenté à la figure~\ref{fig:codeOCaml}.
+Seules quelques modifications dans l'apparence du code ont été effectuées
+entre le code extrait et le code présenté.
 
 à quoi ressemble-t-il ?
 est-il efficace ?
@@ -174,9 +209,9 @@ est-il efficace ?
     $N$ & temps de calcul & mémoire utilisée \\
     \hline\hline
     $10^6$ & 10 s & 1 Go \\\hline
-    $10^7$ & \\\hline
-    $10^8$ & \\\hline
-    $10^9$ & \\\hline
+    $10^7$ & & \\\hline
+    $10^8$ & & \\\hline
+    $10^9$ & & \\\hline
   \end{tabular}
 \end{center}
 
