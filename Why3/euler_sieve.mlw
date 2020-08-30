@@ -745,17 +745,12 @@ module EulerSieveImpl
                (forall j. i < j < div (abs arr[i]) 2 -> arr[j] < 0) /\
                (forall j. 2 * i + 1 < j < abs arr[i] -> not prime j))
 
-  (* let lemma unchanged_other_elements_arr (s1: seq 'a) (s2: seq 'a) (i: int) (v: 'a) *)
-  (*   requires { 0 <= i < length s1 /\ length s1 = length s2 } *)
-  (*   requires { s1 = s2[i <- v] } *)
-  (*   ensures  { forall j. 0 <= j < length s1 -> i <> j -> s1[j] = s2[j] } = () *)
-
   let euler_sieve (max: int63) : array63
-    requires { max_int > max >= 3 }
-    ensures { all_differents result result.length }
-    ensures { forall i. 0 <= i < result.length -> prime result[i] }
-    ensures { forall i. 2 <= i <= max -> prime i ->
-                        exists j. 0 <= j < result.length /\ result[j] = i }
+    requires { max_int > max >= 3                                          }
+    ensures  { all_differents result result.length                         }
+    ensures  { forall i. 0 <= i < result.length -> prime result[i]         }
+    ensures  { forall i. 2 <= i <= max -> prime i ->
+                         exists j. 0 <= j < result.length /\ result[j] = i }
   = let t = create max in
     let rec loop (n: int63) =
       requires { 3 <= n <= max }
