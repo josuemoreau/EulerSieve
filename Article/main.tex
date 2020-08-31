@@ -175,13 +175,25 @@ Premièrement, la spécification de la fonction principale du crible,
 
 \begin{why3}
 let euler_sieve (max: int63) : array63
-  requires { max_int > max >= 3                                    }
-  ensures  { all_differents result result.length                   }
-  ensures  { forall i. 0 <= i < result.length -> prime result[i]        }
+  requires { max_int > max >= 3                               }
+  ensures  { all_differents result result.length              }
+  ensures  { forall i. 0 <= i < result.length -> prime result[i]   }
   ensures  { forall i. 2 <= i <= max -> prime i ->
-                       exists j. 0 <= j < result.length /\ result[j] = i }
-=
+                  exists j. 0 <= j < result.length /\ result[j] = i }
+= ...
 \end{why3}
+
+Avec le prédicat \whyf{all_differents} qui est défini comme suit :
+
+\begin{why3}
+predicate all_differents (a: seq 'a) (n: int) =
+    forall i j. 0 <= i < j < n -> a[i] <> a[j]
+\end{why3}
+
+% ET ... Je viens de me dire que la spec ne dit pas qu'on ne peut pas avoir
+% de nombres premiers plus grands que la limite dans l'ensemble en résultat !
+
+
 
 La preuve a nécessité l'écriture de 865 lignes dans le langage WhyML,
 représentant 834 buts à prouver.
