@@ -748,6 +748,7 @@ module EulerSieveImpl
   let euler_sieve (max: int63) : array63
     requires { max_int > max >= 3 }
     ensures  { forall i j. 0 <= i < j < result.length -> result[i] <> result[j] }
+    ensures  { forall i. 0 <= i < result.length -> 2 <= result[i] <= max }
     ensures  { forall i. 0 <= i < result.length -> prime result[i] }
     ensures  { forall i. 2 <= i <= max -> prime i ->
                          exists j. 0 <= j < result.length /\ result[j] = i }
