@@ -233,6 +233,19 @@ cette contrainte, il faut donc que \whyf{max < max_int}.
 
 \paragraph{Vérification.}
 
+% TODO: expliquer ce type dans la vérification
+\begin{figure}[t]
+\begin{why3}
+type t = {
+  mutable ghost nexts: seq int;
+  mutable ghost marked: seq bool;
+  arr: array63;
+  max: int63;
+  max_arr: int63
+}
+\end{why3}
+\end{figure}
+
 La première partie de la preuve a consisté à démontrer l'algorithme sans prendre
 en compte les éventuels débordements arithmétiques et avec des structures
 de données simples et peu efficaces en terme de complexité spatiale.
