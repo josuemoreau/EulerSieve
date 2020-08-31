@@ -74,30 +74,56 @@ marque qu'une seule fois chaque entier non premier, comme multiple de
 son plus petit facteur premier. C'est là la clé de la complexité
 linéaire du crible d'Euler.
 
-% TODO
+% L'implémentation de l'algorithme que nous allons prouver se trouve dans la
+% figure~\ref{fig:codeOCaml}. Dans celle-ci, nous utilisons une liste chaînée
+% dans un tableau d'entiers pour représenter l'ensemble des entiers sur lesquels
+% le crible sera appliqué.
+
 % 1. idée d'utiliser une liste chaînée
+L'implémentation de l'algorithme que nous allons prouver utilise une liste
+chaînée croissante pour représenter les nombres de l'ensemble $\{2,...,N\}$.
+Cette liste est importante pour que la représentation soit efficace car elle
+permet d'obtenir efficacement le prochain entier
+% en un temps amorti constant ?
+en évitant de parcourir plus d'une fois un entier déjà marqué.
 % 2. elle est simplement chaînée = un tableau next
+De plus, elle est représentée dans un tableau d'entiers, elle est donc
+simplement chaînée.
+
 % 3. on marque un élément mais on le supprimera de la liste seulement
 %    plus tard, quand on passera dessus (car on aura alors l'élément
 %    précédent dans une variable, pour effectuer la suppression)
 % 4. le marquage se fait dans ce même tableau next, en utilisant des
-%    valeurs négatives
+% valeurs négatives
+Pour chaque case $i$, sa case correspondante contient un entier positif
+si et seulement si l'entier $i$ est non marqué.
+Ainsi, l'opération de marquage d'un entier non marqué consiste à remplacer le
+contenu de la case d'index correspondant à l'entier à marquer par son opposé.
+De plus, lorsqu'un nombre $i$ est non marqué, le contenu de sa case est son
+suivant dans la liste chaînée.
+Lors du marquage, on ne supprime pas l'entier marqué de la liste chaînée car
+cela coûterait trop chère en temps, ou nécessiterait une liste doublement
+chaînée. Au lieu de cela, la boucle de la fonction \ocamlf{remove_products}
+utilise une variable $p$ qui représente le dernier entier visité.
+Lorsqu'elle visite un nouvel entier $i$, elle marque $ni$, où $n$ est
+l'entier dont on veut marquer tous les multiples.
+Puis, si le nombre $i$ était marqué, elle modifie la case représentant $p$ en lui
+donnait pour valeur le nombre suivant $i$. Cette opération permet à la liste
+chaînée de ``sauter'' par dessus les entier déjà marqués, et donc n'examiner
+qu'une seule fois chaque entier marqué.
+Il est tout à fait possible de marquer le multiple $ni$ alors que $i$ est marqué,
+le seul cas où cela est possible est lorsque $i$ est lui-même un multiple de $n$.
+
 % 5. les valeurs paires ne sont pas représentées
-L'implémentation de l'algorithme que nous allons prouver se trouve dans la
-figure~\ref{fig:codeOCaml}. Dans celle-ci, nous utilisons une liste chaînée
-dans un tableau d'entiers pour représenter l'ensemble des entiers sur lesquels
-le crible sera appliqué.
 Afin de diviser l'espace utilisé par deux, le tableau ne représente que les nombres
 impairs, ainsi la case d'index $i$ du tableau représente l'entier $2i + 1$.
 Pour chaque index $i$, la case $i$ contient un entier positif si et
 seulement si l'entier $2i + 1$ n'est pas marqué.
-De plus, si l'entier qu'elle contient est positif, il s'agit du plus
-petit entier non marqué $k$ tel que $k > 2i + 1$. % FIXME!
+De plus, si l'entier qu'elle contient est positif, il s'agit de l'entier suivant
+dans la liste chaînée.
 
-% sans doute très mal exprimé ...
-Enfin, à chaque fois qu'un entier $k$ est marqué, le contenu de sa case est passé
-en négatif et la case qui pointait vers cet entier $k$ est modifiée pour pointer
-vers l'entier pointé par la case $k$.
+L'implémentation de l'algorithme que nous allons prouver se trouve dans la
+figure~\ref{fig:codeOCaml}.
 
 \begin{figure}[tp]
 \begin{ocaml}
@@ -169,11 +195,11 @@ La spécification de la fonction principale du crible,
 
 \begin{why3}
 let euler_sieve (max: int63) : array63
-  requires { max_int > max >= 3 }
-  ensures  { forall i j. 0 <= i < j < result.length -> result[i] <> result[j] }
-  ensures  { forall i. 0 <= i < result.length -> 2 <= result[i] <= max /\ prime result[i] }
-  ensures  { forall i. 2 <= i <= max -> prime i ->
-                  exists j. 0 <= j < result.length /\ result[j] = i }
+    requires { max_int > max >= 3 }
+    ensures  { forall i j. 0 <= i < j < result.length -> result[i] <> result[j] }
+    ensures  { forall i. 0 <= i < result.length -> prime result[i] }
+    ensures  { forall i. 2 <= i <= max -> prime i ->
+                         exists j. 0 <= j < result.length /\ result[j] = i }
 = ...
 \end{why3}
 
@@ -182,7 +208,7 @@ let euler_sieve (max: int63) : array63
 % programmes manipulant des nombres premiers, comme le crible
 % d'Ératosthène~\cite{EratostheneWhy3,KnuthPrimeNumbersWhy3})
 
-% TODO plutôt 3 <= max < max_int
+% TODO plutôt 3 <= max < max_int ... oui mais faut refaire la preuve :'(
 % TODO renommer all_differents par ex. en all_distinct dans le code
 
 % expliquer int63 (une phrase) et array63 (une phrase)
@@ -210,11 +236,13 @@ machine 63 bits signés tels que ceux d'OCaml, pour prouver l'absence de
 débordements arithmétiques.
 
 
-La preuve a nécessité l'écriture de 865 lignes dans le langage WhyML,
-représentant 834 buts à prouver.
+La preuve a nécessité l'écriture de 748 lignes dans le langage WhyML :
+507 lignes pour la spécification et 241 lignes de code.
+Au total, 834 buts on été prouvés.
     % spec     code comments
     %  507      241       33 euler_sieve.mlw
 
+    %  éventuellement intégrer les stats de why3 session info --stats
 
 quelques éléments quantitatifs ici
 - combien de lignes écrites pour les besoins de la preuve
