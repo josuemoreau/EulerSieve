@@ -195,11 +195,11 @@ La spécification de la fonction principale du crible,
 
 \begin{why3}
 let euler_sieve (max: int63) : array63
-    requires { max_int > max >= 3 }
-    ensures  { forall i j. 0 <= i < j < result.length -> result[i] <> result[j] }
-    ensures  { forall i. 0 <= i < result.length -> prime result[i] }
-    ensures  { forall i. 2 <= i <= max -> prime i ->
-                         exists j. 0 <= j < result.length /\ result[j] = i }
+  requires { max_int > max >= 3 }
+  ensures  { forall i j. 0 <= i < j < result.length -> result[i] <> result[j] }
+  ensures  { forall i. 0 <= i < result.length -> prime result[i] }
+  ensures  { forall i. 2 <= i <= max -> prime i ->
+                       exists j. 0 <= j < result.length /\ result[j] = i }
 = ...
 \end{why3}
 
@@ -208,11 +208,23 @@ let euler_sieve (max: int63) : array63
 % programmes manipulant des nombres premiers, comme le crible
 % d'Ératosthène~\cite{EratostheneWhy3,KnuthPrimeNumbersWhy3})
 
+Le prédicat \whyf{prime} provient de la bibliothèque \whyf{number.Prime}
+de Why3. Il a déjà été utilisé dans les preuves d'autres programmes
+manipulant des nombres premiers, comme le crible
+d'Ératosthène~\cite{sieve-eratosthene-why3} ou celui de l'algorithme
+des nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3}.
+
 % TODO plutôt 3 <= max < max_int ... oui mais faut refaire la preuve :'(
-% TODO renommer all_differents par ex. en all_distinct dans le code
 
 % expliquer int63 (une phrase) et array63 (une phrase)
 % expliquer max_int > max
+Le types \whyf{int63} est une modélisation Why3 des entiers OCaml qui sont
+des entiers 63 bits signés. \whyf{array63} est le type d'un tableau indexé
+par des entiers OCaml et contenant des entiers OCaml.
+Afin de représenter $\{0,...,N\}$ il faut $N + 1$ cases dans un tableau.
+Or, la longueur de ce tableau doit aussi être de type \whyf{int63}, ainsi
+la longueur est inférieure ou égale à \whyf{max_int}. Pour respecter
+cette contrainte, il faut donc que \whyf{max < max_int}.
 
 % ET ... Je viens de me dire que la spec ne dit pas qu'on ne peut pas avoir
 % de nombres premiers plus grands que la limite dans l'ensemble en résultat !
