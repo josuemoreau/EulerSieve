@@ -247,7 +247,7 @@ module EulerSieveSpec
 (*                                                                             *)
 (*******************************************************************************)
 
-  predicate all_differents (a: seq 'a) (n: int) =
+  predicate all_distinct (a: seq 'a) (n: int) =
     forall i j. 0 <= i < j < n -> a[i] <> a[j]
 
   predicate all_inf_or_eq (a: seq int) (n k: int) =
@@ -818,7 +818,7 @@ module EulerSieveImpl
       invariant { 2 * p + 1 <= max -> t.arr[p] >= 0 }
       invariant { 2 * p + 1 <= max -> prime (2 * p + 1) }
       invariant { inv_count t.arr cnt }
-      invariant { all_differents t.arr cnt }
+      invariant { all_distinct t.arr cnt }
       invariant { all_inf_or_eq t.arr cnt (2 * p) }
       invariant { forall i. cnt <= i <= t.max_arr -> t.arr[i] >= 0 <-> prime (2 * i + 1) }
       invariant { forall i. 0 <= i < cnt -> prime t.arr[i] }
