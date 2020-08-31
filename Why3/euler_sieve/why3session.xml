@@ -3197,13 +3197,13 @@
   <proof prover="5"><result status="valid" time="0.05" steps="75"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.120" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.36" steps="302"/></proof>
+  <proof prover="0"><result status="valid" time="0.23" steps="136"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.121" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.09" steps="126"/></proof>
+  <proof prover="6" timelimit="5"><result status="valid" time="0.32" steps="50031"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.122" expl="postcondition" proved="true">
-  <proof prover="6" timelimit="5"><result status="valid" time="0.35" steps="67195"/></proof>
+  <proof prover="6" timelimit="1"><result status="valid" time="0.32" steps="65777"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.123" expl="assertion" proved="true">
   <proof prover="5"><result status="valid" time="0.17" steps="221"/></proof>
@@ -3826,13 +3826,13 @@
   <proof prover="5"><result status="valid" time="0.04" steps="63"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.209" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.23" steps="251"/></proof>
+  <proof prover="0"><result status="valid" time="0.08" steps="115"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.210" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.06" steps="104"/></proof>
+  <proof prover="6" timelimit="5"><result status="valid" time="0.20" steps="48979"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.211" expl="postcondition" proved="true">
-  <proof prover="6" timelimit="5"><result status="valid" time="0.32" steps="64931"/></proof>
+  <proof prover="6" timelimit="1"><result status="valid" time="0.36" steps="64707"/></proof>
   </goal>
  </transf>
  </goal>

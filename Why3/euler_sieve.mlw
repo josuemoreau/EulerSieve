@@ -746,9 +746,9 @@ module EulerSieveImpl
                (forall j. 2 * i + 1 < j < abs arr[i] -> not prime j))
 
   let euler_sieve (max: int63) : array63
-    requires { max_int > max >= 3                                          }
-    ensures  { all_differents result result.length                         }
-    ensures  { forall i. 0 <= i < result.length -> prime result[i]         }
+    requires { max_int > max >= 3 }
+    ensures  { forall i j. 0 <= i < j < result.length -> result[i] <> result[j] }
+    ensures  { forall i. 0 <= i < result.length -> prime result[i] }
     ensures  { forall i. 2 <= i <= max -> prime i ->
                          exists j. 0 <= j < result.length /\ result[j] = i }
   = let t = create max in
