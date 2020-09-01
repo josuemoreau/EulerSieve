@@ -33,20 +33,28 @@ Le crible d'Euler a une complexité temporelle en $O(N)$ pour énumérer tous le
 nombres premiers dans l'ensemble $\{2,...,N\}$~\cite{crible-euler} alors que celui
 d'Ératosthène a une complexité $O(\log\log N)$.
 
-Cette amélioration de complexité engendre quelques subtilités dans l'implémentation
-du crible d'Euler. Ce sont ces subtilités qui rendent la tâche de vérification
-formelle plus compliquée que pour le crible d'Ératosthène et qui rend donc la
-preuve intéressante.
+Le crible d'Euler est plus difficile à implémenter que le crible d'Eratosthène.
+En particulier, cette difficulté provient des structures de données efficaces
+et de différentes améliorations qui ont été faites afin de rendre l'algorithme
+plus efficace en temps et en mémoire.
+Ce subtilités d'implémentation sont autant d'occasions de faire des erreurs,
+d'où la nécessité de vérifier formellement l'algorithme.
 
-
-L'intégralité de la preuve Why3 est disponible en ligne~\cite{mapreuve}.
+La preuve a été réalisée à l'aide de l'outil Why3.
+L'intégralité de cette preuve est disponible en ligne~\cite{mapreuve}.
 
 Cet article est organisé de la façon suivante.
-% La section~\ref{...} décrit ceci...
-% La section~\ref{...} décrit cela...
+La section~\ref{sec:algo} décrit l'algorithme du crible d'Euler, ainsi que son
+implémentation dans le langage OCaml.
+Puis, la section~\ref{sec:preuve} décrit les grandes lignes de la preuve qui a été
+réalisée à l'aide de Why3.
+Enfin, la section~\ref{sec:extraction} présente le code extrait par Why3 à partir
+de la preuve qui a été réalisée. En particulier, nous comparons l'efficacité de
+ce programme extrait avec une implémentation du crible d'Eratosthène et une du
+crible d'Ératosthène segmenté.
 
 \section{Le crible d'Euler}
-
+\label{sec:algo}
 % présentation de l'algorithme du crible d'Euler
 
 L'algorithme du crible d'Euler prend comme unique entrée la limite $N \geq 2$ et va
@@ -180,7 +188,7 @@ let euler_sieve max =
 \end{figure}
 
 \section{Une vérification formelle avec Why3}
-
+\label{sec:preuve}
 % décrire la preuve ici, montrer les morceaux intéressants
 % (dont la spec de la fonction principale)
 
@@ -232,7 +240,6 @@ cette contrainte, il faut donc que \whyf{max < max_int}.
 % ET ... Je viens de me dire que la spec ne dit pas qu'on ne peut pas avoir
 % de nombres premiers plus grands que la limite dans l'ensemble en résultat !
 
-\clearpage
 \paragraph{Vérification.}
 
 Premièrement, le type manipulé au travers des fonction \ocamlf{euler_sieve}
@@ -310,6 +317,7 @@ Au total, 834 buts on été prouvés.
 % - etc.
 
 \section{Le code OCaml extrait de la preuve}
+\label{sec:extraction}
 
 Le code extrait de la preuve à l'aide de la commande \texttt{extract} de Why3
 est en réalité celui présenté à la figure~\ref{fig:codeOCaml}.
