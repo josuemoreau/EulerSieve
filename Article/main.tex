@@ -122,6 +122,8 @@ seulement si l'entier $2i + 1$ n'est pas marqué.
 De plus, si l'entier qu'elle contient est positif, il s'agit de l'entier suivant
 dans la liste chaînée.
 
+% parler de l'optimisation en espace pour la copie finale dans un tableau
+
 L'implémentation de l'algorithme que nous allons prouver se trouve dans la
 figure~\ref{fig:codeOCaml}.
 
@@ -230,11 +232,12 @@ cette contrainte, il faut donc que \whyf{max < max_int}.
 % ET ... Je viens de me dire que la spec ne dit pas qu'on ne peut pas avoir
 % de nombres premiers plus grands que la limite dans l'ensemble en résultat !
 
-
+\clearpage
 \paragraph{Vérification.}
 
+Premièrement, le type manipulé au travers des fonction \ocamlf{euler_sieve}
+et \\\ocamlf{remove_products} est le suivant :
 % TODO: expliquer ce type dans la vérification
-\begin{figure}[t]
 \begin{why3}
 type t = {
   mutable ghost nexts: seq int;
@@ -244,22 +247,52 @@ type t = {
   max_arr: int63
 }
 \end{why3}
-\end{figure}
 
-La première partie de la preuve a consisté à démontrer l'algorithme sans prendre
-en compte les éventuels débordements arithmétiques et avec des structures
-de données simples et peu efficaces en terme de complexité spatiale.
-L'étape suivante a consisté en un raffinement de la preuve établie précédemment
-en cachant les structures de données naïves à l'aide de code
-fantôme~\cite{ghost-code} et en liant ces structures de données à des structures
-plus efficaces grâce à des invariants de liaison. Ces structures de données plus
-efficaces n'étant, par la suite, accessibles qu'en utilisant des fonctions
-\ocamlf{get/set}. Grâce à ces fonctions, il n'a donc pas été
-nécessaire de reprouver l'intégralité de la preuve, simplement de montrer la
-conservation des invariants de liaison par ces fonctions \ocamlf{get/set}.
-Enfin, la dernière partie de la preuve a consisté en l'utilisation d'entiers
-machine 63 bits signés tels que ceux d'OCaml, pour prouver l'absence de
-débordements arithmétiques.
+Les trois derniers champs sont les même que ceux du code OCaml de la
+figure~\ref{fig:codeOCaml} avec le type \whyf{int63} qui représente le type
+\ocamlf{int} de OCaml et \whyf{array63} qui représente \ocamlf{int array}.
+La partie la plus importante de ce type consiste en les deux premiers champs,
+ils s'agit de champs fantômes~\cite{ghost-code} qui n'existent que pour la preuve
+et pas dans le programme.
+Il s'agit de tableaux immuables mais dans des champs mutables.
+\whyf{nexts} est une implémentation simple de la liste chaînée dans le tableau,
+où tous les nombres sont représentés, il n'y a pas que les nombres impairs et
+les nombres négatifs ne sont pas utilisés pour représenter les entiers marqués.
+\whyf{marked} correspond aux entiers marqués, de même il représente tous les
+nombres.
+Ces champs fantômes sont liés au tableau \whyf{arr} par des invariants de
+liaisons dont voici un exemple :
+\begin{why3}
+invariant { forall i. 0 <= i <= max_arr ->
+                 Seq.get marked (2 * i + 1) <-> arr[i] < 0 }
+\end{why3}
+Ces champs fantômes permettent une manipulation plus simple des
+structures de données dans la logique. De plus, les seuls accès à la liste
+chaînée se font à l'aide de fonctions \whyf{get} et \whyf{set} telles que
+celle-ci :
+\begin{why3}
+let get_next (t: t) (i: int63) : int63
+  requires { 3 <= i <= t.max }
+  requires { mod i 2 = 1 }
+  ensures  { 3 <= result <= t.max + 1 }
+  ensures  { result = Seq.get t.nexts i }
+  ensures  { mod result 2 = 1 \/ result = t.max + 1 }
+= let x = i / 2 in
+  if t.arr[x] < 0 then - t.arr[x] else t.arr[x]
+\end{why3}
+
+La preuve de la fonction \whyf{remove_products} et de la boucle
+principale de \whyf{euler_sieve} se fait donc sans avoir aucune connaissance
+de la manière dont est implémentée la liste chaînée en réalité.
+En particulier, cela a permis de se focaliser uniquement, dans un premier temps,
+sur la preuve de l'algorithme avec une représentation de la liste chaînée
+simple et peu efficace en mémoire.
+Puis, une fois la preuve établie, il n'y a plus eu qu'a raffiner la preuve en
+montrant que les fonctions \whyf{get} et \whyf{set} conservent bien les
+invariants du type ci-dessus.
+Il n'a donc pas été nécessaire de rétablir la preuve de \whyf{remove_products} et
+de la boucle principale de \whyf{euler_sieve} pour l'implémentation
+plus efficace de la liste chaînée.
 
 
 La preuve a nécessité l'écriture de 748 lignes dans le langage WhyML :
@@ -270,11 +303,11 @@ Au total, 834 buts on été prouvés.
 
     %  éventuellement intégrer les stats de why3 session info --stats
 
-quelques éléments quantitatifs ici
-- combien de lignes écrites pour les besoins de la preuve
-- degré d'automatisation de la preuve
-- quel temps de travail (approximativement)
-- etc.
+% quelques éléments quantitatifs ici
+% - combien de lignes écrites pour les besoins de la preuve
+% - degré d'automatisation de la preuve
+% - quel temps de travail (approximativement)
+% - etc.
 
 \section{Le code OCaml extrait de la preuve}
 
