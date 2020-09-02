@@ -130,7 +130,24 @@ seulement si l'entier $2i + 1$ n'est pas marqué.
 De plus, si l'entier qu'elle contient est positif, il s'agit de l'entier suivant
 dans la liste chaînée.
 
-% parler de l'optimisation en espace pour la copie finale dans un tableau
+Enfin, une dernière optimisation se trouve dans le comptage des nombres premiers
+pour ensuite retourner un tableau ne contenant que les nombres premiers.
+Une première méthode pour faire cela aurait été de compter les nombres premiers
+de la liste chaînée, puis de créer un tableau de cette taille et de copier
+les nombres premiers dans ce dernier, les uns après les autres.
+Cependant, on peut faire un peu mieux. En effet, dans l'ensemble $\{3,...,N\}$,
+le nombre de nombres impairs est supérieur ou égal au nombre de nombres premiers.
+Il est donc possible, dans un premier temps, de copier le nombre 2 dans la case
+d'index 0, représentant au départ le nombre $1$, du tableau contenant la liste
+chaînée. Puis, il est possible d'écraser la partie du tableau déjà parcourue
+pendant le comptage, en écrivant consécutivement les nombres premiers au fur
+et à mesure qu'ils sont rencontrés. Cette modification, ne change pas le comptage
+des nombres premiers grâce à l'inégalité précédemment énoncée.
+Enfin, il n'y a plus qu'a utiliser une fonction \ocamlf{Array.sub} pour extraire
+la partie du tableau écrasée, contenant tous les nombres premiers.
+Cette copie étant très certainement mieux implémentée qu'une simple copie
+case à case, elle sera plus efficace et permet de gagner légèrement en efficacité.
+
 
 L'implémentation de l'algorithme que nous allons prouver se trouve dans la
 figure~\ref{fig:codeOCaml}.
@@ -199,6 +216,7 @@ La preuve que décrite ici a été intégralement réalisée avec l'outil
 Why3~\cite{why3} et les démonstrateurs automatiques Alt-Ergo, CVC4, Z3, Eprover
 et Vampire. % il faut les citer eux aussi ? et leurs version ? pas forcément
 
+\clearpage
 \paragraph{Spécification.}
 La spécification de la fonction principale du crible,
 \ocamlf{euler_sieve}, est la suivante :
@@ -214,11 +232,6 @@ let euler_sieve (max: int63) : array63
 = ...
 \end{why3}
 
-% TODO expliquer d'où vient le prédicat "prime" (la bibliothèque
-% number.Prime de Why3, déjà utilisée pour la preuve d'autres
-% programmes manipulant des nombres premiers, comme le crible
-% d'Ératosthène~\cite{EratostheneWhy3,KnuthPrimeNumbersWhy3})
-
 Le prédicat \whyf{prime} provient de la bibliothèque \whyf{number.Prime}
 de Why3. Il a déjà été utilisé dans les preuves d'autres programmes
 manipulant des nombres premiers, comme le crible
@@ -227,8 +240,6 @@ des nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3
 
 % TODO plutôt 3 <= max < max_int ... oui mais faut refaire la preuve :'(
 
-% expliquer int63 (une phrase) et array63 (une phrase)
-% expliquer max_int > max
 Le types \whyf{int63} est une modélisation Why3 des entiers OCaml qui sont
 des entiers 63 bits signés. \whyf{array63} est le type d'un tableau indexé
 par des entiers OCaml et contenant des entiers OCaml.
@@ -237,14 +248,11 @@ Or, la longueur de ce tableau doit aussi être de type \whyf{int63}, ainsi
 la longueur est inférieure ou égale à \whyf{max_int}. Pour respecter
 cette contrainte, il faut donc que \whyf{max < max_int}.
 
-% ET ... Je viens de me dire que la spec ne dit pas qu'on ne peut pas avoir
-% de nombres premiers plus grands que la limite dans l'ensemble en résultat !
-
+\clearpage
 \paragraph{Vérification.}
 
 Premièrement, le type manipulé au travers des fonction \ocamlf{euler_sieve}
 et \\\ocamlf{remove_products} est le suivant :
-% TODO: expliquer ce type dans la vérification
 \begin{why3}
 type t = {
   mutable ghost nexts: seq int;
