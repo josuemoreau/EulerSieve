@@ -33,24 +33,25 @@ Le crible d'Euler a une complexité temporelle en $O(N)$ pour énumérer tous le
 nombres premiers dans l'ensemble $\{2,...,N\}$~\cite{crible-euler} alors que celui
 d'Ératosthène a une complexité $O(\log\log N)$.
 
-Le crible d'Euler est plus difficile à implémenter que le crible d'Eratosthène.
-En particulier, cette difficulté provient des structures de données efficaces
-et de différentes améliorations qui ont été faites afin de rendre l'algorithme
-plus efficace en temps et en mémoire.
-Ce subtilités d'implémentation sont autant d'occasions de faire des erreurs,
+Le crible d'Euler est plus difficile à implémenter que le crible d'Ératosthène.
+C'est d'autant plus vrai si on réalise quelques optimisations pour
+rendre le crible d'Euler plus efficace en temps et en mémoire.
+Ces subtilités d'implémentation sont autant d'occasions de faire des erreurs,
 d'où la nécessité de vérifier formellement l'algorithme.
 
-La preuve a été réalisée à l'aide de l'outil Why3.
+Dans cet article, on décrit une telle vérification réalisée à l'aide de l'outil Why3.
 L'intégralité de cette preuve est disponible en ligne~\cite{mapreuve}.
+...
 
 Cet article est organisé de la façon suivante.
 La section~\ref{sec:algo} décrit l'algorithme du crible d'Euler, ainsi que son
 implémentation dans le langage OCaml.
-Puis, la section~\ref{sec:preuve} décrit les grandes lignes de la preuve qui a été
+Puis la section~\ref{sec:preuve} décrit les grandes lignes de la preuve qui a été
 réalisée à l'aide de Why3.
-Enfin, la section~\ref{sec:extraction} présente le code extrait par Why3 à partir
+Enfin, la section~\ref{sec:extraction} présente le code OCaml
+automatiquement extrait par Why3 à partir
 de la preuve qui a été réalisée. En particulier, nous comparons l'efficacité de
-ce programme extrait avec une implémentation du crible d'Eratosthène et une du
+ce programme extrait avec des implémentations du crible d'Ératosthène et du
 crible d'Ératosthène segmenté.
 
 \section{Le crible d'Euler}
@@ -95,28 +96,29 @@ permet d'obtenir efficacement le prochain entier
 % en un temps amorti constant ?
 en évitant de parcourir plus d'une fois un entier déjà marqué.
 % 2. elle est simplement chaînée = un tableau next
-De plus, elle est représentée dans un tableau d'entiers, elle est donc
-simplement chaînée.
+Il s'agit d'une liste simplement chaînée, représentée dans un tableau.
 
 % 3. on marque un élément mais on le supprimera de la liste seulement
 %    plus tard, quand on passera dessus (car on aura alors l'élément
 %    précédent dans une variable, pour effectuer la suppression)
 % 4. le marquage se fait dans ce même tableau next, en utilisant des
 % valeurs négatives
-Pour chaque case $i$, sa case correspondante contient un entier positif
+Pour chaque indice $i$, la case correspondante contient un entier positif
 si et seulement si l'entier $i$ est non marqué.
-Ainsi, l'opération de marquage d'un entier non marqué consiste à remplacer le
-contenu de la case d'index correspondant à l'entier à marquer par son opposé.
-De plus, lorsqu'un nombre $i$ est non marqué, le contenu de sa case est son
+Dans ce cas, le contenu de la case est son
 suivant dans la liste chaînée.
+L'opération de marquage d'un entier~$i$ consiste à remplacer le
+contenu de la case~$i$ par son opposé.
+
 Lors du marquage, on ne supprime pas l'entier marqué de la liste chaînée car
-cela coûterait trop chère en temps, ou nécessiterait une liste doublement
-chaînée. Au lieu de cela, la boucle de la fonction \ocamlf{remove_products}
+cela coûterait trop cher en temps, ou nécessiterait une liste doublement
+chaînée qui coûterait trop cher en espace.
+Au lieu de cela, la boucle de la fonction \ocamlf{remove_products}
 utilise une variable $p$ qui représente le dernier entier visité.
 Lorsqu'elle visite un nouvel entier $i$, elle marque $ni$, où $n$ est
 l'entier dont on veut marquer tous les multiples.
 Puis, si le nombre $i$ était marqué, elle modifie la case représentant $p$ en lui
-donnait pour valeur le nombre suivant $i$. Cette opération permet à la liste
+donnant pour valeur le nombre suivant $i$. Cette opération permet à la liste
 chaînée de ``sauter'' par dessus les entier déjà marqués, et donc n'examiner
 qu'une seule fois chaque entier marqué.
 Il est tout à fait possible de marquer le multiple $ni$ alors que $i$ est marqué,
@@ -124,33 +126,34 @@ le seul cas où cela est possible est lorsque $i$ est lui-même un multiple de $
 
 % 5. les valeurs paires ne sont pas représentées
 Afin de diviser l'espace utilisé par deux, le tableau ne représente que les nombres
-impairs, ainsi la case d'index $i$ du tableau représente l'entier $2i + 1$.
-Pour chaque index $i$, la case $i$ contient un entier positif si et
-seulement si l'entier $2i + 1$ n'est pas marqué.
-De plus, si l'entier qu'elle contient est positif, il s'agit de l'entier suivant
-dans la liste chaînée.
-
-Enfin, une dernière optimisation se trouve dans le comptage des nombres premiers
-pour ensuite retourner un tableau ne contenant que les nombres premiers.
-Une première méthode pour faire cela aurait été de compter les nombres premiers
-de la liste chaînée, puis de créer un tableau de cette taille et de copier
-les nombres premiers dans ce dernier, les uns après les autres.
-Cependant, on peut faire un peu mieux. En effet, dans l'ensemble $\{3,...,N\}$,
-le nombre de nombres impairs est supérieur ou égal au nombre de nombres premiers.
-Il est donc possible, dans un premier temps, de copier le nombre 2 dans la case
-d'index 0, représentant au départ le nombre $1$, du tableau contenant la liste
-chaînée. Puis, il est possible d'écraser la partie du tableau déjà parcourue
-pendant le comptage, en écrivant consécutivement les nombres premiers au fur
-et à mesure qu'ils sont rencontrés. Cette modification, ne change pas le comptage
-des nombres premiers grâce à l'inégalité précédemment énoncée.
-Enfin, il n'y a plus qu'a utiliser une fonction \ocamlf{Array.sub} pour extraire
-la partie du tableau écrasée, contenant tous les nombres premiers.
-Cette copie étant très certainement mieux implémentée qu'une simple copie
-case à case, elle sera plus efficace et permet de gagner légèrement en efficacité.
-
+impairs. Ainsi, la case d'index $i$ du tableau représente l'entier $2i + 1$.
+% Pour chaque index $i$, la case $i$ contient un entier positif si et
+% seulement si l'entier $2i + 1$ n'est pas marqué.
+% De plus, si l'entier qu'elle contient est positif, il s'agit de l'entier suivant
+% dans la liste chaînée.
+Enfin, on souhaite renvoyer un tableau ne contenant que les nombres premiers.
+Pour cela, on pourrait commencer par compter les nombres premiers
+de la liste chaînée, puis créer un tableau de cette taille et enfin y copier
+les nombres premiers.
+Cependant, on peut faire un peu mieux, en écrasant le début du tableau
+contenant la liste chaînée avec les nombres premiers, puis en
+extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres premiers.
+% En effet, dans l'ensemble $\{3,...,N\}$,
+% le nombre de nombres impairs est supérieur ou égal au nombre de nombres premiers.
+% Il est donc possible, dans un premier temps, de copier le nombre 2 dans la case
+% d'index 0, représentant au départ le nombre $1$, du tableau contenant la liste
+% chaînée. Puis, il est possible d'écraser la partie du tableau déjà parcourue
+% pendant le comptage, en écrivant consécutivement les nombres premiers au fur
+% et à mesure qu'ils sont rencontrés. Cette modification, ne change pas le comptage
+% des nombres premiers grâce à l'inégalité précédemment énoncée.
+% Enfin, il n'y a plus qu'a utiliser une fonction \ocamlf{Array.sub} pour extraire
+% la partie du tableau contenant tous les nombres premiers.
+% Cette copie étant très certainement mieux implémentée qu'une simple copie
+% case à case, elle sera plus efficace et permet de gagner légèrement en efficacité.
 
 L'implémentation de l'algorithme que nous allons prouver se trouve dans la
 figure~\ref{fig:codeOCaml}.
+% TODO parler brièvement du type t et notamment de max_arr
 
 \begin{figure}[tp]
 \begin{ocaml}
@@ -232,27 +235,41 @@ let euler_sieve (max: int63) : array63
 = ...
 \end{why3}
 
+Le type \whyf{int63} est une modélisation Why3 des entiers OCaml qui sont
+des entiers 63 bits signés. De même, le type \whyf{array63} est une
+modélisation Why3 d'un tableau OCaml contenant des entiers OCaml.
+La précondition requière que \whyf{max} ne soit pas égal au plus grand
+entier. En effet, le code a besoin de stocker la valeur \whyf{max+1}
+dans la dernière case du tableau.
+% Afin de représenter $\{0,...,N\}$ il faut $N + 1$ cases dans un tableau.
+% Or, la longueur de ce tableau doit aussi être de type \whyf{int63}, ainsi
+% la longueur est inférieure ou égale à \whyf{max_int}. Pour respecter
+% cette contrainte, il faut donc que \whyf{max < max_int}.
+% TODO plutôt 3 <= max < max_int ... oui mais faut refaire la preuve :'(
+
+% TODO expliquer les ensures un par un
+% FIXME result[i] < result[j] plutôt que <>
 Le prédicat \whyf{prime} provient de la bibliothèque \whyf{number.Prime}
 de Why3. Il a déjà été utilisé dans les preuves d'autres programmes
 manipulant des nombres premiers, comme le crible
 d'Ératosthène~\cite{sieve-eratosthene-why3} ou celui de l'algorithme
 des nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3}.
 
-% TODO plutôt 3 <= max < max_int ... oui mais faut refaire la preuve :'(
-
-Le types \whyf{int63} est une modélisation Why3 des entiers OCaml qui sont
-des entiers 63 bits signés. \whyf{array63} est le type d'un tableau indexé
-par des entiers OCaml et contenant des entiers OCaml.
-Afin de représenter $\{0,...,N\}$ il faut $N + 1$ cases dans un tableau.
-Or, la longueur de ce tableau doit aussi être de type \whyf{int63}, ainsi
-la longueur est inférieure ou égale à \whyf{max_int}. Pour respecter
-cette contrainte, il faut donc que \whyf{max < max_int}.
-
 \clearpage
 \paragraph{Vérification.}
 
-Premièrement, le type manipulé au travers des fonction \ocamlf{euler_sieve}
-et \\\ocamlf{remove_products} est le suivant :
+% commencer par expliquer l'idée de raffinement : une commence avec
+% une structure t abstraite (modélisant la liste chaînée et le
+% marquage, sans connaître son implémentation), et on vérifie le
+% crible avec cette structure abstraite, puis on la réalise avec les
+% optimisations décrites dans la section précédente, et on prouve que
+% cette réalisation est conforme à sa spécification
+
+% TODO citer \cite{paskevich20isola} voire \cite{filliatre20jlamp}
+% aux endroits opportuns
+
+Pour les besoins de la vérification, on ajoute deux champs fantômes
+au type \ocamlf{t} manipulé par le programme :
 \begin{why3}
 type t = {
   mutable ghost nexts: seq int;
@@ -262,28 +279,29 @@ type t = {
   max_arr: int63
 }
 \end{why3}
-
-Les trois derniers champs sont les même que ceux du code OCaml de la
-figure~\ref{fig:codeOCaml} avec le type \whyf{int63} qui représente le type
-\ocamlf{int} de OCaml et \whyf{array63} qui représente \ocamlf{int array}.
-La partie la plus importante de ce type consiste en les deux premiers champs,
-ils s'agit de champs fantômes~\cite{ghost-code} qui n'existent que pour la preuve
-et pas dans le programme.
-Il s'agit de tableaux immuables mais dans des champs mutables.
-\whyf{nexts} est une implémentation simple de la liste chaînée dans le tableau,
-où tous les nombres sont représentés, il n'y a pas que les nombres impairs et
-les nombres négatifs ne sont pas utilisés pour représenter les entiers marqués.
-\whyf{marked} correspond aux entiers marqués, de même il représente tous les
-nombres.
+% Les trois derniers champs sont les même que ceux du code OCaml de la
+% figure~\ref{fig:codeOCaml} avec le type \whyf{int63} qui représente le type
+% \ocamlf{int} de OCaml et \whyf{array63} qui représente \ocamlf{int array}.
+% La partie la plus importante de ce type consiste en les deux premiers champs,
+% ils s'agit de champs fantômes~\cite{ghost-code} qui n'existent que pour la preuve
+% et pas dans le programme.
+Ces deux champs utilisent le type \whyf{seq} de la bibliothèque Why3,
+qui modélise des tableaux immuables.
+% Il s'agit de tableaux immuables mais dans des champs mutables.
+Le champ \whyf{nexts} modélise la liste chaînée implémentée par le
+tableau \whyf{arr}. À la différence de ce dernier, cependant, tous les
+nombres y sont représentés et le marquage en est absent.
+Ce dernier est modélisé par le champ \whyf{marked}. Comme pour \whyf{nexts}, tous les
+nombres y sont représentés.
 Ces champs fantômes sont liés au tableau \whyf{arr} par des invariants de
-liaisons dont voici un exemple :
+liaison, dont voici un extrait :
 \begin{why3}
 invariant { forall i. 0 <= i <= max_arr ->
                  Seq.get marked (2 * i + 1) <-> arr[i] < 0 }
 \end{why3}
 Ces champs fantômes permettent une manipulation plus simple des
 structures de données dans la logique. De plus, les seuls accès à la liste
-chaînée se font à l'aide de fonctions \whyf{get} et \whyf{set} telles que
+chaînée se font à l'aide de fonctions, telles que
 celle-ci :
 \begin{why3}
 let get_next (t: t) (i: int63) : int63
@@ -371,3 +389,5 @@ perspectives
 % compile-command: "make"
 % ispell-local-dictionary: "francais"
 % End:
+
+%  LocalWords:  implémentations
