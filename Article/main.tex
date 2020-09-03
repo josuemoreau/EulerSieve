@@ -160,7 +160,7 @@ figure~\ref{fig:codeOCaml}. Dans celle-ci, on manipule à plusieurs reprises
 un type \ocamlf{t}. Ce type contient pour premier champ le tableau \ocamlf{arr}
 décrit précédemment. Le champ \ocamlf{max} correspond à la limite donnée en
 entrée au crible et le champ \ocamlf{max_arr} correspond au plus grand indice
-du tableau \ocamlf{arr}, donc $\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$. 
+du tableau \ocamlf{arr}, donc $\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$.
 % TODO parler brièvement du type t et notamment de max_arr
 
 \begin{figure}[tp]
@@ -235,11 +235,11 @@ La spécification de la fonction principale du crible,
 \begin{why3}
 let euler_sieve (max: int63) : array63
   requires { max_int > max >= 3 }
-  ensures  { forall i j. 0 <= i < j < result.length -> result[i] <> result[j] }
+  ensures  { forall i j. 0 <= i < j < result.length -> result[i] < result[j] }
   ensures  { forall i. 0 <= i < result.length -> 2 <= result[i] <= max }
   ensures  { forall i. 0 <= i < result.length -> prime result[i] }
   ensures  { forall i. 2 <= i <= max -> prime i ->
-                       exists j. 0 <= j < result.length /\ result[j] = i }
+                  exists j. 0 <= j < result.length /\ result[j] = i }
 = ...
 \end{why3}
 
@@ -248,22 +248,28 @@ des entiers 63 bits signés. De même, le type \whyf{array63} est une
 modélisation Why3 d'un tableau OCaml contenant des entiers OCaml.
 La précondition requière que \whyf{max} ne soit pas égal au plus grand
 entier. En effet, le code a besoin de stocker la valeur \whyf{max+1}
-dans la dernière case du tableau.
+dans la dernière case du tableau signaler la fin.
+
+La première postcondition représente le fait que les nombres premiers
+du tableau renvoyé en résultat sont écrits dans l'ordre croissant.
+La postcondition suivante montre que les nombres premiers renvoyés dans
+le tableau sont tous dans l'ensemble $\{2,...,\text{\ocamlf{max}}\}$.
+Enfin, les deux dernières postconditions présentent énoncent que tous les
+éléments du tableau renvoyé sont premiers et que tous les nombres premiers
+compris entre $2$ et \ocamlf{max} sont dans le tableau.
 % Afin de représenter $\{0,...,N\}$ il faut $N + 1$ cases dans un tableau.
 % Or, la longueur de ce tableau doit aussi être de type \whyf{int63}, ainsi
 % la longueur est inférieure ou égale à \whyf{max_int}. Pour respecter
 % cette contrainte, il faut donc que \whyf{max < max_int}.
 % TODO plutôt 3 <= max < max_int ... oui mais faut refaire la preuve :'(
+Le prédicat \whyf{prime} utilisé dans ces deux dernières postconditions
+provient de la bibliothèque \whyf{number.Prime} de Why3.
+Il a déjà été utilisé dans les preuves d'autres programmes manipulant des
+nombres premiers, comme le crible d'Ératosthène~\cite{sieve-eratosthene-why3}
+ou celui de l'algorithme des
+nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3}.
 
-% TODO expliquer les ensures un par un
-% FIXME result[i] < result[j] plutôt que <>
-Le prédicat \whyf{prime} provient de la bibliothèque \whyf{number.Prime}
-de Why3. Il a déjà été utilisé dans les preuves d'autres programmes
-manipulant des nombres premiers, comme le crible
-d'Ératosthène~\cite{sieve-eratosthene-why3} ou celui de l'algorithme
-des nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3}.
-
-\clearpage
+% \clearpage
 \paragraph{Vérification.}
 
 % commencer par expliquer l'idée de raffinement : une commence avec
@@ -275,6 +281,43 @@ des nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3
 
 % TODO citer \cite{paskevich20isola} voire \cite{filliatre20jlamp}
 % aux endroits opportuns
+
+La preuve du crible d'Euler a été faite par raffinement~\cite{paskevich20isola},
+en deux temps.
+La première partie de la preuve a été faite à l'aide d'un type \whyf{t}
+représentant une structure abstraite.
+Ce type modélisait la liste chaînée et le marquage sans en connaître
+l'implémentation. Ce type se trouve dans le module \whyf{EulerSieve}
+de la preuve et voici sa définition :
+\begin{why3}
+type t = private {
+  mutable ghost nexts: seq int;
+  mutable ghost marked: seq bool;
+  max: int63;
+}
+\end{why3}
+Les types utilisés pour décrire la liste chaînée et le marquage sont ici des
+séquences. Il s'agit de tableaux immuables fournis par la bibliothèque standard
+de Why3. Pour pouvoir les manipuler il est donc nécessaire de rendre les champs
+correspondants mutables.
+De plus, comme on peut le voir ci-dessus, les champs modélisant la liste chaînée
+et le marquage sont des champs fantômes~\cite{ghost-code}.
+Ces champs fantômes sont ici très utiles puisqu'ils permettent de faciliter
+la preuve et seront supprimés lors de l'extraction du programme,
+une fois démontré, vers du code OCaml.
+Des fonctions permettant de modifier ces champs ont été écrites.
+Elles sont définies de manière abstraites dans le module \whyf{EulerSieve}
+et seront implémentées dans le module \whyf{EulerSieveImpl}.
+Voici un exemple d'une telle fonction :
+\begin{why3}
+val set_mark (t: t) (i: int63) : unit
+  requires { 0 <= i <= t.max }
+  requires { mod i 2 = 1 }
+  writes   { t.marked }
+  ensures  { t.marked = (old t.marked)[i <- true] }
+\end{why3}
+
+
 
 Pour les besoins de la vérification, on ajoute deux champs fantômes
 au type \ocamlf{t} manipulé par le programme :
