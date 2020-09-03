@@ -254,7 +254,7 @@ La première postcondition représente le fait que les nombres premiers
 du tableau renvoyé en résultat sont écrits dans l'ordre croissant.
 La postcondition suivante montre que les nombres premiers renvoyés dans
 le tableau sont tous dans l'ensemble $\{2,...,\text{\ocamlf{max}}\}$.
-Enfin, les deux dernières postconditions présentent énoncent que tous les
+Enfin, les deux dernières postconditions énoncent que tous les
 éléments du tableau renvoyé sont premiers et que tous les nombres premiers
 compris entre $2$ et \ocamlf{max} sont dans le tableau.
 % Afin de représenter $\{0,...,N\}$ il faut $N + 1$ cases dans un tableau.
@@ -284,10 +284,11 @@ nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3}.
 
 La preuve du crible d'Euler a été faite par raffinement~\cite{paskevich20isola},
 en deux temps.
+
 La première partie de la preuve a été faite à l'aide d'un type \whyf{t}
 représentant une structure abstraite.
 Ce type modélisait la liste chaînée et le marquage sans en connaître
-l'implémentation. Ce type se trouve dans le module \whyf{EulerSieve}
+l'implémentation. Celui-ci se trouve dans le module \whyf{EulerSieve}
 de la preuve et voici sa définition :
 \begin{why3}
 type t = private {
@@ -296,19 +297,29 @@ type t = private {
   max: int63;
 }
 \end{why3}
-Les types utilisés pour décrire la liste chaînée et le marquage sont ici des
-séquences. Il s'agit de tableaux immuables fournis par la bibliothèque standard
-de Why3. Pour pouvoir les manipuler il est donc nécessaire de rendre les champs
+Le champ \whyf{nexts} modélise la liste chaînée implémentée par le
+tableau \whyf{arr}. À la différence de ce dernier, cependant, tous les
+nombres y sont représentés et le marquage en est absent.
+Ce dernier est modélisé par le champ \whyf{marked}. Comme pour \whyf{nexts},
+tous les nombres y sont représentés.
+Le type \whyf{seq} utilisé pour décrire la liste chaînée et le marquage
+est ici un type modélisant des séquences.
+Il s'agit de tableaux immuables fournis par la bibliothèque standard
+de Why3. Pour pouvoir les manipuler il est donc nécessaire que les champs
 correspondants mutables.
 De plus, comme on peut le voir ci-dessus, les champs modélisant la liste chaînée
 et le marquage sont des champs fantômes~\cite{ghost-code}.
-Ces champs fantômes sont ici très utiles puisqu'ils permettent de faciliter
-la preuve et seront supprimés lors de l'extraction du programme,
-une fois démontré, vers du code OCaml.
+Les champs fantômes n'existent que dans la preuve et pas dans
+le programme. Il seront automatiquement supprimés par Why3 lors
+de l'extraction du programme, une fois démontré, vers du code OCaml.
+Ces champs fantômes sont ici très utiles puisqu'ils permettent de représenter
+des structures de données simples, ce qui a pour conséquence de faciliter
+la manipulation des structures de données dans la logique et, par conséquent,
+de faciliter la preuve.
+
 Des fonctions permettant de modifier ces champs ont été écrites.
-Elles sont définies de manière abstraites dans le module \whyf{EulerSieve}
-et seront implémentées dans le module \whyf{EulerSieveImpl}.
-Voici un exemple d'une telle fonction :
+Elles sont définies de manière abstraites dans le module \whyf{EulerSieve}.
+Voici un exemple, extrait de la preuve, d'une telle fonction abstraite :
 \begin{why3}
 val set_mark (t: t) (i: int63) : unit
   requires { 0 <= i <= t.max }
@@ -317,10 +328,11 @@ val set_mark (t: t) (i: int63) : unit
   ensures  { t.marked = (old t.marked)[i <- true] }
 \end{why3}
 
-
-
-Pour les besoins de la vérification, on ajoute deux champs fantômes
-au type \ocamlf{t} manipulé par le programme :
+La deuxième partie de la preuve a consisté en le raffinement de type \whyf{t}
+précédemment défini. Ce raffinement se trouve dans le module
+\whyf{EulerSieveImpl} qui est une implémentation~\cite{paskevich20isola}
+du module \whyf{EulerSieve}.
+La nouvelle définition du type \whyf{t} est la suivante :
 \begin{why3}
 type t = {
   mutable ghost nexts: seq int;
@@ -330,62 +342,54 @@ type t = {
   max_arr: int63
 }
 \end{why3}
-% Les trois derniers champs sont les même que ceux du code OCaml de la
-% figure~\ref{fig:codeOCaml} avec le type \whyf{int63} qui représente le type
-% \ocamlf{int} de OCaml et \whyf{array63} qui représente \ocamlf{int array}.
-% La partie la plus importante de ce type consiste en les deux premiers champs,
-% ils s'agit de champs fantômes~\cite{ghost-code} qui n'existent que pour la preuve
-% et pas dans le programme.
-Ces deux champs utilisent le type \whyf{seq} de la bibliothèque Why3,
-qui modélise des tableaux immuables.
-% Il s'agit de tableaux immuables mais dans des champs mutables.
-Le champ \whyf{nexts} modélise la liste chaînée implémentée par le
-tableau \whyf{arr}. À la différence de ce dernier, cependant, tous les
-nombres y sont représentés et le marquage en est absent.
-Ce dernier est modélisé par le champ \whyf{marked}. Comme pour \whyf{nexts}, tous les
-nombres y sont représentés.
-Ces champs fantômes sont liés au tableau \whyf{arr} par des invariants de
-liaison, dont voici un extrait :
+On observe ci-dessus l'ajout des champs \whyf{arr} et \whyf{max_arr}
+correspondant aux champs de même noms définis dans la section~\ref{sec:algo}.
+Il s'agit donc de l'implémentation de la liste chaînée et du marquage.
+Le champ \whyf{arr} est lié aux champs fantômes \whyf{nexts} et \whyf{marked}
+par des invariants de liaison dont voici un extrait :
 \begin{why3}
 invariant { forall i. 0 <= i <= max_arr ->
                  Seq.get marked (2 * i + 1) <-> arr[i] < 0 }
 \end{why3}
-Ces champs fantômes permettent une manipulation plus simple des
-structures de données dans la logique. De plus, les seuls accès à la liste
-chaînée se font à l'aide de fonctions, telles que
-celle-ci :
+Les fonctions permettant de manipuler la liste chaînée et le marquage ont été
+ensuite implémentées dans le module \whyf{EulerSieve}.
+Il a été nécessaire, après implémentation, de montrer que celles-ci
+satisfont les spécifications de leurs fonctions abstraites respectives et
+conservent les invariants du type \whyf{t}, tel que l'invariant de liaison
+défini ci-dessus.
+% pas très bien dit ...
+Enfin, le module d'implémentation et le module abstrait ont été liés par
+l'instruction \whyf{clone} de Why3 :
 \begin{why3}
-let get_next (t: t) (i: int63) : int63
-  requires { 3 <= i <= t.max }
-  requires { mod i 2 = 1 }
-  ensures  { 3 <= result <= t.max + 1 }
-  ensures  { result = Seq.get t.nexts i }
-  ensures  { mod result 2 = 1 \/ result = t.max + 1 }
-= let x = i / 2 in
-  if t.arr[x] < 0 then - t.arr[x] else t.arr[x]
+clone EulerSieve with type t = t,
+  val create = create,
+  val set_next = set_next, val get_next = get_next,
+  val set_mark = set_mark, val get_mark = get_mark,
+  val get_max = get_max
 \end{why3}
 
-La preuve de la fonction \whyf{remove_products} et de la boucle
-principale de \whyf{euler_sieve} se fait donc sans avoir aucune connaissance
-de la manière dont est implémentée la liste chaînée en réalité.
-En particulier, cela a permis de se focaliser uniquement, dans un premier temps,
-sur la preuve de l'algorithme avec une représentation de la liste chaînée
-simple et peu efficace en mémoire.
-Puis, une fois la preuve établie, il n'y a plus eu qu'a raffiner la preuve en
-montrant que les fonctions \whyf{get} et \whyf{set} conservent bien les
-invariants du type ci-dessus.
-Il n'a donc pas été nécessaire de rétablir la preuve de \whyf{remove_products} et
-de la boucle principale de \whyf{euler_sieve} pour l'implémentation
-plus efficace de la liste chaînée.
-
-
-La preuve a nécessité l'écriture de 748 lignes dans le langage WhyML :
-507 lignes pour la spécification et 241 lignes de code.
-Au total, 834 buts on été prouvés.
-    % spec     code comments
-    %  507      241       33 euler_sieve.mlw
-
-    %  éventuellement intégrer les stats de why3 session info --stats
+La preuve a nécessité l'écriture de 749 lignes dans le langage WhyML :
+508 lignes pour la spécification et 241 lignes de code.
+Au total, 841 buts on été prouvés.
+% spec     code comments
+%  508      241       33 euler_sieve.mlw
+%  éventuellement intégrer les stats de why3 session info --stats
+La répartition des buts démontrés par les démonstrateurs automatiques est la
+suivante :
+\begin{center}
+  \begin{tabular}{|c|r|r|}
+    \hline
+    démonstrateur & nombre de buts prouvés & temps maximum exécuté \\
+    \hline\hline
+    Eprover 2.4    &     7 &      0,74 s \\\hline
+    Vampire 4.4.0  &     6 &      8,22 s \\\hline
+    Alt-Ergo 2.3.2 &   518 &      7,85 s \\\hline
+    Alt-Ergo 2.0.0 &    89 &      8,28 s \\\hline
+    Z3 4.8.6       &   137 &      1,84 s \\\hline
+    CVC4 1.7       &    39 &      0,34 s \\\hline
+    CVC4 1.6       &    45 &      4,05 s \\\hline
+  \end{tabular}
+\end{center}
 
 % quelques éléments quantitatifs ici
 % - combien de lignes écrites pour les besoins de la preuve
@@ -402,7 +406,8 @@ Seules quelques modifications dans l'apparence du code ont été effectuées
 entre le code extrait et le code présenté.
 
 à quoi ressemble-t-il ?
-est-il efficace ?
+est-il efficace ? comparaison avec le crible d'Ératosthène et le crible
+d'Ératosthène segmenté.
 
 \begin{center}
   \begin{tabular}{|c|r|r|}
