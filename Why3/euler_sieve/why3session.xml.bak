@@ -131,16 +131,16 @@
   <goal name="marked_impl_all_products_marked&#39;vc.0" expl="postcondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="marked_impl_all_products_marked&#39;vc.0.0" expl="postcondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.05" steps="18943"/></proof>
+   <proof prover="2"><result status="valid" time="0.05" steps="18957"/></proof>
    </goal>
    <goal name="marked_impl_all_products_marked&#39;vc.0.1" expl="postcondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.06" steps="18943"/></proof>
+   <proof prover="2"><result status="valid" time="0.06" steps="18957"/></proof>
    </goal>
    <goal name="marked_impl_all_products_marked&#39;vc.0.2" expl="postcondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.01" steps="18943"/></proof>
+   <proof prover="2"><result status="valid" time="0.01" steps="18957"/></proof>
    </goal>
    <goal name="marked_impl_all_products_marked&#39;vc.0.3" expl="postcondition" proved="true">
-   <proof prover="2"><result status="valid" time="0.05" steps="22244"/></proof>
+   <proof prover="2"><result status="valid" time="0.05" steps="22258"/></proof>
    </goal>
    <goal name="marked_impl_all_products_marked&#39;vc.0.4" expl="VC for marked_impl_all_products_marked" proved="true">
    <transf name="inline_all" proved="true" >
@@ -165,7 +165,7 @@
      <goal name="marked_impl_all_products_marked&#39;vc.0.6.0.0" expl="VC for marked_impl_all_products_marked" proved="true">
      <transf name="remove" proved="true" arg1="zero,one,(-),even,([]),inv_nexts,inv_marked_nexts,inv_marked_old_nexts1,inv_marked_marked_old,inv_marked_old_nexts2_partial,all_primes,all_products_marked,previously_marked_products,only_products_marked,prime_products_marked,inv_remove_products,Assoc1,Unit_def_r,Mul_distr_l,Refl,Trans,Div_unique,Div_bound,Div_minus1_left,Div_sign_pos,even_not_odd,odd_not_even,even_odd,odd_2k1,divides_left,divides_oppr_rev,divides_multl,divides_multr,divides_mod_euclidean,mod_divides_computer,prime_divisors,odd_prime,mult_croissance_locale,comp_mult_2,sq_ineq,divides_div,no_prod_impl_no_divider,create&#39;spec,empty&#39;def,set&#39;spec,set&#39;def,singleton&#39;spec,cons&#39;spec,snoc&#39;spec,([..])&#39;spec,([..])&#39;def,(++)&#39;spec,conservation_inv_marked_nexts_on_marked_change,conservation_inv_marked_nexts_on_nexts_change">
       <goal name="marked_impl_all_products_marked&#39;vc.0.6.0.0.0" expl="VC for marked_impl_all_products_marked" proved="true">
-      <proof prover="3"><result status="valid" time="0.77"/></proof>
+      <proof prover="3"><result status="valid" time="1.25"/></proof>
       </goal>
      </transf>
      </goal>
@@ -202,24 +202,24 @@
   </transf>
   </goal>
   <goal name="prev_and_new_impl_all_products_marked&#39;vc.2" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="25074"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="25088"/></proof>
   </goal>
   <goal name="prev_and_new_impl_all_products_marked&#39;vc.3" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.04" steps="19900"/></proof>
+  <proof prover="2"><result status="valid" time="0.04" steps="19914"/></proof>
   </goal>
   <goal name="prev_and_new_impl_all_products_marked&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.15" steps="25360"/></proof>
+  <proof prover="2"><result status="valid" time="0.15" steps="25374"/></proof>
   </goal>
   <goal name="prev_and_new_impl_all_products_marked&#39;vc.5" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.05" steps="20213"/></proof>
+  <proof prover="2"><result status="valid" time="0.05" steps="20227"/></proof>
   </goal>
   <goal name="prev_and_new_impl_all_products_marked&#39;vc.6" expl="assertion" proved="true">
-  <proof prover="2"><result status="valid" time="0.07" steps="23780"/></proof>
+  <proof prover="2"><result status="valid" time="0.07" steps="23794"/></proof>
   </goal>
   <goal name="prev_and_new_impl_all_products_marked&#39;vc.7" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="prev_and_new_impl_all_products_marked&#39;vc.7.0" expl="assertion" proved="true">
-   <proof prover="5" timelimit="10"><result status="valid" time="1.03" steps="378"/></proof>
+   <proof prover="5" timelimit="10"><result status="valid" time="0.81" steps="378"/></proof>
    </goal>
    <goal name="prev_and_new_impl_all_products_marked&#39;vc.7.1" expl="VC for prev_and_new_impl_all_products_marked" proved="true">
    <proof prover="0"><result status="valid" time="0.04" steps="140"/></proof>
@@ -229,7 +229,7 @@
   <goal name="prev_and_new_impl_all_products_marked&#39;vc.8" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="prev_and_new_impl_all_products_marked&#39;vc.8.0" expl="assertion" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="9909"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="9921"/></proof>
    </goal>
   </transf>
   </goal>
@@ -271,7 +271,7 @@
   </transf>
   </goal>
   <goal name="conservation_previously_marked_products&#39;vc.1" expl="assertion" proved="true">
-  <proof prover="1" timelimit="1"><result status="valid" time="0.03" steps="127524"/></proof>
+  <proof prover="1" timelimit="1"><result status="valid" time="0.03" steps="126315"/></proof>
   </goal>
   <goal name="conservation_previously_marked_products&#39;vc.2" expl="assertion" proved="true">
   <transf name="inline_all" proved="true" >
@@ -288,10 +288,10 @@
   </transf>
   </goal>
   <goal name="conservation_previously_marked_products&#39;vc.3" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.07" steps="25535"/></proof>
+  <proof prover="2"><result status="valid" time="0.07" steps="25549"/></proof>
   </goal>
   <goal name="conservation_previously_marked_products&#39;vc.4" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.04" steps="20247"/></proof>
+  <proof prover="2"><result status="valid" time="0.04" steps="20261"/></proof>
   </goal>
   <goal name="conservation_previously_marked_products&#39;vc.5" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
@@ -310,10 +310,10 @@
     <goal name="conservation_previously_marked_products&#39;vc.6.0.0" expl="assertion" proved="true">
     <transf name="split_vc" proved="true" >
      <goal name="conservation_previously_marked_products&#39;vc.6.0.0.0" expl="assertion" proved="true">
-     <proof prover="1" timelimit="1"><result status="valid" time="0.04" steps="110244"/></proof>
+     <proof prover="1" timelimit="1"><result status="valid" time="0.04" steps="110470"/></proof>
      </goal>
      <goal name="conservation_previously_marked_products&#39;vc.6.0.0.1" expl="assertion" proved="true">
-     <proof prover="2" timelimit="10"><result status="valid" time="0.07" steps="26129"/></proof>
+     <proof prover="2" timelimit="10"><result status="valid" time="0.07" steps="26143"/></proof>
      </goal>
      <goal name="conservation_previously_marked_products&#39;vc.6.0.0.2" expl="assertion" proved="true">
      <proof prover="5"><result status="valid" time="0.02" steps="38"/></proof>
@@ -325,7 +325,7 @@
   </transf>
   </goal>
   <goal name="conservation_previously_marked_products&#39;vc.7" expl="postcondition" proved="true">
-  <proof prover="1" timelimit="1"><result status="valid" time="0.03" steps="149155"/></proof>
+  <proof prover="1" timelimit="1"><result status="valid" time="0.03" steps="146147"/></proof>
   </goal>
  </transf>
  </goal>
@@ -378,10 +378,10 @@
   </transf>
   </goal>
   <goal name="t&#39;vc.1" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.07" steps="21423"/></proof>
+  <proof prover="2"><result status="valid" time="0.07" steps="21437"/></proof>
   </goal>
   <goal name="t&#39;vc.2" expl="type invariant" proved="true">
-  <proof prover="6"><result status="valid" time="0.12" steps="23054"/></proof>
+  <proof prover="6"><result status="valid" time="0.12" steps="23068"/></proof>
   </goal>
   <goal name="t&#39;vc.3" expl="type invariant" proved="true">
   <proof prover="5" timelimit="1"><result status="valid" time="0.01" steps="20"/></proof>
@@ -445,7 +445,7 @@
   <goal name="remove_products&#39;vc.9" expl="precondition" proved="true">
   <transf name="assert" proved="true" arg1="(mod (int63&#39;int n) 2 = 1)">
    <goal name="remove_products&#39;vc.9.0" expl="asserted formula" proved="true">
-   <proof prover="1" timelimit="5"><result status="valid" time="0.03" steps="155719"/></proof>
+   <proof prover="1" timelimit="5"><result status="valid" time="0.03" steps="155967"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.9.1" expl="precondition" proved="true">
    <proof prover="5"><result status="valid" time="0.07" steps="84"/></proof>
@@ -455,10 +455,10 @@
   <goal name="remove_products&#39;vc.10" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.10.0" expl="precondition" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="153195"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="153443"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.10.1" expl="precondition" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="181417"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="181665"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.10.2" expl="precondition" proved="true">
    <proof prover="0" timelimit="5"><result status="valid" time="0.06" steps="92"/></proof>
@@ -473,11 +473,11 @@
    <goal name="remove_products&#39;vc.12.0" expl="assertion" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="remove_products&#39;vc.12.0.0" expl="assertion" proved="true">
-    <proof prover="1" timelimit="1"><result status="valid" time="0.12" steps="129549"/></proof>
+    <proof prover="1" timelimit="1"><result status="valid" time="0.12" steps="129797"/></proof>
     <proof prover="5" timelimit="1"><result status="valid" time="0.03" steps="84"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.12.0.1" expl="assertion" proved="true">
-    <proof prover="6"><result status="valid" time="0.10" steps="30045"/></proof>
+    <proof prover="6"><result status="valid" time="0.10" steps="29855"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.12.0.2" expl="assertion" proved="true">
     <proof prover="5" timelimit="1"><result status="valid" time="0.11" steps="90"/></proof>
@@ -495,23 +495,23 @@
    <proof prover="5"><result status="valid" time="0.03" steps="89"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.13.1" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.05" steps="187917"/></proof>
+   <proof prover="1"><result status="valid" time="0.05" steps="188165"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.13.2" expl="VC for remove_products" proved="true">
-   <proof prover="5"><result status="valid" time="0.41" steps="395"/></proof>
+   <proof prover="5"><result status="valid" time="0.25" steps="395"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.14" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.14.0" expl="assertion" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.04" steps="130595"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.04" steps="130843"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.14.1" expl="assertion" proved="true">
    <proof prover="5"><result status="valid" time="0.02" steps="91"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.14.2" expl="assertion" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="149638"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="149886"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.14.3" expl="VC for remove_products" proved="true">
    <proof prover="5"><result status="valid" time="3.17" steps="429"/></proof>
@@ -550,17 +550,17 @@
    <goal name="remove_products&#39;vc.16.0" expl="assertion" proved="true">
    <transf name="split_premise_right" proved="true" >
     <goal name="remove_products&#39;vc.16.0.0" expl="assertion" proved="true">
-    <proof prover="6"><result status="valid" time="1.43" steps="87955"/></proof>
+    <proof prover="6"><result status="valid" time="1.43" steps="87777"/></proof>
     </goal>
    </transf>
    </goal>
    <goal name="remove_products&#39;vc.16.1" expl="VC for remove_products" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.04" steps="183975"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.04" steps="182379"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.17" expl="precondition" proved="true">
-  <proof prover="1" timelimit="1"><result status="valid" time="0.04" steps="63417"/></proof>
+  <proof prover="1" timelimit="1"><result status="valid" time="0.04" steps="63517"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.18" expl="precondition" proved="true">
   <proof prover="5" timelimit="1"><result status="valid" time="0.03" steps="96"/></proof>
@@ -573,10 +573,10 @@
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.20" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.15" steps="25419"/></proof>
+  <proof prover="2"><result status="valid" time="0.15" steps="25433"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.21" expl="precondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.14" steps="25283"/></proof>
+  <proof prover="2"><result status="valid" time="0.14" steps="25297"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.22" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
@@ -587,7 +587,7 @@
    <proof prover="5"><result status="valid" time="0.03" steps="105"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.22.2" expl="precondition" proved="true">
-   <proof prover="1" timelimit="5"><result status="valid" time="0.07" steps="203365"/></proof>
+   <proof prover="1" timelimit="5"><result status="valid" time="0.07" steps="203613"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.22.3" expl="precondition" proved="true">
    <proof prover="5"><result status="valid" time="0.04" steps="105"/></proof>
@@ -600,7 +600,7 @@
   <goal name="remove_products&#39;vc.24" expl="precondition" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="remove_products&#39;vc.24.0" expl="precondition" proved="true">
-   <proof prover="6"><result status="valid" time="2.04" steps="102763"/></proof>
+   <proof prover="6"><result status="valid" time="2.04" steps="102581"/></proof>
    </goal>
   </transf>
   </goal>
@@ -613,10 +613,10 @@
   <goal name="remove_products&#39;vc.27" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.27.0" expl="precondition" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.06" steps="133301"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.06" steps="133549"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.27.1" expl="precondition" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.06" steps="203351"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.06" steps="203595"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.27.2" expl="precondition" proved="true">
    <proof prover="0" timelimit="5"><result status="valid" time="0.13" steps="113"/></proof>
@@ -650,7 +650,7 @@
      <goal name="remove_products&#39;vc.29.0.4.1" expl="false case" proved="true">
      <transf name="unfold" proved="true" arg1="inv_marked_old_nexts1" arg2="in" arg3="Requires4">
       <goal name="remove_products&#39;vc.29.0.4.1.0" expl="false case" proved="true">
-      <proof prover="6" timelimit="5"><result status="valid" time="3.09" steps="192007"/></proof>
+      <proof prover="6" timelimit="5"><result status="valid" time="4.05" steps="191829"/></proof>
       </goal>
      </transf>
      </goal>
@@ -661,7 +661,7 @@
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.30" expl="variant decrease" proved="true">
-  <proof prover="6"><result status="valid" time="0.47" steps="48590"/></proof>
+  <proof prover="6"><result status="valid" time="0.47" steps="48402"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.31" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
@@ -684,10 +684,10 @@
    <proof prover="5" timelimit="1"><result status="valid" time="0.04" steps="113"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.31.6" expl="precondition" proved="true">
-   <proof prover="6"><result status="valid" time="0.46" steps="48475"/></proof>
+   <proof prover="6"><result status="valid" time="0.46" steps="48279"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.31.7" expl="precondition" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.08" steps="251122"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.08" steps="249526"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.31.8" expl="precondition" proved="true">
    <proof prover="0" timelimit="1"><result status="valid" time="0.38" steps="120"/></proof>
@@ -701,7 +701,7 @@
     <goal name="remove_products&#39;vc.32.0.0" expl="precondition" proved="true">
     <transf name="split_all_full" proved="true" >
      <goal name="remove_products&#39;vc.32.0.0.0" expl="VC for remove_products" proved="true">
-     <proof prover="2"><result status="valid" time="0.16" steps="38693"/></proof>
+     <proof prover="2"><result status="valid" time="0.16" steps="38707"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.32.0.0.1" expl="VC for remove_products" proved="true">
      <proof prover="0" timelimit="1"><result status="valid" time="0.12" steps="116"/></proof>
@@ -741,13 +741,13 @@
      </transf>
      </goal>
      <goal name="remove_products&#39;vc.32.0.0.3" expl="VC for remove_products" proved="true">
-     <proof prover="2"><result status="valid" time="0.12" steps="29658"/></proof>
+     <proof prover="2"><result status="valid" time="0.12" steps="29672"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.32.0.0.4" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.10" steps="231627"/></proof>
+     <proof prover="1"><result status="valid" time="0.10" steps="230327"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.32.0.0.5" expl="VC for remove_products" proved="true">
-     <proof prover="1" timelimit="1"><result status="valid" time="0.07" steps="214112"/></proof>
+     <proof prover="1" timelimit="1"><result status="valid" time="0.07" steps="214360"/></proof>
      </goal>
     </transf>
     </goal>
@@ -756,13 +756,13 @@
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.33" expl="precondition" proved="true">
-  <proof prover="1" timelimit="5"><result status="valid" time="0.05" steps="175107"/></proof>
+  <proof prover="1" timelimit="5"><result status="valid" time="0.05" steps="175355"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.34" expl="precondition" proved="true">
-  <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="74695"/></proof>
+  <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="74279"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.35" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="1.62" steps="390"/></proof>
+  <proof prover="0"><result status="valid" time="1.30" steps="390"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.36" expl="precondition" proved="true">
   <proof prover="0" timelimit="1"><result status="valid" time="0.11" steps="68"/></proof>
@@ -772,20 +772,20 @@
    <goal name="remove_products&#39;vc.37.0" expl="precondition" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="remove_products&#39;vc.37.0.0" expl="precondition" proved="true">
-    <proof prover="1" timelimit="1"><result status="valid" time="0.09" steps="242318"/></proof>
+    <proof prover="1" timelimit="1"><result status="valid" time="0.09" steps="242566"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.37.0.1" expl="precondition" proved="true">
-    <proof prover="1" timelimit="1"><result status="valid" time="0.10" steps="185811"/></proof>
+    <proof prover="1" timelimit="1"><result status="valid" time="0.10" steps="186059"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.37.0.2" expl="precondition" proved="true">
-    <proof prover="2"><result status="valid" time="0.14" steps="25940"/></proof>
+    <proof prover="2"><result status="valid" time="0.14" steps="25954"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.37.0.3" expl="precondition" proved="true">
     <transf name="case" proved="true" arg1="(i = p)">
      <goal name="remove_products&#39;vc.37.0.3.0" expl="true case (precondition)" proved="true">
      <transf name="remove" proved="true" arg1="H24,H23,H22">
       <goal name="remove_products&#39;vc.37.0.3.0.0" expl="true case (precondition)" proved="true">
-      <proof prover="5"><result status="valid" time="4.43" steps="683"/></proof>
+      <proof prover="5"><result status="valid" time="5.07" steps="683"/></proof>
       </goal>
      </transf>
      </goal>
@@ -817,16 +817,16 @@
    <goal name="remove_products&#39;vc.39.0" expl="precondition" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="remove_products&#39;vc.39.0.0" expl="precondition" proved="true">
-    <proof prover="2" timelimit="10"><result status="valid" time="0.13" steps="34962"/></proof>
+    <proof prover="2" timelimit="10"><result status="valid" time="0.13" steps="34976"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.39.0.1" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.05" steps="189928"/></proof>
+    <proof prover="1"><result status="valid" time="0.05" steps="190176"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.39.0.2" expl="precondition" proved="true">
-    <proof prover="2" timelimit="10"><result status="valid" time="0.10" steps="25973"/></proof>
+    <proof prover="2" timelimit="10"><result status="valid" time="0.10" steps="25987"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.39.0.3" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.08" steps="240976"/></proof>
+    <proof prover="1"><result status="valid" time="0.08" steps="241224"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.39.0.4" expl="precondition" proved="true">
     <transf name="unfold" proved="true" arg1="inv_marked_old_nexts2_partial" arg2="in" arg3="Requires8">
@@ -835,7 +835,7 @@
       <goal name="remove_products&#39;vc.39.0.4.0.0" expl="precondition" proved="true">
       <transf name="instantiate" proved="true" arg1="Requires8" arg2="i">
        <goal name="remove_products&#39;vc.39.0.4.0.0.0" expl="precondition" proved="true">
-       <proof prover="6"><result status="valid" time="0.74" steps="69042"/></proof>
+       <proof prover="6"><result status="valid" time="0.74" steps="68660"/></proof>
        </goal>
       </transf>
       </goal>
@@ -869,15 +869,15 @@
   <proof prover="0" timelimit="1"><result status="valid" time="0.15" steps="67"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.47" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="205987"/></proof>
+  <proof prover="1"><result status="valid" time="0.08" steps="204719"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.48" expl="variant decrease" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="remove_products&#39;vc.48.0" expl="variant decrease" proved="true">
-   <proof prover="2" timelimit="10"><result status="valid" time="0.09" steps="28732"/></proof>
+   <proof prover="2" timelimit="10"><result status="valid" time="0.09" steps="28542"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.48.1" expl="variant decrease" proved="true">
-   <proof prover="1"><result status="valid" time="0.07" steps="210613"/></proof>
+   <proof prover="1"><result status="valid" time="0.07" steps="209017"/></proof>
    </goal>
   </transf>
   </goal>
@@ -902,7 +902,7 @@
    <proof prover="5" timelimit="1"><result status="valid" time="0.04" steps="97"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.49.6" expl="precondition" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.07" steps="193594"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.07" steps="191994"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.49.7" expl="precondition" proved="true">
    <proof prover="5" timelimit="1"><result status="valid" time="0.03" steps="97"/></proof>
@@ -919,7 +919,7 @@
     <goal name="remove_products&#39;vc.50.0.0" expl="precondition" proved="true">
     <transf name="split_all_full" proved="true" >
      <goal name="remove_products&#39;vc.50.0.0.0" expl="VC for remove_products" proved="true">
-     <proof prover="2"><result status="valid" time="0.15" steps="38653"/></proof>
+     <proof prover="2"><result status="valid" time="0.15" steps="38667"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.50.0.0.1" expl="VC for remove_products" proved="true">
      <proof prover="0" timelimit="1"><result status="valid" time="0.11" steps="108"/></proof>
@@ -937,7 +937,7 @@
           <goal name="remove_products&#39;vc.50.0.0.2.0.0.0.0.0" expl="VC for remove_products" proved="true">
           <transf name="instantiate" proved="true" arg1="Requires11" arg2="i">
            <goal name="remove_products&#39;vc.50.0.0.2.0.0.0.0.0.0" expl="VC for remove_products" proved="true">
-           <proof prover="5"><result status="valid" time="0.63" steps="469"/></proof>
+           <proof prover="5"><result status="valid" time="0.44" steps="469"/></proof>
            </goal>
           </transf>
           </goal>
@@ -959,13 +959,13 @@
      </transf>
      </goal>
      <goal name="remove_products&#39;vc.50.0.0.3" expl="VC for remove_products" proved="true">
-     <proof prover="2"><result status="valid" time="0.12" steps="29531"/></proof>
+     <proof prover="2"><result status="valid" time="0.12" steps="29545"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.50.0.0.4" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.11" steps="217296"/></proof>
+     <proof prover="1"><result status="valid" time="0.11" steps="215968"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.50.0.0.5" expl="VC for remove_products" proved="true">
-     <proof prover="1" timelimit="1"><result status="valid" time="0.06" steps="205061"/></proof>
+     <proof prover="1" timelimit="1"><result status="valid" time="0.06" steps="205315"/></proof>
      </goal>
     </transf>
     </goal>
@@ -974,16 +974,16 @@
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.51" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.05" steps="169027"/></proof>
+  <proof prover="1"><result status="valid" time="0.05" steps="169287"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.52" expl="precondition" proved="true">
   <proof prover="5" timelimit="1"><result status="valid" time="0.02" steps="111"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.53" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.56" steps="325"/></proof>
+  <proof prover="0"><result status="valid" time="0.75" steps="325"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.54" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="200375"/></proof>
+  <proof prover="1"><result status="valid" time="0.07" steps="200623"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.55" expl="precondition" proved="true">
   <proof prover="5" timelimit="1"><result status="valid" time="0.04" steps="115"/></proof>
@@ -1004,7 +1004,7 @@
      <proof prover="5"><result status="valid" time="0.20" steps="118"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.56.0.0.3" expl="VC for remove_products" proved="true">
-     <proof prover="1" timelimit="1"><result status="valid" time="0.15" steps="268970"/></proof>
+     <proof prover="1" timelimit="1"><result status="valid" time="0.15" steps="265752"/></proof>
      </goal>
     </transf>
     </goal>
@@ -1017,16 +1017,16 @@
    <goal name="remove_products&#39;vc.57.0" expl="precondition" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="remove_products&#39;vc.57.0.0" expl="precondition" proved="true">
-    <proof prover="2" timelimit="10"><result status="valid" time="0.13" steps="34871"/></proof>
+    <proof prover="2" timelimit="10"><result status="valid" time="0.13" steps="34885"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.57.0.1" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.10" steps="187418"/></proof>
+    <proof prover="1"><result status="valid" time="0.10" steps="187672"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.57.0.2" expl="precondition" proved="true">
-    <proof prover="2" timelimit="10"><result status="valid" time="0.12" steps="25539"/></proof>
+    <proof prover="2" timelimit="10"><result status="valid" time="0.12" steps="25553"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.57.0.3" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.09" steps="227471"/></proof>
+    <proof prover="1"><result status="valid" time="0.09" steps="227725"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.57.0.4" expl="precondition" proved="true">
     <transf name="unfold" proved="true" arg1="inv_marked_old_nexts2_partial" arg2="in" arg3="Requires8">
@@ -1035,7 +1035,7 @@
       <goal name="remove_products&#39;vc.57.0.4.0.0" expl="precondition" proved="true">
       <transf name="instantiate" proved="true" arg1="Requires8" arg2="i">
        <goal name="remove_products&#39;vc.57.0.4.0.0.0" expl="precondition" proved="true">
-       <proof prover="6"><result status="valid" time="0.67" steps="65337"/></proof>
+       <proof prover="6"><result status="valid" time="0.45" steps="64955"/></proof>
        </goal>
       </transf>
       </goal>
@@ -1076,7 +1076,7 @@
     <proof prover="5"><result status="valid" time="0.03" steps="111"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.63.0.3" expl="postcondition" proved="true">
-    <proof prover="5"><result status="valid" time="0.97" steps="510"/></proof>
+    <proof prover="5"><result status="valid" time="1.63" steps="510"/></proof>
     </goal>
    </transf>
    </goal>
@@ -1091,7 +1091,7 @@
    <proof prover="5"><result status="valid" time="0.03" steps="72"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.65.1" expl="VC for remove_products" proved="true">
-   <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="157121"/></proof>
+   <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="157369"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.65.2" expl="VC for remove_products" proved="true">
    <proof prover="5"><result status="valid" time="1.00" steps="529"/></proof>
@@ -1141,13 +1141,13 @@
    </transf>
    </goal>
    <goal name="remove_products&#39;vc.66.3" expl="VC for remove_products" proved="true">
-   <proof prover="1" timelimit="5"><result status="valid" time="0.07" steps="177541"/></proof>
+   <proof prover="1" timelimit="5"><result status="valid" time="0.07" steps="175945"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.66.4" expl="VC for remove_products" proved="true">
    <proof prover="5"><result status="valid" time="0.03" steps="74"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.66.5" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.09" steps="201001"/></proof>
+   <proof prover="1"><result status="valid" time="0.09" steps="199405"/></proof>
    </goal>
   </transf>
   </goal>
@@ -1214,16 +1214,16 @@
    <proof prover="5"><result status="valid" time="0.03" steps="74"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.73.2" expl="VC for remove_products" proved="true">
-   <proof prover="5"><result status="valid" time="3.57" steps="1007"/></proof>
+   <proof prover="5"><result status="valid" time="3.57" steps="1029"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.73.3" expl="VC for remove_products" proved="true">
-   <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="169369"/></proof>
+   <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="167807"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.73.4" expl="VC for remove_products" proved="true">
    <proof prover="5"><result status="valid" time="0.02" steps="70"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.73.5" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.07" steps="190267"/></proof>
+   <proof prover="1"><result status="valid" time="0.07" steps="188705"/></proof>
    </goal>
   </transf>
   </goal>
@@ -1234,7 +1234,7 @@
   <proof prover="5"><result status="valid" time="0.04" steps="72"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.76" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.09" steps="22320"/></proof>
+  <proof prover="2"><result status="valid" time="0.09" steps="22334"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.77" expl="postcondition" proved="true">
   <proof prover="0" timelimit="1"><result status="valid" time="0.06" steps="37"/></proof>
@@ -1243,7 +1243,7 @@
   <proof prover="5" timelimit="1"><result status="valid" time="0.05" steps="75"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.79" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="22350"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="22364"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.80" expl="precondition" proved="true">
   <proof prover="5"><result status="valid" time="0.03" steps="86"/></proof>
@@ -1260,7 +1260,7 @@
   <goal name="remove_products&#39;vc.84" expl="precondition" proved="true">
   <transf name="assert" proved="true" arg1="(mod (int63&#39;int n) 2 = 1)">
    <goal name="remove_products&#39;vc.84.0" expl="asserted formula" proved="true">
-   <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="125506"/></proof>
+   <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="125738"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.84.1" expl="precondition" proved="true">
    <proof prover="5"><result status="valid" time="0.10" steps="37"/></proof>
@@ -1281,7 +1281,7 @@
    <goal name="remove_products&#39;vc.87.1" expl="assertion" proved="true">
    <transf name="split_premise_right" proved="true" >
     <goal name="remove_products&#39;vc.87.1.0" expl="assertion" proved="true">
-    <proof prover="6"><result status="valid" time="0.22" steps="45096"/></proof>
+    <proof prover="6"><result status="valid" time="0.22" steps="44918"/></proof>
     </goal>
    </transf>
    </goal>
@@ -1292,7 +1292,7 @@
    <proof prover="5"><result status="valid" time="0.04" steps="49"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.87.4" expl="VC for remove_products" proved="true">
-   <proof prover="1"><result status="valid" time="0.05" steps="151233"/></proof>
+   <proof prover="1"><result status="valid" time="0.05" steps="149671"/></proof>
    </goal>
   </transf>
   </goal>
@@ -1302,28 +1302,28 @@
    <proof prover="5" timelimit="1"><result status="valid" time="0.05" steps="37"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.88.1" expl="precondition" proved="true">
-   <proof prover="5" timelimit="1"><result status="valid" time="0.02" steps="37"/></proof>
+   <proof prover="1" timelimit="1"><result status="valid" time="0.07" steps="9040"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.88.2" expl="precondition" proved="true">
    <proof prover="5" timelimit="1"><result status="valid" time="0.06" steps="37"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.88.3" expl="precondition" proved="true">
-   <proof prover="1" timelimit="1"><result status="valid" time="0.07" steps="9028"/></proof>
+   <proof prover="5" timelimit="1"><result status="valid" time="0.02" steps="37"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.88.4" expl="precondition" proved="true">
-   <proof prover="1" timelimit="5"><result status="valid" time="0.05" steps="133964"/></proof>
+   <proof prover="1" timelimit="5"><result status="valid" time="0.05" steps="134206"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.88.5" expl="precondition" proved="true">
    <proof prover="5" timelimit="1"><result status="valid" time="0.05" steps="37"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.88.6" expl="precondition" proved="true">
-   <proof prover="1"><result status="valid" time="0.06" steps="157052"/></proof>
+   <proof prover="1"><result status="valid" time="0.06" steps="155490"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.88.7" expl="precondition" proved="true">
    <proof prover="5"><result status="valid" time="0.04" steps="37"/></proof>
    </goal>
    <goal name="remove_products&#39;vc.88.8" expl="precondition" proved="true">
-   <proof prover="1" timelimit="5"><result status="valid" time="0.05" steps="177413"/></proof>
+   <proof prover="1" timelimit="5"><result status="valid" time="0.05" steps="176173"/></proof>
    </goal>
   </transf>
   </goal>
@@ -1335,12 +1335,12 @@
     <proof prover="0" timelimit="5"><result status="valid" time="0.02" steps="48"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.89.0.1" expl="precondition" proved="true">
-    <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="157571"/></proof>
+    <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="156327"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.89.0.2" expl="precondition" proved="true">
     <transf name="assert" proved="true" arg1="(n * n &gt; n)">
      <goal name="remove_products&#39;vc.89.0.2.0" expl="asserted formula" proved="true">
-     <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="139575"/></proof>
+     <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="139817"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.89.0.2.1" expl="precondition" proved="true">
      <transf name="inline_goal" proved="true" >
@@ -1349,7 +1349,7 @@
        <goal name="remove_products&#39;vc.89.0.2.1.0.0" expl="precondition" proved="true">
        <transf name="split_premise_right" proved="true" >
         <goal name="remove_products&#39;vc.89.0.2.1.0.0.0" expl="precondition" proved="true">
-        <proof prover="6" timelimit="5"><result status="valid" time="0.31" steps="42379"/></proof>
+        <proof prover="6" timelimit="5"><result status="valid" time="0.31" steps="42201"/></proof>
         </goal>
        </transf>
        </goal>
@@ -1360,10 +1360,10 @@
     </transf>
     </goal>
     <goal name="remove_products&#39;vc.89.0.3" expl="precondition" proved="true">
-    <proof prover="1" timelimit="1"><result status="valid" time="0.06" steps="131567"/></proof>
+    <proof prover="1" timelimit="1"><result status="valid" time="0.06" steps="131809"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.89.0.4" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.10" steps="164844"/></proof>
+    <proof prover="1"><result status="valid" time="0.10" steps="163600"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.89.0.5" expl="precondition" proved="true">
     <proof prover="0" timelimit="1"><result status="valid" time="0.03" steps="25"/></proof>
@@ -1373,7 +1373,7 @@
   </transf>
   </goal>
   <goal name="remove_products&#39;vc.90" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="147771"/></proof>
+  <proof prover="1"><result status="valid" time="0.07" steps="148013"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.91" expl="precondition" proved="true">
   <proof prover="0" timelimit="5"><result status="valid" time="0.02" steps="27"/></proof>
@@ -1384,7 +1384,7 @@
   <goal name="remove_products&#39;vc.93" expl="precondition" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="remove_products&#39;vc.93.0" expl="precondition" proved="true">
-   <proof prover="6" timelimit="5"><result status="valid" time="0.34" steps="42217"/></proof>
+   <proof prover="6" timelimit="5"><result status="valid" time="0.34" steps="42251"/></proof>
    </goal>
   </transf>
   </goal>
@@ -1393,16 +1393,16 @@
    <goal name="remove_products&#39;vc.94.0" expl="precondition" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="remove_products&#39;vc.94.0.0" expl="precondition" proved="true">
-    <proof prover="1" timelimit="1"><result status="valid" time="0.06" steps="180733"/></proof>
+    <proof prover="1" timelimit="1"><result status="valid" time="0.06" steps="180975"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.94.0.1" expl="precondition" proved="true">
-    <proof prover="1" timelimit="1"><result status="valid" time="0.10" steps="156330"/></proof>
+    <proof prover="1" timelimit="1"><result status="valid" time="0.10" steps="156572"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.94.0.2" expl="precondition" proved="true">
-    <proof prover="2"><result status="valid" time="0.07" steps="24354"/></proof>
+    <proof prover="2"><result status="valid" time="0.07" steps="24368"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.94.0.3" expl="precondition" proved="true">
-    <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="185866"/></proof>
+    <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="182792"/></proof>
     </goal>
    </transf>
    </goal>
@@ -1415,16 +1415,16 @@
     <goal name="remove_products&#39;vc.95.0.0" expl="precondition" proved="true">
     <transf name="split_all_full" proved="true" >
      <goal name="remove_products&#39;vc.95.0.0.0" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.06" steps="187860"/></proof>
+     <proof prover="1"><result status="valid" time="0.06" steps="188102"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.95.0.0.1" expl="VC for remove_products" proved="true">
-     <proof prover="1"><result status="valid" time="0.03" steps="11354"/></proof>
+     <proof prover="1"><result status="valid" time="0.03" steps="11277"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.95.0.0.2" expl="VC for remove_products" proved="true">
-     <proof prover="1" timelimit="5"><result status="valid" time="0.07" steps="215006"/></proof>
+     <proof prover="1" timelimit="5"><result status="valid" time="0.07" steps="211924"/></proof>
      </goal>
      <goal name="remove_products&#39;vc.95.0.0.3" expl="VC for remove_products" proved="true">
-     <proof prover="6"><result status="valid" time="0.19" steps="47958"/></proof>
+     <proof prover="6"><result status="valid" time="0.32" steps="47576"/></proof>
      </goal>
     </transf>
     </goal>
@@ -1440,13 +1440,13 @@
     <proof prover="0" timelimit="5"><result status="valid" time="0.00" steps="32"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.96.0.1" expl="precondition" proved="true">
-    <proof prover="1"><result status="valid" time="0.07" steps="157731"/></proof>
+    <proof prover="1"><result status="valid" time="0.07" steps="157973"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.96.0.2" expl="precondition" proved="true">
     <proof prover="5"><result status="valid" time="0.02" steps="57"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.96.0.3" expl="precondition" proved="true">
-    <proof prover="1" timelimit="5"><result status="valid" time="0.05" steps="175141"/></proof>
+    <proof prover="1" timelimit="5"><result status="valid" time="0.05" steps="175383"/></proof>
     </goal>
     <goal name="remove_products&#39;vc.96.0.4" expl="precondition" proved="true">
     <transf name="inline_all" proved="true" >
@@ -1481,7 +1481,7 @@
   <proof prover="5"><result status="valid" time="0.02" steps="58"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.104" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.05" steps="193599"/></proof>
+  <proof prover="1"><result status="valid" time="0.05" steps="190517"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.105" expl="precondition" proved="true">
   <proof prover="5" timelimit="1"><result status="valid" time="0.03" steps="60"/></proof>
@@ -1499,10 +1499,10 @@
   <proof prover="5"><result status="valid" time="0.02" steps="62"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.110" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="22351"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="22365"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.111" expl="postcondition" proved="true">
-  <proof prover="2"><result status="valid" time="0.10" steps="28415"/></proof>
+  <proof prover="2"><result status="valid" time="0.10" steps="28053"/></proof>
   </goal>
   <goal name="remove_products&#39;vc.112" expl="postcondition" proved="true">
   <proof prover="0"><result status="valid" time="0.01" steps="29"/></proof>
@@ -1597,13 +1597,13 @@
   <proof prover="5" timelimit="10"><result status="valid" time="0.02" steps="22"/></proof>
   </goal>
   <goal name="conservation_inv_arr_on_jump&#39;vc.2" expl="assertion" proved="true">
-  <proof prover="5"><result status="valid" time="2.11" steps="347"/></proof>
+  <proof prover="5"><result status="valid" time="2.49" steps="347"/></proof>
   </goal>
   <goal name="conservation_inv_arr_on_jump&#39;vc.3" expl="assertion" proved="true">
-  <proof prover="5"><result status="valid" time="3.57" steps="336"/></proof>
+  <proof prover="5"><result status="valid" time="3.57" steps="335"/></proof>
   </goal>
   <goal name="conservation_inv_arr_on_jump&#39;vc.4" expl="postcondition" proved="true">
-  <proof prover="5" timelimit="10"><result status="valid" time="5.33" steps="2778"/></proof>
+  <proof prover="5" timelimit="10"><result status="valid" time="7.85" steps="2920"/></proof>
   <transf name="remove" proved="true" arg1="zero1,one1,(-),(&gt;),(&lt;=),(&gt;=),int63&#39;maxInt,int63&#39;minInt,min_int63,max_int63,to_int,in_bounds,zero,one,even,odd,divides,prime,cons,snoc,(++),exchange,inv_nexts,inv_marked_nexts,inv_marked_old_nexts1,inv_marked_old_nexts2,inv_marked_marked_old,inv_marked_old_nexts2_partial,all_primes,all_products_marked,previously_marked_products,only_products_marked,prime_products_marked,inv_remove_products,all_distinct,all_inf_or_eq,Assoc1,Unit_def_l,Unit_def_r,Inv_def_l,Inv_def_r,Comm1,Assoc,Mul_distr_l,Mul_distr_r,Comm,Unitary,NonTrivialRing,Refl,Trans,Antisymm,Total,ZeroLessOne,CompatOrderAdd,CompatOrderMult,Abs_le,Abs_pos,Div_mod,Mod_bound,Div_unique,Div_bound,Mod_1,Div_1,Div_inf,Div_inf_neg,Mod_0,Div_1_left,Div_minus1_left,Mod_1_left,Mod_minus1_left,Div_mult,Mod_mult,Div_mod1,Div_bound1,Mod_bound1,Div_sign_pos,Div_sign_neg,Mod_sign_pos,Mod_sign_neg,Rounds_toward_zero,Div_11,Mod_11,Div_inf1,Mod_inf,Div_mult1,Mod_mult1,to_int_in_bounds,extensionality,max_int&#39;def,min_int&#39;def,even_or_odd,even_not_odd,odd_not_even,even_odd,odd_even,even_even,odd_odd,even_2k,odd_2k1,even_mod2,divides&#39;spec,divides_refl,divides_1_n,divides_0,divides_left,divides_right,divides_oppr,divides_oppl,divides_oppr_rev,divides_oppl_rev,divides_plusr,divides_minusr,divides_multl,divides_multr,divides_factorl,divides_factorr,divides_n_1,divides_antisym,divides_trans,divides_bounds,mod_divides_euclidean,divides_mod_euclidean,mod_divides_computer,divides_mod_computer,even_divides,odd_divides,not_prime_1,prime_2,prime_3,prime_divisors,small_divisors,even_prime,odd_prime,mult_croissance_locale,mult_croissance,comp_mult_2,div_croissance_locale1,div_croissance1,div_croissance_locale2,div_croissance2,div_mult_1,mult_borne_sous_exp,sq_ineq,divides_div,divides_inf,not_prime_divider_limits,no_prod_impl_no_divider,not_prime_impl_divisor_under_sqrt,length_nonnegative,empty&#39;def,set&#39;def,singleton&#39;spec,cons&#39;spec,snoc&#39;spec,([..])&#39;spec,([..])&#39;def,([_..])&#39;def,([.._])&#39;def,(++)&#39;spec,exchange_set,conservation_inv_marked_nexts_on_marked_change,conservation_inv_marked_nexts_on_nexts_change,array63&#39;invariant,conservation_inv_arr_on_mark,H7,H6">
    <goal name="conservation_inv_arr_on_jump&#39;vc.4.0" expl="postcondition" proved="true">
    <proof prover="5" timelimit="1"><result status="valid" time="0.24" steps="166"/></proof>
@@ -1615,7 +1615,7 @@
  <goal name="t&#39;vc" expl="VC for t" proved="true">
  <transf name="split_vc" proved="true" >
   <goal name="t&#39;vc.0" expl="array creation size" proved="true">
-  <proof prover="2"><result status="valid" time="0.06" steps="21330"/></proof>
+  <proof prover="2"><result status="valid" time="0.06" steps="21344"/></proof>
   </goal>
   <goal name="t&#39;vc.1" expl="index in array bounds" proved="true">
   <proof prover="5" timelimit="1"><result status="valid" time="0.01" steps="12"/></proof>
@@ -1654,7 +1654,7 @@
   <proof prover="5"><result status="valid" time="0.03" steps="135"/></proof>
   </goal>
   <goal name="t&#39;vc.13" expl="type invariant" proved="true">
-  <proof prover="5"><result status="valid" time="4.99" steps="2465"/></proof>
+  <proof prover="5"><result status="valid" time="7.09" steps="2465"/></proof>
   <transf name="remove" proved="true" arg1="zero1,one1,(-),(&gt;),(&lt;=),(&gt;=),abs,int63&#39;maxInt,int63&#39;minInt,min_int63,max_int63,in_bounds,zero,one,even,odd,divides,prime,([]),singleton,cons,snoc,(++),exchange,inv_nexts,inv_marked_nexts,inv_marked_old_nexts1,inv_marked_old_nexts2,inv_marked_marked_old,inv_marked_old_nexts2_partial,all_primes,all_products_marked,previously_marked_products,only_products_marked,prime_products_marked,inv_remove_products,all_distinct,all_inf_or_eq,marked,nexts,Assoc1,Unit_def_l,Unit_def_r,Inv_def_l,Inv_def_r,Comm1,Assoc,Mul_distr_l,Mul_distr_r,Comm,Unitary,NonTrivialRing,Refl,Trans,Antisymm,Total,ZeroLessOne,CompatOrderAdd,CompatOrderMult,Abs_le,Div_mod,Mod_bound,Div_unique,Div_bound,Mod_1,Div_1,Div_inf,Div_inf_neg,Mod_0,Div_1_left,Div_minus1_left,Mod_1_left,Mod_minus1_left,Div_mult,Mod_mult,Div_mod1,Div_bound1,Mod_bound1,Div_sign_pos,Div_sign_neg,Mod_sign_pos,Mod_sign_neg,Rounds_toward_zero,Div_11,Mod_11,Div_inf1,Mod_inf,Div_mult1,Mod_mult1,to_int_in_bounds,extensionality,max_int&#39;def,min_int&#39;def,even_or_odd,even_not_odd,odd_not_even,even_odd,odd_even,even_even,odd_odd,even_2k,odd_2k1,even_mod2,divides&#39;spec,divides_refl,divides_1_n,divides_0,divides_left,divides_right,divides_oppr,divides_oppl,divides_oppr_rev,divides_oppl_rev,divides_plusr,divides_minusr,divides_multl,divides_multr,divides_factorl,divides_factorr,divides_n_1,divides_antisym,divides_trans,divides_bounds,mod_divides_euclidean,divides_mod_euclidean,mod_divides_computer,divides_mod_computer,even_divides,odd_divides,not_prime_1,prime_2,prime_3,prime_divisors,small_divisors,even_prime,odd_prime,mult_croissance_locale,mult_croissance,comp_mult_2,div_croissance_locale1,div_croissance1,div_croissance_locale2,div_croissance2,div_mult_1,mult_borne_sous_exp,sq_ineq,divides_div,divides_inf,not_prime_divider_limits,no_prod_impl_no_divider,not_prime_impl_divisor_under_sqrt,length_nonnegative,(==)&#39;spec,create&#39;spec,empty&#39;def,set&#39;def,singleton&#39;spec,cons&#39;spec,snoc&#39;spec,([..])&#39;spec,([..])&#39;def,([_..])&#39;def,([.._])&#39;def,(++)&#39;spec,exchange_set,conservation_inv_marked_nexts_on_marked_change,conservation_inv_marked_nexts_on_nexts_change,array63&#39;invariant,conservation_inv_arr_on_mark,conservation_inv_arr_on_jump,Ensures6,Ensures3,Ensures2,Ensures1,Ensures,LoopInvariant8,LoopInvariant7,LoopInvariant6,LoopInvariant4,LoopInvariant3,LoopInvariant2,LoopInvariant1,LoopInvariant">
    <goal name="t&#39;vc.13.0" expl="type invariant" proved="true">
    <proof prover="5" timelimit="1"><result status="valid" time="0.01" steps="26"/></proof>
@@ -1662,13 +1662,13 @@
   </transf>
   </goal>
   <goal name="t&#39;vc.14" expl="type invariant" proved="true">
-  <proof prover="5"><result status="valid" time="1.18" steps="825"/></proof>
+  <proof prover="5"><result status="valid" time="1.81" steps="825"/></proof>
   </goal>
   <goal name="t&#39;vc.15" expl="type invariant" proved="true">
   <proof prover="5"><result status="valid" time="0.05" steps="135"/></proof>
   </goal>
   <goal name="t&#39;vc.16" expl="type invariant" proved="true">
-  <proof prover="5"><result status="valid" time="1.20" steps="883"/></proof>
+  <proof prover="5"><result status="valid" time="1.63" steps="883"/></proof>
   </goal>
   <goal name="t&#39;vc.17" expl="type invariant" proved="true">
   <proof prover="0" timelimit="1"><result status="valid" time="0.13" steps="161"/></proof>
@@ -1750,7 +1750,7 @@
   <proof prover="5"><result status="valid" time="0.05" steps="45"/></proof>
   </goal>
   <goal name="create&#39;vc.23" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="5.66" steps="1717"/></proof>
+  <proof prover="0"><result status="valid" time="7.95" steps="1717"/></proof>
   </goal>
   <goal name="create&#39;vc.24" expl="precondition" proved="true">
   <proof prover="0" timelimit="5"><result status="valid" time="1.88" steps="513"/></proof>
@@ -1777,10 +1777,10 @@
   <proof prover="5"><result status="valid" time="1.10" steps="1208"/></proof>
   </goal>
   <goal name="create&#39;vc.32" expl="precondition" proved="true">
-  <proof prover="6" timelimit="5"><result status="valid" time="0.22" steps="44836"/></proof>
+  <proof prover="6" timelimit="5"><result status="valid" time="0.35" steps="44646"/></proof>
   </goal>
   <goal name="create&#39;vc.33" expl="precondition" proved="true">
-  <proof prover="6" timelimit="5"><result status="valid" time="0.24" steps="46756"/></proof>
+  <proof prover="6" timelimit="5"><result status="valid" time="0.24" steps="46566"/></proof>
   </goal>
   <goal name="create&#39;vc.34" expl="postcondition" proved="true">
   <proof prover="5"><result status="valid" time="0.02" steps="58"/></proof>
@@ -1864,7 +1864,7 @@
   <proof prover="5"><result status="valid" time="0.06" steps="69"/></proof>
   </goal>
   <goal name="set_next&#39;vc.17" expl="type invariant" proved="true">
-  <proof prover="5"><result status="valid" time="1.28" steps="1205"/></proof>
+  <proof prover="5"><result status="valid" time="1.58" steps="1205"/></proof>
   </goal>
   <goal name="set_next&#39;vc.18" expl="type invariant" proved="true">
   <proof prover="5"><result status="valid" time="0.47" steps="574"/></proof>
@@ -1874,10 +1874,10 @@
    <goal name="set_next&#39;vc.19.0" expl="type invariant" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="set_next&#39;vc.19.0.0" expl="type invariant" proved="true">
-    <proof prover="6" timelimit="5"><result status="valid" time="0.63" steps="62587"/></proof>
+    <proof prover="6" timelimit="5"><result status="valid" time="0.63" steps="62385"/></proof>
     </goal>
     <goal name="set_next&#39;vc.19.0.1" expl="type invariant" proved="true">
-    <proof prover="6" timelimit="5"><result status="valid" time="0.52" steps="62495"/></proof>
+    <proof prover="6" timelimit="5"><result status="valid" time="0.82" steps="62293"/></proof>
     </goal>
    </transf>
    </goal>
@@ -1886,35 +1886,35 @@
   <goal name="set_next&#39;vc.20" expl="type invariant" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="set_next&#39;vc.20.0" expl="type invariant" proved="true">
-   <proof prover="6"><result status="valid" time="0.88" steps="87692"/></proof>
+   <proof prover="6"><result status="valid" time="1.25" steps="87306"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="set_next&#39;vc.21" expl="type invariant" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="set_next&#39;vc.21.0" expl="type invariant" proved="true">
-   <proof prover="6" timelimit="5"><result status="valid" time="0.62" steps="67961"/></proof>
+   <proof prover="6" timelimit="5"><result status="valid" time="0.83" steps="67771"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="set_next&#39;vc.22" expl="type invariant" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="set_next&#39;vc.22.0" expl="type invariant" proved="true">
-   <proof prover="6"><result status="valid" time="0.58" steps="66535"/></proof>
+   <proof prover="6"><result status="valid" time="0.58" steps="66345"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="set_next&#39;vc.23" expl="type invariant" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="set_next&#39;vc.23.0" expl="type invariant" proved="true">
-   <proof prover="6"><result status="valid" time="0.24" steps="48842"/></proof>
+   <proof prover="6"><result status="valid" time="0.24" steps="48652"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="set_next&#39;vc.24" expl="type invariant" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="set_next&#39;vc.24.0" expl="type invariant" proved="true">
-   <proof prover="6"><result status="valid" time="0.31" steps="49863"/></proof>
+   <proof prover="6"><result status="valid" time="0.31" steps="49673"/></proof>
    </goal>
   </transf>
   </goal>
@@ -2002,7 +2002,7 @@
   <proof prover="5"><result status="valid" time="0.05" steps="44"/></proof>
   </goal>
   <goal name="set_mark&#39;vc.8" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.05" steps="197"/></proof>
+  <proof prover="5"><result status="valid" time="0.24" steps="197"/></proof>
   </goal>
   <goal name="set_mark&#39;vc.9" expl="precondition" proved="true">
   <proof prover="0"><result status="valid" time="0.03" steps="149"/></proof>
@@ -2052,35 +2052,35 @@
   <goal name="set_mark&#39;vc.24" expl="type invariant" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="set_mark&#39;vc.24.0" expl="type invariant" proved="true">
-   <proof prover="6"><result status="valid" time="0.35" steps="53848"/></proof>
+   <proof prover="6"><result status="valid" time="0.60" steps="53655"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="set_mark&#39;vc.25" expl="type invariant" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="set_mark&#39;vc.25.0" expl="type invariant" proved="true">
-   <proof prover="6"><result status="valid" time="0.42" steps="64106"/></proof>
+   <proof prover="6"><result status="valid" time="0.42" steps="63729"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="set_mark&#39;vc.26" expl="type invariant" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="set_mark&#39;vc.26.0" expl="type invariant" proved="true">
-   <proof prover="6"><result status="valid" time="0.36" steps="56653"/></proof>
+   <proof prover="6"><result status="valid" time="0.59" steps="56463"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="set_mark&#39;vc.27" expl="type invariant" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="set_mark&#39;vc.27.0" expl="type invariant" proved="true">
-   <proof prover="6"><result status="valid" time="0.49" steps="59174"/></proof>
+   <proof prover="6"><result status="valid" time="0.49" steps="58984"/></proof>
    </goal>
   </transf>
   </goal>
   <goal name="set_mark&#39;vc.28" expl="type invariant" proved="true">
   <transf name="split_premise_right" proved="true" >
    <goal name="set_mark&#39;vc.28.0" expl="type invariant" proved="true">
-   <proof prover="6"><result status="valid" time="0.27" steps="48863"/></proof>
+   <proof prover="6"><result status="valid" time="0.27" steps="48673"/></proof>
    </goal>
   </transf>
   </goal>
@@ -2130,7 +2130,7 @@
   <proof prover="5" timelimit="1"><result status="valid" time="0.05" steps="66"/></proof>
   </goal>
   <goal name="set_mark&#39;vc.44" expl="type invariant" proved="true">
-  <proof prover="5" timelimit="1"><result status="valid" time="0.03" steps="66"/></proof>
+  <proof prover="5" timelimit="1"><result status="valid" time="0.14" steps="66"/></proof>
   </goal>
   <goal name="set_mark&#39;vc.45" expl="type invariant" proved="true">
   <proof prover="5" timelimit="1"><result status="valid" time="0.05" steps="63"/></proof>
@@ -2158,11 +2158,11 @@
   <proof prover="5" timelimit="1"><result status="valid" time="0.02" steps="12"/></proof>
   </goal>
   <goal name="t&#39;vc.2" expl="VC for t" proved="true">
-  <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="195896"/></proof>
+  <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="196134"/></proof>
   <proof prover="5" timelimit="1"><result status="valid" time="0.02" steps="12"/></proof>
   </goal>
   <goal name="t&#39;vc.3" expl="VC for t" proved="true">
-  <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="168993"/></proof>
+  <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="169231"/></proof>
   <proof prover="5" timelimit="1"><result status="valid" time="0.02" steps="12"/></proof>
   </goal>
   <goal name="t&#39;vc.4" expl="VC for t" proved="true">
@@ -2172,14 +2172,14 @@
   <proof prover="5" timelimit="1"><result status="valid" time="0.03" steps="12"/></proof>
   </goal>
   <goal name="t&#39;vc.6" expl="VC for t" proved="true">
-  <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="168523"/></proof>
+  <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="167254"/></proof>
   <proof prover="5" timelimit="1"><result status="valid" time="0.03" steps="18"/></proof>
   </goal>
   <goal name="t&#39;vc.7" expl="VC for t" proved="true">
   <proof prover="5" timelimit="1"><result status="valid" time="0.02" steps="20"/></proof>
   </goal>
   <goal name="t&#39;vc.8" expl="VC for t" proved="true">
-  <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="165779"/></proof>
+  <proof prover="1" timelimit="1"><result status="valid" time="0.05" steps="164218"/></proof>
   <proof prover="5" timelimit="1"><result status="valid" time="0.01" steps="12"/></proof>
   </goal>
   <goal name="t&#39;vc.9" expl="VC for t" proved="true">
@@ -2254,7 +2254,7 @@
   <proof prover="5"><result status="valid" time="0.02" steps="78"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.7" expl="precondition" proved="true">
-  <proof prover="1"><result status="valid" time="0.05" steps="207666"/></proof>
+  <proof prover="1"><result status="valid" time="0.05" steps="208008"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.8" expl="division by zero" proved="true">
   <proof prover="5"><result status="valid" time="0.02" steps="84"/></proof>
@@ -2263,7 +2263,7 @@
   <proof prover="0"><result status="valid" time="0.04" steps="83"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.10" expl="assertion" proved="true">
-  <proof prover="5" timelimit="1"><result status="valid" time="0.45" steps="403"/></proof>
+  <proof prover="5" timelimit="1"><result status="valid" time="0.78" steps="403"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.11" expl="precondition" proved="true">
   <transf name="split_vc" proved="true" >
@@ -2283,7 +2283,7 @@
       <proof prover="5"><result status="valid" time="0.11" steps="76"/></proof>
       </goal>
       <goal name="euler_sieve&#39;vc.11.2.0.0.1" expl="precondition" proved="true">
-      <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="321446"/></proof>
+      <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="320030"/></proof>
       </goal>
      </transf>
      </goal>
@@ -2299,7 +2299,7 @@
   <goal name="euler_sieve&#39;vc.13" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="euler_sieve&#39;vc.13.0" expl="assertion" proved="true">
-   <proof prover="1" timelimit="5"><result status="valid" time="0.07" steps="263688"/></proof>
+   <proof prover="1" timelimit="5"><result status="valid" time="0.07" steps="262256"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.13.1" expl="VC for euler_sieve" proved="true">
    <transf name="unfold" proved="true" arg1="only_products_marked" arg2="in" arg3="Ensures4">
@@ -2315,17 +2315,17 @@
    <goal name="euler_sieve&#39;vc.13.2" expl="VC for euler_sieve" proved="true">
    <transf name="remove" proved="true" arg1="zero1,one1,(-),int63&#39;maxInt,int63&#39;minInt,min_int63,max_int63,to_int,in_bounds,zero,one,even,odd,([]),cons,snoc,(++),exchange,inv_marked_nexts,inv_marked_old_nexts1,all_products_marked,previously_marked_products,only_products_marked,prime_products_marked,inv_remove_products,all_distinct,all_inf_or_eq,inv_count,Assoc1,Unit_def_l,Unit_def_r,Inv_def_r,Assoc,Mul_distr_l,Refl,Trans,CompatOrderAdd,CompatOrderMult,Abs_pos,Div_mod,Mod_bound,Div_unique,Div_bound,Mod_1,Div_1,Mod_minus1_left,Div_mult,Div_mod1,Div_bound1,Rounds_toward_zero,Div_11,Mod_11,Div_inf1,Div_mult1,Mod_mult1,to_int_in_bounds,extensionality,max_int&#39;def,min_int&#39;def,even_or_odd,even_not_odd,odd_not_even,even_odd,odd_even,even_even,even_2k,odd_2k1,even_mod2,divides_right,divides_factorl,divides_trans,divides_bounds,mod_divides_euclidean,divides_mod_euclidean,mod_divides_computer,divides_mod_computer,even_divides,prime_2,even_prime,mult_croissance,div_croissance1,div_croissance_locale2,div_croissance2,mult_borne_sous_exp,sq_ineq,divides_div,no_prod_impl_no_divider,length_nonnegative,(==)&#39;spec,set&#39;spec,set&#39;def,cons&#39;spec,snoc&#39;spec,([..])&#39;spec,([..])&#39;def,([_..])&#39;def,([.._])&#39;def,(++)&#39;spec,exchange_set,conservation_inv_marked_nexts_on_marked_change,conservation_inv_marked_nexts_on_nexts_change,array63&#39;invariant,conservation_inv_arr_on_mark,conservation_inv_arr_on_jump,t&#39;invariant,marked_impl_all_products_marked,prev_and_new_impl_all_products_marked,conservation_only_products_marked,conservation_previously_marked_products,conservation_previously_marked_products_on_marked_change,conservation_inv_marked_old_nexts2,unchanged_other_elements,previously_marked_products_impl_prime,only_products_marked_impl_not_marked,H18,H17,Ensures13,H16,H15,H14,Ensures12,Ensures11,Ensures10,Ensures9,Ensures8,H13,Requires4,Requires3,H8,Ensures6,Ensures5,Ensures4,H5,H4,Ensures3,Ensures1,H3,Assert,Ensures,H12,H11,H7,H6">
     <goal name="euler_sieve&#39;vc.13.2.0" expl="VC for euler_sieve" proved="true">
-    <proof prover="3"><result status="valid" time="0.95"/></proof>
+    <proof prover="3"><result status="valid" time="1.71"/></proof>
     </goal>
    </transf>
    </goal>
   </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.14" expl="variant decrease" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="229518"/></proof>
+  <proof prover="1"><result status="valid" time="0.07" steps="229856"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.15" expl="precondition" proved="true">
-  <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="200892"/></proof>
+  <proof prover="1" timelimit="5"><result status="valid" time="0.06" steps="201234"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.16" expl="precondition" proved="true">
   <proof prover="5" timelimit="1"><result status="valid" time="0.08" steps="94"/></proof>
@@ -2349,10 +2349,10 @@
      <proof prover="5" timelimit="1"><result status="valid" time="0.07" steps="78"/></proof>
      </goal>
      <goal name="euler_sieve&#39;vc.19.0.0.2" expl="VC for euler_sieve" proved="true">
-     <proof prover="2"><result status="valid" time="0.12" steps="35276"/></proof>
+     <proof prover="2"><result status="valid" time="0.12" steps="35290"/></proof>
      </goal>
      <goal name="euler_sieve&#39;vc.19.0.0.3" expl="VC for euler_sieve" proved="true">
-     <proof prover="1"><result status="valid" time="0.11" steps="373544"/></proof>
+     <proof prover="1"><result status="valid" time="0.11" steps="370112"/></proof>
      </goal>
     </transf>
     </goal>
@@ -2375,10 +2375,10 @@
      <goal name="euler_sieve&#39;vc.20.0.2.0" expl="precondition" proved="true">
      <transf name="split_vc" proved="true" >
       <goal name="euler_sieve&#39;vc.20.0.2.0.0" expl="precondition" proved="true">
-      <proof prover="1"><result status="valid" time="0.30" steps="780723"/></proof>
+      <proof prover="1"><result status="valid" time="0.30" steps="781065"/></proof>
       </goal>
       <goal name="euler_sieve&#39;vc.20.0.2.0.1" expl="precondition" proved="true">
-      <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="274813"/></proof>
+      <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="273379"/></proof>
       </goal>
      </transf>
      </goal>
@@ -2397,7 +2397,7 @@
        <proof prover="5"><result status="valid" time="0.11" steps="83"/></proof>
        </goal>
        <goal name="euler_sieve&#39;vc.20.0.4.0.0.1" expl="precondition" proved="true">
-       <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="332296"/></proof>
+       <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="330880"/></proof>
        </goal>
       </transf>
       </goal>
@@ -2434,10 +2434,10 @@
    <proof prover="5"><result status="valid" time="0.06" steps="69"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.25.1" expl="VC for euler_sieve" proved="true">
-   <proof prover="1" timelimit="5"><result status="valid" time="0.08" steps="227139"/></proof>
+   <proof prover="1" timelimit="5"><result status="valid" time="0.08" steps="227481"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.25.2" expl="VC for euler_sieve" proved="true">
-   <proof prover="1"><result status="valid" time="0.05" steps="189428"/></proof>
+   <proof prover="1"><result status="valid" time="0.05" steps="189770"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.25.3" expl="VC for euler_sieve" proved="true">
    <proof prover="5"><result status="valid" time="0.09" steps="71"/></proof>
@@ -2453,22 +2453,22 @@
   <goal name="euler_sieve&#39;vc.26" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="euler_sieve&#39;vc.26.0" expl="assertion" proved="true">
-   <proof prover="5"><result status="valid" time="0.67" steps="574"/></proof>
+   <proof prover="5"><result status="valid" time="1.08" steps="574"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.26.1" expl="assertion" proved="true">
-   <proof prover="5"><result status="valid" time="0.66" steps="330"/></proof>
+   <proof prover="5"><result status="valid" time="1.14" steps="330"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.26.2" expl="VC for euler_sieve" proved="true">
-   <proof prover="5"><result status="valid" time="0.76" steps="332"/></proof>
+   <proof prover="5"><result status="valid" time="0.97" steps="332"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.26.3" expl="VC for euler_sieve" proved="true">
    <proof prover="5"><result status="valid" time="0.07" steps="93"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.26.4" expl="VC for euler_sieve" proved="true">
-   <proof prover="5"><result status="valid" time="0.66" steps="330"/></proof>
+   <proof prover="5"><result status="valid" time="0.84" steps="330"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.26.5" expl="VC for euler_sieve" proved="true">
-   <proof prover="5"><result status="valid" time="0.53" steps="318"/></proof>
+   <proof prover="5"><result status="valid" time="0.70" steps="318"/></proof>
    </goal>
   </transf>
   </goal>
@@ -2499,13 +2499,48 @@
   <proof prover="5"><result status="valid" time="0.14" steps="169"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.31" expl="precondition" proved="true">
-  <proof prover="0" timelimit="5"><result status="valid" time="0.94" steps="634"/></proof>
+  <proof prover="0" timelimit="5"><result status="valid" time="1.27" steps="634"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.32" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="5.75" steps="3167"/></proof>
+  <transf name="inline_goal" proved="true" >
+   <goal name="euler_sieve&#39;vc.32.0" expl="precondition" proved="true">
+   <transf name="split_vc" proved="true" >
+    <goal name="euler_sieve&#39;vc.32.0.0" expl="precondition" proved="true">
+    <proof prover="5" timelimit="1"><result status="valid" time="0.03" steps="32"/></proof>
+    </goal>
+    <goal name="euler_sieve&#39;vc.32.0.1" expl="precondition" proved="true">
+    <proof prover="5" timelimit="1"><result status="valid" time="0.03" steps="32"/></proof>
+    </goal>
+    <goal name="euler_sieve&#39;vc.32.0.2" expl="precondition" proved="true">
+    <proof prover="5" timelimit="1"><result status="valid" time="0.02" steps="30"/></proof>
+    </goal>
+    <goal name="euler_sieve&#39;vc.32.0.3" expl="precondition" proved="true">
+    <transf name="case" proved="true" arg1="(mod i 2 = 0)">
+     <goal name="euler_sieve&#39;vc.32.0.3.0" expl="true case (precondition)" proved="true">
+     <transf name="case" proved="true" arg1="(i &lt; max - 1)">
+      <goal name="euler_sieve&#39;vc.32.0.3.0.0" expl="true case (precondition)" proved="true">
+      <transf name="instantiate" proved="true" arg1="Ensures1" arg2="i">
+       <goal name="euler_sieve&#39;vc.32.0.3.0.0.0" expl="true case (precondition)" proved="true">
+       <proof prover="1" timelimit="1"><result status="valid" time="0.08" steps="263034"/></proof>
+       </goal>
+      </transf>
+      </goal>
+      <goal name="euler_sieve&#39;vc.32.0.3.0.1" expl="false case (true case. precondition)" proved="true">
+      <proof prover="5" timelimit="1"><result status="valid" time="0.07" steps="44"/></proof>
+      </goal>
+     </transf>
+     </goal>
+     <goal name="euler_sieve&#39;vc.32.0.3.1" expl="false case (precondition)" proved="true">
+     <proof prover="5" timelimit="1"><result status="valid" time="0.16" steps="141"/></proof>
+     </goal>
+    </transf>
+    </goal>
+   </transf>
+   </goal>
+  </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.33" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.76" steps="943"/></proof>
+  <proof prover="5"><result status="valid" time="0.99" steps="943"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.34" expl="assertion" proved="true">
   <proof prover="5"><result status="valid" time="0.10" steps="223"/></proof>
@@ -2513,7 +2548,7 @@
   <goal name="euler_sieve&#39;vc.35" expl="assertion" proved="true">
   <transf name="case" proved="true" arg1="(mod i 2 = 0)">
    <goal name="euler_sieve&#39;vc.35.0" expl="true case (assertion)" proved="true">
-   <proof prover="5"><result status="valid" time="0.18" steps="206"/></proof>
+   <proof prover="5"><result status="valid" time="0.34" steps="206"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.35.1" expl="false case (assertion)" proved="true">
    <transf name="split_vc" proved="true" >
@@ -2531,7 +2566,7 @@
   </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.36" expl="assertion" proved="true">
-  <proof prover="5"><result status="valid" time="4.58" steps="1437"/></proof>
+  <proof prover="5"><result status="valid" time="3.37" steps="1228"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.37" expl="index in array bounds" proved="true">
   <proof prover="5"><result status="valid" time="0.05" steps="48"/></proof>
@@ -2558,12 +2593,12 @@
      <proof prover="5"><result status="valid" time="0.05" steps="50"/></proof>
      </goal>
      <goal name="euler_sieve&#39;vc.42.0.0.1" expl="loop invariant init" proved="true">
-     <proof prover="5"><result status="valid" time="0.40" steps="177"/></proof>
+     <proof prover="5"><result status="valid" time="0.62" steps="177"/></proof>
      </goal>
     </transf>
     </goal>
     <goal name="euler_sieve&#39;vc.42.0.1" expl="loop invariant init" proved="true">
-    <proof prover="1" timelimit="1"><result status="valid" time="0.08" steps="263492"/></proof>
+    <proof prover="1" timelimit="1"><result status="valid" time="0.08" steps="261715"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.42.0.2" expl="loop invariant init" proved="true">
     <proof prover="5"><result status="valid" time="0.23" steps="275"/></proof>
@@ -2582,7 +2617,7 @@
     </transf>
     </goal>
     <goal name="euler_sieve&#39;vc.42.0.5" expl="loop invariant init" proved="true">
-    <proof prover="5"><result status="valid" time="0.39" steps="430"/></proof>
+    <proof prover="5"><result status="valid" time="0.65" steps="430"/></proof>
     </goal>
    </transf>
    </goal>
@@ -2596,7 +2631,7 @@
    <goal name="euler_sieve&#39;vc.44.0" expl="loop invariant init" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="euler_sieve&#39;vc.44.0.0" expl="loop invariant init" proved="true">
-    <proof prover="5"><result status="valid" time="0.18" steps="344"/></proof>
+    <proof prover="5"><result status="valid" time="0.30" steps="344"/></proof>
     </goal>
    </transf>
    </goal>
@@ -2606,10 +2641,10 @@
   <proof prover="5"><result status="valid" time="0.05" steps="206"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.46" expl="loop invariant init" proved="true">
-  <proof prover="1"><result status="valid" time="0.06" steps="240959"/></proof>
+  <proof prover="1"><result status="valid" time="0.06" steps="238711"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.47" expl="loop invariant init" proved="true">
-  <proof prover="1"><result status="valid" time="0.10" steps="313701"/></proof>
+  <proof prover="1"><result status="valid" time="0.10" steps="310972"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.48" expl="integer overflow" proved="true">
   <proof prover="5"><result status="valid" time="0.08" steps="69"/></proof>
@@ -2641,7 +2676,7 @@
   <proof prover="5"><result status="valid" time="0.08" steps="200"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.56" expl="integer overflow" proved="true">
-  <proof prover="5"><result status="valid" time="0.28" steps="339"/></proof>
+  <proof prover="5"><result status="valid" time="0.42" steps="339"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.57" expl="index in array bounds" proved="true">
   <proof prover="5" timelimit="1"><result status="valid" time="0.02" steps="94"/></proof>
@@ -2653,7 +2688,7 @@
   <proof prover="5"><result status="valid" time="0.07" steps="224"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.60" expl="precondition" proved="true">
-  <proof prover="5"><result status="valid" time="0.71" steps="1018"/></proof>
+  <proof prover="5"><result status="valid" time="1.08" steps="1019"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.61" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
@@ -2666,7 +2701,7 @@
       <goal name="euler_sieve&#39;vc.61.0.0.0.0" expl="assertion" proved="true">
       <transf name="split_premise_right" proved="true" >
        <goal name="euler_sieve&#39;vc.61.0.0.0.0.0" expl="assertion" proved="true">
-       <proof prover="6" timelimit="5"><result status="valid" time="0.61" steps="93293"/></proof>
+       <proof prover="6" timelimit="5"><result status="valid" time="2.43" steps="139933"/></proof>
        </goal>
       </transf>
       </goal>
@@ -2681,13 +2716,13 @@
   <goal name="euler_sieve&#39;vc.62" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="euler_sieve&#39;vc.62.0" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.13" steps="368174"/></proof>
+   <proof prover="1"><result status="valid" time="0.13" steps="366152"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.62.1" expl="assertion" proved="true">
-   <proof prover="5"><result status="valid" time="1.67" steps="1109"/></proof>
+   <proof prover="5"><result status="valid" time="2.33" steps="1144"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.62.2" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.08" steps="302688"/></proof>
+   <proof prover="1"><result status="valid" time="0.08" steps="300668"/></proof>
    </goal>
   </transf>
   </goal>
@@ -2695,10 +2730,10 @@
   <proof prover="5"><result status="valid" time="0.03" steps="104"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.64" expl="precondition" proved="true">
-  <proof prover="1" timelimit="5"><result status="valid" time="0.10" steps="344003"/></proof>
+  <proof prover="1" timelimit="5"><result status="valid" time="0.10" steps="341975"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.65" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.06" steps="71"/></proof>
+  <proof prover="0"><result status="valid" time="0.06" steps="69"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.66" expl="precondition" proved="true">
   <proof prover="5"><result status="valid" time="0.09" steps="107"/></proof>
@@ -2707,7 +2742,7 @@
   <proof prover="5"><result status="valid" time="0.11" steps="109"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.68" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.42" steps="184"/></proof>
+  <proof prover="0"><result status="valid" time="0.74" steps="276"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.69" expl="assertion" proved="true">
   <proof prover="5"><result status="valid" time="0.57" steps="410"/></proof>
@@ -2719,7 +2754,7 @@
     <goal name="euler_sieve&#39;vc.70.0.0" expl="assertion" proved="true">
     <transf name="split_premise_right" proved="true" >
      <goal name="euler_sieve&#39;vc.70.0.0.0" expl="assertion" proved="true">
-     <proof prover="6"><result status="valid" time="0.38" steps="70753"/></proof>
+     <proof prover="6"><result status="valid" time="0.62" steps="70858"/></proof>
      </goal>
     </transf>
     </goal>
@@ -2730,7 +2765,7 @@
     <goal name="euler_sieve&#39;vc.70.1.0" expl="assertion" proved="true">
     <transf name="split_premise_right" proved="true" >
      <goal name="euler_sieve&#39;vc.70.1.0.0" expl="assertion" proved="true">
-     <proof prover="5"><result status="valid" time="0.61" steps="402"/></proof>
+     <proof prover="5"><result status="valid" time="0.92" steps="402"/></proof>
      </goal>
     </transf>
     </goal>
@@ -2760,36 +2795,36 @@
     <goal name="euler_sieve&#39;vc.76.0.0" expl="loop invariant preservation" proved="true">
     <transf name="case" proved="true" arg1="(i &lt;&gt; p)">
      <goal name="euler_sieve&#39;vc.76.0.0.0" expl="true case (loop invariant preservation)" proved="true">
-     <proof prover="0"><result status="valid" time="0.86" steps="372"/></proof>
+     <proof prover="0"><result status="valid" time="1.24" steps="372"/></proof>
      </goal>
      <goal name="euler_sieve&#39;vc.76.0.0.1" expl="false case (loop invariant preservation)" proved="true">
-     <proof prover="5" timelimit="10"><result status="valid" time="1.40" steps="416"/></proof>
+     <proof prover="5" timelimit="10"><result status="valid" time="2.25" steps="416"/></proof>
      </goal>
     </transf>
     </goal>
     <goal name="euler_sieve&#39;vc.76.0.1" expl="loop invariant preservation" proved="true">
     <transf name="case" proved="true" arg1="(i &lt;&gt; p)">
      <goal name="euler_sieve&#39;vc.76.0.1.0" expl="true case (loop invariant preservation)" proved="true">
-     <proof prover="5" timelimit="10"><result status="valid" time="1.02" steps="409"/></proof>
+     <proof prover="5" timelimit="10"><result status="valid" time="1.69" steps="409"/></proof>
      </goal>
      <goal name="euler_sieve&#39;vc.76.0.1.1" expl="false case (loop invariant preservation)" proved="true">
-     <proof prover="5" timelimit="10"><result status="valid" time="0.93" steps="421"/></proof>
+     <proof prover="5" timelimit="10"><result status="valid" time="1.56" steps="421"/></proof>
      </goal>
     </transf>
     </goal>
     <goal name="euler_sieve&#39;vc.76.0.2" expl="loop invariant preservation" proved="true">
-    <proof prover="0"><result status="valid" time="0.43" steps="173"/></proof>
+    <proof prover="0"><result status="valid" time="0.60" steps="173"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.76.0.3" expl="loop invariant preservation" proved="true">
     <proof prover="0"><result status="valid" time="0.06" steps="64"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.76.0.4" expl="loop invariant preservation" proved="true">
-    <proof prover="5"><result status="valid" time="0.95" steps="416"/></proof>
+    <proof prover="5"><result status="valid" time="1.79" steps="416"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.76.0.5" expl="loop invariant preservation" proved="true">
     <transf name="case" proved="true" arg1="(i &lt;&gt; p)">
      <goal name="euler_sieve&#39;vc.76.0.5.0" expl="true case (loop invariant preservation)" proved="true">
-     <proof prover="4"><result status="valid" time="1.11"/></proof>
+     <proof prover="4"><result status="valid" time="0.74"/></proof>
      <transf name="remove" proved="true" arg1="zero1,one1,(-),(&gt;),(&lt;=),(&gt;=),abs,int63&#39;maxInt,int63&#39;minInt,min_int63,max_int63,to_int,in_bounds,zero,one,even,odd,divides,prime,([]),singleton,cons,snoc,(++),inv_nexts,inv_marked_nexts,inv_marked_old_nexts1,inv_marked_old_nexts2,inv_marked_marked_old,inv_marked_old_nexts2_partial,all_primes,all_products_marked,previously_marked_products,only_products_marked,prime_products_marked,inv_remove_products,all_distinct,all_inf_or_eq,Assoc1,Unit_def_l,Unit_def_r,Inv_def_l,Inv_def_r,Comm1,Assoc,Mul_distr_l,Mul_distr_r,Comm,Unitary,Refl,Antisymm,Total,ZeroLessOne,CompatOrderAdd,CompatOrderMult,Abs_le,Abs_pos,Div_mod,Mod_bound,Div_unique,Div_bound,Mod_1,Div_1,Div_inf,Div_inf_neg,Mod_0,Div_1_left,Div_minus1_left,Mod_1_left,Mod_minus1_left,Div_mult,Mod_mult,Div_mod1,Div_bound1,Mod_bound1,Div_sign_pos,Div_sign_neg,Mod_sign_pos,Mod_sign_neg,Rounds_toward_zero,Div_11,Mod_11,Div_inf1,Mod_inf,Div_mult1,Mod_mult1,to_int_in_bounds,extensionality,max_int&#39;def,min_int&#39;def,even_or_odd,even_not_odd,odd_not_even,even_odd,odd_even,even_even,odd_odd,even_2k,odd_2k1,even_mod2,divides&#39;spec,divides_refl,divides_1_n,divides_0,divides_left,divides_right,divides_oppr,divides_oppl,divides_oppr_rev,divides_oppl_rev,divides_plusr,divides_minusr,divides_multl,divides_multr,divides_factorl,divides_factorr,divides_n_1,divides_antisym,divides_trans,divides_bounds,mod_divides_euclidean,divides_mod_euclidean,mod_divides_computer,divides_mod_computer,even_divides,odd_divides,not_prime_1,prime_2,prime_3,prime_divisors,small_divisors,even_prime,odd_prime,mult_croissance_locale,mult_croissance,comp_mult_2,div_croissance_locale1,div_croissance1,div_croissance_locale2,div_croissance2,div_mult_1,mult_borne_sous_exp,sq_ineq,divides_div,divides_inf,not_prime_divider_limits,no_prod_impl_no_divider,not_prime_impl_divisor_under_sqrt,(==)&#39;spec,create&#39;spec,empty&#39;def,set&#39;spec,set&#39;def,([&lt;-])&#39;def,cons&#39;spec,snoc&#39;spec,([..])&#39;spec,([..])&#39;def,([_..])&#39;def,([.._])&#39;def,(++)&#39;spec,exchange_set,conservation_inv_marked_nexts_on_marked_change,conservation_inv_marked_nexts_on_nexts_change,conservation_inv_arr_on_mark,conservation_inv_arr_on_jump,t&#39;invariant,marked_impl_all_products_marked,prev_and_new_impl_all_products_marked,conservation_only_products_marked,conservation_previously_marked_products,conservation_previously_marked_products_on_marked_change,conservation_inv_marked_old_nexts2,unchanged_other_elements,previously_marked_products_impl_prime,only_products_marked_impl_not_marked,H39,H38,Ensures18,H37,H36,H35,Ensures17,Ensures16,Ensures15,Ensures14,Ensures13,H34,H33,Ensures12,Assert3,Assert2,Assert1,H30,H29,Ensures11,H28,H27,H26,H25,H24,LoopInvariant9,LoopInvariant8,LoopInvariant6,LoopInvariant5,LoopInvariant4,LoopInvariant3,LoopInvariant2,Ensures10,Ensures9,H23,Ensures8,Ensures7,H22,Ensures6,H17,Ensures5,Ensures4,H16,Ensures3,Ensures2,Assert,Ensures,LoopInvariant1,LoopInvariant,H32,H31,H21,H20,H19,H18,H14,H13,H12,H11,H10,H9,H8,H7,H6,H4">
       <goal name="euler_sieve&#39;vc.76.0.5.0.0" expl="true case (loop invariant preservation)" proved="true">
       <proof prover="4" timelimit="1"><result status="valid" time="0.02"/></proof>
@@ -2797,7 +2832,7 @@
      </transf>
      </goal>
      <goal name="euler_sieve&#39;vc.76.0.5.1" expl="false case (loop invariant preservation)" proved="true">
-     <proof prover="0"><result status="valid" time="0.74" steps="520"/></proof>
+     <proof prover="0"><result status="valid" time="1.08" steps="520"/></proof>
      </goal>
     </transf>
     </goal>
@@ -2806,21 +2841,21 @@
   </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.77" expl="loop invariant preservation" proved="true">
-  <proof prover="0" timelimit="5"><result status="valid" time="0.41" steps="470"/></proof>
+  <proof prover="0" timelimit="5"><result status="valid" time="0.41" steps="381"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.78" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.41" steps="366"/></proof>
+  <proof prover="0"><result status="valid" time="0.26" steps="254"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.79" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.27" steps="697"/></proof>
+  <proof prover="5"><result status="valid" time="0.53" steps="697"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.80" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.25" steps="264"/></proof>
+  <proof prover="0"><result status="valid" time="0.94" steps="418"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.81" expl="loop invariant preservation" proved="true">
   <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
    <goal name="euler_sieve&#39;vc.81.0" expl="loop invariant preservation" proved="true">
-   <proof prover="6"><result status="valid" time="0.29" steps="58690"/></proof>
+   <proof prover="6"><result status="valid" time="0.48" steps="58412"/></proof>
    </goal>
   </transf>
   </goal>
@@ -2843,16 +2878,16 @@
   <proof prover="5"><result status="valid" time="0.06" steps="98"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.88" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="291207"/></proof>
+  <proof prover="1"><result status="valid" time="0.09" steps="289184"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.89" expl="loop variant decrease" proved="true">
-  <proof prover="1" timelimit="5"><result status="valid" time="0.07" steps="296814"/></proof>
+  <proof prover="1" timelimit="5"><result status="valid" time="0.07" steps="294788"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.90" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="263262"/></proof>
+  <proof prover="1"><result status="valid" time="0.08" steps="263642"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.91" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="267214"/></proof>
+  <proof prover="1"><result status="valid" time="0.09" steps="267605"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.92" expl="loop invariant preservation" proved="true">
   <proof prover="5"><result status="valid" time="0.09" steps="348"/></proof>
@@ -2865,16 +2900,16 @@
    <goal name="euler_sieve&#39;vc.94.0" expl="loop invariant preservation" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="euler_sieve&#39;vc.94.0.0" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.11" steps="343895"/></proof>
+    <proof prover="1"><result status="valid" time="0.11" steps="341867"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.94.0.1" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.11" steps="348536"/></proof>
+    <proof prover="1"><result status="valid" time="0.11" steps="346513"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.94.0.2" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.09" steps="314317"/></proof>
+    <proof prover="1"><result status="valid" time="0.09" steps="312291"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.94.0.3" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.09" steps="313265"/></proof>
+    <proof prover="1"><result status="valid" time="0.09" steps="311239"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.94.0.4" expl="loop invariant preservation" proved="true">
     <transf name="unfold" proved="true" arg1="inv_count" arg2="in" arg3="LoopInvariant7">
@@ -2883,7 +2918,7 @@
       <goal name="euler_sieve&#39;vc.94.0.4.0.0" expl="loop invariant preservation" proved="true">
       <transf name="assert" proved="true" arg1="(t_arr[cnt1 &lt;- ((2 * p1) + 1)][i] = t_arr[i])">
        <goal name="euler_sieve&#39;vc.94.0.4.0.0.0" expl="asserted formula" proved="true">
-       <proof prover="6" timelimit="5"><result status="valid" time="0.30" steps="64728"/></proof>
+       <proof prover="6" timelimit="5"><result status="valid" time="0.51" steps="64256"/></proof>
        </goal>
        <goal name="euler_sieve&#39;vc.94.0.4.0.0.1" expl="loop invariant preservation" proved="true">
        <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
@@ -2910,7 +2945,7 @@
     </transf>
     </goal>
     <goal name="euler_sieve&#39;vc.94.0.5" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.11" steps="355885"/></proof>
+    <proof prover="1"><result status="valid" time="0.11" steps="356399"/></proof>
     </goal>
    </transf>
    </goal>
@@ -2930,7 +2965,7 @@
      </transf>
      </goal>
      <goal name="euler_sieve&#39;vc.95.0.0.1" expl="false case (loop invariant preservation)" proved="true">
-     <proof prover="5"><result status="valid" time="1.32" steps="1235"/></proof>
+     <proof prover="5"><result status="valid" time="2.19" steps="1234"/></proof>
      </goal>
     </transf>
     </goal>
@@ -2953,7 +2988,7 @@
         <goal name="euler_sieve&#39;vc.96.0.0.0.0.0.0" expl="loop invariant preservation" proved="true">
         <transf name="instantiate" proved="true" arg1="LoopInvariant6" arg2="(int63&#39;int p1)">
          <goal name="euler_sieve&#39;vc.96.0.0.0.0.0.0.0" expl="loop invariant preservation" proved="true">
-         <proof prover="6" timelimit="5"><result status="valid" time="0.68" steps="95594"/></proof>
+         <proof prover="6" timelimit="5"><result status="valid" time="1.10" steps="95473"/></proof>
          </goal>
         </transf>
         </goal>
@@ -2970,12 +3005,12 @@
   </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.97" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.25" steps="764"/></proof>
+  <proof prover="5"><result status="valid" time="0.39" steps="764"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.98" expl="loop invariant preservation" proved="true">
   <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
    <goal name="euler_sieve&#39;vc.98.0" expl="loop invariant preservation" proved="true">
-   <proof prover="5"><result status="valid" time="1.56" steps="1365"/></proof>
+   <proof prover="5"><result status="valid" time="2.45" steps="1365"/></proof>
    </goal>
   </transf>
   </goal>
@@ -2984,14 +3019,14 @@
    <goal name="euler_sieve&#39;vc.99.0" expl="true case (loop invariant preservation)" proved="true">
    <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
     <goal name="euler_sieve&#39;vc.99.0.0" expl="true case (loop invariant preservation)" proved="true">
-    <proof prover="5"><result status="valid" time="0.93" steps="841"/></proof>
+    <proof prover="5"><result status="valid" time="1.25" steps="841"/></proof>
     </goal>
    </transf>
    </goal>
    <goal name="euler_sieve&#39;vc.99.1" expl="false case (loop invariant preservation)" proved="true">
    <transf name="case" proved="true" arg1="(i = 2 * p1 + 1)">
     <goal name="euler_sieve&#39;vc.99.1.0" expl="false case (true case. loop invariant preservation)" proved="true">
-    <proof prover="1" timelimit="5"><result status="valid" time="0.24" steps="684751"/></proof>
+    <proof prover="1" timelimit="5"><result status="valid" time="0.39" steps="681186"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.99.1.1" expl="false case (loop invariant preservation)" proved="true">
     <transf name="remove" proved="true" arg1="zero1,one1,(-),(&gt;),(&lt;=),(&gt;=),int63&#39;maxInt,int63&#39;minInt,min_int63,max_int63,in_bounds,zero,one,even,odd,divides,prime,([]),singleton,cons,snoc,(++),exchange,inv_nexts,inv_marked_nexts,inv_marked_old_nexts1,inv_marked_old_nexts2,inv_marked_marked_old,inv_marked_old_nexts2_partial,all_primes,all_products_marked,previously_marked_products,only_products_marked,prime_products_marked,inv_remove_products,all_distinct,all_inf_or_eq,Assoc1,Unit_def_l,Unit_def_r,Inv_def_l,Inv_def_r,Comm1,Assoc,Mul_distr_l,Mul_distr_r,Comm,Unitary,NonTrivialRing,Refl,Trans,Antisymm,Total,ZeroLessOne,CompatOrderAdd,CompatOrderMult,Abs_le,Abs_pos,Div_mod,Mod_bound,Div_unique,Div_bound,Mod_1,Div_1,Div_inf,Div_inf_neg,Mod_0,Div_1_left,Div_minus1_left,Mod_1_left,Mod_minus1_left,Div_mult,Mod_mult,Div_mod1,Div_bound1,Mod_bound1,Div_sign_pos,Div_sign_neg,Mod_sign_pos,Mod_sign_neg,Rounds_toward_zero,Div_11,Mod_11,Div_inf1,Mod_inf,Div_mult1,Mod_mult1,to_int_in_bounds,extensionality,max_int&#39;def,min_int&#39;def,even_or_odd,even_not_odd,odd_not_even,even_odd,odd_even,even_even,odd_odd,even_2k,odd_2k1,even_mod2,divides&#39;spec,divides_refl,divides_1_n,divides_0,divides_left,divides_right,divides_oppr,divides_oppl,divides_oppr_rev,divides_oppl_rev,divides_plusr,divides_minusr,divides_multl,divides_multr,divides_factorl,divides_factorr,divides_n_1,divides_antisym,divides_trans,divides_bounds,mod_divides_euclidean,divides_mod_euclidean,mod_divides_computer,divides_mod_computer,even_divides,odd_divides,not_prime_1,prime_2,prime_3,prime_divisors,small_divisors,even_prime,odd_prime,mult_croissance_locale,mult_croissance,comp_mult_2,div_croissance_locale1,div_croissance1,div_croissance_locale2,div_croissance2,div_mult_1,mult_borne_sous_exp,sq_ineq,divides_div,divides_inf,not_prime_divider_limits,no_prod_impl_no_divider,not_prime_impl_divisor_under_sqrt,length_nonnegative,(==)&#39;spec,create&#39;spec,empty&#39;def,set&#39;spec,set&#39;def,([&lt;-])&#39;def,singleton&#39;spec,cons&#39;spec,snoc&#39;spec,([..])&#39;spec,([..])&#39;def,([_..])&#39;def,([.._])&#39;def,(++)&#39;spec,exchange_set,conservation_inv_marked_nexts_on_marked_change,conservation_inv_marked_nexts_on_nexts_change,conservation_inv_arr_on_mark,conservation_inv_arr_on_jump,marked_impl_all_products_marked,prev_and_new_impl_all_products_marked,conservation_only_products_marked,conservation_previously_marked_products,conservation_previously_marked_products_on_marked_change,conservation_inv_marked_old_nexts2,unchanged_other_elements,previously_marked_products_impl_prime,only_products_marked_impl_not_marked,H24,H23,H22,Ensures17,H21,H20,H19,Ensures16,Ensures15,Ensures14,Ensures13,Ensures12,H18,H17,H16,Assert4,Assert3,Assert2,H15,Ensures10,H12,H11,H10,LoopInvariant16,LoopInvariant15,LoopInvariant13,LoopInvariant12,LoopInvariant11,LoopInvariant10,LoopInvariant9,Ensures9,Ensures8,H8,Ensures5,H6,Ensures4,Ensures3,H5,H4,Ensures2,Ensures1,Ensures,Assert,LoopInvariant8,LoopInvariant7,LoopInvariant6,LoopInvariant5,LoopInvariant4,LoopInvariant3,LoopInvariant2,LoopInvariant1,LoopInvariant,H2">
@@ -3048,16 +3083,16 @@
    <goal name="euler_sieve&#39;vc.113.0" expl="loop invariant preservation" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="euler_sieve&#39;vc.113.0.0" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.10" steps="335211"/></proof>
+    <proof prover="1"><result status="valid" time="0.10" steps="333101"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.113.0.1" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.16" steps="339475"/></proof>
+    <proof prover="1"><result status="valid" time="0.16" steps="337379"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.113.0.2" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.09" steps="309330"/></proof>
+    <proof prover="1"><result status="valid" time="0.09" steps="307230"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.113.0.3" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.10" steps="308369"/></proof>
+    <proof prover="1"><result status="valid" time="0.10" steps="306269"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.113.0.4" expl="loop invariant preservation" proved="true">
     <transf name="unfold" proved="true" arg1="inv_count" arg2="in" arg3="LoopInvariant7">
@@ -3066,7 +3101,7 @@
       <goal name="euler_sieve&#39;vc.113.0.4.0.0" expl="loop invariant preservation" proved="true">
       <transf name="assert" proved="true" arg1="(t_arr[cnt1 &lt;- ((2 * p1) + 1)][i] = t_arr[i])">
        <goal name="euler_sieve&#39;vc.113.0.4.0.0.0" expl="asserted formula" proved="true">
-       <proof prover="6" timelimit="5"><result status="valid" time="0.35" steps="63482"/></proof>
+       <proof prover="6" timelimit="5"><result status="valid" time="0.35" steps="63027"/></proof>
        </goal>
        <goal name="euler_sieve&#39;vc.113.0.4.0.0.1" expl="loop invariant preservation" proved="true">
        <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
@@ -3093,7 +3128,7 @@
     </transf>
     </goal>
     <goal name="euler_sieve&#39;vc.113.0.5" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.16" steps="328366"/></proof>
+    <proof prover="1"><result status="valid" time="0.16" steps="328780"/></proof>
     </goal>
    </transf>
    </goal>
@@ -3112,10 +3147,10 @@
        <goal name="euler_sieve&#39;vc.114.0.0.0.0.0" expl="loop invariant preservation" proved="true">
        <transf name="case" proved="true" arg1="(j = cnt1)">
         <goal name="euler_sieve&#39;vc.114.0.0.0.0.0.0" expl="true case (loop invariant preservation)" proved="true">
-        <proof prover="5"><result status="valid" time="1.09" steps="1460"/></proof>
+        <proof prover="5"><result status="valid" time="1.87" steps="1368"/></proof>
         </goal>
         <goal name="euler_sieve&#39;vc.114.0.0.0.0.0.1" expl="false case (loop invariant preservation)" proved="true">
-        <proof prover="5"><result status="valid" time="0.28" steps="539"/></proof>
+        <proof prover="5"><result status="valid" time="0.44" steps="592"/></proof>
         </goal>
        </transf>
        </goal>
@@ -3143,7 +3178,7 @@
        <proof prover="5"><result status="valid" time="0.21" steps="374"/></proof>
        </goal>
        <goal name="euler_sieve&#39;vc.115.0.0.0.0.1" expl="false case (loop invariant preservation)" proved="true">
-       <proof prover="5"><result status="valid" time="1.34" steps="1201"/></proof>
+       <proof prover="5"><result status="valid" time="2.26" steps="1203"/></proof>
        </goal>
       </transf>
       </goal>
@@ -3156,15 +3191,15 @@
   </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.116" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.19" steps="535"/></proof>
+  <proof prover="5"><result status="valid" time="0.35" steps="535"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.117" expl="loop invariant preservation" proved="true">
   <transf name="case" proved="true" arg1="(i &lt; cnt1)">
    <goal name="euler_sieve&#39;vc.117.0" expl="true case (loop invariant preservation)" proved="true">
-   <proof prover="5"><result status="valid" time="0.77" steps="1074"/></proof>
+   <proof prover="5"><result status="valid" time="1.34" steps="1076"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.117.1" expl="false case (loop invariant preservation)" proved="true">
-   <proof prover="5"><result status="valid" time="1.11" steps="1280"/></proof>
+   <proof prover="5"><result status="valid" time="1.34" steps="1282"/></proof>
    </goal>
   </transf>
   </goal>
@@ -3173,19 +3208,19 @@
    <goal name="euler_sieve&#39;vc.118.0" expl="true case (loop invariant preservation)" proved="true">
    <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
     <goal name="euler_sieve&#39;vc.118.0.0" expl="true case (loop invariant preservation)" proved="true">
-    <proof prover="5"><result status="valid" time="0.65" steps="832"/></proof>
+    <proof prover="5"><result status="valid" time="0.94" steps="838"/></proof>
     </goal>
    </transf>
    </goal>
    <goal name="euler_sieve&#39;vc.118.1" expl="false case (loop invariant preservation)" proved="true">
    <transf name="case" proved="true" arg1="(i = 2 * p1 + 1)">
     <goal name="euler_sieve&#39;vc.118.1.0" expl="false case (true case. loop invariant preservation)" proved="true">
-    <proof prover="1" timelimit="5"><result status="valid" time="0.22" steps="636460"/></proof>
+    <proof prover="1" timelimit="5"><result status="valid" time="0.22" steps="632989"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.118.1.1" expl="false case (loop invariant preservation)" proved="true">
     <transf name="remove" proved="true" arg1="zero1,one1,(-),(&gt;),(&lt;=),(&gt;=),int63&#39;maxInt,int63&#39;minInt,in_bounds,zero,one,even,odd,divides,([]),singleton,cons,snoc,(++),inv_nexts,inv_marked_nexts,inv_marked_old_nexts1,inv_marked_old_nexts2,inv_marked_marked_old,inv_marked_old_nexts2_partial,all_primes,all_products_marked,previously_marked_products,only_products_marked,prime_products_marked,inv_remove_products,all_distinct,all_inf_or_eq,Assoc1,Unit_def_l,Unit_def_r,Inv_def_l,Inv_def_r,Comm1,Assoc,Mul_distr_l,Mul_distr_r,Comm,Unitary,NonTrivialRing,Refl,Trans,Antisymm,Total,ZeroLessOne,CompatOrderAdd,CompatOrderMult,Abs_le,Abs_pos,Div_mod,Mod_bound,Div_unique,Div_bound,Mod_1,Div_1,Div_inf,Div_inf_neg,Mod_0,Div_1_left,Div_minus1_left,Mod_1_left,Mod_minus1_left,Div_mult,Mod_mult,Div_mod1,Div_bound1,Div_sign_pos,Div_sign_neg,Mod_sign_pos,Mod_sign_neg,Rounds_toward_zero,Div_11,Mod_11,Div_inf1,Mod_inf,Div_mult1,Mod_mult1,to_int_in_bounds,extensionality,max_int&#39;def,min_int&#39;def,even_or_odd,even_not_odd,odd_not_even,even_odd,odd_even,even_even,odd_odd,even_2k,odd_2k1,divides&#39;spec,divides_refl,divides_1_n,divides_0,divides_left,divides_right,divides_oppr,divides_oppl,divides_oppr_rev,divides_oppl_rev,divides_plusr,divides_minusr,divides_multl,divides_multr,divides_factorl,divides_factorr,divides_n_1,divides_antisym,divides_trans,divides_bounds,mod_divides_euclidean,divides_mod_euclidean,mod_divides_computer,divides_mod_computer,odd_divides,not_prime_1,prime_2,prime_3,prime_divisors,small_divisors,odd_prime,mult_croissance_locale,mult_croissance,comp_mult_2,div_croissance_locale1,div_croissance1,div_croissance_locale2,div_croissance2,div_mult_1,mult_borne_sous_exp,sq_ineq,divides_div,divides_inf,not_prime_divider_limits,no_prod_impl_no_divider,not_prime_impl_divisor_under_sqrt,length_nonnegative,(==)&#39;spec,create&#39;spec,empty&#39;def,set&#39;spec,set&#39;def,([&lt;-])&#39;def,singleton&#39;spec,cons&#39;spec,snoc&#39;spec,([..])&#39;spec,([..])&#39;def,([_..])&#39;def,([.._])&#39;def,(++)&#39;spec,exchange_set,conservation_inv_marked_nexts_on_marked_change,conservation_inv_marked_nexts_on_nexts_change,conservation_inv_arr_on_jump,marked_impl_all_products_marked,prev_and_new_impl_all_products_marked,conservation_only_products_marked,conservation_previously_marked_products,conservation_previously_marked_products_on_marked_change,conservation_inv_marked_old_nexts2,unchanged_other_elements,previously_marked_products_impl_prime,only_products_marked_impl_not_marked,H22,H21,H20,Ensures17,H19,H18,H17,Ensures16,Ensures15,Ensures14,Ensures13,Ensures12,H16,H15,H14,Ensures11,Assert3,Assert2,Assert1,H13,Ensures10,H10,H9,H8,LoopInvariant16,LoopInvariant15,LoopInvariant13,LoopInvariant12,LoopInvariant11,LoopInvariant10,LoopInvariant9,Ensures9,Ensures8,H6,Ensures5,Ensures4,H4,H3,Ensures3,Ensures2,Ensures1,Ensures,Assert,LoopInvariant7,LoopInvariant6,LoopInvariant5,LoopInvariant4,LoopInvariant3,LoopInvariant2,LoopInvariant1,LoopInvariant,H2">
      <goal name="euler_sieve&#39;vc.118.1.1.0" expl="false case (loop invariant preservation)" proved="true">
-     <proof prover="5" timelimit="1"><result status="valid" time="0.62" steps="380"/></proof>
+     <proof prover="5" timelimit="1"><result status="valid" time="0.62" steps="351"/></proof>
      </goal>
     </transf>
     </goal>
@@ -3197,25 +3232,31 @@
   <proof prover="5"><result status="valid" time="0.05" steps="75"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.120" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.23" steps="136"/></proof>
+  <proof prover="0" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="1" timelimit="1" obsolete="true"><result status="timeout" time="1.00" steps="2092549"/></proof>
+  <proof prover="2" obsolete="true"><result status="timeout" time="1.00" steps="109123"/></proof>
+  <proof prover="3" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="4" timelimit="1" obsolete="true"><result status="timeout" time="1.00"/></proof>
+  <proof prover="5" timelimit="1"><result status="valid" time="0.18" steps="282"/></proof>
+  <proof prover="6" timelimit="1" obsolete="true"><result status="timeout" time="1.00" steps="112948"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.121" expl="postcondition" proved="true">
-  <proof prover="5" timelimit="1"><result status="valid" time="0.97" steps="748"/></proof>
+  <proof prover="5" timelimit="10"><result status="valid" time="1.33" steps="824"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.122" expl="postcondition" proved="true">
-  <proof prover="5" timelimit="1"><result status="valid" time="0.23" steps="310"/></proof>
+  <proof prover="6" timelimit="1"><result status="valid" time="0.36" steps="51742"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.123" expl="postcondition" proved="true">
-  <proof prover="6" timelimit="1"><result status="valid" time="0.32" steps="67289"/></proof>
+  <proof prover="6" timelimit="1"><result status="valid" time="0.34" steps="66008"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.124" expl="assertion" proved="true">
   <proof prover="5"><result status="valid" time="0.17" steps="221"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.125" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.11" steps="306474"/></proof>
+  <proof prover="1"><result status="valid" time="0.11" steps="306803"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.126" expl="assertion" proved="true">
-  <proof prover="5"><result status="valid" time="0.73" steps="297"/></proof>
+  <proof prover="5"><result status="valid" time="1.16" steps="297"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.127" expl="index in array bounds" proved="true">
   <proof prover="5"><result status="valid" time="0.03" steps="36"/></proof>
@@ -3242,12 +3283,12 @@
      <proof prover="5"><result status="valid" time="0.06" steps="44"/></proof>
      </goal>
      <goal name="euler_sieve&#39;vc.132.0.0.1" expl="loop invariant init" proved="true">
-     <proof prover="5"><result status="valid" time="0.34" steps="143"/></proof>
+     <proof prover="5"><result status="valid" time="0.51" steps="143"/></proof>
      </goal>
     </transf>
     </goal>
     <goal name="euler_sieve&#39;vc.132.0.1" expl="loop invariant init" proved="true">
-    <proof prover="1" timelimit="1"><result status="valid" time="0.11" steps="250039"/></proof>
+    <proof prover="1" timelimit="1"><result status="valid" time="0.11" steps="248262"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.132.0.2" expl="loop invariant init" proved="true">
     <proof prover="5"><result status="valid" time="0.15" steps="199"/></proof>
@@ -3276,16 +3317,16 @@
   <proof prover="5"><result status="valid" time="0.03" steps="116"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.134" expl="loop invariant init" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="197105"/></proof>
+  <proof prover="1"><result status="valid" time="0.07" steps="197532"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.135" expl="loop invariant init" proved="true">
   <proof prover="5"><result status="valid" time="0.05" steps="164"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.136" expl="loop invariant init" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="232397"/></proof>
+  <proof prover="1"><result status="valid" time="0.07" steps="230143"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.137" expl="loop invariant init" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="295439"/></proof>
+  <proof prover="1"><result status="valid" time="0.08" steps="292819"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.138" expl="integer overflow" proved="true">
   <proof prover="5"><result status="valid" time="0.03" steps="57"/></proof>
@@ -3297,7 +3338,7 @@
   <proof prover="5"><result status="valid" time="0.04" steps="66"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.141" expl="division by zero" proved="true">
-  <proof prover="1"><result status="valid" time="0.01" steps="12286"/></proof>
+  <proof prover="1"><result status="valid" time="0.01" steps="12298"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.142" expl="integer overflow" proved="true">
   <proof prover="5"><result status="valid" time="0.08" steps="240"/></proof>
@@ -3315,7 +3356,7 @@
   <proof prover="5"><result status="valid" time="0.21" steps="277"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.147" expl="index in array bounds" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="251500"/></proof>
+  <proof prover="1"><result status="valid" time="0.07" steps="251800"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.148" expl="index in array bounds" proved="true">
   <proof prover="5"><result status="valid" time="0.07" steps="191"/></proof>
@@ -3337,7 +3378,7 @@
       <goal name="euler_sieve&#39;vc.151.0.0.0.0" expl="assertion" proved="true">
       <transf name="split_premise_right" proved="true" >
        <goal name="euler_sieve&#39;vc.151.0.0.0.0.0" expl="assertion" proved="true">
-       <proof prover="6" timelimit="5"><result status="valid" time="0.53" steps="85102"/></proof>
+       <proof prover="6" timelimit="5"><result status="valid" time="1.08" steps="96771"/></proof>
        </goal>
       </transf>
       </goal>
@@ -3352,13 +3393,13 @@
   <goal name="euler_sieve&#39;vc.152" expl="assertion" proved="true">
   <transf name="split_vc" proved="true" >
    <goal name="euler_sieve&#39;vc.152.0" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.10" steps="359094"/></proof>
+   <proof prover="1"><result status="valid" time="0.10" steps="357070"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.152.1" expl="assertion" proved="true">
-   <proof prover="5"><result status="valid" time="1.00" steps="1145"/></proof>
+   <proof prover="5"><result status="valid" time="1.28" steps="1148"/></proof>
    </goal>
    <goal name="euler_sieve&#39;vc.152.2" expl="assertion" proved="true">
-   <proof prover="1"><result status="valid" time="0.09" steps="285290"/></proof>
+   <proof prover="1"><result status="valid" time="0.09" steps="283270"/></proof>
    </goal>
   </transf>
   </goal>
@@ -3366,10 +3407,10 @@
   <proof prover="5"><result status="valid" time="0.02" steps="92"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.154" expl="precondition" proved="true">
-  <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="334742"/></proof>
+  <proof prover="1" timelimit="5"><result status="valid" time="0.09" steps="332714"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.155" expl="precondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.07" steps="65"/></proof>
+  <proof prover="0"><result status="valid" time="0.07" steps="63"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.156" expl="precondition" proved="true">
   <proof prover="5"><result status="valid" time="0.07" steps="95"/></proof>
@@ -3381,10 +3422,10 @@
   <proof prover="5"><result status="valid" time="0.12" steps="100"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.159" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.12" steps="379175"/></proof>
+  <proof prover="1"><result status="valid" time="0.12" steps="379573"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.160" expl="assertion" proved="true">
-  <proof prover="5"><result status="valid" time="0.53" steps="743"/></proof>
+  <proof prover="5"><result status="valid" time="0.88" steps="745"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.161" expl="loop variant decrease" proved="true">
   <proof prover="5"><result status="valid" time="0.07" steps="99"/></proof>
@@ -3411,7 +3452,7 @@
      <proof prover="0"><result status="valid" time="0.76" steps="339"/></proof>
      </goal>
      <goal name="euler_sieve&#39;vc.166.0.0.1" expl="false case (loop invariant preservation)" proved="true">
-     <proof prover="5" timelimit="10"><result status="valid" time="1.32" steps="368"/></proof>
+     <proof prover="5" timelimit="10"><result status="valid" time="2.08" steps="368"/></proof>
      </goal>
     </transf>
     </goal>
@@ -3432,15 +3473,15 @@
     <proof prover="0"><result status="valid" time="0.07" steps="61"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.166.0.4" expl="loop invariant preservation" proved="true">
-    <proof prover="5"><result status="valid" time="1.43" steps="369"/></proof>
+    <proof prover="5"><result status="valid" time="0.97" steps="369"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.166.0.5" expl="loop invariant preservation" proved="true">
     <transf name="case" proved="true" arg1="(i &lt;&gt; p)">
      <goal name="euler_sieve&#39;vc.166.0.5.0" expl="true case (loop invariant preservation)" proved="true">
-     <proof prover="4"><result status="valid" time="1.16"/></proof>
+     <proof prover="4"><result status="valid" time="0.74"/></proof>
      </goal>
      <goal name="euler_sieve&#39;vc.166.0.5.1" expl="false case (loop invariant preservation)" proved="true">
-     <proof prover="0"><result status="valid" time="0.28" steps="347"/></proof>
+     <proof prover="0"><result status="valid" time="0.51" steps="347"/></proof>
      </goal>
     </transf>
     </goal>
@@ -3449,19 +3490,19 @@
   </transf>
   </goal>
   <goal name="euler_sieve&#39;vc.167" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.25" steps="250"/></proof>
+  <proof prover="0"><result status="valid" time="0.25" steps="256"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.168" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.31" steps="314"/></proof>
+  <proof prover="0"><result status="valid" time="0.31" steps="218"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.169" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="0.23" steps="578"/></proof>
+  <proof prover="5"><result status="valid" time="0.39" steps="578"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.170" expl="loop invariant preservation" proved="true">
-  <proof prover="0"><result status="valid" time="0.20" steps="227"/></proof>
+  <proof prover="0"><result status="valid" time="0.71" steps="377"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.171" expl="loop invariant preservation" proved="true">
-  <proof prover="6" timelimit="5"><result status="valid" time="0.39" steps="68649"/></proof>
+  <proof prover="6" timelimit="5"><result status="valid" time="0.68" steps="68592"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.172" expl="integer overflow" proved="true">
   <proof prover="5"><result status="valid" time="0.05" steps="78"/></proof>
@@ -3482,16 +3523,16 @@
   <proof prover="5"><result status="valid" time="0.05" steps="86"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.178" expl="assertion" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="287368"/></proof>
+  <proof prover="1"><result status="valid" time="0.08" steps="285345"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.179" expl="loop variant decrease" proved="true">
-  <proof prover="1"><result status="valid" time="0.07" steps="286478"/></proof>
+  <proof prover="1"><result status="valid" time="0.07" steps="284452"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.180" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="valid" time="0.09" steps="243673"/></proof>
+  <proof prover="1"><result status="valid" time="0.09" steps="244113"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.181" expl="loop invariant preservation" proved="true">
-  <proof prover="1"><result status="valid" time="0.08" steps="252999"/></proof>
+  <proof prover="1"><result status="valid" time="0.08" steps="253450"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.182" expl="loop invariant preservation" proved="true">
   <proof prover="5"><result status="valid" time="0.08" steps="308"/></proof>
@@ -3504,16 +3545,16 @@
    <goal name="euler_sieve&#39;vc.184.0" expl="loop invariant preservation" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="euler_sieve&#39;vc.184.0.0" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.10" steps="321324"/></proof>
+    <proof prover="1"><result status="valid" time="0.10" steps="319296"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.184.0.1" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.17" steps="326804"/></proof>
+    <proof prover="1"><result status="valid" time="0.17" steps="324781"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.184.0.2" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.14" steps="293001"/></proof>
+    <proof prover="1"><result status="valid" time="0.14" steps="290975"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.184.0.3" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.15" steps="292107"/></proof>
+    <proof prover="1"><result status="valid" time="0.15" steps="290081"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.184.0.4" expl="loop invariant preservation" proved="true">
     <transf name="unfold" proved="true" arg1="inv_count" arg2="in" arg3="LoopInvariant7">
@@ -3522,7 +3563,7 @@
       <goal name="euler_sieve&#39;vc.184.0.4.0.0" expl="loop invariant preservation" proved="true">
       <transf name="assert" proved="true" arg1="(t_arr[cnt1 &lt;- ((2 * p1) + 1)][i] = t_arr[i])">
        <goal name="euler_sieve&#39;vc.184.0.4.0.0.0" expl="asserted formula" proved="true">
-       <proof prover="6" timelimit="5"><result status="valid" time="0.36" steps="60045"/></proof>
+       <proof prover="6" timelimit="5"><result status="valid" time="0.36" steps="59555"/></proof>
        </goal>
        <goal name="euler_sieve&#39;vc.184.0.4.0.0.1" expl="loop invariant preservation" proved="true">
        <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
@@ -3549,7 +3590,7 @@
     </transf>
     </goal>
     <goal name="euler_sieve&#39;vc.184.0.5" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.17" steps="330163"/></proof>
+    <proof prover="1"><result status="valid" time="0.17" steps="330667"/></proof>
     </goal>
    </transf>
    </goal>
@@ -3569,7 +3610,7 @@
      </transf>
      </goal>
      <goal name="euler_sieve&#39;vc.185.0.0.1" expl="false case (loop invariant preservation)" proved="true">
-     <proof prover="5"><result status="valid" time="0.29" steps="463"/></proof>
+     <proof prover="5"><result status="valid" time="0.42" steps="463"/></proof>
      </goal>
     </transf>
     </goal>
@@ -3592,7 +3633,7 @@
         <goal name="euler_sieve&#39;vc.186.0.0.0.0.0.0" expl="loop invariant preservation" proved="true">
         <transf name="instantiate" proved="true" arg1="LoopInvariant6" arg2="(int63&#39;int p1)">
          <goal name="euler_sieve&#39;vc.186.0.0.0.0.0.0.0" expl="loop invariant preservation" proved="true">
-         <proof prover="6" timelimit="5"><result status="valid" time="0.57" steps="87660"/></proof>
+         <proof prover="6" timelimit="5"><result status="valid" time="0.90" steps="87410"/></proof>
          </goal>
         </transf>
         </goal>
@@ -3614,7 +3655,7 @@
   <goal name="euler_sieve&#39;vc.188" expl="loop invariant preservation" proved="true">
   <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
    <goal name="euler_sieve&#39;vc.188.0" expl="loop invariant preservation" proved="true">
-   <proof prover="5"><result status="valid" time="1.69" steps="1532"/></proof>
+   <proof prover="5"><result status="valid" time="2.49" steps="1727"/></proof>
    </goal>
   </transf>
   </goal>
@@ -3623,14 +3664,14 @@
    <goal name="euler_sieve&#39;vc.189.0" expl="true case (loop invariant preservation)" proved="true">
    <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
     <goal name="euler_sieve&#39;vc.189.0.0" expl="true case (loop invariant preservation)" proved="true">
-    <proof prover="5"><result status="valid" time="0.57" steps="752"/></proof>
+    <proof prover="5"><result status="valid" time="0.79" steps="752"/></proof>
     </goal>
    </transf>
    </goal>
    <goal name="euler_sieve&#39;vc.189.1" expl="false case (loop invariant preservation)" proved="true">
    <transf name="case" proved="true" arg1="(i = 2 * p1 + 1)">
     <goal name="euler_sieve&#39;vc.189.1.0" expl="false case (true case. loop invariant preservation)" proved="true">
-    <proof prover="1" timelimit="5"><result status="valid" time="0.34" steps="662731"/></proof>
+    <proof prover="1" timelimit="5"><result status="valid" time="0.34" steps="659246"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.189.1.1" expl="false case (loop invariant preservation)" proved="true">
     <transf name="remove" proved="true" arg1="zero1,one1,(-),(&gt;),(&lt;=),(&gt;=),abs,int63&#39;maxInt,int63&#39;minInt,min_int63,max_int63,to_int,in_bounds,zero,one,odd,divides,([]),singleton,cons,snoc,(++),exchange,inv_nexts,inv_marked_nexts,inv_marked_old_nexts1,inv_marked_old_nexts2,inv_marked_marked_old,inv_marked_old_nexts2_partial,all_primes,all_products_marked,previously_marked_products,only_products_marked,prime_products_marked,inv_remove_products,all_distinct,all_inf_or_eq,inv_count,Assoc1,Unit_def_l,Unit_def_r,Inv_def_l,Inv_def_r,Comm1,Assoc,Mul_distr_l,Mul_distr_r,Comm,Unitary,NonTrivialRing,Refl,Trans,Antisymm,Total,ZeroLessOne,CompatOrderAdd,CompatOrderMult,Abs_le,Abs_pos,Div_mod,Mod_bound,Div_unique,Div_bound,Mod_1,Div_1,Div_inf,Div_inf_neg,Mod_0,Div_1_left,Div_minus1_left,Mod_1_left,Mod_minus1_left,Div_mult,Mod_mult,Div_mod1,Div_bound1,Mod_bound1,Div_sign_pos,Mod_sign_pos,Mod_sign_neg,Rounds_toward_zero,Div_11,Mod_11,Div_inf1,Mod_inf,Div_mult1,Mod_mult1,to_int_in_bounds,extensionality,max_int&#39;def,min_int&#39;def,even_or_odd,even_not_odd,odd_not_even,even_odd,odd_even,odd_odd,odd_2k1,even_mod2,divides&#39;spec,divides_refl,divides_1_n,divides_0,divides_left,divides_right,divides_oppr,divides_oppl,divides_oppr_rev,divides_oppl_rev,divides_plusr,divides_minusr,divides_multl,divides_multr,divides_factorl,divides_factorr,divides_n_1,divides_antisym,divides_trans,divides_bounds,mod_divides_euclidean,divides_mod_euclidean,mod_divides_computer,divides_mod_computer,not_prime_1,prime_3,prime_divisors,small_divisors,odd_prime,mult_croissance_locale,mult_croissance,comp_mult_2,div_croissance_locale1,div_croissance1,div_croissance_locale2,div_croissance2,div_mult_1,mult_borne_sous_exp,sq_ineq,divides_div,divides_inf,not_prime_divider_limits,no_prod_impl_no_divider,not_prime_impl_divisor_under_sqrt,length_nonnegative,(==)&#39;spec,create&#39;spec,empty&#39;def,set&#39;spec,set&#39;def,([&lt;-])&#39;def,singleton&#39;spec,cons&#39;spec,snoc&#39;spec,([..])&#39;spec,([..])&#39;def,([_..])&#39;def,([.._])&#39;def,(++)&#39;spec,exchange_set,conservation_inv_marked_nexts_on_marked_change,conservation_inv_marked_nexts_on_nexts_change,array63&#39;invariant,conservation_inv_arr_on_mark,conservation_inv_arr_on_jump,marked_impl_all_products_marked,prev_and_new_impl_all_products_marked,conservation_only_products_marked,conservation_previously_marked_products,conservation_previously_marked_products_on_marked_change,conservation_inv_marked_old_nexts2,unchanged_other_elements,previously_marked_products_impl_prime,only_products_marked_impl_not_marked,H22,H21,H20,H19,H18,H17,Ensures15,Ensures14,Ensures13,Ensures12,Ensures11,Assert3,Assert2,H15,H14,Ensures10,H13,H12,H11,H10,LoopInvariant16,LoopInvariant15,LoopInvariant14,LoopInvariant13,LoopInvariant12,LoopInvariant11,LoopInvariant10,LoopInvariant9,Ensures9,Ensures8,H8,Ensures7,Ensures5,H6,Ensures4,Ensures3,H5,H4,Ensures2,Ensures1,Assert,LoopInvariant8,LoopInvariant7,LoopInvariant6,LoopInvariant5,LoopInvariant4,LoopInvariant3,LoopInvariant2,LoopInvariant1,LoopInvariant,H2">
@@ -3687,16 +3728,16 @@
    <goal name="euler_sieve&#39;vc.203.0" expl="loop invariant preservation" proved="true">
    <transf name="split_vc" proved="true" >
     <goal name="euler_sieve&#39;vc.203.0.0" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.10" steps="302117"/></proof>
+    <proof prover="1"><result status="valid" time="0.10" steps="300125"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.203.0.1" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.14" steps="307433"/></proof>
+    <proof prover="1"><result status="valid" time="0.14" steps="305446"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.203.0.2" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.07" steps="282431"/></proof>
+    <proof prover="1"><result status="valid" time="0.07" steps="280441"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.203.0.3" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.08" steps="281634"/></proof>
+    <proof prover="1"><result status="valid" time="0.08" steps="279644"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.203.0.4" expl="loop invariant preservation" proved="true">
     <transf name="unfold" proved="true" arg1="inv_count" arg2="in" arg3="LoopInvariant7">
@@ -3705,7 +3746,7 @@
       <goal name="euler_sieve&#39;vc.203.0.4.0.0" expl="loop invariant preservation" proved="true">
       <transf name="assert" proved="true" arg1="(t_arr[cnt1 &lt;- ((2 * p1) + 1)][i] = t_arr[i])">
        <goal name="euler_sieve&#39;vc.203.0.4.0.0.0" expl="asserted formula" proved="true">
-       <proof prover="6" timelimit="5"><result status="valid" time="0.31" steps="61259"/></proof>
+       <proof prover="6" timelimit="5"><result status="valid" time="0.49" steps="60619"/></proof>
        </goal>
        <goal name="euler_sieve&#39;vc.203.0.4.0.0.1" expl="loop invariant preservation" proved="true">
        <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
@@ -3732,7 +3773,7 @@
     </transf>
     </goal>
     <goal name="euler_sieve&#39;vc.203.0.5" expl="loop invariant preservation" proved="true">
-    <proof prover="1"><result status="valid" time="0.15" steps="295690"/></proof>
+    <proof prover="1"><result status="valid" time="0.15" steps="296104"/></proof>
     </goal>
    </transf>
    </goal>
@@ -3751,10 +3792,10 @@
        <goal name="euler_sieve&#39;vc.204.0.0.0.0.0" expl="loop invariant preservation" proved="true">
        <transf name="case" proved="true" arg1="(j = cnt1)">
         <goal name="euler_sieve&#39;vc.204.0.0.0.0.0.0" expl="true case (loop invariant preservation)" proved="true">
-        <proof prover="5" timelimit="10"><result status="valid" time="0.82" steps="1245"/></proof>
+        <proof prover="5" timelimit="10"><result status="valid" time="2.79" steps="2130"/></proof>
         </goal>
         <goal name="euler_sieve&#39;vc.204.0.0.0.0.0.1" expl="false case (loop invariant preservation)" proved="true">
-        <proof prover="5" timelimit="10"><result status="valid" time="0.23" steps="350"/></proof>
+        <proof prover="5" timelimit="10"><result status="valid" time="0.23" steps="349"/></proof>
         </goal>
        </transf>
        </goal>
@@ -3782,7 +3823,7 @@
        <proof prover="5"><result status="valid" time="0.15" steps="414"/></proof>
        </goal>
        <goal name="euler_sieve&#39;vc.205.0.0.0.0.1" expl="false case (loop invariant preservation)" proved="true">
-       <proof prover="5"><result status="valid" time="0.76" steps="1033"/></proof>
+       <proof prover="5"><result status="valid" time="1.13" steps="1036"/></proof>
        </goal>
       </transf>
       </goal>
@@ -3798,21 +3839,21 @@
   <proof prover="5"><result status="valid" time="0.17" steps="461"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.207" expl="loop invariant preservation" proved="true">
-  <proof prover="5"><result status="valid" time="1.22" steps="1608"/></proof>
+  <proof prover="5"><result status="valid" time="3.38" steps="2302"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.208" expl="loop invariant preservation" proved="true">
   <transf name="case" proved="true" arg1="(i &lt; 2 * p1 + 1)">
    <goal name="euler_sieve&#39;vc.208.0" expl="true case (loop invariant preservation)" proved="true">
    <transf name="instantiate" proved="true" arg1="LoopInvariant9" arg2="i">
     <goal name="euler_sieve&#39;vc.208.0.0" expl="true case (loop invariant preservation)" proved="true">
-    <proof prover="5"><result status="valid" time="0.95" steps="1233"/></proof>
+    <proof prover="5"><result status="valid" time="1.19" steps="1239"/></proof>
     </goal>
    </transf>
    </goal>
    <goal name="euler_sieve&#39;vc.208.1" expl="false case (loop invariant preservation)" proved="true">
    <transf name="case" proved="true" arg1="(i = 2 * p1 + 1)">
     <goal name="euler_sieve&#39;vc.208.1.0" expl="false case (true case. loop invariant preservation)" proved="true">
-    <proof prover="1" timelimit="5"><result status="valid" time="0.24" steps="613444"/></proof>
+    <proof prover="1" timelimit="5"><result status="valid" time="0.24" steps="610070"/></proof>
     </goal>
     <goal name="euler_sieve&#39;vc.208.1.1" expl="false case (loop invariant preservation)" proved="true">
     <transf name="remove" proved="true" arg1="zero1,one1,(-),(&gt;),(&lt;=),(&gt;=),int63&#39;maxInt,int63&#39;minInt,min_int63,max_int63,zero,one,even,odd,divides,([]),singleton,cons,snoc,(++),exchange,inv_nexts,inv_marked_nexts,inv_marked_old_nexts1,inv_marked_old_nexts2,inv_marked_marked_old,inv_marked_old_nexts2_partial,all_primes,all_products_marked,previously_marked_products,only_products_marked,prime_products_marked,inv_remove_products,all_distinct,all_inf_or_eq,Assoc1,Unit_def_l,Unit_def_r,Inv_def_l,Inv_def_r,Comm1,Assoc,Mul_distr_l,Mul_distr_r,Comm,Unitary,NonTrivialRing,Refl,Trans,Antisymm,Total,ZeroLessOne,CompatOrderAdd,CompatOrderMult,Abs_le,Abs_pos,Div_mod,Mod_bound,Div_unique,Div_bound,Mod_1,Div_1,Div_inf,Div_inf_neg,Mod_0,Div_1_left,Div_minus1_left,Mod_1_left,Mod_minus1_left,Div_mult,Mod_mult,Div_mod1,Div_bound1,Mod_bound1,Div_sign_pos,Div_sign_neg,Mod_sign_pos,Mod_sign_neg,Rounds_toward_zero,Div_11,Mod_11,Div_inf1,Mod_inf,Div_mult1,Mod_mult1,to_int_in_bounds,extensionality,max_int&#39;def,min_int&#39;def,even_or_odd,even_not_odd,odd_not_even,even_odd,odd_even,even_even,odd_odd,even_2k,odd_2k1,divides&#39;spec,divides_refl,divides_1_n,divides_0,divides_left,divides_right,divides_oppr,divides_oppl,divides_oppr_rev,divides_oppl_rev,divides_plusr,divides_minusr,divides_multl,divides_multr,divides_factorl,divides_factorr,divides_n_1,divides_antisym,divides_trans,divides_bounds,mod_divides_euclidean,divides_mod_euclidean,mod_divides_computer,divides_mod_computer,odd_divides,not_prime_1,prime_2,prime_3,prime_divisors,small_divisors,odd_prime,mult_croissance_locale,mult_croissance,comp_mult_2,div_croissance_locale1,div_croissance1,div_croissance_locale2,div_croissance2,div_mult_1,mult_borne_sous_exp,sq_ineq,divides_div,divides_inf,not_prime_divider_limits,no_prod_impl_no_divider,not_prime_impl_divisor_under_sqrt,length_nonnegative,(==)&#39;spec,create&#39;spec,empty&#39;def,set&#39;spec,set&#39;def,([&lt;-])&#39;def,singleton&#39;spec,cons&#39;spec,snoc&#39;spec,([..])&#39;spec,([..])&#39;def,([_..])&#39;def,([.._])&#39;def,(++)&#39;spec,exchange_set,conservation_inv_marked_nexts_on_marked_change,conservation_inv_marked_nexts_on_nexts_change,conservation_inv_arr_on_jump,marked_impl_all_products_marked,prev_and_new_impl_all_products_marked,conservation_only_products_marked,conservation_previously_marked_products,conservation_previously_marked_products_on_marked_change,conservation_inv_marked_old_nexts2,unchanged_other_elements,previously_marked_products_impl_prime,only_products_marked_impl_not_marked,H20,H19,H18,H17,Ensures16,Ensures15,Ensures14,Ensures13,Ensures12,H16,H15,H14,Ensures11,Assert3,Assert2,Assert1,H13,Ensures10,H10,H9,H8,LoopInvariant16,LoopInvariant15,LoopInvariant13,LoopInvariant12,LoopInvariant11,LoopInvariant10,LoopInvariant9,Ensures9,Ensures8,H6,Ensures5,Ensures4,H4,H3,Ensures3,Ensures2,Ensures1,Ensures,Assert,LoopInvariant7,LoopInvariant6,LoopInvariant5,LoopInvariant4,LoopInvariant3,LoopInvariant2,LoopInvariant1,LoopInvariant,H2">
@@ -3829,16 +3870,16 @@
   <proof prover="5"><result status="valid" time="0.04" steps="63"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.210" expl="postcondition" proved="true">
-  <proof prover="0"><result status="valid" time="0.08" steps="115"/></proof>
+  <proof prover="5" timelimit="1"><result status="valid" time="0.20" steps="401"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.211" expl="postcondition" proved="true">
-  <proof prover="5" timelimit="1"><result status="valid" time="0.90" steps="1009"/></proof>
+  <proof prover="5" timelimit="1"><result status="valid" time="1.22" steps="1288"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.212" expl="postcondition" proved="true">
-  <proof prover="5" timelimit="1"><result status="valid" time="0.21" steps="261"/></proof>
+  <proof prover="6" timelimit="1"><result status="valid" time="0.32" steps="50664"/></proof>
   </goal>
   <goal name="euler_sieve&#39;vc.213" expl="postcondition" proved="true">
-  <proof prover="6" timelimit="1"><result status="valid" time="0.36" steps="65103"/></proof>
+  <proof prover="6" timelimit="1"><result status="valid" time="0.58" steps="97366"/></proof>
   </goal>
  </transf>
  </goal>

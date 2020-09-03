@@ -247,8 +247,8 @@ module EulerSieveSpec
 (*                                                                             *)
 (*******************************************************************************)
 
-  predicate all_distinct (a: seq 'a) (n: int) =
-    forall i j. 0 <= i < j < n -> a[i] <> a[j]
+  predicate all_distinct (a: seq int) (n: int) =
+    forall i j. 0 <= i < j < n -> a[i] < a[j]
 
   predicate all_inf_or_eq (a: seq int) (n k: int) =
     forall i. 0 <= i < n -> a[i] <= k
@@ -747,7 +747,7 @@ module EulerSieveImpl
 
   let euler_sieve (max: int63) : array63
     requires { max_int > max >= 3 }
-    ensures  { forall i j. 0 <= i < j < result.length -> result[i] <> result[j] }
+    ensures  { forall i j. 0 <= i < j < result.length -> result[i] < result[j] }
     ensures  { forall i. 0 <= i < result.length -> 2 <= result[i] <= max }
     ensures  { forall i. 0 <= i < result.length -> prime result[i] }
     ensures  { forall i. 2 <= i <= max -> prime i ->
