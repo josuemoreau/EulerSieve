@@ -7,6 +7,9 @@
 
 % \pagestyle{empty} % pour la version finale EasyChair
 
+\newcommand\arr[1]{\ocamlf{arr[}#1\ocamlf{]}}
+\newcommand\eqdef{\overset{\text{def}}{=}}
+
 \begin{document}
 
 \title{...}
@@ -31,7 +34,7 @@ Le crible d'Euler, tout comme le crible d'Ératosthène, permet d'énumérer
 l'ensemble des nombres premiers compris entre 2 et une limite donnée $N$.
 Le crible d'Euler a une complexité temporelle en $O(N)$ pour énumérer tous les
 nombres premiers dans l'ensemble $\{2,...,N\}$~\cite{crible-euler} alors que celui
-d'Ératosthène a une complexité $O(\log\log N)$.
+d'Ératosthène a une complexité en $O(\log\log N)$.
 
 Le crible d'Euler est plus difficile à implémenter que le crible d'Ératosthène.
 C'est d'autant plus vrai si on réalise quelques optimisations pour
@@ -39,9 +42,14 @@ rendre le crible d'Euler plus efficace en temps et en mémoire.
 Ces subtilités d'implémentation sont autant d'occasions de faire des erreurs,
 d'où la nécessité de vérifier formellement l'algorithme.
 
-Dans cet article, on décrit une telle vérification réalisée à l'aide de l'outil Why3.
+Dans cet article, on décrit une telle vérification réalisée à l'aide de
+l'outil Why3~\cite{why3}.
+% quelques généralités sur la preuve :
+La preuve a été réalisée uniquement à l'aide des démonstrateurs automatiques.
+Cependant, une partie de cette preuve a nécessité l'utilisation de différents
+outils fournis par Why3 permettant d'aider le raisonnement des démonstrateurs
+automatiques.
 L'intégralité de cette preuve est disponible en ligne~\cite{mapreuve}.
-...
 
 Cet article est organisé de la façon suivante.
 La section~\ref{sec:algo} décrit l'algorithme du crible d'Euler, ainsi que son
@@ -56,8 +64,8 @@ crible d'Ératosthène segmenté.
 
 \section{Le crible d'Euler}
 \label{sec:algo}
-% présentation de l'algorithme du crible d'Euler
 
+% présentation de l'algorithme du crible d'Euler
 L'algorithme du crible d'Euler prend comme unique entrée la limite $N \geq 2$ et va
 renvoyer tous les nombres premiers compris entre $2$ et $N$. Il se divise en
 deux parties. La première partie prend un nombre $n$ non marqué
@@ -91,46 +99,52 @@ linéaire du crible d'Euler.
 % 1. idée d'utiliser une liste chaînée
 L'implémentation de l'algorithme que nous allons prouver utilise une liste
 chaînée croissante pour représenter les nombres de l'ensemble $\{2,...,N\}$.
-Cette liste est importante pour que la représentation soit efficace car elle
-permet d'obtenir efficacement le prochain entier
-% en un temps amorti constant ?
-en évitant de parcourir plus d'une fois un entier déjà marqué.
 % 2. elle est simplement chaînée = un tableau next
-Il s'agit d'une liste simplement chaînée, représentée dans un tableau.
+Cette liste est simplement chaînée et est implémentée dans un tableau
+des suivants \arr{$i$}.
+Une liste chaînée est importante pour que la représentation soit efficace
+car elle permet d'obtenir efficacement le prochain entier à parcourir.
+% en un temps amorti constant ?
+En parcourant un entier déjà marqué on retire cet entier de la liste,
+ce qui permet de parcourir au plus une fois un entier déjà marqué.
+% 4. le marquage se fait dans ce même tableau next, en utilisant des
+% valeurs négatives
+Pour chaque indice $i$, \arr{$i$} contient un entier positif
+si et seulement si l'entier $i$ est non marqué.
+Dans ce cas, \arr{$i$} est l'entier suivant $i$ dans la liste chaînée.
+L'opération de marquage d'un entier~$i$ consiste à remplacer le
+contenu de la case~$i$ par son opposé.
 
 % 3. on marque un élément mais on le supprimera de la liste seulement
 %    plus tard, quand on passera dessus (car on aura alors l'élément
 %    précédent dans une variable, pour effectuer la suppression)
-% 4. le marquage se fait dans ce même tableau next, en utilisant des
-% valeurs négatives
-Pour chaque indice $i$, la case correspondante contient un entier positif
-si et seulement si l'entier $i$ est non marqué.
-Dans ce cas, le contenu de la case est son
-suivant dans la liste chaînée.
-L'opération de marquage d'un entier~$i$ consiste à remplacer le
-contenu de la case~$i$ par son opposé.
-
 Lors du marquage, on ne supprime pas l'entier marqué de la liste chaînée car
 cela coûterait trop cher en temps, ou nécessiterait une liste doublement
 chaînée qui coûterait trop cher en espace.
 Au lieu de cela, la boucle de la fonction \ocamlf{remove_products}
 utilise une variable $p$ qui représente le dernier entier visité.
-Lorsqu'elle visite un nouvel entier $i$, elle marque $ni$, où $n$ est
-l'entier dont on veut marquer tous les multiples.
-Puis, si le nombre $i$ était marqué, elle modifie la case représentant $p$ en lui
-donnant pour valeur le nombre suivant $i$. Cette opération permet à la liste
-chaînée de ``sauter'' par dessus les entier déjà marqués, et donc n'examiner
-qu'une seule fois chaque entier marqué.
-Il est tout à fait possible de marquer le multiple $ni$ alors que $i$ est marqué,
-le seul cas où cela est possible est lorsque $i$ est lui-même un multiple de $n$.
+Lors d'un appel à \ocamlf{remove_products} pour barrer tous les multiples de $n$,
+la fonction va parcourir tous les $i$ non marqués au moment de l'appel de
+\ocamlf{remove_products}. Il est donc important de remarquer qu'un entier $i$,
+au moment où la boucle de \ocamlf{remove_products} arrive sur lui, peut très bien
+être déjà marqué. Si c'est le cas, alors il aura nécessairement été marqué par
+une précédente itération de la boucle. % à voir si le terme est correct ...
+Lorsque la boucle de \ocamlf{remove_products} arrive sur un entier $i$,
+$i$ étant réalité \arr{$p$}, elle marque $ni$.
+Puis, elle modifie \arr{$p$} en lui donnant pour valeur \arr{$i$}.
+Cette opération permet donc à la liste chaînée de ``sauter'' par dessus
+les entier déjà marqués, et donc d'examiner au plus une fois chaque entier marqué.
+
+Avec ce procédé, il y a un nombre important d'entiers qui sont marqués et qui ne
+seront pas réexaminés par la fonction \ocamlf{remove_products} et qui,
+par conséquent, seront encore dans la liste chaînée à la fin de l'algorithme.
+Il s'agit des entiers qui ont été marqués comme étant multiple d'un certain $n$,
+mais dont le produit avec tous les entiers suivant $n$ dans la liste chaînée est
+supérieur à la limite du crible.
 
 % 5. les valeurs paires ne sont pas représentées
-Afin de diviser l'espace utilisé par deux, le tableau ne représente que les nombres
+Afin de diviser l'espace utilisé par deux, le tableau \ocamlf{arr} ne représente que les nombres
 impairs. Ainsi, la case d'index $i$ du tableau représente l'entier $2i + 1$.
-% Pour chaque index $i$, la case $i$ contient un entier positif si et
-% seulement si l'entier $2i + 1$ n'est pas marqué.
-% De plus, si l'entier qu'elle contient est positif, il s'agit de l'entier suivant
-% dans la liste chaînée.
 Enfin, on souhaite renvoyer un tableau ne contenant que les nombres premiers.
 Pour cela, on pourrait commencer par compter les nombres premiers
 de la liste chaînée, puis créer un tableau de cette taille et enfin y copier
@@ -138,21 +152,15 @@ les nombres premiers.
 Cependant, on peut faire un peu mieux, en écrasant le début du tableau
 contenant la liste chaînée avec les nombres premiers, puis en
 extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres premiers.
-% En effet, dans l'ensemble $\{3,...,N\}$,
-% le nombre de nombres impairs est supérieur ou égal au nombre de nombres premiers.
-% Il est donc possible, dans un premier temps, de copier le nombre 2 dans la case
-% d'index 0, représentant au départ le nombre $1$, du tableau contenant la liste
-% chaînée. Puis, il est possible d'écraser la partie du tableau déjà parcourue
-% pendant le comptage, en écrivant consécutivement les nombres premiers au fur
-% et à mesure qu'ils sont rencontrés. Cette modification, ne change pas le comptage
-% des nombres premiers grâce à l'inégalité précédemment énoncée.
-% Enfin, il n'y a plus qu'a utiliser une fonction \ocamlf{Array.sub} pour extraire
-% la partie du tableau contenant tous les nombres premiers.
-% Cette copie étant très certainement mieux implémentée qu'une simple copie
-% case à case, elle sera plus efficace et permet de gagner légèrement en efficacité.
+% ceci a notamment permis de simplifier quelques points de la preuve
+% à la fin, lors de l'extraction des nombres premiers.
 
 L'implémentation de l'algorithme que nous allons prouver se trouve dans la
-figure~\ref{fig:codeOCaml}.
+figure~\ref{fig:codeOCaml}. Dans celle-ci, on manipule à plusieurs reprises
+un type \ocamlf{t}. Ce type contient pour premier champ le tableau \ocamlf{arr}
+décrit précédemment. Le champ \ocamlf{max} correspond à la limite donnée en
+entrée au crible et le champ \ocamlf{max_arr} correspond au plus grand indice
+du tableau \ocamlf{arr}, donc $\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$. 
 % TODO parler brièvement du type t et notamment de max_arr
 
 \begin{figure}[tp]
@@ -216,7 +224,7 @@ let euler_sieve max =
 % multiples d'un nombre sont bien marqués
 
 La preuve que décrite ici a été intégralement réalisée avec l'outil
-Why3~\cite{why3} et les démonstrateurs automatiques Alt-Ergo, CVC4, Z3, Eprover
+Why3~\cite{why3} et les démon\-strateurs automatiques Alt-Ergo, CVC4, Z3, Eprover
 et Vampire. % il faut les citer eux aussi ? et leurs version ? pas forcément
 
 \clearpage
