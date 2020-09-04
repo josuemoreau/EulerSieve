@@ -400,15 +400,15 @@ suivante :
 \section{Le code OCaml extrait de la preuve}
 \label{sec:extraction}
 
-Le code extrait de la preuve à l'aide de la commande \texttt{extract} de Why3
-est en réalité celui présenté à la figure~\ref{fig:codeOCaml}.
+Une fois la démonstration terminée, il est maintenant possible d'extraire
+le code OCaml du programme démontré. Ceci est fait par la commande
+\texttt{extract} de Why3.
+Le code OCaml obtenu après extraction est en réalité celui présenté
+à la figure~\ref{fig:codeOCaml}.
 Seules quelques modifications dans l'apparence du code ont été effectuées
 entre le code extrait et le code présenté.
-
-à quoi ressemble-t-il ?
-est-il efficace ? comparaison avec le crible d'Ératosthène et le crible
-d'Ératosthène segmenté.
-
+Voici, quelques mesures de temps de calcul et de la mémoire utilisée par
+le code extrait :
 \begin{center}
   \begin{tabular}{|c|r|r|}
     \hline
@@ -420,6 +420,37 @@ d'Ératosthène segmenté.
     $10^9$ & 14,500 s & 7\,200 Mo \\\hline
   \end{tabular}
 \end{center}
+
+% a voir si un seul tableau est meilleur que deux tableaux ...
+
+Afin de pouvoir évaluer l'efficacité de ce code, nous comparons maintenant
+les temps de calculs du code extrait du crible d'Euler avec une
+implémentation du crible d'Ératosthène et du crible d'Ératosthène
+segmenté~\footnote{Merci à
+  Jean-Christophe Filliâtre pour son implémentation du crible d'Ératosthène
+  segmenté.}.
+% la phrase suivante est moyennement bien exprimée mais je ne vois pas
+% bien comment la reformuler ...
+Concernant ce dernier, la comparaison est fournie pour permettre de donner
+une idée de la différence d'efficacité, mais n'est pas exactement adaptée.
+En effet, contrairement aux cribles d'Ératosthène et d'Euler, qui renvoie
+un tableau contenant tous les nombres premiers, le crible d'Ératosthène segmenté
+ne renvoie rien mais applique une fonction donnée sur tous les nombres premiers
+compris entre $2$ et la limite fournie en argument.
+% alors, mon implémentation du crible d'Ératosthène est ultra simple
+% donc est-ce que la comparaison est vraiment bien faite ...
+\begin{center}
+  \begin{tabular}{|c|r|r|r|}
+    \hline
+    $N$ & crible d'Ératosthène & crible d'Euler & crible d'Ératosthène segmenté \\
+    \hline\hline
+    $10^6$ &  0,109 s &  0,022 s &       \\\hline
+    $10^7$ &  1,580 s &  0,140 s &       \\\hline
+    $10^8$ & 21,220 s &  1,350 s &       \\\hline
+    $10^9$ &          & 14,500 s &       \\\hline
+  \end{tabular}
+\end{center}
+
 
 \section{Conclusion}
 \label{sec:conclusion}
