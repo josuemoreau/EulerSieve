@@ -5,6 +5,23 @@
 \usepackage{todonotes}
 \usepackage{./why3lang}
 
+\usetikzlibrary{matrix, positioning, arrows.meta, arrows}
+
+\tikzset{
+mymat/.style={
+  matrix of math nodes,
+  text height=2.5ex,
+  text depth=0.75ex,
+  text width=3.25ex,
+  align=center,
+  column sep=-\pgflinewidth
+  },
+mymats/.style={
+  mymat,
+  nodes={draw,fill=#1}
+  }
+}
+
 % \pagestyle{empty} % pour la version finale EasyChair
 
 \newcommand\arr[1]{\ocamlf{arr[}#1\ocamlf{]}}
@@ -115,6 +132,93 @@ Dans ce cas, \arr{$i$} est l'entier suivant $i$ dans la liste chaînée.
 L'opération de marquage d'un entier~$i$ consiste à remplacer le
 contenu de la case~$i$ par son opposé.
 
+% figure décrivant un état intermédiaire de l'algorithme
+
+\begin{tikzpicture}[>=latex]
+  \matrix[mymat,anchor=west,row 1/.style={nodes=draw},
+  % marquage précédent
+  column 3/.style={nodes={fill=gray!30}},
+  column 5/.style={nodes={fill=gray!30}},
+  column 7/.style={nodes={fill=gray!30}},
+  column 9/.style={nodes={fill=gray!30}},
+  column 11/.style={nodes={fill=gray!30}},
+  column 13/.style={nodes={fill=gray!30}},
+  column 15/.style={nodes={fill=gray!30}},
+  column 17/.style={nodes={fill=gray!30}},
+  % marquage suivant
+  column 8/.style={nodes={fill=blue!30}},
+  column 14/.style={nodes={fill=blue!30}},
+  ]
+at (0,0)
+(mat1)
+{
+2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19\\
+};
+
+% \node[above=0pt of mat1]
+%   (cella) {Cell A};
+% \node[above=0pt of mat2]
+%   (cellb) {Cell B};
+% \node at (mat4-1-7.north|-cellb)
+%   (cellx) {Cell X};
+
+\begin{scope}
+\draw[->, line width=0.7pt]
+(mat1-1-1.south)
+  .. controls ++ (0.1,-0.7) and ++(-0.1,-0.7) ..
+(mat1-1-2.south);
+\draw[->, line width=0.7pt]
+(mat1-1-2.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-4.south);
+\draw[->, line width=0.7pt]
+(mat1-1-4.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-6.south);
+\draw[->, line width=0.7pt]
+(mat1-1-6.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-8.south);
+\draw[->, line width=0.7pt]
+(mat1-1-8.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-10.south);
+\draw[->, line width=0.7pt]
+(mat1-1-10.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-12.south);
+\draw[->, line width=0.7pt]
+(mat1-1-12.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-14.south);
+\draw[->, line width=0.7pt]
+(mat1-1-14.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-16.south);
+\draw[->, line width=0.7pt]
+(mat1-1-16.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-18.south);
+
+\draw[->, dashed, line width=0.7pt]
+(mat1-1-2.north)
+  .. controls ++ (0.9,0.9) and ++(-0.9,0.9) ..
+(mat1-1-2.north);
+\draw[->, dashed, line width=0.7pt]
+(mat1-1-2.north)
+  .. controls ++ (0.1,0.3) and ++(-0.1,0.3) ..
+(mat1-1-4.north);
+\draw[->, dashed, line width=0.7pt]
+(mat1-1-2.north)
+.. controls ++ (0.1,0.6) and ++(-0.1,0.6) ..
+(mat1-1-6.north);
+\draw[->, dashed, line width=0.7pt]
+(mat1-1-2.north)
+  .. controls ++ (0.1,0.9) and ++(-0.1,0.9) ..
+(mat1-1-8.north);
+\end{scope}
+\end{tikzpicture}
+
 % 3. on marque un élément mais on le supprimera de la liste seulement
 %    plus tard, quand on passera dessus (car on aura alors l'élément
 %    précédent dans une variable, pour effectuer la suppression)
@@ -128,7 +232,7 @@ la fonction va parcourir tous les $i$ non marqués au moment de l'appel de
 \ocamlf{remove_products}. Il est donc important de remarquer qu'un entier $i$,
 au moment où la boucle de \ocamlf{remove_products} arrive sur lui, peut très bien
 être déjà marqué. Si c'est le cas, alors il aura nécessairement été marqué par
-une précédente itération de la boucle. % à voir si le terme est correct ...
+une précédente itération de la boucle.
 Lorsque la boucle de \ocamlf{remove_products} arrive sur un entier $i$,
 $i$ étant réalité \arr{$p$}, elle marque $ni$.
 Puis, elle modifie \arr{$p$} en lui donnant pour valeur \arr{$i$}.
@@ -161,7 +265,6 @@ un type \ocamlf{t}. Ce type contient pour premier champ le tableau \ocamlf{arr}
 décrit précédemment. Le champ \ocamlf{max} correspond à la limite donnée en
 entrée au crible et le champ \ocamlf{max_arr} correspond au plus grand indice
 du tableau \ocamlf{arr}, donc $\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$.
-% TODO parler brièvement du type t et notamment de max_arr
 
 \begin{figure}[tp]
 \begin{ocaml}
@@ -217,17 +320,11 @@ let euler_sieve max =
 
 \section{Une vérification formelle avec Why3}
 \label{sec:preuve}
-% décrire la preuve ici, montrer les morceaux intéressants
-% (dont la spec de la fonction principale)
-
-% le lemme intéressant qui permet d'affirmer à un certain stade que tous les
-% multiples d'un nombre sont bien marqués
 
 La preuve que décrite ici a été intégralement réalisée avec l'outil
 Why3~\cite{why3} et les démon\-strateurs automatiques Alt-Ergo, CVC4, Z3, Eprover
-et Vampire. % il faut les citer eux aussi ? et leurs version ? pas forcément
+et Vampire.
 
-\clearpage
 \paragraph{Spécification.}
 La spécification de la fonction principale du crible,
 \ocamlf{euler_sieve}, est la suivante :
@@ -250,9 +347,9 @@ La précondition requière que \whyf{max} ne soit pas égal au plus grand
 entier. En effet, le code a besoin de stocker la valeur \whyf{max+1}
 dans la dernière case du tableau signaler la fin.
 
-La première postcondition représente le fait que les nombres premiers
+La première postcondition représente le fait que les nombres
 du tableau renvoyé en résultat sont écrits dans l'ordre croissant.
-La postcondition suivante montre que les nombres premiers renvoyés dans
+La postcondition suivante montre que les nombres renvoyés dans
 le tableau sont tous dans l'ensemble $\{2,...,\text{\ocamlf{max}}\}$.
 Enfin, les deux dernières postconditions énoncent que tous les
 éléments du tableau renvoyé sont premiers et que tous les nombres premiers
@@ -305,8 +402,8 @@ tous les nombres y sont représentés.
 Le type \whyf{seq} utilisé pour décrire la liste chaînée et le marquage
 est ici un type modélisant des séquences.
 Il s'agit de tableaux immuables fournis par la bibliothèque standard
-de Why3. Pour pouvoir les manipuler il est donc nécessaire que les champs
-correspondants mutables.
+de Why3. Pour pouvoir les manipuler, il est donc nécessaire que les champs
+correspondants soient mutables.
 De plus, comme on peut le voir ci-dessus, les champs modélisant la liste chaînée
 et le marquage sont des champs fantômes~\cite{ghost-code}.
 Les champs fantômes n'existent que dans la preuve et pas dans
@@ -317,7 +414,8 @@ des structures de données simples, ce qui a pour conséquence de faciliter
 la manipulation des structures de données dans la logique et, par conséquent,
 de faciliter la preuve.
 
-Des fonctions permettant de modifier ces champs ont été écrites.
+Des fonctions permettant de modifier ces champs ont été déclarées.
+% sans être réalisées
 Elles sont définies de manière abstraites dans le module \whyf{EulerSieve}.
 Voici un exemple, extrait de la preuve, d'une telle fonction abstraite :
 \begin{why3}
@@ -328,10 +426,9 @@ val set_mark (t: t) (i: int63) : unit
   ensures  { t.marked = (old t.marked)[i <- true] }
 \end{why3}
 
-La deuxième partie de la preuve a consisté en le raffinement de type \whyf{t}
+La deuxième partie de la preuve a consisté en le raffinement du type \whyf{t}
 précédemment défini. Ce raffinement se trouve dans le module
-\whyf{EulerSieveImpl} qui est une implémentation~\cite{paskevich20isola}
-du module \whyf{EulerSieve}.
+\whyf{EulerSieveImpl} qui est une implémentation du module \whyf{EulerSieve}.
 La nouvelle définition du type \whyf{t} est la suivante :
 \begin{why3}
 type t = {
@@ -357,20 +454,18 @@ Il a été nécessaire, après implémentation, de montrer que celles-ci
 satisfont les spécifications de leurs fonctions abstraites respectives et
 conservent les invariants du type \whyf{t}, tel que l'invariant de liaison
 défini ci-dessus.
-% pas très bien dit ...
-Enfin, le module d'implémentation et le module abstrait ont été liés par
-l'instruction \whyf{clone} de Why3 :
-\begin{why3}
-clone EulerSieve with type t = t,
-  val create = create,
-  val set_next = set_next, val get_next = get_next,
-  val set_mark = set_mark, val get_mark = get_mark,
-  val get_max = get_max
-\end{why3}
+
+
 
 La preuve a nécessité l'écriture de 749 lignes dans le langage WhyML :
 508 lignes pour la spécification et 241 lignes de code.
-Au total, 841 buts on été prouvés.
+Au total, 841 buts ont été prouvés.
+Afin de démontrer le crible d'Euler, de nombreuses interactions ont été
+faites pour aider les démonstrateurs automatiques.
+Parmi ces interactions, de nombreux lemmes ont été énoncés et prouvés.
+Des assertions ont également été écrites dans le programme.
+Enfin, des transformations logiques ont  été appliquées à des buts à
+de nombreuses reprises.
 % spec     code comments
 %  508      241       33 euler_sieve.mlw
 %  éventuellement intégrer les stats de why3 session info --stats
@@ -450,7 +545,7 @@ compris entre $2$ et la limite fournie en argument.
     $10^9$ &          & 14,500 s &       \\\hline
   \end{tabular}
 \end{center}
-
+% refaire le crible d'Eratosthène
 
 \section{Conclusion}
 \label{sec:conclusion}
