@@ -132,19 +132,26 @@ Dans ce cas, \arr{$i$} est l'entier suivant $i$ dans la liste chaînée.
 L'opération de marquage d'un entier~$i$ consiste à remplacer le
 contenu de la case~$i$ par son opposé.
 
+Voici un schéma décrivant l'état de la liste chaînée dans le tableau \ocamlf{arr}
+à un moment donné pendant une exécution du crible d'Euler.
+Dans celle-ci l'algorithme vient de marquer (en gris) tous les multiples de $2$.
+Il va commencer à marquer (en bleu) les multiples de 3, ici les produits de $3$
+avec $3$, $5$, $7$, $9$, ...
+
 % figure décrivant un état intermédiaire de l'algorithme
 
+\begin{figure}[h]
 \begin{tikzpicture}[>=latex]
   \matrix[mymat,anchor=west,row 1/.style={nodes=draw},
   % marquage précédent
-  column 3/.style={nodes={fill=gray!30}},
-  column 5/.style={nodes={fill=gray!30}},
-  column 7/.style={nodes={fill=gray!30}},
-  column 9/.style={nodes={fill=gray!30}},
-  column 11/.style={nodes={fill=gray!30}},
-  column 13/.style={nodes={fill=gray!30}},
-  column 15/.style={nodes={fill=gray!30}},
-  column 17/.style={nodes={fill=gray!30}},
+  column 3/.style={nodes={fill=gray!70}},
+  column 5/.style={nodes={fill=gray!70}},
+  column 7/.style={nodes={fill=gray!70}},
+  column 9/.style={nodes={fill=gray!70}},
+  column 11/.style={nodes={fill=gray!70}},
+  column 13/.style={nodes={fill=gray!70}},
+  column 15/.style={nodes={fill=gray!70}},
+  column 17/.style={nodes={fill=gray!70}},
   % marquage suivant
   column 8/.style={nodes={fill=blue!30}},
   column 14/.style={nodes={fill=blue!30}},
@@ -203,22 +210,27 @@ at (0,0)
 \draw[->, dashed, line width=0.7pt]
 (mat1-1-2.north)
   .. controls ++ (0.9,0.9) and ++(-0.9,0.9) ..
+  node [above, sloped] (TextNode1) {$\times$}
 (mat1-1-2.north);
 \draw[->, dashed, line width=0.7pt]
 (mat1-1-2.north)
   .. controls ++ (0.1,0.3) and ++(-0.1,0.3) ..
+  node [above, sloped] (TextNode2) {$\times$}
 (mat1-1-4.north);
 \draw[->, dashed, line width=0.7pt]
 (mat1-1-2.north)
-.. controls ++ (0.1,0.6) and ++(-0.1,0.6) ..
+.. controls ++ (0.5,0.9) and ++(-0.5,0.9) ..
+  node [above, sloped] (TextNode3) {$\times$}
 (mat1-1-6.north);
 \draw[->, dashed, line width=0.7pt]
 (mat1-1-2.north)
-  .. controls ++ (0.1,0.9) and ++(-0.1,0.9) ..
+.. controls ++ (0.8,1.5) and ++(-0.8,1.5) ..
+  node [above, sloped] (TextNode4) {$\times$}
 (mat1-1-8.north);
 \end{scope}
 \end{tikzpicture}
-
+\caption{Illustration de la liste chaînée}
+\end{figure}
 % 3. on marque un élément mais on le supprimera de la liste seulement
 %    plus tard, quand on passera dessus (car on aura alors l'élément
 %    précédent dans une variable, pour effectuer la suppression)
