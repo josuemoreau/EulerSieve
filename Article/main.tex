@@ -257,8 +257,9 @@ les nombres premiers.
 Cependant, on peut faire un peu mieux, en écrasant le début du tableau
 contenant la liste chaînée avec les nombres premiers, puis en
 extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres premiers.
-% ceci a notamment permis de simplifier quelques points de la preuve
-% à la fin, lors de l'extraction des nombres premiers.
+
+% placer ici une figure représentant le même état du tableau arr
+% dans l'implémentation choisie, avec uniquement les nombres impairs
 
 L'implémentation de l'algorithme que nous allons prouver se trouve dans la
 figure~\ref{fig:codeOCaml}. Dans celle-ci, on manipule à plusieurs reprises
