@@ -134,9 +134,10 @@ contenu de la case~$i$ par son opposé.
 
 Voici un schéma décrivant l'état de la liste chaînée dans le tableau \ocamlf{arr}
 à un moment donné pendant une exécution du crible d'Euler.
-Dans celle-ci l'algorithme vient de marquer (en gris) tous les multiples de $2$.
-Il va commencer à marquer (en bleu) les multiples de 3, ici les produits de $3$
-avec $3$, $5$, $7$, $9$, ...
+Dans celle-ci l'algorithme vient de marquer (en gris) tous les multiples de $2$
+et de $3$.
+Il va commencer à marquer les multiples de $5$, en marquant les produits de $5$
+avec $5$, $7$, $11$, $13$, ...
 
 % figure décrivant un état intermédiaire de l'algorithme
 
@@ -153,8 +154,8 @@ avec $3$, $5$, $7$, $9$, ...
   column 15/.style={nodes={fill=gray!70}},
   column 17/.style={nodes={fill=gray!70}},
   % marquage suivant
-  column 8/.style={nodes={fill=blue!30}},
-  column 14/.style={nodes={fill=blue!30}},
+  column 8/.style={nodes={fill=gray!70}},
+  column 14/.style={nodes={fill=gray!70}},
   ]
 at (0,0)
 (mat1)
@@ -162,12 +163,8 @@ at (0,0)
 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19\\
 };
 
-% \node[above=0pt of mat1]
-%   (cella) {Cell A};
-% \node[above=0pt of mat2]
-%   (cellb) {Cell B};
-% \node at (mat4-1-7.north|-cellb)
-%   (cellx) {Cell X};
+\node[right=0pt of mat1]
+  (dots) {$\cdots$};
 
 \begin{scope}
 \draw[->, line width=0.7pt]
@@ -184,11 +181,7 @@ at (0,0)
 (mat1-1-6.south);
 \draw[->, line width=0.7pt]
 (mat1-1-6.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-1-8.south);
-\draw[->, line width=0.7pt]
-(mat1-1-8.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+  .. controls ++ (0.3,-0.9) and ++(-0.3,-0.9) ..
 (mat1-1-10.south);
 \draw[->, line width=0.7pt]
 (mat1-1-10.south)
@@ -196,37 +189,33 @@ at (0,0)
 (mat1-1-12.south);
 \draw[->, line width=0.7pt]
 (mat1-1-12.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-1-14.south);
-\draw[->, line width=0.7pt]
-(mat1-1-14.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+  .. controls ++ (0.3,-0.9) and ++(-0.3,-0.9) ..
 (mat1-1-16.south);
 \draw[->, line width=0.7pt]
 (mat1-1-16.south)
   .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
 (mat1-1-18.south);
 
-\draw[->, dashed, line width=0.7pt]
-(mat1-1-2.north)
-  .. controls ++ (0.9,0.9) and ++(-0.9,0.9) ..
-  node [above, sloped] (TextNode1) {$\times$}
-(mat1-1-2.north);
-\draw[->, dashed, line width=0.7pt]
-(mat1-1-2.north)
-  .. controls ++ (0.1,0.3) and ++(-0.1,0.3) ..
-  node [above, sloped] (TextNode2) {$\times$}
-(mat1-1-4.north);
-\draw[->, dashed, line width=0.7pt]
-(mat1-1-2.north)
-.. controls ++ (0.5,0.9) and ++(-0.5,0.9) ..
-  node [above, sloped] (TextNode3) {$\times$}
-(mat1-1-6.north);
-\draw[->, dashed, line width=0.7pt]
-(mat1-1-2.north)
-.. controls ++ (0.8,1.5) and ++(-0.8,1.5) ..
-  node [above, sloped] (TextNode4) {$\times$}
-(mat1-1-8.north);
+% \draw[->, dashed, line width=0.7pt]
+% (mat1-1-2.north)
+%   .. controls ++ (0.9,0.9) and ++(-0.9,0.9) ..
+%   node [above, sloped] (TextNode1) {$\times$}
+% (mat1-1-2.north);
+% \draw[->, dashed, line width=0.7pt]
+% (mat1-1-2.north)
+%   .. controls ++ (0.1,0.3) and ++(-0.1,0.3) ..
+%   node [above, sloped] (TextNode2) {$\times$}
+% (mat1-1-4.north);
+% \draw[->, dashed, line width=0.7pt]
+% (mat1-1-2.north)
+% .. controls ++ (0.5,0.9) and ++(-0.5,0.9) ..
+%   node [above, sloped] (TextNode3) {$\times$}
+% (mat1-1-6.north);
+% \draw[->, dashed, line width=0.7pt]
+% (mat1-1-2.north)
+% .. controls ++ (0.8,1.5) and ++(-0.8,1.5) ..
+%   node [above, sloped] (TextNode4) {$\times$}
+% (mat1-1-8.north);
 \end{scope}
 \end{tikzpicture}
 \caption{Illustration de la liste chaînée}
