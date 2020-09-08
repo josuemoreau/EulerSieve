@@ -75,9 +75,9 @@ Puis la section~\ref{sec:preuve} décrit les grandes lignes de la preuve qui a
 été réalisée à l'aide de Why3.
 Enfin, la section~\ref{sec:extraction} présente le code OCaml
 automatiquement extrait par Why3 à partir
-de la preuve qui a été réalisée. En particulier, nous comparons l'efficacité de
-ce programme extrait avec des implémentations du crible d'Ératosthène et du
-crible d'Ératosthène segmenté.
+de la preuve qui a été réalisée. En particulier, nous comparons l'efficacité
+de ce programme extrait avec des implémentations du crible d'Ératosthène et
+du crible d'Ératosthène segmenté.
 
 \section{Le crible d'Euler}
 \label{sec:algo}
@@ -270,14 +270,17 @@ contenant la liste chaînée avec les nombres premiers, puis en
 extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres
 premiers.
 
-% placer ici une figure représentant le même état du tableau arr
+% une figure représentant le même état du tableau arr
 % dans l'implémentation choisie, avec uniquement les nombres impairs
 
-% figure décrivant un état intermédiaire de l'algorithme
+Voici un autre figure décrivant le tableau d'entiers uniquement les entiers
+impairs et le marquage avec les entiers négatifs. Les multiples de $3$ et
+$5$ ont déjà été marqués. L'algorithme s'apprête à éliminer les multiples de
+$7$.
 
 \begin{figure}[h]
 \begin{tikzpicture}[>=latex]
-  \matrix[mymat,anchor=west,row 1/.style={nodes=draw},
+  \matrix[mymat,anchor=west,row 2/.style={nodes=draw},
   % marquage des multiples de 2
   % column 3/.style={nodes={fill=gray!70}},
   % column 5/.style={nodes={fill=gray!70}},
@@ -287,44 +290,68 @@ premiers.
   % column 13/.style={nodes={fill=gray!70}},
   % column 15/.style={nodes={fill=gray!70}},
   % column 17/.style={nodes={fill=gray!70}},
-  column 1/.style={nodes={fill=gray!70}},
-  % % marquage des multiples de 3
-  column 5/.style={nodes={fill=gray!70}},
-  column 8/.style={nodes={fill=gray!70}},
+  row 2 column 1/.style={nodes={fill=gray!70}},
+  % marquage des multiples de 3
+  row 2 column 5/.style={nodes={fill=gray!70}},
+  row 2 column 8/.style={nodes={fill=gray!70}},
+  row 2 column 11/.style={nodes={fill=gray!70}},
+  row 2 column 14/.style={nodes={fill=gray!70}},
+  row 2 column 17/.style={nodes={fill=gray!70}},
+  % marquage des multiples de 5
+  row 2 column 13/.style={nodes={fill=gray!70}},
+  row 2 column 18/.style={nodes={fill=gray!70}},
   ]
 at (0,0)
 (mat1)
 {
-  1 & 3 & 5 & 7 & 9 & 11 & 13 & 15 & 17 & 19 & 21 & 23 & 25 & 27 & 29 & 31\\
+  0 & 1 & 2 & 3 & 4 & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17\\
+  1 & 3 & 5 & 7 & 9 & 11 & 13 & 15 & 17 & 19 & 21 & 23 & 25 & 27 & 29 & 31 & 33 & 35\\
 };
 
 \node[right=0pt of mat1]
   (dots) {$\cdots$};
 
 \draw[->, line width=0.7pt]
-(mat1-1-2.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-1-3.south);
+(mat1-2-2.south)
+  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
+(mat1-2-3.south);
 \draw[->, line width=0.7pt]
-(mat1-1-3.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-1-4.south);
+(mat1-2-3.south)
+  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
+(mat1-2-4.south);
 \draw[->, line width=0.7pt]
-(mat1-1-4.south)
+(mat1-2-4.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-2-6.south);
+\draw[->, line width=0.7pt]
+(mat1-2-6.south)
+  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
+(mat1-2-7.south);
+\draw[->, line width=0.7pt]
+(mat1-2-7.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-2-9.south);
+\draw[->, line width=0.7pt]
+(mat1-2-9.south)
+  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
+(mat1-2-10.south);
+\draw[->, line width=0.7pt]
+(mat1-2-10.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-2-12.south);
+\draw[->, line width=0.7pt]
+(mat1-2-12.south)
   .. controls ++ (0.3,-0.9) and ++(-0.3,-0.9) ..
-(mat1-1-6.south);
+(mat1-2-15.south);
 \draw[->, line width=0.7pt]
-(mat1-1-6.south)
+(mat1-2-15.south)
+  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
+(mat1-2-16.south);
+\draw[-, line width=0.7pt]
+(mat1-2-16.south)
   .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-1-7.south);
-\draw[->, line width=0.7pt]
-(mat1-1-7.south)
-  .. controls ++ (0.3,-0.9) and ++(-0.3,-0.9) ..
-(mat1-1-9.south);
-\draw[->, line width=0.7pt]
-(mat1-1-9.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-1-10.south);
+(13.5,-1);
+
 
 % \end{scope}
 \end{tikzpicture}
