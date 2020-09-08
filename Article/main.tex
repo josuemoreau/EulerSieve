@@ -50,8 +50,8 @@ mymats/.style={
 Le crible d'Euler, tout comme le crible d'Ératosthène, permet d'énumérer
 l'ensemble des nombres premiers compris entre 2 et une limite donnée $N$.
 Le crible d'Euler a une complexité temporelle en $O(N)$ pour énumérer tous les
-nombres premiers dans l'ensemble $\{2,...,N\}$~\cite{crible-euler} alors que celui
-d'Ératosthène a une complexité en $O(\log\log N)$.
+nombres premiers dans l'ensemble $\{2,...,N\}$~\cite{crible-euler} alors que
+celui d'Ératosthène a une complexité en $O(\log\log N)$.
 
 Le crible d'Euler est plus difficile à implémenter que le crible d'Ératosthène.
 C'est d'autant plus vrai si on réalise quelques optimisations pour
@@ -71,8 +71,8 @@ L'intégralité de cette preuve est disponible en ligne~\cite{mapreuve}.
 Cet article est organisé de la façon suivante.
 La section~\ref{sec:algo} décrit l'algorithme du crible d'Euler, ainsi que son
 implémentation dans le langage OCaml.
-Puis la section~\ref{sec:preuve} décrit les grandes lignes de la preuve qui a été
-réalisée à l'aide de Why3.
+Puis la section~\ref{sec:preuve} décrit les grandes lignes de la preuve qui a
+été réalisée à l'aide de Why3.
 Enfin, la section~\ref{sec:extraction} présente le code OCaml
 automatiquement extrait par Why3 à partir
 de la preuve qui a été réalisée. En particulier, nous comparons l'efficacité de
@@ -83,26 +83,31 @@ crible d'Ératosthène segmenté.
 \label{sec:algo}
 
 % présentation de l'algorithme du crible d'Euler
-L'algorithme du crible d'Euler prend comme unique entrée la limite $N \geq 2$ et va
-renvoyer tous les nombres premiers compris entre $2$ et $N$. Il se divise en
-deux parties. La première partie prend un nombre $n$ non marqué
+L'algorithme du crible d'Euler prend comme unique entrée la limite $N \geq 2$
+et va renvoyer tous les nombres premiers compris entre $2$ et $N$.
+Il se divise en deux parties.
+La première partie prend un nombre $n$ non marqué
 tel que $2 \leq n \leq N$ et va marquer tous les multiples $np$ tels que
-$2 \leq np \leq N$ et $p \geq n$ n'est pas marqué. Elle correspond à la fonction
+$2 \leq np \leq N$ et $p \geq n$ n'est pas marqué.
+Elle correspond à la fonction
 \ocamlf{remove_products} de la figure~\ref{fig:codeOCaml}.
-La deuxième partie de l'algorithme boucle sur un entier $n$ et appelle à chaque
-tour de boucle la fonction \ocamlf{remove_products} puis affecte $n$ au plus
-petit entier inférieur à la limite, non marqué et strictement supérieur à $n$
+La deuxième partie de l'algorithme boucle sur un entier $n$ et appelle
+à chaque tour de boucle la fonction \ocamlf{remove_products} puis
+affecte $n$ au plus petit entier inférieur à la limite,
+non marqué et strictement supérieur à $n$
 et recommence tant que $2 \leq n \leq N$.
 
-À la fin de chaque étape de la boucle principale, tous les produits de $n$ sont
-marqués. En effet, en supposant que pour tout $2 \leq k < n$, les multiples de $k$
-sont déjà marqués, l'appel de \ocamlf{remove_products} marque tous les produits
-$np$ tels que $p \geq n$ n'est pas marqué. Si un $p \geq n$ était déjà marqué,
+À la fin de chaque étape de la boucle principale, tous les produits de $n$
+sont marqués. En effet, en supposant que pour tout $2 \leq k < n$,
+les multiples de $k$ sont déjà marqués, l'appel de \ocamlf{remove_products}
+marque tous les produits $np$ tels que $p \geq n$ n'est pas marqué.
+Si un $p \geq n$ était déjà marqué,
 alors, par définition du marquage, il existe un $i$ non marqué et $j$ tel que
-$2 \leq i < n$, $2 \leq j < p$ et $ij = p$. Or, comme tous les multiples de $i$
+$2 \leq i < n$, $2 \leq j < p$ et $ij = p$.
+Or, comme tous les multiples de $i$
 étaient déjà marqués avant l'appel de \ocamlf{remove_products}, $ijn = pn$
-a déjà été marqué, au plus tard lors de l'appel de \ocamlf{remove_products} sur
-l'entier $i$.
+a déjà été marqué, au plus tard lors de l'appel de \ocamlf{remove_products}
+sur l'entier $i$.
 Ainsi, l'algorithme ne marquant que les produits de nombres non marqués, il ne
 marque qu'une seule fois chaque entier non premier, comme multiple de
 son plus petit facteur premier. C'est là la clé de la complexité
@@ -132,19 +137,19 @@ Dans ce cas, \arr{$i$} est l'entier suivant $i$ dans la liste chaînée.
 L'opération de marquage d'un entier~$i$ consiste à remplacer le
 contenu de la case~$i$ par son opposé.
 
-Voici un schéma décrivant l'état de la liste chaînée dans le tableau \ocamlf{arr}
-à un moment donné pendant une exécution du crible d'Euler.
-Dans celle-ci l'algorithme vient de marquer (en gris) tous les multiples de $2$
-et de $3$.
-Il va commencer à marquer les multiples de $5$, en marquant les produits de $5$
-avec $5$, $7$, $11$, $13$, ...
+Voici un schéma décrivant l'état de la liste chaînée dans le tableau
+\ocamlf{arr} à un moment donné pendant une exécution du crible d'Euler.
+Dans celle-ci l'algorithme vient de marquer (en gris) tous les multiples
+de $2$ et de $3$.
+Il va commencer à marquer les multiples de $5$, en marquant les produits
+de $5$ avec $5$, $7$, $11$, $13$, ...
 
 % figure décrivant un état intermédiaire de l'algorithme
 
 \begin{figure}[h]
 \begin{tikzpicture}[>=latex]
   \matrix[mymat,anchor=west,row 1/.style={nodes=draw},
-  % marquage précédent
+  % marquage des multiples de 2
   column 3/.style={nodes={fill=gray!70}},
   column 5/.style={nodes={fill=gray!70}},
   column 7/.style={nodes={fill=gray!70}},
@@ -153,14 +158,15 @@ avec $5$, $7$, $11$, $13$, ...
   column 13/.style={nodes={fill=gray!70}},
   column 15/.style={nodes={fill=gray!70}},
   column 17/.style={nodes={fill=gray!70}},
-  % marquage suivant
+  % marquage des multiples de 3
   column 8/.style={nodes={fill=gray!70}},
   column 14/.style={nodes={fill=gray!70}},
   ]
 at (0,0)
 (mat1)
 {
-2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19\\
+  2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 &
+  19\\
 };
 
 \node[right=0pt of mat1]
@@ -220,6 +226,7 @@ at (0,0)
 \end{tikzpicture}
 \caption{Illustration de la liste chaînée}
 \end{figure}
+
 % 3. on marque un élément mais on le supprimera de la liste seulement
 %    plus tard, quand on passera dessus (car on aura alors l'élément
 %    précédent dans une variable, pour effectuer la suppression)
@@ -228,27 +235,31 @@ cela coûterait trop cher en temps, ou nécessiterait une liste doublement
 chaînée qui coûterait trop cher en espace.
 Au lieu de cela, la boucle de la fonction \ocamlf{remove_products}
 utilise une variable $p$ qui représente le dernier entier visité.
-Lors d'un appel à \ocamlf{remove_products} pour barrer tous les multiples de $n$,
+Lors d'un appel à \ocamlf{remove_products} pour barrer tous les multiples
+de $n$,
 la fonction va parcourir tous les $i$ non marqués au moment de l'appel de
 \ocamlf{remove_products}. Il est donc important de remarquer qu'un entier $i$,
-au moment où la boucle de \ocamlf{remove_products} arrive sur lui, peut très bien
+au moment où la boucle de \ocamlf{remove_products} arrive sur lui,
+peut très bien
 être déjà marqué. Si c'est le cas, alors il aura nécessairement été marqué par
 une précédente itération de la boucle.
 Lorsque la boucle de \ocamlf{remove_products} arrive sur un entier $i$,
 $i$ étant réalité \arr{$p$}, elle marque $ni$.
 Puis, elle modifie \arr{$p$} en lui donnant pour valeur \arr{$i$}.
 Cette opération permet donc à la liste chaînée de ``sauter'' par dessus
-les entier déjà marqués, et donc d'examiner au plus une fois chaque entier marqué.
+les entier déjà marqués, et donc d'examiner au plus une fois chaque
+entier marqué.
 
-Avec ce procédé, il y a un nombre important d'entiers qui sont marqués et qui ne
-seront pas réexaminés par la fonction \ocamlf{remove_products} et qui,
+Avec ce procédé, il y a un nombre important d'entiers qui sont marqués et
+qui ne seront pas réexaminés par la fonction \ocamlf{remove_products} et qui,
 par conséquent, seront encore dans la liste chaînée à la fin de l'algorithme.
-Il s'agit des entiers qui ont été marqués comme étant multiple d'un certain $n$,
-mais dont le produit avec tous les entiers suivant $n$ dans la liste chaînée est
-supérieur à la limite du crible.
+Il s'agit des entiers qui ont été marqués comme étant multiple d'un certain
+$n$, mais dont le produit avec tous les entiers suivant $n$ dans la liste
+chaînée est supérieur à la limite du crible.
 
 % 5. les valeurs paires ne sont pas représentées
-Afin de diviser l'espace utilisé par deux, le tableau \ocamlf{arr} ne représente que les nombres
+Afin de diviser l'espace utilisé par deux, le tableau \ocamlf{arr} ne
+représente que les nombres
 impairs. Ainsi, la case d'index $i$ du tableau représente l'entier $2i + 1$.
 Enfin, on souhaite renvoyer un tableau ne contenant que les nombres premiers.
 Pour cela, on pourrait commencer par compter les nombres premiers
@@ -256,18 +267,79 @@ de la liste chaînée, puis créer un tableau de cette taille et enfin y copier
 les nombres premiers.
 Cependant, on peut faire un peu mieux, en écrasant le début du tableau
 contenant la liste chaînée avec les nombres premiers, puis en
-extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres premiers.
+extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres
+premiers.
 
 % placer ici une figure représentant le même état du tableau arr
 % dans l'implémentation choisie, avec uniquement les nombres impairs
 
+% figure décrivant un état intermédiaire de l'algorithme
+
+\begin{figure}[h]
+\begin{tikzpicture}[>=latex]
+  \matrix[mymat,anchor=west,row 1/.style={nodes=draw},
+  % marquage des multiples de 2
+  % column 3/.style={nodes={fill=gray!70}},
+  % column 5/.style={nodes={fill=gray!70}},
+  % column 7/.style={nodes={fill=gray!70}},
+  % column 9/.style={nodes={fill=gray!70}},
+  % column 11/.style={nodes={fill=gray!70}},
+  % column 13/.style={nodes={fill=gray!70}},
+  % column 15/.style={nodes={fill=gray!70}},
+  % column 17/.style={nodes={fill=gray!70}},
+  column 1/.style={nodes={fill=gray!70}},
+  % % marquage des multiples de 3
+  column 5/.style={nodes={fill=gray!70}},
+  column 8/.style={nodes={fill=gray!70}},
+  ]
+at (0,0)
+(mat1)
+{
+  1 & 3 & 5 & 7 & 9 & 11 & 13 & 15 & 17 & 19 & 21 & 23 & 25 & 27 & 29 & 31\\
+};
+
+\node[right=0pt of mat1]
+  (dots) {$\cdots$};
+
+\draw[->, line width=0.7pt]
+(mat1-1-2.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-3.south);
+\draw[->, line width=0.7pt]
+(mat1-1-3.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-4.south);
+\draw[->, line width=0.7pt]
+(mat1-1-4.south)
+  .. controls ++ (0.3,-0.9) and ++(-0.3,-0.9) ..
+(mat1-1-6.south);
+\draw[->, line width=0.7pt]
+(mat1-1-6.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-7.south);
+\draw[->, line width=0.7pt]
+(mat1-1-7.south)
+  .. controls ++ (0.3,-0.9) and ++(-0.3,-0.9) ..
+(mat1-1-9.south);
+\draw[->, line width=0.7pt]
+(mat1-1-9.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-1-10.south);
+
+% \end{scope}
+\end{tikzpicture}
+\caption{Illustration de l'implémentation de la liste chaînée}
+\end{figure}
+
 L'implémentation de l'algorithme que nous allons prouver se trouve dans la
 figure~\ref{fig:codeOCaml}. Dans celle-ci, on manipule à plusieurs reprises
-un type \ocamlf{t}. Ce type contient pour premier champ le tableau \ocamlf{arr}
-décrit précédemment. Le champ \ocamlf{max} correspond à la limite donnée en
+un type \ocamlf{t}. Ce type contient pour premier champ le tableau
+\ocamlf{arr} décrit précédemment.
+Le champ \ocamlf{max} correspond à la limite donnée en
 entrée au crible et le champ \ocamlf{max_arr} correspond au plus grand indice
-du tableau \ocamlf{arr}, donc $\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$.
-
+du tableau \ocamlf{arr}, donc
+$\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$.
+\clearpage
 \begin{figure}[tp]
 \begin{ocaml}
 type t = { arr: int array; max: int; max_arr: int }
@@ -324,8 +396,8 @@ let euler_sieve max =
 \label{sec:preuve}
 
 La preuve que décrite ici a été intégralement réalisée avec l'outil
-Why3~\cite{why3} et les démon\-strateurs automatiques Alt-Ergo, CVC4, Z3, Eprover
-et Vampire.
+Why3~\cite{why3} et les démon\-strateurs automatiques Alt-Ergo, CVC4, Z3,
+Eprover et Vampire.
 
 \paragraph{Spécification.}
 La spécification de la fonction principale du crible,
@@ -356,11 +428,6 @@ le tableau sont tous dans l'ensemble $\{2,...,\text{\ocamlf{max}}\}$.
 Enfin, les deux dernières postconditions énoncent que tous les
 éléments du tableau renvoyé sont premiers et que tous les nombres premiers
 compris entre $2$ et \ocamlf{max} sont dans le tableau.
-% Afin de représenter $\{0,...,N\}$ il faut $N + 1$ cases dans un tableau.
-% Or, la longueur de ce tableau doit aussi être de type \whyf{int63}, ainsi
-% la longueur est inférieure ou égale à \whyf{max_int}. Pour respecter
-% cette contrainte, il faut donc que \whyf{max < max_int}.
-% TODO plutôt 3 <= max < max_int ... oui mais faut refaire la preuve :'(
 Le prédicat \whyf{prime} utilisé dans ces deux dernières postconditions
 provient de la bibliothèque \whyf{number.Prime} de Why3.
 Il a déjà été utilisé dans les preuves d'autres programmes manipulant des
@@ -368,7 +435,7 @@ nombres premiers, comme le crible d'Ératosthène~\cite{sieve-eratosthene-why3}
 ou celui de l'algorithme des
 nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3}.
 
-% \clearpage
+\clearpage
 \paragraph{Vérification.}
 
 % commencer par expliquer l'idée de raffinement : une commence avec
@@ -381,8 +448,8 @@ nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3}.
 % TODO citer \cite{paskevich20isola} voire \cite{filliatre20jlamp}
 % aux endroits opportuns
 
-La preuve du crible d'Euler a été faite par raffinement~\cite{paskevich20isola},
-en deux temps.
+La preuve du crible d'Euler a été faite par
+raffinement~\cite{paskevich20isola}, en deux temps.
 
 La première partie de la preuve a été faite à l'aide d'un type \whyf{t}
 représentant une structure abstraite.
@@ -406,8 +473,8 @@ est ici un type modélisant des séquences.
 Il s'agit de tableaux immuables fournis par la bibliothèque standard
 de Why3. Pour pouvoir les manipuler, il est donc nécessaire que les champs
 correspondants soient mutables.
-De plus, comme on peut le voir ci-dessus, les champs modélisant la liste chaînée
-et le marquage sont des champs fantômes~\cite{ghost-code}.
+De plus, comme on peut le voir ci-dessus, les champs modélisant la liste
+chaînée et le marquage sont des champs fantômes~\cite{ghost-code}.
 Les champs fantômes n'existent que dans la preuve et pas dans
 le programme. Il seront automatiquement supprimés par Why3 lors
 de l'extraction du programme, une fois démontré, vers du code OCaml.
@@ -531,15 +598,16 @@ segmenté~\footnote{Merci à
 Concernant ce dernier, la comparaison est fournie pour permettre de donner
 une idée de la différence d'efficacité, mais n'est pas exactement adaptée.
 En effet, contrairement aux cribles d'Ératosthène et d'Euler, qui renvoie
-un tableau contenant tous les nombres premiers, le crible d'Ératosthène segmenté
-ne renvoie rien mais applique une fonction donnée sur tous les nombres premiers
-compris entre $2$ et la limite fournie en argument.
+un tableau contenant tous les nombres premiers, le crible d'Ératosthène
+segmenté ne renvoie rien mais applique une fonction donnée sur tous les
+nombres premiers compris entre $2$ et la limite fournie en argument.
 % alors, mon implémentation du crible d'Ératosthène est ultra simple
 % donc est-ce que la comparaison est vraiment bien faite ...
 \begin{center}
   \begin{tabular}{|c|r|r|r|}
     \hline
-    $N$ & crible d'Ératosthène & crible d'Euler & crible d'Ératosthène segmenté \\
+    $N$ & crible d'Ératosthène & crible d'Euler & crible d'Ératosthène
+                                                  segmenté \\
     \hline\hline
     $10^6$ &  0,109 s &  0,022 s &       \\\hline
     $10^7$ &  1,580 s &  0,140 s &       \\\hline
