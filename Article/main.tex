@@ -311,6 +311,7 @@ at (0,0)
 \node[right=0pt of mat1]
   (dots) {$\cdots$};
 
+\begin{scope}
 \draw[->, line width=0.7pt]
 (mat1-2-2.south)
   .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
@@ -353,7 +354,7 @@ at (0,0)
 (13.5,-1);
 
 
-% \end{scope}
+\end{scope}
 \end{tikzpicture}
 \caption{Illustration de l'implémentation de la liste chaînée}
 \end{figure}
@@ -366,7 +367,7 @@ Le champ \ocamlf{max} correspond à la limite donnée en
 entrée au crible et le champ \ocamlf{max_arr} correspond au plus grand indice
 du tableau \ocamlf{arr}, donc
 $\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$.
-\clearpage
+% \clearpage
 \begin{figure}[tp]
 \begin{ocaml}
 type t = { arr: int array; max: int; max_arr: int }
@@ -462,7 +463,7 @@ nombres premiers, comme le crible d'Ératosthène~\cite{sieve-eratosthene-why3}
 ou celui de l'algorithme des
 nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3}.
 
-\clearpage
+% \clearpage
 \paragraph{Vérification.}
 
 % commencer par expliquer l'idée de raffinement : une commence avec
@@ -636,10 +637,10 @@ nombres premiers compris entre $2$ et la limite fournie en argument.
     $N$ & crible d'Ératosthène & crible d'Euler & crible d'Ératosthène
                                                   segmenté \\
     \hline\hline
-    $10^6$ &  0,109 s &  0,022 s &       \\\hline
-    $10^7$ &  1,580 s &  0,140 s &       \\\hline
-    $10^8$ & 21,220 s &  1,350 s &       \\\hline
-    $10^9$ &          & 14,500 s &       \\\hline
+    $10^6$ &  0,033 s &  0,022 s &       \\\hline
+    $10^7$ &  0,186 s &  0,140 s &       \\\hline
+    $10^8$ &  1,970 s &  1,350 s &       \\\hline
+    $10^9$ & 21,780 s & 14,500 s &       \\\hline
   \end{tabular}
 \end{center}
 % refaire le crible d'Eratosthène
