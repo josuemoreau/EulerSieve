@@ -2,3 +2,5 @@
 *.cm*
 
 OCaml/eratosthene_sieve
+
+OCaml/seg
