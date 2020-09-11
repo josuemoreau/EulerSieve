@@ -137,3 +137,39 @@ booktitle = {9th International Symposium On Leveraging Applications of Formal Me
   note = {\url{http://why3.lri.fr/isola-2020/}},
   hal = {https://hal.inria.fr/hal-02696246}
 }
+
+@article{chargueraud-pottier-uf-sltc-19,
+  author = {Arthur Charguéraud and François Pottier},
+  title = {Verifying the Correctness and Amortized Complexity of
+                 a Union-Find Implementation in Separation Logic with
+                 Time Credits},
+  journal = {Journal of Automated Reasoning},
+  month = mar,
+  year = {2019},
+  volume = {62},
+  number = {3},
+  pages = {331--365},
+  url = {http://cambium.inria.fr/~fpottier/publis/chargueraud-pottier-uf-sltc.pdf},
+  off = {http://rdcu.be/v7EN},
+  soft = {http://cambium.inria.fr/~fpottier/dev/uf},
+  abstract = {Union-Find is a famous example of a simple data
+                 structure whose amortized asymptotic time complexity
+                 analysis is nontrivial. We present a Coq formalization
+                 of this analysis, following Alstrup et al.'s recent
+                 proof (2014). Moreover, we implement Union-Find as an
+                 OCaml library and formally endow it with a modular
+                 specification that offers a full functional correctness
+                 guarantee as well as an amortized complexity bound. In
+                 order to reason in Coq about imperative OCaml code, we
+                 use the CFML tool, which implements Separation Logic
+                 for a subset of OCaml, and which we extend with time
+                 credits. Although it was known in principle that
+                 amortized analysis can be explained in terms of time
+                 credits and that time credits can be viewed as
+                 resources in Separation Logic, we believe our work is
+                 the first practical demonstration of this approach.
+                 Finally, in order to explain the meta-theoretical
+                 foundations of our approach, we define a Separation
+                 Logic with time credits for an untyped call-by-value
+                 lambda-calculus, and formally verify its soundness.}
+}
