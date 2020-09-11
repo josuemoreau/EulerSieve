@@ -658,16 +658,31 @@ nombres premiers compris entre $2$ et la limite fournie en argument.
     $10^9$ & 21,780 s & 14,500 s &  3,390 s \\\hline
   \end{tabular}
 \end{center}
-% refaire le crible d'Eratosthène
 
 \section{Conclusion}
 \label{sec:conclusion}
 
-une brève conclusion = résumé de ce qui a été présenté
+% une brève conclusion = résumé de ce qui a été présenté
 
-perspectives
-- prouver que la complexité est linéaire
-- prouver un crible segmenté~\cite{crible-segmente}
+% perspectives
+% - prouver que la complexité est linéaire
+% - prouver un crible segmenté~\cite{crible-segmente}
+
+Dans cet article, nous avons présenté une implémentation du crible d'Euler.
+Nous en avons montré la spécification et nous avons prouvé que l'implémentation
+fournie respectait cette spécification.
+La preuve a été réalisée par raffinement, à l'aide de différents outils
+fournis par Why3.
+Le code extrait de la preuve par Why3 possède de bonnes performances,
+meilleures que celles fournies par un crible d'Ératosthène.
+Cependant, elles sont encore loin des performances du crible d'Ératosthène
+segmenté, bien que celui-ci ne réponde pas exactement au même problème.
+Il serait ainsi intéressant, dans le même but que pour le crible d'Euler,
+de vérifier formellement une implémentation du crible d'Ératosthène
+segmenté.
+Il serait également intéressant de prouver que l'implémentation du crible
+d'Euler que nous avons présenté est bien de complexité linéaire, dans Why3,
+à l'aide de crédits de temps~\cite{}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
