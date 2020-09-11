@@ -288,29 +288,37 @@ premiers.
 % dans l'implémentation choisie, avec uniquement les nombres impairs
 
 Voici un autre figure décrivant le tableau d'entiers uniquement les entiers
-impairs et le marquage avec les entiers négatifs. Les multiples de $3$ et
-$5$ ont déjà été marqués. L'algorithme s'apprête à éliminer les multiples de
-$7$.
+impairs et le marquage avec les entiers négatifs. Les multiples de $3$ ont
+déjà été marqués et ceux qui se trouvent dans la portion du tableau représenté
+on été éliminés de la liste chaînée.
+Les multiples de $5$ sont en cours de marquage.
+On peut en effet constater que $25$ a été marqué mais pas encore éliminé de
+la liste chaînée. Il le sera lorsque l'algorithme marquera $5 \times 25$.
 
 \begin{figure}[h]
 \begin{tikzpicture}[>=latex]
-  \matrix[mymat,anchor=west,row 2/.style={nodes=draw},
-  row 2 column 1/.style={nodes={fill=gray!70}},
+  \matrix[mymat2,anchor=west,row 3/.style={nodes=draw},
+  row 3 column 1/.style={nodes={fill=gray!70}},
   % marquage des multiples de 3
-  row 2 column 5/.style={nodes={fill=gray!70}},
-  row 2 column 8/.style={nodes={fill=gray!70}},
-  row 2 column 11/.style={nodes={fill=gray!70}},
-  row 2 column 14/.style={nodes={fill=gray!70}},
-  row 2 column 17/.style={nodes={fill=gray!70}},
+  row 3 column 5/.style={nodes={fill=gray!70}},
+  row 3 column 8/.style={nodes={fill=gray!70}},
+  row 3 column 11/.style={nodes={fill=gray!70}},
+  row 3 column 14/.style={nodes={fill=gray!70}},
+  row 3 column 17/.style={nodes={fill=gray!70}},
   % marquage des multiples de 5
-  row 2 column 13/.style={nodes={fill=gray!70}},
-  row 2 column 18/.style={nodes={fill=gray!70}},
+  row 3 column 13/.style={nodes={fill=gray!70}},
+  row 3 column 18/.style={nodes={fill=gray!70}},
   ]
 at (0,0)
 (mat1)
 {
-  0 & 1 & 2 & 3 & 4 & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17\\
-  1 & 3 & 5 & 7 & 9 & 11 & 13 & 15 & 17 & 19 & 21 & 23 & 25 & 27 & 29 & 31 & 33 & 35\\
+  % 0(1) & 1(3) & 2(5) & 3(7) & 4(9) & 5(11) & 6(13) & 7(15) & 8(17) & 9(19)
+  % & 10(21) & 11(23) & 12(25) & 13(27) & 14(29) & 15(31)\\
+  0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\\
+  (1) & (3) & (5) & (7) & (9) & (11) & (13) & (15) & (17) & (19) & (21)
+  & (23) & (25) & (27) & (29) & (31)\\
+  -3 & 5 & 7 & 11 & -11 & 13 & 17 & -17 & 19 & 23 & -23 & 25 & -29 & -29
+  & 31 & 37\\
 };
 
 \node[right=0pt of mat1]
@@ -318,117 +326,49 @@ at (0,0)
 
 \begin{scope}
 \draw[->, line width=0.7pt]
-(mat1-2-2.south)
+(mat1-3-2.south)
   .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
-(mat1-2-3.south);
+(mat1-3-3.south);
 \draw[->, line width=0.7pt]
-(mat1-2-3.south)
+(mat1-3-3.south)
   .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
-(mat1-2-4.south);
+(mat1-3-4.south);
 \draw[->, line width=0.7pt]
-(mat1-2-4.south)
+(mat1-3-4.south)
   .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-2-6.south);
+(mat1-3-6.south);
 \draw[->, line width=0.7pt]
-(mat1-2-6.south)
+(mat1-3-6.south)
   .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
-(mat1-2-7.south);
+(mat1-3-7.south);
 \draw[->, line width=0.7pt]
-(mat1-2-7.south)
+(mat1-3-7.south)
   .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-2-9.south);
+(mat1-3-9.south);
 \draw[->, line width=0.7pt]
-(mat1-2-9.south)
+(mat1-3-9.south)
   .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
-(mat1-2-10.south);
+(mat1-3-10.south);
 \draw[->, line width=0.7pt]
-(mat1-2-10.south)
+(mat1-3-10.south)
   .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-2-12.south);
+(mat1-3-12.south);
 \draw[->, line width=0.7pt]
-(mat1-2-12.south)
-  .. controls ++ (0.3,-0.9) and ++(-0.3,-0.9) ..
-(mat1-2-15.south);
-\draw[->, line width=0.7pt]
-(mat1-2-15.south)
+(mat1-3-12.south)
   .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
-(mat1-2-16.south);
+(mat1-3-13.south);
+\draw[->, line width=0.7pt]
+(mat1-3-13.south)
+  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
+(mat1-3-15.south);
+\draw[->, line width=0.7pt]
+(mat1-3-15.south)
+  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
+(mat1-3-16.south);
 \draw[-, line width=0.7pt]
-(mat1-2-16.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(13.5,-1);
-
-
-\end{scope}
-\end{tikzpicture}
-\caption{Illustration de l'implémentation de la liste chaînée}
-\end{figure}
-
-\begin{figure}[h]
-\begin{tikzpicture}[>=latex]
-  \matrix[mymat2,anchor=west,row 2/.style={nodes=draw},
-  row 2 column 1/.style={nodes={fill=gray!70}},
-  % marquage des multiples de 3
-  row 2 column 5/.style={nodes={fill=gray!70}},
-  row 2 column 8/.style={nodes={fill=gray!70}},
-  row 2 column 11/.style={nodes={fill=gray!70}},
-  row 2 column 14/.style={nodes={fill=gray!70}},
-  row 2 column 17/.style={nodes={fill=gray!70}},
-  % marquage des multiples de 5
-  row 2 column 13/.style={nodes={fill=gray!70}},
-  row 2 column 18/.style={nodes={fill=gray!70}},
-  ]
-at (0,0)
-(mat1)
-{
-  1 & 3 & 5 & 7 & 9 & 11 & 13 & 15 & 17 & 19 & 21 & 23 & 25 & 27 & 29 & 31\\
-  -3 & 5 & 7 & 11 & -11 & 13 & 17 & -17 & 19 & 23 & -23 & 29 & -29 & -29 & 31 & 37\\
-};
-
-\node[right=0pt of mat1]
-  (dots) {$\cdots$};
-
-\begin{scope}
-\draw[->, line width=0.7pt]
-(mat1-2-2.south)
-  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
-(mat1-2-3.south);
-\draw[->, line width=0.7pt]
-(mat1-2-3.south)
-  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
-(mat1-2-4.south);
-\draw[->, line width=0.7pt]
-(mat1-2-4.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-2-6.south);
-\draw[->, line width=0.7pt]
-(mat1-2-6.south)
-  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
-(mat1-2-7.south);
-\draw[->, line width=0.7pt]
-(mat1-2-7.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-2-9.south);
-\draw[->, line width=0.7pt]
-(mat1-2-9.south)
-  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
-(mat1-2-10.south);
-\draw[->, line width=0.7pt]
-(mat1-2-10.south)
-  .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
-(mat1-2-12.south);
-\draw[->, line width=0.7pt]
-(mat1-2-12.south)
-  .. controls ++ (0.3,-0.9) and ++(-0.3,-0.9) ..
-(mat1-2-15.south);
-\draw[->, line width=0.7pt]
-(mat1-2-15.south)
-  .. controls ++ (0.1,-0.5) and ++(-0.1,-0.5) ..
-(mat1-2-16.south);
-\draw[-, line width=0.7pt]
-(mat1-2-16.south)
+(mat1-3-16.south)
   .. controls ++ (0.4,-0.3) and ++(-0.4,-0.3) ..
-(14.3,-1);
+(14.3,-1.4);
 
 
 \end{scope}
