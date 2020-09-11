@@ -1,3 +1,21 @@
+(** Euler's Sieve
+
+    This is a variant of Eratosthenes's sieve with complexity O(N),
+    where N is the upper limit of the sieve.
+    Cf https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Euler's_sieve
+
+    Euler's Sieve makes use of a linked list of all integers,
+    and marks composite numbers as in Eratosthenes's sieve.
+
+    In the program below, the linked list is implemented with an array
+    (where each integer is mapped to the next one) and negative values
+    are used to represent marked integers.
+    In addition, the list only contains the odd integers (to save half
+    of space).
+
+    Author: Josué Moreau (Université Paris-Saclay)
+*)
+
 module ArithmeticResults
 
   use int.Int
@@ -118,26 +136,31 @@ module EulerSieveSpec
 (*                                                                             *)
 (*******************************************************************************)
 
+  (* Borne sur le suivant de chaque élément de la liste chaînée *)
   predicate inv_nexts (nexts: seq int) (n: int) =
     forall i. 0 <= i < n ->
               i < nexts[i] <= n
 
-  predicate inv_marked_nexts (marked: seq bool)
+  (* Tous les éléments éliminés de la liste chaînée sont marqués *)
+  predicate all_eliminated_marked (marked: seq bool)
                              (nexts: seq int) =
     marked.length = nexts.length /\
     forall i. 0 <= i < marked.length ->
               forall j. i < j < nexts[i] ->
                         marked[j]
 
-  predicate inv_marked_old_nexts1 (marked_old: seq bool)
-                                  (nexts: seq int)
-                                  (min: int) =
-    marked_old.length = nexts.length /\
-    forall i. min <= i < marked_old.length ->
+  (* Tous les éléments éliminés, à partir d'un certain indice, sont marqués *)
+  predicate all_eliminated_marked_partial (marked: seq bool)
+                                          (nexts: seq int)
+                                          (min: int) =
+    marked.length = nexts.length /\
+    forall i. min <= i < marked.length ->
               forall j. i < j < nexts[i] ->
-                        marked_old[j]
+                        marked[j]
 
-  predicate inv_marked_old_nexts2 (marked_old: seq bool)
+  (* L'élément suivant d'un élément non marqué inférieur à max / n est
+     non marqué lorsqu'il est lui-même inférieur à max / n *)
+  predicate not_marked_impl_next_not_marked (marked_old: seq bool)
                                   (nexts: seq int)
                                   (n: int) =
     marked_old.length = nexts.length /\
@@ -148,14 +171,17 @@ module EulerSieveSpec
               not marked_old[i] ->
               not marked_old[nexts[i]]
 
-  predicate inv_marked_marked_old (marked: seq bool)
-                                  (marked_old: seq bool) =
+  (* Les deux tableaux marked sont identiques *)
+  predicate is_copy (marked: seq bool)
+                    (marked_old: seq bool) =
     marked.length = marked_old.length /\
     forall i. 0 <= i < marked.length ->
               not marked[i] ->
               not marked_old[i]
 
-  predicate inv_marked_old_nexts2_partial (marked_old: seq bool)
+  (* L'élément suivant d'un élément non marqué inférieur à p <= max / n est
+     non marqué lorsqu'il est inférieur à max / n *)
+  predicate not_marked_impl_next_not_marked_partial (marked_old: seq bool)
                                           (nexts: seq int)
                                           (n: int)
                                           (p: int) =
@@ -175,19 +201,24 @@ module EulerSieveSpec
 (*                                                                             *)
 (*******************************************************************************)
 
+  (* Tous les nombres jusqu'à n sont non marqués si et seulement si ils sont
+     premiers *)
   predicate all_primes (marked: seq bool) (n: int) =
     forall i. 0 <= i < n -> not marked[i] <-> prime i
 
-  predicate all_products_marked (marked: seq bool) (i max: int) =
+  (* Tous les multiples de i sont marqués *)
+  predicate all_multiples_marked (marked: seq bool) (i max: int) =
     2 <= i < marked.length /\
     forall k. 2 <= k < max ->
               i * k < marked.length ->
               marked[i * k]
 
-  predicate previously_marked_products (marked: seq bool) (n: int) =
+  (* Tous les multiples des 2 <= i < n sont marqués *)
+  predicate previously_marked_multiples (marked: seq bool) (n: int) =
     forall i. 2 <= i < n ->
-              all_products_marked marked i marked.length
+              all_multiples_marked marked i marked.length
 
+  (* Les multiples des 2 <= i < n sont les uniques nombres marqués *)
   predicate only_products_marked (marked: seq bool) (n: int) =
     forall k. 2 <= k < marked.length ->
               marked[k] ->
@@ -221,25 +252,25 @@ module EulerSieveSpec
 (*******************************************************************************)
 
 
-  let lemma conservation_inv_marked_nexts_on_marked_change (marked: seq bool)
+  let lemma conservation_all_eliminated_marked_on_marked_change (marked: seq bool)
                                                            (nexts: seq int)
                                                            (i: int)
     requires { marked.length = nexts.length }
     requires { inv_nexts nexts nexts.length }
-    requires { inv_marked_nexts marked nexts }
+    requires { all_eliminated_marked marked nexts }
     requires { 0 <= i < marked.length }
-    ensures  { inv_marked_nexts marked[i <- true] nexts } = ()
+    ensures  { all_eliminated_marked marked[i <- true] nexts } = ()
 
-  let lemma conservation_inv_marked_nexts_on_nexts_change (marked: seq bool)
+  let lemma conservation_all_eliminated_marked_on_nexts_change (marked: seq bool)
                                                           (nexts: seq int)
                                                           (i v: int)
     requires { marked.length = nexts.length }
-    requires { inv_marked_nexts marked nexts }
+    requires { all_eliminated_marked marked nexts }
     requires { inv_nexts nexts marked.length }
     requires { 0 <= i < marked.length }
     requires { i < v <= marked.length }
     requires { forall j. i < j < v -> marked[j] }
-    ensures  { inv_marked_nexts marked nexts[i <- v] } = ()
+    ensures  { all_eliminated_marked marked nexts[i <- v] } = ()
 
 (*******************************************************************************)
 (*                                                                             *)
@@ -274,9 +305,9 @@ module EulerSieve
 (*                                                                             *)
 (*******************************************************************************)
 
-  let lemma marked_impl_all_products_marked (marked: seq bool) (n: int)
+  let lemma marked_impl_all_multiples_marked (marked: seq bool) (n: int)
     requires { 2 <= n <= marked.length }
-    requires { previously_marked_products marked n }
+    requires { previously_marked_multiples marked n }
     ensures  { forall k i.
                 2 <= k < n ->
                 2 <= i < marked.length ->
@@ -289,16 +320,16 @@ module EulerSieve
                    by k >= 2 /\ i >= 2 /\ j >= 1 /\ k * (i * j) < marked.length) }
     = ()
 
-  let lemma prev_and_new_impl_all_products_marked (marked_old marked: seq bool)
+  let lemma prev_and_new_impl_all_multiples_marked (marked_old marked: seq bool)
                                                   (n max: int)
     requires { 2 <= n < marked.length /\ 2 <= max < marked.length /\
                marked_old.length = marked.length }
-    requires { inv_marked_marked_old marked marked_old }
-    requires { previously_marked_products marked_old n }
-    requires { previously_marked_products marked n }
+    requires { is_copy marked marked_old }
+    requires { previously_marked_multiples marked_old n }
+    requires { previously_marked_multiples marked n }
     requires { only_products_marked marked_old n }
     requires { prime_products_marked marked_old marked n marked.length }
-    ensures  { all_products_marked marked n marked.length } =
+    ensures  { all_multiples_marked marked n marked.length } =
     assert { forall i. 2 <= i < n /\ 2 <= i < marked.length ->
                        not marked_old[i] ->
                        i * n < marked.length ->
@@ -308,8 +339,8 @@ module EulerSieve
                        n * k < marked_old.length ->
                        exists i j. 2 <= i < n /\ 2 <= j < marked_old.length /\
                                    i * j = k /\ marked_old[i * j] };
-    marked_impl_all_products_marked marked_old n;
-    marked_impl_all_products_marked marked n;
+    marked_impl_all_multiples_marked marked_old n;
+    marked_impl_all_multiples_marked marked n;
     assert { marked.length = marked_old.length };
     assert { forall k. 2 <= k < marked_old.length ->
                        marked_old[k] ->
@@ -339,23 +370,23 @@ module EulerSieve
     assert { marked[i * j] -> 2 <= i < n -> 2 <= j < marked.length ->
              exists x y. 2 <= x < n /\ 2 <= y < marked.length /\ x * y = i * j }
 
-  let lemma conservation_previously_marked_products (marked: seq bool)
+  let lemma conservation_previously_marked_multiples (marked: seq bool)
                                                     (nexts: seq int)
                                                     (n: int)
     requires { 2 <= n < marked.length /\ marked.length = nexts.length /\
                nexts[n] <= marked.length }
-    requires { previously_marked_products marked n }
+    requires { previously_marked_multiples marked n }
     requires { only_products_marked marked (n + 1) }
-    requires { inv_marked_nexts marked nexts }
-    requires { inv_marked_old_nexts2 marked nexts nexts[n] }
-    requires { all_products_marked marked n marked.length }
-    ensures  { previously_marked_products marked nexts[n] } =
-    assert { previously_marked_products marked (n + 1) };
+    requires { all_eliminated_marked marked nexts }
+    requires { not_marked_impl_next_not_marked marked nexts nexts[n] }
+    requires { all_multiples_marked marked n marked.length }
+    ensures  { previously_marked_multiples marked nexts[n] } =
+    assert { previously_marked_multiples marked (n + 1) };
     assert { forall i. n < i < nexts[n] -> marked[i] };
     assert { forall i. n < i < nexts[n] ->
               ((exists k l. 2 <= k <= n /\ 2 <= l < marked.length /\ k * l = i)
                by marked[i]) };
-    marked_impl_all_products_marked marked (n + 1);
+    marked_impl_all_multiples_marked marked (n + 1);
     assert { forall i j.
               n < i < nexts[n] ->
               2 <= j < marked.length ->
@@ -364,13 +395,13 @@ module EulerSieve
                by (exists k l. 2 <= k <= n /\ 2 <= l < marked.length /\ k * l = i)) };
     assert { forall i.
               n < i < nexts[n] ->
-              all_products_marked marked i marked.length }
+              all_multiples_marked marked i marked.length }
 
-  lemma conservation_previously_marked_products_on_marked_change:
+  lemma conservation_previously_marked_multiples_on_marked_change:
     forall marked n.
-      previously_marked_products marked n ->
+      previously_marked_multiples marked n ->
       forall i. 0 <= i < marked.length ->
-                previously_marked_products marked[i <- true] n
+                previously_marked_multiples marked[i <- true] n
 
 
 (*******************************************************************************)
@@ -379,15 +410,15 @@ module EulerSieve
 (*                                                                             *)
 (*******************************************************************************)
 
-  let lemma conservation_inv_marked_old_nexts2 (marked: seq bool)
+  let lemma conservation_not_marked_impl_next_not_marked (marked: seq bool)
                                                (nexts: seq int)
                                                (max n p: int)
-    requires { inv_marked_old_nexts2 marked nexts n /\
+    requires { not_marked_impl_next_not_marked marked nexts n /\
                  nexts[n] > n > 0 /\
                  div max nexts[n] <= div max n
                  by forall i. p < i < nexts[p] -> marked[i] /\
-                    inv_marked_old_nexts2_partial marked nexts n p }
-    ensures  { inv_marked_old_nexts2 marked nexts nexts[n] } = ()
+                    not_marked_impl_next_not_marked_partial marked nexts n p }
+    ensures  { not_marked_impl_next_not_marked marked nexts nexts[n] } = ()
 
   let lemma unchanged_other_elements (s1: seq 'a) (s2: seq 'a) (i: int) (v: 'a)
     requires { 0 <= i < length s1 /\ length s1 = length s2 }
@@ -404,7 +435,7 @@ module EulerSieve
     invariant { max_int > max >= 3 }
     invariant { nexts.length = marked.length = max + 1 }
     invariant { inv_nexts nexts nexts.length }
-    invariant { inv_marked_nexts marked nexts }
+    invariant { all_eliminated_marked marked nexts }
     invariant { forall i. 3 <= i <= max -> mod i 2 = 0 -> marked[i] }
     invariant { forall i. 3 <= i < max - 1 ->
                           mod i 2 = 1 ->
@@ -464,12 +495,12 @@ module EulerSieve
   let remove_products (t: t) (n: int63) : unit
     requires { 3 <= n <= t.max /\ n * n <= t.max }
     requires { inv_remove_products t.nexts t.marked n }
-    requires { previously_marked_products t.marked n }
+    requires { previously_marked_multiples t.marked n }
     requires { only_products_marked t.marked n }
-    requires { inv_marked_old_nexts2 t.marked t.nexts n }
+    requires { not_marked_impl_next_not_marked t.marked t.nexts n }
     ensures  { inv_remove_products t.nexts t.marked n }
-    ensures  { inv_marked_old_nexts2 t.marked t.nexts t.nexts[n] }
-    ensures  { previously_marked_products t.marked t.nexts[n] }
+    ensures  { not_marked_impl_next_not_marked t.marked t.nexts t.nexts[n] }
+    ensures  { previously_marked_multiples t.marked t.nexts[n] }
     ensures  { only_products_marked t.marked t.nexts[n] }
     = let d = get_max t / n in
       let ghost max = t.max in
@@ -479,18 +510,18 @@ module EulerSieve
                    p <= x < t.nexts[p] /\ t.nexts[x] = t.nexts[p] /\
                    t.marked[n * n] }
         requires { inv_remove_products t.nexts t.marked n }
-        requires { previously_marked_products t.marked n }
+        requires { previously_marked_multiples t.marked n }
         requires { not t.marked[p] }
-        requires { inv_marked_marked_old t.marked marked_old }
-        requires { inv_marked_old_nexts1 marked_old t.nexts x }
-        requires { inv_marked_old_nexts2 marked_old t.nexts n }
+        requires { is_copy t.marked marked_old }
+        requires { all_eliminated_marked_partial marked_old t.nexts x }
+        requires { not_marked_impl_next_not_marked marked_old t.nexts n }
         requires { prime_products_marked marked_old t.marked n t.nexts[x] }
-        requires { inv_marked_old_nexts2_partial t.marked t.nexts n p }
+        requires { not_marked_impl_next_not_marked_partial t.marked t.nexts n p }
         requires { only_products_marked t.marked (n + 1) }
         ensures  { inv_remove_products t.nexts t.marked n }
-        ensures  { inv_marked_old_nexts2 t.marked t.nexts t.nexts[n] }
-        ensures  { inv_marked_marked_old t.marked marked_old }
-        ensures  { previously_marked_products t.marked n }
+        ensures  { not_marked_impl_next_not_marked t.marked t.nexts t.nexts[n] }
+        ensures  { is_copy t.marked marked_old }
+        ensures  { previously_marked_multiples t.marked n }
         ensures  { prime_products_marked marked_old t.marked n t.marked.length }
         ensures  { only_products_marked t.marked (n + 1) }
         variant  { max - t.nexts[p] }
@@ -516,7 +547,7 @@ module EulerSieve
               let ghost nexts_copy = t.nexts in
               set_next t p (get_next t next);
               unchanged_other_elements t.nexts nexts_copy (to_int p) nexts_copy[to_int next];
-              assert { inv_marked_old_nexts1 marked_old t.nexts next
+              assert { all_eliminated_marked_partial marked_old t.nexts next
                        by p <= x < next /\
                           forall j. next <= j < length t.nexts ->
                                     t.nexts[j] = nexts_copy[j] };
@@ -527,8 +558,8 @@ module EulerSieve
             end
           end else begin
             assert { n * next > max by n * (div max n + 1) > max >= n * div max n /\ n * next >= n * (d + 1) by next >= d + 1 };
-            ghost (conservation_inv_marked_old_nexts2 t.marked t.nexts (to_int max) (to_int n) (to_int p))
-        end else ghost (conservation_inv_marked_old_nexts2 t.marked t.nexts (to_int max) (to_int n) (to_int p)) in
+            ghost (conservation_not_marked_impl_next_not_marked t.marked t.nexts (to_int max) (to_int n) (to_int p))
+        end else ghost (conservation_not_marked_impl_next_not_marked t.marked t.nexts (to_int max) (to_int n) (to_int p)) in
         ghost (conservation_only_products_marked t.marked (to_int n + 1) (to_int n) (to_int n));
         let ghost marked_copy = t.marked in
         set_mark t (n * n);
@@ -539,12 +570,12 @@ module EulerSieve
                     forall i. 0 <= i < n ->
                               forall j. i < j < t.nexts[i] -> t.marked[j] };
         loop n (to_int n);
-        ghost (prev_and_new_impl_all_products_marked marked_old t.marked (to_int n) (to_int max));
-        ghost (conservation_previously_marked_products t.marked t.nexts (to_int n))
+        ghost (prev_and_new_impl_all_multiples_marked marked_old t.marked (to_int n) (to_int max));
+        ghost (conservation_previously_marked_multiples t.marked t.nexts (to_int n))
 
-  let lemma previously_marked_products_impl_prime (marked: seq bool) (n: int)
+  let lemma previously_marked_multiples_impl_prime (marked: seq bool) (n: int)
     requires { 2 <= n < marked.length /\ not marked[n] }
-    requires { previously_marked_products marked n }
+    requires { previously_marked_multiples marked n }
     ensures  { prime n } =
     assert { forall k.
                2 <= k < n -> not divides k n
@@ -621,7 +652,7 @@ module EulerSieveImpl
     invariant { div (max - 1) 2 = max_arr }
     invariant { length arr = max_arr + 1 }
     invariant { inv_nexts nexts (Seq.length nexts) }
-    invariant { inv_marked_nexts marked nexts }
+    invariant { all_eliminated_marked marked nexts }
     invariant { forall i. 3 <= i <= max -> mod i 2 = 0 -> Seq.get marked i }
     invariant { forall i. 3 <= i < max - 1 ->
                           mod i 2 = 1 ->
@@ -696,7 +727,7 @@ module EulerSieveImpl
     requires { mod v 2 = 1 \/ v = t.max + 1 }
     writes   { t.nexts, t.arr }
     ensures  { t.nexts = Seq.set (old t.nexts) i v }
-  = ghost ( conservation_inv_marked_nexts_on_nexts_change t.marked t.nexts (to_int i) (to_int v) );
+  = ghost ( conservation_all_eliminated_marked_on_nexts_change t.marked t.nexts (to_int i) (to_int v) );
     t.arr[i / 2] <- v;
     ghost (t.nexts <- Seq.set t.nexts (to_int i) (to_int v))
 
@@ -715,7 +746,7 @@ module EulerSieveImpl
     writes   { t.marked, t.arr }
     ensures  { t.marked = Seq.set (old t.marked) i true }
   = let x = i / 2 in
-    ghost ( conservation_inv_marked_nexts_on_marked_change t.marked t.nexts (to_int i));
+    ghost ( conservation_all_eliminated_marked_on_marked_change t.marked t.nexts (to_int i));
     if t.arr[x] >= 0 then begin
       ghost ( conservation_inv_arr_on_mark t.arr.elts (to_int x) );
       t.arr[x] <- - t.arr[x]
@@ -756,9 +787,9 @@ module EulerSieveImpl
     let rec loop (n: int63) =
       requires { 3 <= n <= max }
       requires { n * n <= max }
-      requires { previously_marked_products t.marked n }
+      requires { previously_marked_multiples t.marked n }
       requires { only_products_marked t.marked n }
-      requires { inv_marked_old_nexts2 t.marked t.nexts n }
+      requires { not_marked_impl_next_not_marked t.marked t.nexts n }
       requires { inv_remove_products t.nexts t.marked n }
       ensures { forall i. 0 <= i < Seq.length t.marked ->
                           not Seq.get t.marked i <-> prime i }
@@ -767,7 +798,7 @@ module EulerSieveImpl
         let nn = get_next t n in
         if nn <= max / nn then begin
           assert { nn * nn <= max };
-          ghost (previously_marked_products_impl_prime t.marked (to_int nn));
+          ghost (previously_marked_multiples_impl_prime t.marked (to_int nn));
           assert { (forall i. n < i < nn -> not prime i)
                    by (forall i.
                       n < i < nn ->
