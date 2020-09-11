@@ -787,7 +787,8 @@ module EulerSieveImpl
     requires { mod v 2 = 1 \/ v = t.max + 1 }
     writes   { t.nexts, t.arr }
     ensures  { t.nexts = Seq.set (old t.nexts) i v }
-  = ghost ( conservation_all_eliminated_marked_on_nexts_change t.marked t.nexts (to_int i) (to_int v) );
+  = ghost ( conservation_all_eliminated_marked_on_nexts_change
+                      t.marked t.nexts (to_int i) (to_int v) );
     t.arr[i / 2] <- v;
     ghost (t.nexts <- Seq.set t.nexts (to_int i) (to_int v))
 
@@ -806,7 +807,8 @@ module EulerSieveImpl
     writes   { t.marked, t.arr }
     ensures  { t.marked = Seq.set (old t.marked) i true }
   = let x = i / 2 in
-    ghost ( conservation_all_eliminated_marked_on_marked_change t.marked t.nexts (to_int i));
+    ghost ( conservation_all_eliminated_marked_on_marked_change
+                              t.marked t.nexts (to_int i));
     if t.arr[x] >= 0 then begin
       ghost ( conservation_inv_arr_on_mark t.arr.elts (to_int x) );
       t.arr[x] <- - t.arr[x]
