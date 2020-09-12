@@ -53,13 +53,16 @@ mymats2/.style={
 \maketitle
 
 \begin{abstract}
-  Dans cet article, ...
+  Dans cet article, nous nous intéressons à la vérification formelle du
+  crible d'Euler, un algorithme permettant d'énumérer tous les nombres
+  premiers inférieurs à une certaine borne. Après avoir décrit cet
+  algorithme ainsi qu'une implémentation efficace de celui-ci en OCaml,
+  nous présentons la preuve de celle-ci, réalisée à l'aide de Why3.
+  Nous nous intéressons également à l'efficacité du code prouvé, par
+  rapport à d'autres cribles, tel que celui d'Ératosthène.
 \end{abstract}
 
 \section{Introduction}
-
-% contexte : ce qu'est Why3 ; ce qu'est le crible d'Euler~\cite{crible-euler} ;
-% pourquoi est-il intéressant d'en faire une preuve formelle
 
 Le crible d'Euler, tout comme le crible d'Ératosthène, permet d'énumérer
 l'ensemble des nombres premiers compris entre 2 et une limite donnée $N$.
@@ -75,7 +78,6 @@ d'où la nécessité de vérifier formellement l'algorithme.
 
 Dans cet article, on décrit une telle vérification réalisée à l'aide de
 l'outil Why3~\cite{why3}.
-% quelques généralités sur la preuve :
 La preuve a été réalisée uniquement à l'aide des démonstrateurs automatiques.
 Cependant, une partie de cette preuve a nécessité l'utilisation de différents
 outils fournis par Why3 permettant d'aider le raisonnement des démonstrateurs
@@ -96,7 +98,6 @@ du crible d'Ératosthène segmenté.
 \section{Le crible d'Euler}
 \label{sec:algo}
 
-% présentation de l'algorithme du crible d'Euler
 L'algorithme du crible d'Euler prend comme unique entrée la limite $N \geq 2$
 et va renvoyer tous les nombres premiers compris entre $2$ et $N$.
 Il se divise en deux parties.
@@ -126,11 +127,6 @@ Ainsi, l'algorithme ne marquant que les produits de nombres non marqués, il ne
 marque qu'une seule fois chaque entier non premier, comme multiple de
 son plus petit facteur premier. C'est là la clé de la complexité
 linéaire du crible d'Euler.
-
-% L'implémentation de l'algorithme que nous allons prouver se trouve dans la
-% figure~\ref{fig:codeOCaml}. Dans celle-ci, nous utilisons une liste chaînée
-% dans un tableau d'entiers pour représenter l'ensemble des entiers sur lesquels
-% le crible sera appliqué.
 
 % 1. idée d'utiliser une liste chaînée
 L'implémentation de l'algorithme que nous allons prouver utilise une liste
@@ -215,27 +211,6 @@ at (0,0)
 (mat1-1-16.south)
   .. controls ++ (0.3,-0.7) and ++(-0.3,-0.7) ..
 (mat1-1-18.south);
-
-% \draw[->, dashed, line width=0.7pt]
-% (mat1-1-2.north)
-%   .. controls ++ (0.9,0.9) and ++(-0.9,0.9) ..
-%   node [above, sloped] (TextNode1) {$\times$}
-% (mat1-1-2.north);
-% \draw[->, dashed, line width=0.7pt]
-% (mat1-1-2.north)
-%   .. controls ++ (0.1,0.3) and ++(-0.1,0.3) ..
-%   node [above, sloped] (TextNode2) {$\times$}
-% (mat1-1-4.north);
-% \draw[->, dashed, line width=0.7pt]
-% (mat1-1-2.north)
-% .. controls ++ (0.5,0.9) and ++(-0.5,0.9) ..
-%   node [above, sloped] (TextNode3) {$\times$}
-% (mat1-1-6.north);
-% \draw[->, dashed, line width=0.7pt]
-% (mat1-1-2.north)
-% .. controls ++ (0.8,1.5) and ++(-0.8,1.5) ..
-%   node [above, sloped] (TextNode4) {$\times$}
-% (mat1-1-8.north);
 \end{scope}
 \end{tikzpicture}
 \caption{Illustration de la liste chaînée}
@@ -284,7 +259,7 @@ contenant la liste chaînée avec les nombres premiers, puis en
 extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres
 premiers.
 
-% une figure représentant le même état du tableau arr
+% une figure représentant un autre état du tableau arr
 % dans l'implémentation choisie, avec uniquement les nombres impairs
 
 Voici une autre figure décrivant l'implémentation tableau d'entiers,
@@ -314,8 +289,6 @@ la liste chaînée. Il le sera lorsque l'algorithme marquera $5 \times 25$.
 at (0,0)
 (mat1)
 {
-  % 0(1) & 1(3) & 2(5) & 3(7) & 4(9) & 5(11) & 6(13) & 7(15) & 8(17) & 9(19)
-  % & 10(21) & 11(23) & 12(25) & 13(27) & 14(29) & 15(31)\\
   0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15\\
   (1) & (3) & (5) & (7) & (9) & (11) & (13) & (15) & (17) & (19) & (21)
   & (23) & (25) & (27) & (29) & (31)\\
@@ -565,13 +538,17 @@ invariant { forall i. 0 <= i <= max_arr ->
                  Seq.get marked (2 * i + 1) <-> arr[i] < 0 }
 \end{why3}
 Les fonctions permettant de manipuler la liste chaînée et le marquage ont été
-ensuite implémentées dans le module \whyf{EulerSieve}.
+ensuite implémen\-tées dans le module \whyf{EulerSieve}.
 Il a été nécessaire, après implémentation, de montrer que celles-ci
 satisfont les spécifications de leurs fonctions abstraites respectives et
 conservent les invariants du type \whyf{t}, tel que l'invariant de liaison
 défini ci-dessus.
 
-
+Ainsi, la preuve du crible d'Euler a été faite uniquement dans la
+structure \whyf{t} abstraite, définie précédemment.
+Puis cette structure \whyf{t} a été réalisée avec les optimisations
+décrites en section~\ref{sec:algo} et nous avons montré qu'elle
+respectait sa spécification et celle de la structure abstraite \whyf{t}.
 
 La preuve a nécessité l'écriture de 775 lignes dans le langage WhyML :
 517 lignes pour la spécification et 258 lignes de code.
@@ -632,16 +609,12 @@ le code extrait :
   \end{tabular}
 \end{center}
 
-% a voir si un seul tableau est meilleur que deux tableaux ...
-
 Afin de pouvoir évaluer l'efficacité de ce code, nous comparons maintenant
 les temps de calculs du code extrait du crible d'Euler avec une
 implémentation du crible d'Ératosthène et du crible d'Ératosthène
 segmenté~\footnote{Merci à
   Jean-Christophe Filliâtre pour son implémentation du crible d'Ératosthène
   segmenté.}.
-% la phrase suivante est moyennement bien exprimée mais je ne vois pas
-% bien comment la reformuler ...
 Concernant ce dernier, la comparaison est fournie pour permettre de donner
 une idée de la différence d'efficacité, mais n'est pas exactement adaptée.
 En effet, contrairement aux cribles d'Ératosthène et d'Euler, qui renvoie
