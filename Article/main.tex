@@ -266,7 +266,7 @@ premiers.
 % une figure représentant un autre état du tableau arr
 % dans l'implémentation choisie, avec uniquement les nombres impairs
 
-Voici une autre figure décrivant l'implémentation tableau d'entiers,
+Voici une autre figure décrivant l'implémentation du tableau d'entiers,
 représentant uniquement les entiers impairs (notés entre parenthèses, en
 dessous de leurs indices respectifs dans le tableau) et le marquage avec
 les entiers négatifs. Les multiples de $3$ ont
@@ -443,10 +443,11 @@ des entiers 63 bits signés. De même, le type \whyf{array63} est une
 modélisation Why3 d'un tableau OCaml contenant des entiers OCaml.
 La précondition requière que \whyf{max} ne soit pas égal au plus grand
 entier. En effet, le code a besoin de stocker la valeur \whyf{max+1}
-dans la dernière case du tableau signaler la fin.
+dans la dernière case du tableau pour signaler la fin.
 
 La première postcondition représente le fait que les nombres
-du tableau renvoyé en résultat sont écrits dans l'ordre croissant.
+du tableau renvoyé en résultat sont écrits dans l'ordre
+strictement croissant.
 La postcondition suivante montre que les nombres renvoyés dans
 le tableau sont tous dans l'ensemble $\{2,...,\text{\ocamlf{max}}\}$.
 Enfin, les deux dernières postconditions énoncent que tous les
@@ -599,7 +600,7 @@ Le code OCaml obtenu après extraction est en réalité celui présenté
 à la figure~\ref{fig:codeOCaml}.
 Seules quelques modifications dans l'apparence du code ont été effectuées
 entre le code extrait et le code présenté.
-Voici, quelques mesures de temps de calcul et de la mémoire utilisée par
+Voici quelques mesures de temps de calcul et de la mémoire utilisée par
 le code extrait :
 \begin{center}
   \begin{tabular}{|c|r|r|}
