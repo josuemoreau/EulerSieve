@@ -237,8 +237,8 @@ au moment où la boucle de \ocamlf{remove_products} arrive sur lui,
 peut très bien être déjà marqué.
 Si c'est le cas, alors il aura nécessairement été marqué par
 une précédente itération de la boucle.
-Lorsque la boucle de \ocamlf{remove_products} arrive sur un entier $i$,
-$i$ étant réalité \arr{$p$}, % JC ??? (et typo)
+Lorsque la boucle de \ocamlf{remove_products} arrive sur un entier
+$i$, étant égal à \arr{$p$}, % JC ??? (et typo)
 elle marque $ni$.
 Puis, si $i$ était marqué, elle modifie \arr{$p$} en lui donnant pour
 valeur \arr{$i$} puis elle recommence en regardant l'entier \arr{$p$}.
@@ -659,8 +659,11 @@ nombres premiers compris entre $2$ et la limite fournie en argument.
     $10^9$ & 21,780 s & 14,500 s &  3,390 s \\\hline
   \end{tabular}
 \end{center}
-
-%% JC une phrase d'analyse de ce tableau ?
+On peut observer ici que le code du crible d'Euler est plus rapide
+que l'implémentation du crible d'Ératosthène que nous utilisons.
+Cependant, les performances sont encore éloignées du crible
+d'Ératosthène segmenté, qui tire parti de la rapidité offerte
+par la mémoire cache du processeur.
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -672,8 +675,8 @@ nombres premiers compris entre $2$ et la limite fournie en argument.
 % - prouver un crible segmenté~\cite{crible-segmente}
 
 Dans cet article, nous avons présenté une implémentation du crible d'Euler.
-Nous en avons montré la spécification et nous avons prouvé que l'implémentation
-fournie respectait cette spécification.
+Nous en avons montré la spécification et nous avons prouvé que
+l'implémentation fournie respectait cette spécification.
 La preuve a été réalisée par raffinement, à l'aide de différents outils
 fournis par Why3.
 Le code extrait de la preuve par Why3 possède de bonnes performances,
