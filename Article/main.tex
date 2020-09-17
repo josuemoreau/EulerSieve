@@ -269,6 +269,13 @@ contenant la liste chaînée avec les nombres premiers, puis en
 extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres
 premiers.
 
+Enfin, pour chaque indice $i$, \arr{$i$} contient un entier positif
+si et seulement si l'entier $i$ est non marqué.
+Dans ce cas, \arr{$i$} est l'entier suivant $i$ dans la liste chaînée.
+L'opération de marquage d'un entier~$i$ consiste à remplacer le
+contenu de la case~$i$ par son opposé.
+
+
 % une figure représentant un autre état du tableau arr
 % dans l'implémentation choisie, avec uniquement les nombres impairs
 
@@ -276,7 +283,8 @@ Voici une autre figure décrivant l'implémentation du tableau d'entiers,
 représentant uniquement les entiers impairs (notés entre parenthèses, en
 dessous de leurs indices respectifs dans le tableau) et le marquage avec
 les entiers négatifs. Les multiples de $3$ ont
-déjà été marqués et ceux qui se trouvent dans la portion du tableau représentée
+déjà été marqués et ceux qui se trouvent dans la portion du tableau
+représentée
 ont été éliminés de la liste chaînée.
 Les multiples de $5$ sont en cours de marquage.
 On peut en effet constater que $25$ a été marqué mais pas encore éliminé de
