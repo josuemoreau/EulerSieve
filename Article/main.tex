@@ -237,13 +237,13 @@ au moment où la boucle de \ocamlf{remove_products} arrive sur lui,
 peut très bien être déjà marqué.
 Si c'est le cas, alors il aura nécessairement été marqué par
 une précédente itération de la boucle.
-Lorsque la boucle de \ocamlf{remove_products} arrive sur un entier
-$i$, étant égal à \arr{$p$}, % JC ??? (et typo)
+Lorsque la boucle de \ocamlf{remove_products} arrive sur l'entier
+$i = \text{\arr{$p$}}$, % JC ??? (et typo)
 elle marque $ni$.
 Puis, si $i$ était marqué, elle modifie \arr{$p$} en lui donnant pour
 valeur \arr{$i$} puis elle recommence en regardant l'entier \arr{$p$}.
 Si $i$ n'était pas marqué, elle recommence en regardant l'entier
-\arr{$n$}.
+\arr{$i$}.
 Cette opération permet donc à la liste chaînée de ``sauter'' par dessus
 les entier déjà marqués, et donc d'examiner au plus une fois chaque
 entier marqué.
