@@ -11,6 +11,8 @@ implementation of the sieve of Eratosthene used for benchmarks,
 and [seg.ml](/OCaml/seg.ml) an implementation of the segmented sieve of
 Eratosthene.
 
-The proof is in the folder Why3, in the file [euler_sieve.mlw]().
+The proof is in the folder Why3, in the file
+[euler_sieve.mlw](/Why3/euler_sieve.mlw).
 In the same folder, there is also the Why3 session in
-[euler_sieve]() and the extracted code from the proof [extract.ml]().
+[euler_sieve](/Why3/euler_sieve/) and the extracted code from the
+proof [extract.ml](/Why3/extract.ml).
