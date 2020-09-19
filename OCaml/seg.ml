@@ -30,13 +30,6 @@ let isqrt x =
   in
   if x <= 1 then x else let g0 = 1 lsl s in newton g0 ((g0 + (x lsr s)) lsr 1)
 
-module Bitv = struct
-  type t = bool array
-  let create = Array.make
-  let get = Array.get
-  let set = Array.set
-end
-
 let first_primes_upto limit =
   let b = Bitv.create (limit + 1) true in
   Bitv.set b 0 false;
