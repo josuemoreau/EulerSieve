@@ -150,7 +150,6 @@ let euler_sieve max =
 \label{fig:codeOCaml}
 \end{figure}
 
-
 L'implémentation, dans le langage OCaml, de l'algorithme que nous allons
 prouver se trouve dans la figure~\ref{fig:codeOCaml}.
 L'algorithme du crible d'Euler prend comme unique entrée la limite $N \geq 2$
@@ -160,8 +159,6 @@ La première partie prend un nombre $n$ non marqué
 tel que $2 \leq n \leq N$ et va marquer tous les multiples $np$ tels que
 $2 \leq np \leq N$ et $p \geq n$ n'est pas marqué.
 Elle correspond à la fonction \ocamlf{remove_products} du code OCaml.
-% Elle correspond à la fonction
-% \ocamlf{remove_products} de la figure~\ref{fig:codeOCaml}.
 La deuxième partie de l'algorithme boucle sur un entier $n$ et appelle
 à chaque tour de boucle la fonction \ocamlf{remove_products} puis
 affecte $n$ au plus petit entier inférieur à la limite,
@@ -531,6 +528,7 @@ val set_mark (t: t) (i: int63) : unit
   ensures  { t.marked = (old t.marked)[i <- true] }
 \end{why3}
 
+\clearpage
 La deuxième partie de la preuve a consisté en le raffinement du type \whyf{t}
 précédemment défini. Ce raffinement se trouve dans le module
 \whyf{EulerSieveImpl} qui est une implémentation du module \whyf{EulerSieve}.
@@ -595,12 +593,7 @@ suivante :
   \end{tabular}
 \end{center}
 
-% quelques éléments quantitatifs ici
-% - combien de lignes écrites pour les besoins de la preuve
-% - degré d'automatisation de la preuve
-% - quel temps de travail (approximativement)
-% - etc.
-
+\clearpage
 \section{Le code OCaml extrait de la preuve}
 \label{sec:extraction}
 
