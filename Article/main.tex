@@ -43,8 +43,8 @@ mymats2/.style={
 
 \begin{document}
 
-\title{...}
-\titlerunning{...}
+\title{Les nombres premiers au crible de la preuve formelle}
+\titlerunning{Les nombres premiers au crible de la preuve formelle}
 \author{Josué Moreau\thanks{Ce travail a été effectué dans le cadre
     d'un stage de L3 à l'Université Paris-Saclay, du 1er au 30 juin
     2020, encadré à distance par Jean-Christophe Filliâtre.}}
@@ -316,10 +316,6 @@ Dans ce cas, \arr{$i$} est l'entier suivant $i$ dans la liste chaînée.
 L'opération de marquage d'un entier~$i$ consiste à remplacer le
 contenu de la case~$i$ par son opposé.
 
-
-% une figure représentant un autre état du tableau arr
-% dans l'implémentation choisie, avec uniquement les nombres impairs
-
 Voici une autre figure décrivant l'implémentation du tableau d'entiers,
 représentant uniquement les entiers impairs (notés entre parenthèses, en
 dessous de leurs indices respectifs dans le tableau) et le marquage avec
@@ -469,22 +465,10 @@ nombres premiers, comme le crible d'Ératosthène~\cite{sieve-eratosthene-why3}
 ou celui de l'algorithme des
 nombres premiers de Knuth~\cite{knuth-prime-numbers,knuth-prime-numbers-why3}.
 
-% \clearpage
 \paragraph{Vérification.}
-
-% commencer par expliquer l'idée de raffinement : une commence avec
-% une structure t abstraite (modélisant la liste chaînée et le
-% marquage, sans connaître son implémentation), et on vérifie le
-% crible avec cette structure abstraite, puis on la réalise avec les
-% optimisations décrites dans la section précédente, et on prouve que
-% cette réalisation est conforme à sa spécification
-
-% TODO citer \cite{paskevich20isola} voire \cite{filliatre20jlamp}
-% aux endroits opportuns
 
 La preuve du crible d'Euler a été faite par
 raffinement~\cite{paskevich20isola}, en deux temps.
-%
 La première partie de la preuve a été faite, dans un module
 \whyf{EulerSieve}, à l'aide d'un type \whyf{t} représentant une
 structure abstraite.  Ce type modélise la liste chaînée et le
@@ -650,12 +634,6 @@ par la mémoire cache du processeur.
 
 \section{Conclusion}
 \label{sec:conclusion}
-
-% une brève conclusion = résumé de ce qui a été présenté
-
-% perspectives
-% - prouver que la complexité est linéaire
-% - prouver un crible segmenté~\cite{crible-segmente}
 
 Dans cet article, nous avons présenté une implémentation du crible d'Euler.
 Nous en avons montré la spécification et nous avons prouvé que
