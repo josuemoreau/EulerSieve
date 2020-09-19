@@ -98,14 +98,68 @@ du crible d'Ératosthène segmenté.
 \section{Le crible d'Euler}
 \label{sec:algo}
 
+\begin{figure}[tp]
+\begin{ocaml}
+type t = { arr: int array; max: int; max_arr: int }
+
+let create max =
+  let len_arr = (max - 1) / 2 + 1 in
+  let arr = Array.make len_arr (-2) in
+  for i = 1 to len_arr - 1 do
+    arr.(i) <- if i = len_arr - 1 then max + 1 else 2 * i + 3
+  done;
+  { arr = arr; max = max; max_arr = (max - 1) / 2 }
+
+let set_next t i v = t.arr.(i / 2) <- v
+let get_next t i = if t.arr.(i / 2) < 0 then - t.arr.(i / 2) else t.arr.(i / 2)
+let set_mark t i = if t.arr.(i / 2) >= 0 then t.arr.(i / 2) <- - t.arr.(i / 2)
+let get_mark t i = t.arr.(i / 2) < 0
+let get_max t = t.max
+
+let remove_products t n =
+  let d = get_max t / n in
+  let rec loop (p: int) : unit =
+    let next = get_next t p in
+    if 0 <= next && next <= get_max t then begin
+      if next <= d then begin
+        set_mark t (n * next);
+        if get_mark t next then begin set_next t p (get_next t next); loop p end
+        else loop next
+      end end in
+  set_mark t (n * n); loop n
+
+let euler_sieve max =
+  let t = create max in
+  let rec loop n =
+    remove_products t n;
+    let nn = get_next t n in
+    if nn <= max / nn then loop nn in
+  if max >= 9 then loop 3;
+  let cnt = ref 1 in
+  let p = ref 1 in t.arr.(0) <- 2;
+  while 2 * !p + 1 <= max do
+    let next = t.arr.(!p) / 2 in
+    if next <= t.max_arr then
+      if t.arr.(next) < 0 then t.arr.(!p) <- - t.arr.(next)
+      else begin t.arr.(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := next end
+    else begin t.arr.(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := t.max_arr + 1 end
+  done;
+  Array.sub t.arr 0 !cnt
+\end{ocaml}
+\caption{Un code OCaml du crible d'Euler.}
+\label{fig:codeOCaml}
+\end{figure}
+
+
+L'implémentation, dans le langage OCaml, de l'algorithme que nous allons
+prouver se trouve dans la figure~\ref{fig:codeOCaml}.
 L'algorithme du crible d'Euler prend comme unique entrée la limite $N \geq 2$
 et va renvoyer tous les nombres premiers compris entre $2$ et $N$.
 Il se divise en deux parties.
 La première partie prend un nombre $n$ non marqué
 tel que $2 \leq n \leq N$ et va marquer tous les multiples $np$ tels que
 $2 \leq np \leq N$ et $p \geq n$ n'est pas marqué.
-Nous appelons à partir de maintenant la fonction correspondant à
-cette partie \ocamlf{remove_products}.
+Elle correspond à la fonction \ocamlf{remove_products} du code OCaml.
 % Elle correspond à la fonction
 % \ocamlf{remove_products} de la figure~\ref{fig:codeOCaml}.
 La deuxième partie de l'algorithme boucle sur un entier $n$ et appelle
@@ -138,16 +192,6 @@ Cette liste est simplement chaînée et est implémentée dans un tableau
 des suivants \ocamlf{arr}.
 Une liste chaînée est importante pour que la représentation soit efficace
 car elle permet d'obtenir efficacement le prochain entier à parcourir.
-% en un temps amorti constant ?
-% En parcourant un entier déjà marqué on retire cet entier de la liste,
-% ce qui permet de parcourir au plus une fois un entier déjà marqué.
-% % 4. le marquage se fait dans ce même tableau next, en utilisant des
-% % valeurs négatives
-% Pour chaque indice $i$, \arr{$i$} contient un entier positif
-% si et seulement si l'entier $i$ est non marqué.
-% Dans ce cas, \arr{$i$} est l'entier suivant $i$ dans la liste chaînée.
-% L'opération de marquage d'un entier~$i$ consiste à remplacer le
-% contenu de la case~$i$ par son opposé.
 
 Voici un schéma décrivant l'état de la liste chaînée dans le tableau
 \ocamlf{arr} à un moment donné pendant une exécution du crible d'Euler.
@@ -369,10 +413,9 @@ at (0,0)
 \caption{Illustration de l'implémentation de la liste chaînée.}
 \end{figure}
 
-L'implémentation, dans le langage OCaml, de l'algorithme que nous allons
-prouver se trouve dans la
-figure~\ref{fig:codeOCaml}. Dans celle-ci, on manipule à plusieurs reprises
-un type \ocamlf{t}. Ce type contient pour premier champ le tableau
+Dans l'implémentation OCaml que nous allons prouver, on manipule à
+plusieurs reprises un type \ocamlf{t}.
+Ce type contient pour premier champ le tableau
 \ocamlf{arr} décrit précédemment.
 Le champ \ocamlf{max} correspond à la limite donnée en
 entrée au crible et le champ \ocamlf{max_arr} correspond au plus grand indice
@@ -384,59 +427,6 @@ La fonction \ocamlf{euler_sieve} est la fonction principale du crible,
 c'est elle qui appelle \ocamlf{remove_products} dans sa boucle
 principale et qui extrait ensuite les nombres premiers de la liste
 chaînée pour les renvoyer dans un tableau.
-
-% \clearpage
-\begin{figure}[tp]
-\begin{ocaml}
-type t = { arr: int array; max: int; max_arr: int }
-
-let create max =
-  let len_arr = (max - 1) / 2 + 1 in
-  let arr = Array.make len_arr (-2) in
-  for i = 1 to len_arr - 1 do
-    arr.(i) <- if i = len_arr - 1 then max + 1 else 2 * i + 3
-  done;
-  { arr = arr; max = max; max_arr = (max - 1) / 2 }
-
-let set_next t i v = t.arr.(i / 2) <- v
-let get_next t i = if t.arr.(i / 2) < 0 then - t.arr.(i / 2) else t.arr.(i / 2)
-let set_mark t i = if t.arr.(i / 2) >= 0 then t.arr.(i / 2) <- - t.arr.(i / 2)
-let get_mark t i = t.arr.(i / 2) < 0
-let get_max t = t.max
-
-let remove_products t n =
-  let d = get_max t / n in
-  let rec loop (p: int) : unit =
-    let next = get_next t p in
-    if 0 <= next && next <= get_max t then begin
-      if next <= d then begin
-        set_mark t (n * next);
-        if get_mark t next then begin set_next t p (get_next t next); loop p end
-        else loop next
-      end end in
-  set_mark t (n * n); loop n
-
-let euler_sieve max =
-  let t = create max in
-  let rec loop n =
-    remove_products t n;
-    let nn = get_next t n in
-    if nn <= max / nn then loop nn in
-  if max >= 9 then loop 3;
-  let cnt = ref 1 in
-  let p = ref 1 in t.arr.(0) <- 2;
-  while 2 * !p + 1 <= max do
-    let next = t.arr.(!p) / 2 in
-    if next <= t.max_arr then
-      if t.arr.(next) < 0 then t.arr.(!p) <- - t.arr.(next)
-      else begin t.arr.(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := next end
-    else begin t.arr.(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := t.max_arr + 1 end
-  done;
-  Array.sub t.arr 0 !cnt
-\end{ocaml}
-\caption{Un code OCaml du crible d'Euler.}
-\label{fig:codeOCaml}
-\end{figure}
 
 \section{Une vérification formelle avec Why3}
 \label{sec:preuve}
