@@ -4,13 +4,12 @@ Euler's sieve
 A formally verified Euler's Sieve, written in OCaml.
 The proof was made with [Why3](http://why3.lri.fr/).
 
+### Description of the repository
+
 The proof is in the folder Why3, in the file
 [euler_sieve.mlw](/Why3/euler_sieve.mlw).
 In the same folder, there is also the Why3 session in
 [euler_sieve](/Why3/euler_sieve/).
-To get the extracted code from Why3, install Why3 then run the Makefile in
-the Why3 folder, the code will be extracted in the file ```extract.ml```.
-This automatically extracted code is also written below.
 
 In the OCaml folder, there are some files that are not related with the proof.
 In particular, the file
@@ -18,6 +17,25 @@ In particular, the file
 implementation of the sieve of Eratosthene used for benchmarks.
 The file [seg.ml](/OCaml/seg.ml) an implementation of the segmented sieve of
 Eratosthene.
+
+### To replay the proof
+
+```
+cd Why3
+why3 replay euler_sieve
+```
+
+### To extract the OCaml code
+
+```
+cd Why3
+make
+```
+
+The code will be automatically extracted in the file ```extract.ml```.
+This extracted code is also written below.
+
+### The verified OCaml code
 
 ```ocaml
 type t = {
