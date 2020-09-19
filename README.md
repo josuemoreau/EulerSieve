@@ -13,10 +13,10 @@ the Why3 folder, the code will be extracted in the file ```extract.ml```.
 This automatically extracted code is also written below.
 
 In the OCaml folder, there are some files that are not related with the proof.
-In particular, there are the file
-[eratosthene_sieve.ml](/OCaml/eratosthene_sieve.ml), which is the
-implementation of the sieve of Eratosthene used for benchmarks,
-and [seg.ml](/OCaml/seg.ml) an implementation of the segmented sieve of
+In particular, the file
+[eratosthene_sieve.ml](/OCaml/eratosthene_sieve.ml) is the
+implementation of the sieve of Eratosthene used for benchmarks.
+The file [seg.ml](/OCaml/seg.ml) an implementation of the segmented sieve of
 Eratosthene.
 
 ```ocaml
