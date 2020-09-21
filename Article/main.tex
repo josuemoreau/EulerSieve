@@ -38,7 +38,8 @@ mymats2/.style={
 
 % \pagestyle{empty} % pour la version finale EasyChair
 
-\newcommand\arr[1]{\ocamlf{arr[}#1\ocamlf{]}}
+\newcommand\arr{\ocamlf{suiv}}
+\newcommand\arri[1]{\ocamlf{suiv[}#1\ocamlf{]}}
 \newcommand\eqdef{\overset{\text{def}}{=}}
 
 \begin{document}
@@ -186,12 +187,12 @@ L'implémentation de l'algorithme que nous allons prouver utilise une liste
 chaînée croissante pour représenter les nombres de l'ensemble $\{2,...,N\}$.
 % 2. elle est simplement chaînée = un tableau next
 Cette liste est simplement chaînée et est implémentée dans un tableau
-des suivants \ocamlf{arr}.
+des suivants \arr.
 Une liste chaînée est importante pour que la représentation soit efficace
 car elle permet d'obtenir efficacement le prochain entier à parcourir.
 
 Voici un schéma décrivant l'état de la liste chaînée dans le tableau
-\ocamlf{arr} à un moment donné pendant une exécution du crible d'Euler.
+\arr à un moment donné pendant une exécution du crible d'Euler.
 Dans celle-ci l'algorithme vient de marquer (en gris) tous les multiples
 de $2$ et de $3$.
 Il va commencer à marquer les multiples de $5$, en marquant les produits
@@ -267,7 +268,7 @@ on ne le supprime pas de la liste chaînée car
 cela coûterait trop cher en temps, ou nécessiterait une liste doublement
 chaînée qui coûterait trop cher en espace.
 Au lieu de cela,
-on se contente de changer le signe de \arr{$i$} pour signifier le
+on se contente de changer le signe de \arri{$i$} pour signifier le
 marquage de~$i$.
 Lorsque la fonction \ocamlf{remove_products} parcourt la liste
 pour barrer tous les multiples de $n$, elle en profite pour éliminer
@@ -279,12 +280,13 @@ peut très bien être déjà marqué.
 Si c'est le cas, alors il aura nécessairement été marqué par
 une précédente itération de la boucle.
 Lorsque la boucle de \ocamlf{remove_products} arrive sur l'entier
-$i = \text{\arr{$p$}}$, % JC ??? (et typo)
+$i = \text{\arri{\ocamlf{p}}}$, % JC ??? (et typo)
 elle marque $ni$.
-Puis, si $i$ était marqué, elle modifie \arr{$p$} en lui donnant pour
-valeur \arr{$i$} puis elle recommence en regardant l'entier \arr{$p$}.
+Puis, si $i$ était marqué, elle modifie \arri{\ocamlf{p}} en lui donnant pour
+valeur \arri{$i$} puis elle recommence en regardant l'entier
+\arri{\ocamlf{p}}.
 Si $i$ n'était pas marqué, elle recommence en regardant l'entier
-\arr{$i$}.
+\arri{$i$}.
 Cette opération permet donc à la liste chaînée de ``sauter'' par dessus
 les entier déjà marqués, et donc d'examiner au plus une fois chaque
 entier marqué.
@@ -298,7 +300,7 @@ chaînée est supérieur à la limite du crible. Ces entiers seront supprimés
 lors de l'extraction des nombres premiers de la liste chaînée.
 
 % 5. les valeurs paires ne sont pas représentées
-Afin de diviser l'espace utilisé par deux, le tableau \ocamlf{arr} ne
+Afin de diviser l'espace utilisé par deux, le tableau \arr ne
 représente que les nombres
 impairs. Ainsi, la case d'index $i$ du tableau représente l'entier $2i + 1$.
 Enfin, on souhaite renvoyer au final un tableau ne contenant que les nombres premiers.
@@ -310,9 +312,9 @@ contenant la liste chaînée avec les nombres premiers, puis en
 extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres
 premiers.
 
-Enfin, pour chaque indice $i$, \arr{$i$} contient un entier positif
+Enfin, pour chaque indice $i$, \arri{$i$} contient un entier positif
 si et seulement si l'entier $i$ est non marqué.
-Dans ce cas, \arr{$i$} est l'entier suivant $i$ dans la liste chaînée.
+Dans ce cas, \arri{$i$} est l'entier suivant $i$ dans la liste chaînée.
 L'opération de marquage d'un entier~$i$ consiste à remplacer le
 contenu de la case~$i$ par son opposé.
 
