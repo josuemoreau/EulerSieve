@@ -193,12 +193,12 @@ L'implémentation de l'algorithme que nous allons prouver utilise une liste
 chaînée croissante pour représenter les nombres de l'ensemble $\{2,...,N\}$.
 % 2. elle est simplement chaînée = un tableau next
 Cette liste est simplement chaînée et est implémentée dans un tableau
-des suivants \arr.
+des suivants \arr{}.
 Une liste chaînée est importante pour que la représentation soit efficace
 car elle permet d'obtenir efficacement le prochain entier à parcourir.
 
 Voici un schéma décrivant l'état de la liste chaînée dans le tableau
-\arr à un moment donné pendant une exécution du crible d'Euler.
+\arr{} à un moment donné pendant une exécution du crible d'Euler.
 Dans celle-ci l'algorithme vient de marquer (en gris) tous les multiples
 de $2$ et de $3$.
 Il va commencer à marquer les multiples de $5$, en marquant les produits
@@ -327,7 +327,10 @@ contenu de la case~$i$ par son opposé.
 Voici une autre figure décrivant l'implémentation du tableau d'entiers,
 représentant uniquement les entiers impairs (notés entre parenthèses, en
 dessous de leurs indices respectifs dans le tableau) et le marquage avec
-les entiers négatifs. Les multiples de $3$ ont
+les entiers négatifs.
+Les flèches sont dessinées ici uniquement pour montrer les liaisons
+réalisées par ce tableau.
+Les multiples de $3$ ont
 déjà été marqués et ceux qui se trouvent dans la portion du tableau
 représentée
 ont été éliminés de la liste chaînée.
@@ -425,8 +428,8 @@ $\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$.
 La fonction \ocamlf{remove_products} du code OCaml correspond à la
 fonction du même nom décrite précédemment.
 La fonction \ocamlf{euler_sieve} est la fonction principale du crible,
-c'est elle qui appelle \ocamlf{remove_products} dans sa boucle
-principale et qui extrait ensuite les nombres premiers de la liste
+elle appelle \ocamlf{remove_products} dans sa boucle
+principale et extrait ensuite les nombres premiers de la liste
 chaînée pour les renvoyer dans un tableau.
 
 \section{Une vérification formelle avec Why3}
@@ -657,7 +660,7 @@ segmenté, bien que celui-ci ne réponde pas exactement au même problème.
 Il serait ainsi intéressant, dans le même but que pour le crible d'Euler,
 de vérifier formellement une implémentation du crible d'Ératosthène
 segmenté.
-Il serait également intéressant de prouver formellement
+Une autre perspective intéressante serait de prouver formellement
 que l'implémentation du crible
 d'Euler que nous avons présentée est bien de complexité linéaire, par
 exemple
