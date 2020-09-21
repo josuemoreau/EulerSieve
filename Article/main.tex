@@ -553,8 +553,9 @@ conservent les invariants du type \whyf{t}, tel que l'invariant de liaison
 Ainsi, la preuve du crible d'Euler a été faite uniquement dans la
 structure \whyf{t} abstraite, définie précédemment.
 Puis cette structure \whyf{t} a été réalisée avec les optimisations
-décrites en section~\ref{sec:algo} et nous avons montré qu'elle
-respectait sa spécification et celle de la structure abstraite \whyf{t}.
+décrites en section~\ref{sec:algo} et nous avons montré que cette structure
+concrète respectait sa spécification et celle de la structure abstraite
+\whyf{t}.
 
 La preuve a nécessité l'écriture de 775 lignes dans le langage WhyML :
 517 lignes pour la spécification et 258 lignes de code.
@@ -620,8 +621,9 @@ Concernant ce dernier, la comparaison est fournie pour permettre de donner
 une idée de la différence d'efficacité, mais n'est pas exactement adaptée.
 En effet, contrairement aux cribles d'Ératosthène et d'Euler, qui renvoie
 un tableau contenant tous les nombres premiers, le crible d'Ératosthène
-segmenté ne renvoie rien mais applique une fonction donnée sur tous les
-nombres premiers compris entre $2$ et la limite fournie en argument.
+segmenté ne renvoie rien mais applique une fonction \ocamlf{int -> unit}
+donnée en argument sur tous les nombres premiers compris entre $2$ et
+la limite.
 \begin{center}
   \begin{tabular}{|c|r|r|r|}
     \hline
