@@ -5,6 +5,7 @@
 \definecolor{keywords-color}{HTML}{303F9F}
 \definecolor{symbols-color}{HTML}{49599A}
 
+% \lstset{inputencoding=utf8/latin1}
 \lstdefinelanguage{why3}
 {
 basicstyle=\ttfamily,%
@@ -76,14 +77,21 @@ commentstyle={\itshape\color{red}},%
 escapeinside={*?}{?*},%
 keepspaces=true,
 literate=
+{é}{{\'e}}{1}
+{à}{{\'a}}{1}
+{î}{{\^{\i}}}{1}
 {<}{{\color{symbols-color}<}}{1}
 {>}{{\color{symbols-color}>}}{1}
 {=}{{\color{symbols-color}=}}{1}
+{:=}{{\color{symbols-color}:=}}{1}
 {\&}{{\color{symbols-color}\&}}{1}
 {|}{{\color{symbols-color}|}}{1}
 {;}{{\color{symbols-color};}}{1}
 {->}{{\color{symbols-color}->}}{1}
 {<-}{{\color{symbols-color}<-}}{1}
+% pour laisser `<` colorié en rouge dans les commentaires
+{\\<}{{<}}{1}
+{\\=}{{=}}{1}
 }
 
 \lstnewenvironment{ocaml}{\lstset{language=ocaml}}{}
