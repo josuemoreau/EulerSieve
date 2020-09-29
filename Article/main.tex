@@ -106,8 +106,8 @@ type t = { arr: int array; max: int; max_arr: int }
 let create max =
   let len_arr = (max - 1) / 2 + 1 in
   let arr = Array.make len_arr (-2) in
-  (* Initialement, la liste chaînée contient tous les nombres impairs. *)
-  (* Pour marquer la fin de la liste chaînée, son dernier entier pointe vers max + 1. *)
+  (* initialement, la liste chaînée contient tous les nombres impairs. *)
+  (* pour marquer la fin de la liste chaînée, son dernier entier pointe vers max + 1. *)
   for i = 1 to len_arr - 1 do
     arr.(i) <- if i = len_arr - 1 then max + 1 else 2 * i + 3
   done;
@@ -119,8 +119,8 @@ let set_mark t i = if t.arr.(i / 2) >= 0 then t.arr.(i / 2) <- - t.arr.(i / 2)
 let get_mark t i = t.arr.(i / 2) < 0
 let get_max t = t.max
 
+(* marque tous les multiples de n encore non marqués *)
 let remove_products t n =
-  (* marque tous les multiples de n encore non marqués *)
   let d = get_max t / n in
   let rec loop (p: int) : unit =
     let next = get_next t p in
