@@ -106,8 +106,8 @@ type t = { arr: int array; max: int; max_arr: int }
 let create max =
   let len_arr = (max - 1) / 2 + 1 in
   let arr = Array.make len_arr (-2) in
-  (* initialement, la liste chaînée contient tous les nombres impairs. *)
-  (* pour marquer la fin de la liste chaînée, son dernier entier pointe vers max + 1. *)
+  (* initialement, la liste chaînée contient tous les nombres impairs et pour *)
+  (* marquer la fin de la liste chaînée, son dernier entier a pour valeur max + 1 *)
   for i = 1 to len_arr - 1 do
     arr.(i) <- if i = len_arr - 1 then max + 1 else 2 * i + 3
   done;
@@ -306,7 +306,7 @@ chaînée est supérieur à la limite du crible. Ces entiers seront supprimés
 lors de l'extraction des nombres premiers de la liste chaînée.
 
 % 5. les valeurs paires ne sont pas représentées
-Afin de diviser l'espace utilisé par deux, le tableau \arr ne
+Afin de diviser l'espace utilisé par deux, le tableau \arr{} ne
 représente que les nombres
 impairs. Ainsi, la case d'index $i$ du tableau représente l'entier $2i + 1$.
 Enfin, on souhaite renvoyer au final un tableau ne contenant que les nombres premiers.
