@@ -99,78 +99,76 @@ du crible d'Ératosthène segmenté.
 \section{Le crible d'Euler}
 \label{sec:algo}
 
-\begin{figure}[tp]
-\begin{ocaml}
-type t = { arr: int array; max: int; max_arr: int }
+% \begin{figure}[tp]
+% \begin{ocaml}
+% type t = { arr: int array; max: int; max_arr: int }
 
-let create max =
-  let len_arr = (max - 1) / 2 + 1 in
-  let arr = Array.make len_arr (-2) in
-  (* initialement, la liste chaînée contient tous les nombres impairs et pour *)
-  (* marquer la fin de la liste chaînée, son dernier entier a pour valeur max + 1 *)
-  for i = 1 to len_arr - 1 do
-    arr.(i) <- if i = len_arr - 1 then max + 1 else 2 * i + 3
-  done;
-  { arr = arr; max = max; max_arr = (max - 1) / 2 }
+% let create max =
+%   let len_arr = (max - 1) / 2 + 1 in
+%   let arr = Array.make len_arr (-2) in
+%   (* initialement, la liste chaînée contient tous les nombres impairs et pour *)
+%   (* marquer la fin de la liste chaînée, son dernier entier a pour valeur max + 1 *)
+%   for i = 1 to len_arr - 1 do
+%     arr.(i) <- if i = len_arr - 1 then max + 1 else 2 * i + 3
+%   done;
+%   { arr = arr; max = max; max_arr = (max - 1) / 2 }
 
-let set_next t i v = t.arr.(i / 2) <- v
-let get_next t i = if t.arr.(i / 2) < 0 then - t.arr.(i / 2) else t.arr.(i / 2)
-let set_mark t i = if t.arr.(i / 2) >= 0 then t.arr.(i / 2) <- - t.arr.(i / 2)
-let get_mark t i = t.arr.(i / 2) < 0
-let get_max t = t.max
+% let set_next t i v = t.arr.(i / 2) <- v
+% let get_next t i = if t.arr.(i / 2) < 0 then - t.arr.(i / 2) else t.arr.(i / 2)
+% let set_mark t i = if t.arr.(i / 2) >= 0 then t.arr.(i / 2) <- - t.arr.(i / 2)
+% let get_mark t i = t.arr.(i / 2) < 0
+% let get_max t = t.max
 
-(* marque tous les multiples de n encore non marqués *)
-let remove_products t n =
-  let d = get_max t / n in
-  let rec loop (p: int) : unit =
-    let next = get_next t p in
-    if 0 <= next && next <= get_max t then begin
-      if next <= d then begin
-        set_mark t (n * next);
-        if get_mark t next then begin
-          (* si next était déjà marqué, on le retire de la liste chaînée *)
-          set_next t p (get_next t next); loop p
-        end else loop next (* sinon on passe à l'entier suivant *)
-      end end in
-  set_mark t (n * n); loop n (* tous les n * i pour i \< n sont déjà marqués *)
+% (* marque tous les multiples de n encore non marqués *)
+% let remove_products t n =
+%   let d = get_max t / n in
+%   let rec loop (p: int) : unit =
+%     let next = get_next t p in
+%     if 0 <= next && next <= get_max t then begin
+%       if next <= d then begin
+%         set_mark t (n * next);
+%         if get_mark t next then begin
+%           (* si next était déjà marqué, on le retire de la liste chaînée *)
+%           set_next t p (get_next t next); loop p
+%         end else loop next (* sinon on passe à l'entier suivant *)
+%       end end in
+%   set_mark t (n * n); loop n (* tous les n * i pour i \< n sont déjà marqués *)
 
-let euler_sieve max =
-  let t = create max in
-  let rec loop n =
-    remove_products t n;
-    let nn = get_next t n in
-    if nn <= max / nn then loop nn in
-  if max >= 9 then loop 3;
-  let cnt = ref 1 in (* compte les nombres premiers *)
-  let p = ref 1 in t.arr.(0) <- 2;
-  while 2 * !p + 1 <= max do (* 2 * p + 1 est premier *)
-    let next = t.arr.(!p) / 2 in
-    (* on élimine les derniers multiples et on écrase le début de la liste chaînée *)
-    if next <= t.max_arr then
-      if t.arr.(next) < 0 then t.arr.(!p) <- - t.arr.(next)
-      else begin t.arr.(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := next end
-    else begin t.arr.(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := t.max_arr + 1 end
-  done;
-  Array.sub t.arr 0 !cnt (* extrait les nombres premiers écrits au début de t.arr *)
-\end{ocaml}
-\caption{Un code OCaml du crible d'Euler.}
-\label{fig:codeOCaml}
-\end{figure}
+% let euler_sieve max =
+%   let t = create max in
+%   let rec loop n =
+%     remove_products t n;
+%     let nn = get_next t n in
+%     if nn <= max / nn then loop nn in
+%   if max >= 9 then loop 3;
+%   let cnt = ref 1 in (* compte les nombres premiers *)
+%   let p = ref 1 in t.arr.(0) <- 2;
+%   while 2 * !p + 1 <= max do (* 2 * p + 1 est premier *)
+%     let next = t.arr.(!p) / 2 in
+%     (* on élimine les derniers multiples et on écrase le début de la liste chaînée *)
+%     if next <= t.max_arr then
+%       if t.arr.(next) < 0 then t.arr.(!p) <- - t.arr.(next)
+%       else begin t.arr.(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := next end
+%     else begin t.arr.(!cnt) <- 2 * !p + 1; cnt := !cnt + 1; p := t.max_arr + 1 end
+%   done;
+%   Array.sub t.arr 0 !cnt (* extrait les nombres premiers écrits au début de t.arr *)
+% \end{ocaml}
+% \caption{Un code OCaml du crible d'Euler.}
+% \label{fig:codeOCaml}
+% \end{figure}
 
-L'implémentation, dans le langage OCaml, de l'algorithme que nous allons
-prouver se trouve dans la figure~\ref{fig:codeOCaml}.
-L'algorithme du crible d'Euler prend comme unique entrée la limite $N \geq 2$
-et va renvoyer tous les nombres premiers compris entre $2$ et $N$.
-Il se divise en deux parties.
-La première partie prend un nombre $n$ non marqué
-tel que $2 \leq n \leq N$ et va marquer tous les multiples $np$ tels que
-$2 \leq np \leq N$ et $p \geq n$ n'est pas marqué.
-Elle correspond à la fonction \ocamlf{remove_products} du code OCaml.
-La deuxième partie de l'algorithme boucle sur un entier $n$ et appelle
-à chaque tour de boucle la fonction \ocamlf{remove_products} puis
-affecte $n$ au plus petit entier inférieur à la limite,
-non marqué et strictement supérieur à $n$
-et recommence tant que $2 \leq n \leq N$.
+Le code de l'implémentation, dans le langage OCaml, de l'algorithme que nous
+allons prouver se trouve dans la figure~\ref{fig:codeOCaml}. L'algorithme du
+crible d'Euler prend comme unique entrée la limite $N \geq 2$ et va renvoyer
+tous les nombres premiers compris entre $2$ et $N$. Il se divise en deux
+parties. La première partie prend un nombre $n$ non marqué tel que
+$2 \leq n \leq N$ et va marquer tous les multiples $np$ tels que
+$2 \leq np \leq N$ et $p \geq n$ n'est pas marqué. Elle correspond à la fonction
+\ocamlf{remove_products} du code OCaml. La deuxième partie de l'algorithme
+boucle sur un entier $n$ et appelle à chaque tour de boucle la fonction
+\ocamlf{remove_products} puis affecte $n$ au plus petit entier inférieur à la
+limite, non marqué et strictement supérieur à $n$ et recommence tant que
+$2 \leq n \leq N$.
 
 À la fin de chaque étape de la boucle principale, tous les produits de $n$
 sont marqués. En effet, en supposant que pour tout $2 \leq k < n$,
@@ -269,33 +267,23 @@ at (0,0)
 % 3. on marque un élément mais on le supprimera de la liste seulement
 %    plus tard, quand on passera dessus (car on aura alors l'élément
 %    précédent dans une variable, pour effectuer la suppression)
-Lors du marquage d'un entier~$i$,
-on ne le supprime pas de la liste chaînée car
-cela coûterait trop cher en temps, ou nécessiterait une liste doublement
-chaînée qui coûterait trop cher en espace.
-Au lieu de cela,
-on se contente de changer le signe de \arri{$i$} pour signifier le
-marquage de~$i$.
-Lorsque la fonction \ocamlf{remove_products} parcourt la liste
-pour barrer tous les multiples de $n$, elle en profite pour éliminer
-les entiers qui sont marqués. Pour cela, elle maintient l'élément
-précédent dans la liste dans une variable~\ocamlf{p}.
-Il est donc important de remarquer qu'un entier $i$,
-au moment où la boucle de \ocamlf{remove_products} arrive sur lui,
-peut très bien être déjà marqué.
-Si c'est le cas, alors il aura nécessairement été marqué par
-une précédente itération de la boucle.
-Lorsque la boucle de \ocamlf{remove_products} arrive sur l'entier
-$i = \text{\arri{\ocamlf{p}}}$, % JC ??? (et typo)
-elle marque $ni$.
-Puis, si $i$ était marqué, elle modifie \arri{\ocamlf{p}} en lui donnant pour
-valeur \arri{$i$} puis elle recommence en regardant l'entier
-\arri{\ocamlf{p}}.
-Si $i$ n'était pas marqué, elle recommence en regardant l'entier
-\arri{$i$}.
-Cette opération permet donc à la liste chaînée de ``sauter'' par dessus
-les entier déjà marqués, et donc d'examiner au plus une fois chaque
-entier marqué.
+Lors du marquage d'un entier~$i$, on ne le supprime pas de la liste chaînée car
+cela coûterait trop cher en temps, ou nécessiterait une liste doublement chaînée
+qui coûterait trop cher en espace. Au lieu de cela, on se contente de changer le
+signe de \arri{$i$} pour signifier le marquage de~$i$. Lorsque la fonction
+\ocamlf{remove_products} parcourt la liste pour barrer tous les multiples de
+$n$, elle en profite pour éliminer les entiers qui sont marqués. Pour cela, elle
+maintient l'élément précédent dans la liste dans une variable~\ocamlf{p}. Il est
+donc important de remarquer qu'un entier $i$, au moment où la boucle de
+\ocamlf{remove_products} arrive sur lui, peut très bien être déjà marqué. Si
+c'est le cas, alors il aura nécessairement été marqué par une précédente
+itération de la boucle. Lorsque la boucle de \ocamlf{remove_products} arrive sur
+l'entier $i = \text{\arri{\ocamlf{p}}}$, elle marque $ni$. Puis, si $i$ était
+marqué, elle modifie \arri{\ocamlf{p}} en lui donnant pour valeur \arri{$i$}
+puis elle recommence en regardant l'entier \arri{\ocamlf{p}}. Si $i$ n'était pas
+marqué, elle recommence en regardant l'entier \arri{$i$}. Cette opération permet
+donc à la liste chaînée de ``sauter'' par dessus les entier déjà marqués, et
+donc d'examiner au plus une fois chaque entier marqué.
 
 Avec ce procédé, il y a un nombre important d'entiers qui sont marqués et
 qui ne seront pas réexaminés par la fonction \ocamlf{remove_products} et qui,
@@ -305,38 +293,40 @@ $n$, mais dont le produit avec tous les entiers suivant $n$ dans la liste
 chaînée est supérieur à la limite du crible. Ces entiers seront supprimés
 lors de l'extraction des nombres premiers de la liste chaînée.
 
-% 5. les valeurs paires ne sont pas représentées
-Afin de diviser l'espace utilisé par deux, le tableau \arr{} ne
-représente que les nombres
-impairs. Ainsi, la case d'index $i$ du tableau représente l'entier $2i + 1$.
-Enfin, on souhaite renvoyer au final un tableau ne contenant que les nombres premiers.
-Pour cela, on pourrait commencer par compter les nombres premiers
-de la liste chaînée, puis créer un tableau de cette taille et enfin y copier
-les nombres premiers.
-Cependant, on peut faire un peu mieux, en écrasant le début du tableau
-contenant la liste chaînée avec les nombres premiers, puis en
-extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres
-premiers.
+\clearpage
+\begin{figure}[tp]
+\lstinputlisting[language=ocaml, firstline=0, lastline=32]{decoupage_code.ml}
+\caption{Code du crible d'Euler en OCaml.}
+\label{fig:codeOCaml}
+\end{figure}
 
-Enfin, pour chaque indice $i$, \arri{$i$} contient un entier positif
-si et seulement si l'entier $i$ est non marqué.
-Dans ce cas, \arri{$i$} est l'entier suivant $i$ dans la liste chaînée.
-L'opération de marquage d'un entier~$i$ consiste à remplacer le
-contenu de la case~$i$ par son opposé.
+% 5. les valeurs paires ne sont pas représentées
+Afin de diviser l'espace utilisé par deux, le tableau \arr{} ne représente que
+les nombres impairs. Ainsi, la case d'index $i$ du tableau représente l'entier
+$2i + 1$. Les fonctions \ocamlf{get_next} et \ocamlf{set_next} utilisées dans le
+code précédente sont donc les suivantes :
+\lstinputlisting[language=ocaml, firstline=36, lastline=39]{decoupage_code.ml}
+
+De plus, pour chaque indice $i$, \arri{$i$} contient un entier positif si et
+seulement si l'entier $i$ est non marqué. Dans ce cas, \arri{$i$} est l'entier
+suivant $i$ dans la liste chaînée. L'opération de marquage d'un entier~$i$
+consiste à remplacer le contenu de la case~$i$ par son opposé. On a donc le code
+suivant pour les fonction \ocamlf{get_mark}, \ocamlf{set_mark} et
+\ocamlf{create} :
+\lstinputlisting[language=ocaml, firstline=41, lastline=43]{decoupage_code.ml}
+
+\clearpage
+\lstinputlisting[language=ocaml, firstline=47, lastline=53]{decoupage_code.ml}
 
 Voici une autre figure décrivant l'implémentation du tableau d'entiers,
-représentant uniquement les entiers impairs (notés entre parenthèses, en
-dessous de leurs indices respectifs dans le tableau) et le marquage avec
-les entiers négatifs.
-Les flèches sont dessinées ici uniquement pour montrer les liaisons
-réalisées par ce tableau.
-Les multiples de $3$ ont
-déjà été marqués et ceux qui se trouvent dans la portion du tableau
-représentée
-ont été éliminés de la liste chaînée.
-Les multiples de $5$ sont en cours de marquage.
-On peut en effet constater que $25$ a été marqué mais pas encore éliminé de
-la liste chaînée. Il le sera lorsque l'algorithme marquera $5 \times 25$.
+représentant uniquement les entiers impairs (notés entre parenthèses, en dessous
+de leurs indices respectifs dans le tableau) et le marquage avec les entiers
+négatifs. Les flèches sont dessinées ici uniquement pour montrer les liaisons
+réalisées par ce tableau. Les multiples de $3$ ont déjà été marqués et ceux qui
+se trouvent dans la portion du tableau représentée ont été éliminés de la liste
+chaînée. Les multiples de $5$ sont en cours de marquage. On peut en effet
+constater que $25$ a été marqué mais pas encore éliminé de la liste chaînée. Il
+le sera lorsque l'algorithme marquera $5 \times 25$.
 
 \begin{figure}[h]
 \begin{tikzpicture}[>=latex]
@@ -417,20 +407,28 @@ at (0,0)
 \caption{Illustration de l'implémentation de la liste chaînée.}
 \end{figure}
 
-Dans l'implémentation OCaml que nous allons prouver, on manipule à
-plusieurs reprises un type \ocamlf{t}.
-Ce type contient pour premier champ le tableau
-\ocamlf{arr} décrit précédemment.
-Le champ \ocamlf{max} correspond à la limite donnée en
-entrée au crible et le champ \ocamlf{max_arr} correspond au plus grand indice
-du tableau \ocamlf{arr}, c'est-à-dire
-$\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$.
-La fonction \ocamlf{remove_products} du code OCaml correspond à la
-fonction du même nom décrite précédemment.
-La fonction \ocamlf{euler_sieve} est la fonction principale du crible,
-elle appelle \ocamlf{remove_products} dans sa boucle
-principale et extrait ensuite les nombres premiers de la liste
-chaînée pour les renvoyer dans un tableau.
+Enfin, en fin de l'algorithme, on souhaite renvoyer un tableau ne contenant que
+les nombres premiers. Pour cela, on pourrait commencer par compter les nombres
+premiers de la liste chaînée, puis créer un tableau de cette taille et enfin y
+copier les nombres premiers. Cependant, on peut faire un peu mieux, en écrasant
+le début du tableau contenant la liste chaînée avec les nombres premiers, puis
+en extrayant avec \ocamlf{Array.sub} le préfixe contenant tous les nombres
+premiers. Le code suivant, qui correspond à la fin du code de la
+figure~\ref{fig:codeOCaml}, représente cette extraction des nombres premiers.
+\lstinputlisting[language=ocaml, firstline=63, lastline=79]{decoupage_code.ml}
+
+\clearpage
+Dans l'implémentation OCaml que nous allons prouver, on manipule à plusieurs
+reprises un type \ocamlf{t}. Ce type contient pour premier champ le tableau
+\ocamlf{arr} décrit précédemment. Le champ \ocamlf{max} correspond à la limite
+donnée en entrée au crible et le champ \ocamlf{max_arr} correspond au plus grand
+indice du tableau \ocamlf{arr}, c'est-à-dire
+$\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$. La fonction
+\ocamlf{remove_products} du code OCaml correspond à la fonction du même nom
+décrite précédemment. La fonction \ocamlf{euler_sieve} est la fonction
+principale du crible, elle appelle \ocamlf{remove_products} dans sa boucle
+principale et extrait ensuite les nombres premiers de la liste chaînée pour les
+renvoyer dans un tableau.
 
 \section{Une vérification formelle avec Why3}
 \label{sec:preuve}
@@ -523,7 +521,6 @@ val set_mark (t: t) (i: int63) : unit
   ensures  { t.marked = (old t.marked)[i <- true] }
 \end{why3}
 
-\clearpage
 La deuxième partie de la preuve a consisté en le raffinement du type \whyf{t}
 précédemment défini. Ce raffinement se trouve dans le module
 \whyf{EulerSieveImpl} qui est une implémentation du module \whyf{EulerSieve}.
@@ -589,7 +586,6 @@ suivante :
   \end{tabular}
 \end{center}
 
-\clearpage
 \section{Le code OCaml extrait de la preuve}
 \label{sec:extraction}
 
