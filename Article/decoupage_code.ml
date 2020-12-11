@@ -1,4 +1,6 @@
-type t = { arr: (int array);  max: int;  max_arr: int; }
+(* on représente une liste chaînée par un tableau, chaque indice du tableau *)
+(* contient l'indice de la case suivante dans la liste chaînée. *)
+type t = { arr: int array;  max: int;  max_arr: int; }
 
 (* marque tous les multiples de n encore non marqués et saute par dessus les *)
 (* nombres déjà marqués qu'il croise *)
