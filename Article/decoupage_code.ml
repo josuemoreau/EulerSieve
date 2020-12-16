@@ -50,7 +50,7 @@ let create (max: int) : t =
   let len_arr = (max - 1) / 2 + 1 in
   let arr = Array.make len_arr (-2) in
   for i = 1 to len_arr - 1 do
-    arr.(i) <- (if i = len_arr - 1 then max + 1 else 2 * i + 3)
+    arr.(i) <- if i = len_arr - 1 then max + 1 else 2 * i + 3
   done;
   { arr = arr; max = max; max_arr = (max - 1) / 2 }
 
