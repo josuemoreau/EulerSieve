@@ -170,7 +170,7 @@ $2 \leq np \leq N$ et $p \geq n$ n'est pas marqué. Elle correspond à la foncti
 boucle sur un entier $n$ et appelle à chaque tour de boucle la fonction
 \ocamlf{remove_products} puis affecte $n$ au plus petit entier inférieur à la
 limite, non marqué et strictement supérieur à $n$ et recommence tant que
-$2 \leq n \leq N$.
+$n \leq N$.
 
 À la fin de chaque étape de la boucle principale, tous les produits de $n$
 sont marqués. En effet, en supposant que pour tout $2 \leq k < n$,
@@ -194,8 +194,8 @@ chaînée croissante pour représenter les nombres de l'ensemble $\{2,...,N\}$.
 % 2. elle est simplement chaînée = un tableau next
 Cette liste est simplement chaînée et est implémentée dans un tableau
 des suivants \arr{}.
-Une liste chaînée est importante pour que la représentation soit efficace
-car elle permet d'obtenir efficacement le prochain entier à parcourir.
+Une liste chaînée est importante pour l'efficacité
+car elle permet d'obtenir le prochain entier à parcourir en temps constant.
 
 Voici un schéma décrivant l'état de la liste chaînée dans le tableau
 \arr{} à un moment donné pendant une exécution du crible d'Euler.
@@ -290,7 +290,7 @@ donc d'examiner au plus une fois chaque entier marqué.
 Avec ce procédé, il y a un nombre important d'entiers qui sont marqués et
 qui ne seront pas réexaminés par la fonction \ocamlf{remove_products} et qui,
 par conséquent, seront encore dans la liste chaînée à la fin de l'algorithme.
-Il s'agit des entiers qui ont été marqués comme étant multiple d'un certain
+Il s'agit des entiers qui ont été marqués comme étant multiples d'un certain
 $n$, mais dont le produit avec tous les entiers suivant $n$ dans la liste
 chaînée est supérieur à la limite du crible. Ces entiers seront supprimés
 lors de l'extraction des nombres premiers de la liste chaînée.
@@ -306,20 +306,20 @@ lors de l'extraction des nombres premiers de la liste chaînée.
 Afin de diviser l'espace utilisé par deux, le tableau \arr{} ne représente que
 les nombres impairs. Ainsi, la case d'index $i$ du tableau représente l'entier
 $2i + 1$. Les fonctions \ocamlf{get_next} et \ocamlf{set_next} utilisées dans le
-code précédente sont donc les suivantes :
+code précédent sont donc les suivantes :
 \lstinputlisting[language=ocaml, firstline=38, lastline=41]{decoupage_code.ml}
 
 De plus, pour chaque indice $i$, \arri{$i$} contient un entier positif si et
 seulement si l'entier $i$ est non marqué. Dans ce cas, \arri{$i$} est l'entier
 suivant $i$ dans la liste chaînée. L'opération de marquage d'un entier~$i$
-consiste à remplacer le contenu de la case~$i$ par son opposé. On a donc, dans
-le code suivant les fonction \ocamlf{get_mark}, \ocamlf{set_mark}.
+consiste à remplacer le contenu de la case~$i$ par son opposé. On a donc dans
+le code les fonctions \ocamlf{get_mark} et \ocamlf{set_mark} suivantes~:
 \clearpage
 \lstinputlisting[language=ocaml, firstline=43, lastline=45]{decoupage_code.ml}
 
 Enfin, la fonction \ocamlf{create} ci-dessous crée l'état initial de la
 structure de donnée maintenue par l'algorithme. La liste chaînée décrite
-précédement contient uniquement les entiers impairs. Il y a donc dans chaque
+précédemment contient uniquement les entiers impairs. Il y a donc dans chaque
 case $i$ du tableau \ocamlf{arr} l'entier $2i + 3$, à l'exception de la dernière
 case du tableau, qui représente le dernier entier de la liste chaînée, qui
 contient l'entier $\text{\ocamlf{max}} + 1$.
@@ -415,7 +415,7 @@ at (0,0)
 \caption{Illustration de l'implémentation de la liste chaînée.}
 \end{figure}
 
-Enfin, en fin de l'algorithme, on souhaite renvoyer un tableau ne contenant que
+Enfin, à la toute fin de l'algorithme, on souhaite renvoyer un tableau ne contenant que
 les nombres premiers. Pour cela, on pourrait commencer par compter les nombres
 premiers de la liste chaînée, puis créer un tableau de cette taille et enfin y
 copier les nombres premiers. Cependant, on peut faire un peu mieux, en écrasant
@@ -426,21 +426,21 @@ fin du code de la figure~\ref{fig:codeOCaml}, représente cette extraction des
 nombres premiers.
 
 Dans l'implémentation OCaml que nous allons prouver, on manipule à plusieurs
-reprises un type \ocamlf{t}. Ce type contient pour premier champ le tableau
+reprises un type \ocamlf{t}. Ce type contient comme premier champ le tableau
 \ocamlf{arr} décrit précédemment. Le champ \ocamlf{max} correspond à la limite
 donnée en entrée au crible et le champ \ocamlf{max_arr} correspond au plus grand
 indice du tableau \ocamlf{arr}, c'est-à-dire
 $\text{\ocamlf{max_arr}} \eqdef \frac{\text{\ocamlf{max}} - 1}{2}$. La fonction
 \ocamlf{remove_products} du code OCaml correspond à la fonction du même nom
 décrite précédemment. La fonction \ocamlf{euler_sieve} est la fonction
-principale du crible, elle appelle \ocamlf{remove_products} dans sa boucle
+principale du crible. Elle appelle \ocamlf{remove_products} dans sa boucle
 principale et extrait ensuite les nombres premiers de la liste chaînée pour les
 renvoyer dans un tableau.
 
 \clearpage
 \begin{figure}[tp]
   \lstinputlisting[language=ocaml, firstline=63, lastline=79]{decoupage_code.ml}
-  \caption{Code OCaml correspondant à l'extraction des nombres premiers}
+  \caption{Code OCaml correspondant à l'extraction des nombres premiers.}
   \label{fig:codeExtractPrimes}
 \end{figure}
 
@@ -575,7 +575,7 @@ La preuve a nécessité l'écriture de 775 lignes dans le langage WhyML :
 517 lignes pour la spécification et 258 lignes de code.
 Au total, 840 buts ont été prouvés.
 Afin de démontrer le crible d'Euler, de nombreuses interactions ont été
-faites pour aider les démonstrateurs automatiques.
+nécessaires pour aider les démonstrateurs automatiques.
 Parmi ces interactions, de nombreux lemmes ont été énoncés et prouvés.
 Des assertions ont également été écrites dans le programme.
 Enfin, des transformations logiques ont  été appliquées à des buts à
@@ -583,12 +583,12 @@ de nombreuses reprises.
 % spec     code comments
 %  508      241       33 euler_sieve.mlw
 %  éventuellement intégrer les stats de why3 session info --stats
-La répartition des buts démontrés par les démonstrateurs automatiques est la
-suivante :
+La répartition des buts démontrés par les différents démonstrateurs
+automatiques est la suivante :
 \begin{center}
   \begin{tabular}{|c|r|r|}
     \hline
-    démonstrateur & nombre de buts prouvés & temps maximum exécuté \\
+    démonstrateur & nombre de buts prouvés & temps maximum sur un but \\
     \hline\hline
     Eprover 2.4    &     7 &      0,74 s \\\hline
     Vampire 4.4.0  &     6 &      8,22 s \\\hline
@@ -606,9 +606,9 @@ suivante :
 Une fois la démonstration terminée, il est maintenant possible d'extraire le
 code OCaml du programme démontré. Ceci est fait par la commande \texttt{extract}
 de Why3. Le code OCaml obtenu après extraction est présenté à la
-figure~\ref{fig:codeExtrait}. Seules quelques modifications dans l'apparence du
-code ont été effectuées entre le code extrait et le code présenté.
-
+figure~\ref{fig:codeExtrait}. Seules quelques modifications de mise en
+page ont été effectuées entre le code extrait et le code présenté.
+%
 \begin{figure}[tp]
 \begin{ocaml}
 type t = { arr: int array; max: int; max_arr: int }
@@ -661,9 +661,8 @@ let euler_sieve max =
 \caption{Un code OCaml du crible d'Euler.}
 \label{fig:codeExtrait}
 \end{figure}
-
-
-Voici quelques mesures de temps de calcul et de la mémoire utilisée par
+%
+Voici quelques mesures du temps de calcul et de la mémoire utilisée par
 le code extrait :
 \begin{center}
   \begin{tabular}{|c|r|r|}
@@ -684,7 +683,8 @@ segmenté~\footnote{Merci à
   Jean-Christophe Filliâtre pour son implémentation du crible d'Ératosthène
   segmenté.}.
 Concernant ce dernier, la comparaison est fournie pour permettre de donner
-une idée de la différence d'efficacité, mais n'est pas exactement adaptée.
+une idée de la différence d'efficacité, mais elle n'est pas totalement
+équitable.
 En effet, contrairement aux cribles d'Ératosthène et d'Euler, qui renvoie
 un tableau contenant tous les nombres premiers, le crible d'Ératosthène
 segmenté ne renvoie rien mais applique une fonction \ocamlf{int -> unit}
